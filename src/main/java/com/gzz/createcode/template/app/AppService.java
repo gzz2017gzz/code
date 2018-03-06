@@ -3,7 +3,7 @@ package com.gzz.createcode.template.app;
 import com.gzz.createcode.common.CodeUtil;
 
 public class AppService {
-	public static StringBuilder genSB(String pName, String clsUpp, String auth, String cName, String idType, String clsLow) {
+	public static StringBuilder genSB(String pName, String clsUpp, String auth, String cName, String idType, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("package " + pName + ";");
 		sb.append("\r\n");
@@ -31,9 +31,9 @@ public class AppService {
 		sb.append("\r\n");
 		sb.append(CodeUtil.methodComment("新增" + cName));
 		sb.append("\r\n	public void save() {");
-		sb.append("\r\n		" + clsUpp + " " + clsLow + " = new " + clsUpp + "();");
+		sb.append("\r\n		" + clsUpp + " " + lowUpp + " = new " + clsUpp + "();");
 		sb.append("\r\n		// TODO 准备数据");
-		sb.append("\r\n		request.save(" + clsLow + ", new Response.Listener<JSONObject>() {");
+		sb.append("\r\n		request.save(" + lowUpp + ", new Response.Listener<JSONObject>() {");
 		sb.append("\r\n			public void onResponse(JSONObject json) {");
 		sb.append("\r\n				DLResult<Integer> result = gson.fromJson(json.toString(), new TypeToken<DLResult<Integer>>() {");
 		sb.append("\r\n				}.getType());");
@@ -49,9 +49,9 @@ public class AppService {
 		sb.append("\r\n");
 		sb.append(CodeUtil.methodComment("修改" + cName));
 		sb.append("\r\n	public void update() {");
-		sb.append("\r\n		" + clsUpp + " " + clsLow + " = new " + clsUpp + "();");
+		sb.append("\r\n		" + clsUpp + " " + lowUpp + " = new " + clsUpp + "();");
 		sb.append("\r\n		// TODO 准备数据");
-		sb.append("\r\n		request.save(" + clsLow + ", new Response.Listener<JSONObject>() {");
+		sb.append("\r\n		request.save(" + lowUpp + ", new Response.Listener<JSONObject>() {");
 		sb.append("\r\n			public void onResponse(JSONObject json) {");
 		sb.append("\r\n				DLResult<Integer> result = gson.fromJson(json.toString(), new TypeToken<DLResult<Integer>>() {");
 		sb.append("\r\n				}.getType());");
@@ -133,8 +133,8 @@ public class AppService {
 		sb.append("\r\n				DLResult<" + clsUpp + "> result = gson.fromJson(res, new TypeToken<DLResult<" + clsUpp + ">>() {");
 		sb.append("\r\n				}.getType());");
 		sb.append("\r\n				if (result.isSuccess()) {");
-		sb.append("\r\n					" + clsUpp + " " + clsLow + " = result.getData();");
-		sb.append("\r\n					System.out.println(" + clsLow + ");");
+		sb.append("\r\n					" + clsUpp + " " + lowUpp + " = result.getData();");
+		sb.append("\r\n					System.out.println(" + lowUpp + ");");
 		sb.append("\r\n					// TODO 查询成功后的代码");
 		sb.append("\r\n				} else {");
 		sb.append("\r\n					ToastUtils.showToastShort(\"请检查手机网络！\");");

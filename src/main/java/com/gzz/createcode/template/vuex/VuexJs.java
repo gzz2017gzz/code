@@ -6,7 +6,7 @@ import com.gzz.createcode.common.CodeUtil;
 import com.gzz.createcode.mvc.model.Field;
 
 public class VuexJs {
-	public static StringBuilder genSB(List<Field> fList, String clsLow, String cName, String auth) {
+	public static StringBuilder genSB(List<Field> fList, String cName, String auth, String lowUpp) {
 		String idName = fList.get(0).getName().toLowerCase();
 		StringBuilder sb = new StringBuilder();
 		StringBuilder pageColum = new StringBuilder();
@@ -18,8 +18,7 @@ public class VuexJs {
 			String name = field.getName().toLowerCase();
 			String comments = field.getComment();
 			initform.append("\r\n          " + name + ": null,");
-			cond.append("\r\n      <FormItem label=\"" + comments + "\"><Input placeholder=\"请输入" + comments + "\" size=\"small\" v-model=\"form." + name
-					+ "\"></Input></FormItem>");
+			cond.append("\r\n      <FormItem label=\"" + comments + "\"><Input placeholder=\"请输入" + comments + "\" size=\"small\" v-model=\"form." + name + "\"></Input></FormItem>");
 			pageColum.append("\r\n          { title: '" + comments + "', key: '" + name + "'},");
 			validate.append("\r\n          " + name + ": [");
 			validate.append("\r\n            {required: true, message: '请输入" + comments + "', trigger: 'blur'},");
@@ -55,10 +54,10 @@ public class VuexJs {
 		sb.append("\r\n  },");
 		sb.append("\r\n  getters: {},");
 		sb.append("\r\n  mutations: {");
-		sb.append("\r\n    ['" + clsLow + "/refresh'](state){");
+		sb.append("\r\n    ['" + lowUpp + "/refresh'](state){");
 		sb.append("\r\n      state.loading = true;");
 		sb.append("\r\n      const requestData = {...state.searchForm, page: state.page - 1};");
-		sb.append("\r\n      http.post(\"/api/" + clsLow + "/queryPage\", JSON.stringify(requestData)).then(res => {");
+		sb.append("\r\n      http.post(\"/api/" + lowUpp + "/queryPage\", JSON.stringify(requestData)).then(res => {");
 		sb.append("\r\n        state.loading = false;");
 		sb.append("\r\n        state.dataList = res.data.content;");
 		sb.append("\r\n        state.total = res.data.totalElements;");
@@ -69,39 +68,39 @@ public class VuexJs {
 		sb.append("\r\n        state.loading = false;");
 		sb.append("\r\n      });");
 		sb.append("\r\n    },");
-		sb.append("\r\n    [\"" + clsLow + "/addDialog\"](state){");
+		sb.append("\r\n    [\"" + lowUpp + "/addDialog\"](state){");
 		sb.append("\r\n      state.title = \"新增" + cName + "\";");
 		sb.append("\r\n      state.dialogMode = \"save\";");
 		sb.append("\r\n      state.form = {...initForm};");
 		sb.append("\r\n      state.show = true;");
 		sb.append("\r\n    },");
-		sb.append("\r\n    [\"" + clsLow + "/editDialog\"](state, row){");
+		sb.append("\r\n    [\"" + lowUpp + "/editDialog\"](state, row){");
 		sb.append("\r\n      state.title = \"修改" + cName + "\";");
 		sb.append("\r\n      state.dialogMode = \"update\";");
 		sb.append("\r\n      state.form = {...row};");
 		sb.append("\r\n      state.show = true;");
 		sb.append("\r\n    },");
-		sb.append("\r\n    [\"" + clsLow + "/showDialog\"](state, show){");
+		sb.append("\r\n    [\"" + lowUpp + "/showDialog\"](state, show){");
 		sb.append("\r\n      state.show = show;");
 		sb.append("\r\n    },");
-		sb.append("\r\n    [\"" + clsLow + "/setPage\"](state, page){");
+		sb.append("\r\n    [\"" + lowUpp + "/setPage\"](state, page){");
 		sb.append("\r\n      state.page = page;");
 		sb.append("\r\n    },");
 		sb.append("\r\n  },");
 		sb.append("\r\n  actions: {");
-		sb.append("\r\n    [\"" + clsLow + "/deleteAction\"]({state, dispatch, commit}, row){");
+		sb.append("\r\n    [\"" + lowUpp + "/deleteAction\"]({state, dispatch, commit}, row){");
 		sb.append("\r\n      Modal.confirm({");
 		sb.append("\r\n        title: '提示',");
 		sb.append("\r\n        content: '您确定要删除吗?',");
 		sb.append("\r\n        closable:true,");
 		sb.append("\r\n        onOk: () => {");
-		sb.append("\r\n          http.delete(\"/api/" + clsLow + "/delete\", {");
+		sb.append("\r\n          http.delete(\"/api/" + lowUpp + "/delete\", {");
 		sb.append("\r\n            params: {ids: [row." + idName + "]}");
 		sb.append("\r\n          }).then(res => {");
 		sb.append("\r\n            Message.success({");
 		sb.append("\r\n              content: \"删除成功\"");
 		sb.append("\r\n            });");
-		sb.append("\r\n            commit(\"" + clsLow + "/refresh\");");
+		sb.append("\r\n            commit(\"" + lowUpp + "/refresh\");");
 		sb.append("\r\n          }).catch(res => {");
 		sb.append("\r\n            Message.error({");
 		sb.append("\r\n              content: \"删除失败：\" + res");
@@ -113,10 +112,10 @@ public class VuexJs {
 		sb.append("\r\n        }");
 		sb.append("\r\n      });");
 		sb.append("\r\n    },");
-		sb.append("\r\n    ['" + clsLow + "/save']({state, dispatch, commit}){");
-		sb.append("\r\n      http.post(\"/api/" + clsLow + "/\" + state.dialogMode, JSON.stringify(state.form)).then(res => {");
-		sb.append("\r\n        commit(\"" + clsLow + "/refresh\");");
-		sb.append("\r\n        commit(\"" + clsLow + "/showDialog\", false);");
+		sb.append("\r\n    ['" + lowUpp + "/save']({state, dispatch, commit}){");
+		sb.append("\r\n      http.post(\"/api/" + lowUpp + "/\" + state.dialogMode, JSON.stringify(state.form)).then(res => {");
+		sb.append("\r\n        commit(\"" + lowUpp + "/refresh\");");
+		sb.append("\r\n        commit(\"" + lowUpp + "/showDialog\", false);");
 		sb.append("\r\n      }).catch(res => {");
 		sb.append("\r\n        Message.error({");
 		sb.append("\r\n          content: '保存" + cName + "信息失败' + res");

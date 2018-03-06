@@ -6,7 +6,7 @@ import com.gzz.createcode.common.CodeUtil;
 import com.gzz.createcode.mvc.model.Field;
 
 public class VuexDialog {
-	public static StringBuilder genSB(List<Field> fList, String clsLow, String cName, String auth) {
+	public static StringBuilder genSB(List<Field> fList, String cName, String auth, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder filed = new StringBuilder();
 		int i = 0;
@@ -17,8 +17,7 @@ public class VuexDialog {
 			}
 			String name = field.getName().toLowerCase();
 			String comments = field.getComment();
-			filed.append("\r\n        <FormItem label=\"" + comments + "\" prop=\"" + name + "\"><Input placeholder=\"" + comments + "\" v-model=\"form." + name
-					+ "\"></Input></FormItem>");
+			filed.append("\r\n        <FormItem label=\"" + comments + "\" prop=\"" + name + "\"><Input placeholder=\"" + comments + "\" v-model=\"form." + name + "\"></Input></FormItem>");
 		}
 		sb.append(CodeUtil.vueHead(cName + "新增与修改", auth));
 		sb.append("\r\n<template>");
@@ -44,17 +43,17 @@ public class VuexDialog {
 		sb.append("\r\n    }, computed: {");
 		sb.append("\r\n      ...mapGetters({}),");
 		sb.append("\r\n      ...mapState({");
-		sb.append("\r\n        form: (state) => state." + clsLow + ".form,");
-		sb.append("\r\n        rules: (state) => state." + clsLow + ".rules,");
-		sb.append("\r\n        title: (state) => state." + clsLow + ".title,");
-		sb.append("\r\n        dialogMode: (state) => state." + clsLow + ".dialogMode,");
+		sb.append("\r\n        form: (state) => state." + lowUpp + ".form,");
+		sb.append("\r\n        rules: (state) => state." + lowUpp + ".rules,");
+		sb.append("\r\n        title: (state) => state." + lowUpp + ".title,");
+		sb.append("\r\n        dialogMode: (state) => state." + lowUpp + ".dialogMode,");
 		sb.append("\r\n      }),");
 		sb.append("\r\n      show: {");
 		sb.append("\r\n        get () {");
-		sb.append("\r\n          return this.$store.state." + clsLow + ".show");
+		sb.append("\r\n          return this.$store.state." + lowUpp + ".show");
 		sb.append("\r\n        },");
 		sb.append("\r\n        set (value) {");
-		sb.append("\r\n          this.$store.commit('" + clsLow + "/showDialog', value)");
+		sb.append("\r\n          this.$store.commit('" + lowUpp + "/showDialog', value)");
 		sb.append("\r\n        }");
 		sb.append("\r\n      }");
 		sb.append("\r\n    },");
@@ -67,7 +66,7 @@ public class VuexDialog {
 		sb.append("\r\n          if (!valid) {");
 		sb.append("\r\n            return;");
 		sb.append("\r\n          }");
-		sb.append("\r\n          that.$store.dispatch(\"" + clsLow + "/save\")");
+		sb.append("\r\n          that.$store.dispatch(\"" + lowUpp + "/save\")");
 		sb.append("\r\n        });");
 		sb.append("\r\n      },");
 		sb.append("\r\n    },");

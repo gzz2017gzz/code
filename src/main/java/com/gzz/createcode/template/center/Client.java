@@ -2,8 +2,8 @@ package com.gzz.createcode.template.center;
 
 import com.gzz.createcode.common.CodeUtil;
 
-public class SimpleClient {
-	public static StringBuilder genSB(String pName, String clsUpp, String auth, String cName, String idType, String clsLow) {
+public class Client {
+	public static StringBuilder genSB(String pName, String clsUpp, String auth, String cName, String idType, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("package " + pName + ";");
 		sb.append("\r\nimport java.util.List;");
@@ -13,17 +13,17 @@ public class SimpleClient {
 		sb.append("\r\nimport org.springframework.web.bind.annotation.RequestParam;");
 		sb.append("\r\nimport com.dl.keep.common.util.Page;");
 		sb.append(CodeUtil.classComment(auth, cName + "客户端类"));
-		sb.append("\r\n@FeignClient(\"dl-keep-web-data/" + clsLow + "\")");
+		sb.append("\r\n@FeignClient(\"dl-keep-web-data/" + lowUpp + "\")");
 		sb.append("\r\npublic interface I" + clsUpp + "Client {");
 		sb.append(CodeUtil.methodComment("新增" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"save\")");
-		sb.append("\r\n	int save(@RequestBody " + clsUpp + " " + clsLow + ");");
+		sb.append("\r\n	int save(@RequestBody " + clsUpp + " " + lowUpp + ");");
 		sb.append(CodeUtil.methodComment("删除" + cName + "记录(多条)"));
 		sb.append("\r\n	@RequestMapping(\"delete\")");
 		sb.append("\r\n	int delete(@RequestParam(\"ids[]\") " + idType + " ids[]);");
 		sb.append(CodeUtil.methodComment("修改" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"update\")");
-		sb.append("\r\n	int update(@RequestBody " + clsUpp + " " + clsLow + ");");
+		sb.append("\r\n	int update(@RequestBody " + clsUpp + " " + lowUpp + ");");
 		sb.append(CodeUtil.methodComment("按条件查询分页" + cName + "列表"));
 		sb.append("\r\n	@RequestMapping(\"queryPage\")");
 		sb.append("\r\n	Page<" + clsUpp + "> queryPage(@RequestBody " + clsUpp + "Cond cond );");

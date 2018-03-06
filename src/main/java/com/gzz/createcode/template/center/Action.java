@@ -2,8 +2,8 @@ package com.gzz.createcode.template.center;
 
 import com.gzz.createcode.common.CodeUtil;
 
-public class SimpleAction {
-	public static StringBuilder genSB(String pName, String clsUpp, String auth, String cName, String idType, String clsLow) {
+public class Action {
+	public static StringBuilder genSB(String pName, String clsUpp, String auth, String cName, String idType, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("package " + pName + ";");
@@ -22,7 +22,7 @@ public class SimpleAction {
 
 		sb.append(CodeUtil.classComment(auth, cName + "前端控制器层"));
 		sb.append("\r\n@RestController");
-		sb.append("\r\n@RequestMapping(\"api/" + clsLow + "\")");
+		sb.append("\r\n@RequestMapping(\"api/" + lowUpp + "\")");
 		sb.append("\r\npublic class " + clsUpp + "Action extends PrincipalAction {");
 		sb.append("\r\n	@SuppressWarnings(\"unused\")");
 		sb.append("\r\n	private final Log logger = LogFactory.getLog(getClass());");
@@ -31,8 +31,8 @@ public class SimpleAction {
 
 		sb.append(CodeUtil.methodComment("新增" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"save\")");
-		sb.append("\r\n	public int save(@RequestBody " + clsUpp + " " + clsLow + ", Principal principal) {");
-		sb.append("\r\n		return bus.save(" + clsLow + ");");
+		sb.append("\r\n	public int save(@RequestBody " + clsUpp + " " + lowUpp + ", Principal principal) {");
+		sb.append("\r\n		return bus.save(" + lowUpp + ");");
 		sb.append("\r\n	}");
 		sb.append(CodeUtil.methodComment("验证方法"));
 		sb.append("\r\n\t@RequestMapping(\"validate\")");
@@ -56,8 +56,8 @@ public class SimpleAction {
 
 		sb.append(CodeUtil.methodComment("修改" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"update\")");
-		sb.append("\r\n	public int update(@RequestBody " + clsUpp + " " + clsLow + ", Principal principal) {");
-		sb.append("\r\n		return bus.update(" + clsLow + ");");
+		sb.append("\r\n	public int update(@RequestBody " + clsUpp + " " + lowUpp + ", Principal principal) {");
+		sb.append("\r\n		return bus.update(" + lowUpp + ");");
 		sb.append("\r\n	}");
 		sb.append(CodeUtil.methodComment("按条件查询分页" + cName + "列表"));
 		sb.append("\r\n	@RequestMapping(\"queryPage\")");

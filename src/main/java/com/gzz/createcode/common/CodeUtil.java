@@ -63,35 +63,23 @@ public class CodeUtil {
 	 * @方法说明: 类注释
 	 */
 	public static StringBuilder classComment(String author, String name) {
-		return new StringBuilder().append("\r\n").append("\r\n/**").append("\r\n * @类说明:" + name).append("\r\n * @author:" + author)
-				.append("\r\n * @date:" + time).append("\r\n **/");
+		return new StringBuilder().append("\r\n").append("\r\n/**").append("\r\n * @类说明:" + name)
+				.append("\r\n * @author:" + author).append("\r\n * @date:" + time).append("\r\n **/");
 	}
 
 	/**
 	 * @方法说明: 方法注释
 	 */
 	public static StringBuilder methodComment(String method_name) {
-		return new StringBuilder().append("\r\n").append("\r\n	/**").append("\r\n	 * @方法说明:" + method_name).append("\r\n	 **/");
+		return new StringBuilder().append("\r\n").append("\r\n	/**").append("\r\n	 * @方法说明:" + method_name)
+				.append("\r\n	 **/");
 	}
 
 	/**
 	 * @方法说明: 页面注释
 	 */
 	public static StringBuilder vueHead(String CNName, String author) {
-		return new StringBuilder("/*" + CNName + ",:author:" + author + ",DATE:" + time + "*/");
-	}
-
-	/**
-	 * @方法说明: 生成类名
-	 */
-	public static String getClassName(String tablename) {
-		tablename = firstUpper(tablename);
-		int index = tablename.indexOf("_");
-		while (index != -1) {
-			tablename = tablename.substring(0, index) + firstUpper(tablename.substring(index + 1));
-			index = tablename.indexOf("_");
-		}
-		return tablename;
+		return new StringBuilder("/*" + CNName + ",作者:" + author + ",日期:" + time + "*/");
 	}
 
 	/**
@@ -102,14 +90,21 @@ public class CodeUtil {
 	}
 
 	/**
+	 * @方法说明: 首字母小写
+	 */
+	public static String firstLower(String name) {
+		return name.substring(0, 1).toLowerCase() + name.substring(1, name.length());
+	}
+
+	/**
 	 * @方法说明: 写文件
 	 */
 	public static void writeFile(String path, StringBuilder sb) {
-		File file = new File(path);
-		if (file.exists()) {
-			logger.error("文件已经存在:" + path);
-			throw new RuntimeException();
-		}
+		// File file = new File(path);
+		// if (file.exists()) {
+		// logger.error("文件已经存在:" + path);
+		// throw new RuntimeException();
+		// }
 		createDir(path);
 		try {
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path), "UTF-8"));

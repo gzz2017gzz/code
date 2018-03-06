@@ -6,12 +6,11 @@ import com.gzz.createcode.common.CodeUtil;
 import com.gzz.createcode.mvc.model.Field;
 
 public class VueDialog {
-	public static StringBuilder genSB(List<Field> fList, String clsLow, String cName, String auth) {
+	public static StringBuilder genSB(List<Field> fList, String lowUpp, String cName, String auth) {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder filed = new StringBuilder();
 		StringBuilder validate = new StringBuilder();
 		StringBuilder initform = new StringBuilder();
-
 		int i = 0;
 		for (Field field : fList) {
 			i++;
@@ -66,7 +65,7 @@ public class VueDialog {
 		sb.append("\r\n          if (!valid) {");
 		sb.append("\r\n            return;");
 		sb.append("\r\n          }");
-		sb.append("\r\n          that.$http.post(\"/api/" + clsLow + "/\" + that.dialogMode, JSON.stringify(that.form)).then(res => {");
+		sb.append("\r\n          that.$http.post(\"/api/" + lowUpp + "/\" + that.dialogMode, JSON.stringify(that.form)).then(res => {");
 		sb.append("\r\n            that.show = false;");
 		sb.append("\r\n            that.$message.success(that.title + \"成功!\");");
 		sb.append("\r\n            that.refresh();");

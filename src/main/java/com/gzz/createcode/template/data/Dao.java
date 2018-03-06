@@ -5,7 +5,7 @@ import java.util.List;
 import com.gzz.createcode.common.CodeUtil;
 import com.gzz.createcode.mvc.model.Field;
 
-public class SimpleDao {
+public class Dao {
 	public static StringBuilder genSB(String pName, String clsUpp, String auth, String cName, List<Field> fList, String tName, String idType) {
 		StringBuilder sb = new StringBuilder();
 		String idName = fList.get(0).getName().toLowerCase();
@@ -88,7 +88,7 @@ public class SimpleDao {
 
 		sb.append(CodeUtil.methodComment("按条件查询" + cName + "记录个数"));
 		sb.append("\r\n	public long queryCount(" + clsUpp + "Cond cond) {");
-		sb.append("\r\n		String countSql = \"SELECT COUNT(t." + idName + ") FROM " + tName + " t WHERE 1=1\" + cond.getCondition();");
+		sb.append("\r\n		String countSql = \"SELECT COUNT(1) FROM " + tName + " t WHERE 1=1\" + cond.getCondition();");
 		sb.append("\r\n		return jdbcTemplate.queryForObject(countSql, cond.getArray(), Long.class);");
 		sb.append("\r\n	}");
 

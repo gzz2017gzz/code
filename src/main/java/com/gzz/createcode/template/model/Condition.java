@@ -5,7 +5,7 @@ import java.util.List;
 import com.gzz.createcode.common.CodeUtil;
 import com.gzz.createcode.mvc.model.Field;
 
-public class SimpleCondition {
+public class Condition {
 	public static StringBuilder genSB(String pName, String clsUpp, List<Field> fList, String auth, String cName) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("package " + pName + ";");

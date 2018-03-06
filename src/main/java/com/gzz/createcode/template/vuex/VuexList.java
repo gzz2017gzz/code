@@ -6,17 +6,15 @@ import com.gzz.createcode.common.CodeUtil;
 import com.gzz.createcode.mvc.model.Field;
 
 public class VuexList {
-	public static StringBuilder genSB(List<Field> fList, String clsUpp, String cName, String auth, String clsLow) {
+	public static StringBuilder genSB(List<Field> fList, String clsUpp, String cName, String auth, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder pageColum = new StringBuilder();
 		StringBuilder cond = new StringBuilder();
-		String name = null;
-		String comments = null;
+
 		for (Field field : fList) {
-			name = field.getName().toLowerCase();
-			comments = field.getComment();
-			cond.append("\r\n      <FormItem label=\"" + comments + "\"><Input placeholder=\"请输入" + comments + "\" v-model=\"form." + name
-					+ "\"></Input></FormItem>");
+			String name = field.getName().toLowerCase();
+			String comments = field.getComment();
+			cond.append("\r\n      <FormItem label=\"" + comments + "\"><Input placeholder=\"请输入" + comments + "\" v-model=\"form." + name + "\"></Input></FormItem>");
 			pageColum.append("\r\n          {title: '" + comments + "', key: '" + name + "'},");
 		}
 		sb.append(CodeUtil.vueHead(cName + "列表", auth));
@@ -93,7 +91,7 @@ public class VuexList {
 		sb.append("\r\n                  },");
 		sb.append("\r\n                  on: {");
 		sb.append("\r\n                    click: () => {");
-		sb.append("\r\n                      that.$store.dispatch('" + clsLow + "/deleteAction', params.row)");
+		sb.append("\r\n                      that.$store.dispatch('" + lowUpp + "/deleteAction', params.row)");
 		sb.append("\r\n                    }");
 		sb.append("\r\n                  }");
 		sb.append("\r\n                }, '删除')");
@@ -107,17 +105,17 @@ public class VuexList {
 		sb.append("\r\n      ...mapGetters({");
 		sb.append("\r\n      }),");
 		sb.append("\r\n      ...mapState({");
-		sb.append("\r\n        form: (state) => state." + clsLow + ".searchForm,");
-		sb.append("\r\n        loading: (state) => state." + clsLow + ".loading,");
-		sb.append("\r\n        total: (state) => state." + clsLow + ".total,");
-		sb.append("\r\n        dataList: (state) => state." + clsLow + ".dataList");
+		sb.append("\r\n        form: (state) => state." + lowUpp + ".searchForm,");
+		sb.append("\r\n        loading: (state) => state." + lowUpp + ".loading,");
+		sb.append("\r\n        total: (state) => state." + lowUpp + ".total,");
+		sb.append("\r\n        dataList: (state) => state." + lowUpp + ".dataList");
 		sb.append("\r\n      }),");
 		sb.append("\r\n      page: {");
 		sb.append("\r\n        get() {");
-		sb.append("\r\n          return this.$store.state." + clsLow + ".page");
+		sb.append("\r\n          return this.$store.state." + lowUpp + ".page");
 		sb.append("\r\n        },");
 		sb.append("\r\n        set(value) {");
-		sb.append("\r\n          this.$store.commit('" + clsLow + "/setPage', value)");
+		sb.append("\r\n          this.$store.commit('" + lowUpp + "/setPage', value)");
 		sb.append("\r\n        }");
 		sb.append("\r\n      }");
 		sb.append("\r\n    },");
@@ -128,9 +126,9 @@ public class VuexList {
 		sb.append("\r\n      ...mapActions({}),");
 		sb.append("\r\n      ...mapMutations(");
 		sb.append("\r\n        {");
-		sb.append("\r\n          refresh: '" + clsLow + "/refresh',");
-		sb.append("\r\n          addDialog: '" + clsLow + "/addDialog',");
-		sb.append("\r\n          editDialog: '" + clsLow + "/editDialog',");
+		sb.append("\r\n          refresh: '" + lowUpp + "/refresh',");
+		sb.append("\r\n          addDialog: '" + lowUpp + "/addDialog',");
+		sb.append("\r\n          editDialog: '" + lowUpp + "/editDialog',");
 		sb.append("\r\n        }");
 		sb.append("\r\n      ),");
 		sb.append("\r\n    }");

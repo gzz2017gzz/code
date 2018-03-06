@@ -6,14 +6,13 @@ import com.gzz.createcode.common.CodeUtil;
 import com.gzz.createcode.mvc.model.Field;
 
 public class VueList {
-	public static StringBuilder genSB(List<Field> fList, String clsUpp, String cName, String auth, String clsLow) {
+	public static StringBuilder genSB(List<Field> fList, String clsUpp, String cName, String auth, String lowUpp) {
 		String idName = fList.get(0).getName().toLowerCase();
 		StringBuilder sb = new StringBuilder();
 		StringBuilder pageColum = new StringBuilder();
 		StringBuilder initform = new StringBuilder();
 		StringBuilder expand = new StringBuilder();
 		StringBuilder cond = new StringBuilder();
-
 		for (Field field : fList) {
 			String fName = field.getName().toLowerCase();
 			String comments = field.getComment();
@@ -89,7 +88,7 @@ public class VueList {
 		sb.append("\r\n        const that = this;");
 		sb.append("\r\n        that.loading = true;");
 		sb.append("\r\n        const requestData = {...that.form, page: that.page - 1};");
-		sb.append("\r\n        that.$http.post(\"/api/" + clsLow + "/queryPage\", JSON.stringify(requestData)).then(res => {");
+		sb.append("\r\n        that.$http.post(\"/api/" + lowUpp + "/queryPage\", JSON.stringify(requestData)).then(res => {");
 		sb.append("\r\n          that.loading = false;");
 		sb.append("\r\n          that.dataList = res.data.content;");
 		sb.append("\r\n          that.total = res.data.totalElements;");
@@ -111,7 +110,7 @@ public class VueList {
 		sb.append("\r\n          cancelButtonText: '取消',");
 		sb.append("\r\n          type: 'warning'");
 		sb.append("\r\n        }).then(() => {");
-		sb.append("\r\n          that.$http.delete(\"/api/" + clsLow + "/delete\", {");
+		sb.append("\r\n          that.$http.delete(\"/api/" + lowUpp + "/delete\", {");
 		sb.append("\r\n            params: {ids: [row." + idName + "]}");
 		sb.append("\r\n          }).then(res => {");
 		sb.append("\r\n            this.$message.success(\"删除成功\");");

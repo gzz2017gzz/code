@@ -3,10 +3,9 @@ package com.gzz.createcode.template.app;
 import com.gzz.createcode.common.CodeUtil;
 
 public class AppAction {
-	public static StringBuilder genSB(String pName, String clsUpp, String auth, String cName, String idType, String clsLow) {
+	public static StringBuilder genSB(String pName, String clsUpp, String auth, String cName, String idType, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("package " + pName + ";");
-		sb.append("\r\npackage com.dl.appcenter.dyn.user;");
 		sb.append("\r\n");
 		sb.append("\r\nimport java.security.Principal;");
 		sb.append("\r\nimport java.util.List;");
@@ -28,16 +27,16 @@ public class AppAction {
 		sb.append("\r\n");
 		sb.append(CodeUtil.classComment(auth, cName + "app端Swagger控制器类"));
 		sb.append("\r\n@RestController");
-		sb.append("\r\n@RequestMapping(\"" + clsLow + "\")");
+		sb.append("\r\n@RequestMapping(\"" + lowUpp + "\")");
 		sb.append("\r\npublic class " + clsUpp + "Action extends PrincipalAction {");
 		sb.append("\r\n	@SuppressWarnings(\"unused\")");
 		sb.append("\r\n	private final Log logger = LogFactory.getLog(getClass());");
 		sb.append("\r\n	@Autowired");
-		sb.append("\r\n	private UserBus bus; //注入" + cName + "业务逻辑类");
+		sb.append("\r\n	private " + clsUpp + "Bus bus; //注入" + cName + "业务逻辑类");
 		sb.append(CodeUtil.methodComment("新增" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"save\")");
-		sb.append("\r\n	public SwaggerRespImpl<Integer> save(@RequestBody " + clsUpp + " " + clsLow + ", Principal principal) {");
-		sb.append("\r\n		return new SwaggerRespImpl<>(bus.save(" + clsLow + "));");
+		sb.append("\r\n	public SwaggerRespImpl<Integer> save(@RequestBody " + clsUpp + " " + lowUpp + ", Principal principal) {");
+		sb.append("\r\n		return new SwaggerRespImpl<>(bus.save(" + lowUpp + "));");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
 		sb.append(CodeUtil.methodComment("验证方法"));
@@ -61,8 +60,8 @@ public class AppAction {
 		sb.append("\r\n");
 		sb.append(CodeUtil.methodComment("修改" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"update\")");
-		sb.append("\r\n	public SwaggerRespImpl<Integer> update(@RequestBody " + clsUpp + " " + clsLow + ", Principal principal) {");
-		sb.append("\r\n		return new SwaggerRespImpl<>(bus.update(" + clsLow + "));");
+		sb.append("\r\n	public SwaggerRespImpl<Integer> update(@RequestBody " + clsUpp + " " + lowUpp + ", Principal principal) {");
+		sb.append("\r\n		return new SwaggerRespImpl<>(bus.update(" + lowUpp + "));");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
 		sb.append(CodeUtil.methodComment("按条件查询分页" + cName + "列表"));
