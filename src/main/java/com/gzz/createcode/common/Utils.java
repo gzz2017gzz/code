@@ -8,10 +8,8 @@ import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import com.gzz.createcode.mvc.model.Field;
 
 /**
@@ -20,8 +18,8 @@ import com.gzz.createcode.mvc.model.Field;
  * @date 2018-02-15
  */
 
-public class CodeUtil {
-	private static Log logger = LogFactory.getLog(CodeUtil.class);
+public class Utils {
+	private static Log logger = LogFactory.getLog(Utils.class);
 	private static String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
 	/**
@@ -38,7 +36,7 @@ public class CodeUtil {
 
 	public static StringBuilder add(List<Field> list, String start, String end) {
 		StringBuilder sb = new StringBuilder();
-		list.forEach(item -> sb.append(start + CodeUtil.firstUpper(item.getName().toLowerCase()) + end));
+		list.forEach(item -> sb.append(start + Utils.firstUpper(item.getName().toLowerCase()) + end));
 		return sb.delete(sb.length() - 1, sb.length());
 	}
 
@@ -62,23 +60,21 @@ public class CodeUtil {
 	/**
 	 * @方法说明: 类注释
 	 */
-	public static StringBuilder classComment(String author, String name) {
-		return new StringBuilder().append("\r\n").append("\r\n/**").append("\r\n * @类说明:" + name)
-				.append("\r\n * @author:" + author).append("\r\n * @date:" + time).append("\r\n **/");
+	public static StringBuilder classNote(String author, String name) {
+		return new StringBuilder().append("\r\n").append("\r\n/**").append("\r\n * @类说明:" + name).append("\r\n * @author:" + author).append("\r\n * @date:" + time).append("\r\n **/");
 	}
 
 	/**
 	 * @方法说明: 方法注释
 	 */
-	public static StringBuilder methodComment(String method_name) {
-		return new StringBuilder().append("\r\n").append("\r\n	/**").append("\r\n	 * @方法说明:" + method_name)
-				.append("\r\n	 **/");
+	public static StringBuilder methodNote(String method_name) {
+		return new StringBuilder().append("\r\n").append("\r\n	/**").append("\r\n	 * @方法说明:" + method_name).append("\r\n	 **/");
 	}
 
 	/**
 	 * @方法说明: 页面注释
 	 */
-	public static StringBuilder vueHead(String CNName, String author) {
+	public static StringBuilder pageNote(String CNName, String author) {
 		return new StringBuilder("/*" + CNName + ",作者:" + author + ",日期:" + time + "*/");
 	}
 
@@ -99,7 +95,7 @@ public class CodeUtil {
 	/**
 	 * @方法说明: 写文件
 	 */
-	public static void writeFile(String path, StringBuilder sb) {
+	public static void write(String path, StringBuilder sb) {
 		// File file = new File(path);
 		// if (file.exists()) {
 		// logger.error("文件已经存在:" + path);

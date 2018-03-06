@@ -2,11 +2,11 @@ package com.gzz.createcode.template.vue;
 
 import java.util.List;
 
-import com.gzz.createcode.common.CodeUtil;
+import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.model.Field;
 
 public class VueMockJs {
-	public static StringBuilder genSB(List<Field> fList, String lowUpp, String cName, String auth) {
+	public static StringBuilder create(List<Field> fList, String lowUpp, String cName, String auth) {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder columdata = new StringBuilder();
 		for (Field field : fList) {
@@ -18,7 +18,7 @@ public class VueMockJs {
 			else
 				columdata.append("\r\n        " + name + ": \"@integer(100,200)\",//" + comments);
 		}
-		sb.append(CodeUtil.vueHead(cName + "模拟数据", auth));
+		sb.append(Utils.pageNote(cName + "模拟数据", auth));
 		sb.append("\r\n'use strict';");
 		sb.append("\r\nvar Mock = require('mockjs')");
 		sb.append("\r\nvar Random = Mock.Random;");

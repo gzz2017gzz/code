@@ -2,14 +2,14 @@ package com.gzz.createcode.template.vuex;
 
 import java.util.List;
 
-import com.gzz.createcode.common.CodeUtil;
+import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.model.Field;
 
 public class VuexIndexJs {
-	public static StringBuilder genSB(List<Field> list, String className, String CNName, String author) {
+	public static StringBuilder create(List<Field> list, String className, String CNName, String author) {
 		String clsName = className.toLowerCase();
 		StringBuilder sb = new StringBuilder();
-		sb.append(CodeUtil.vueHead(CNName, author));
+		sb.append(Utils.pageNote(CNName, author));
 		sb.append("\r\nimport Vue from 'vue'");
 		sb.append("\r\nimport Vuex from 'vuex'");
 		sb.append("\r\nimport app from './app';");

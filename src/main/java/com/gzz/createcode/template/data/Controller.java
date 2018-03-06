@@ -1,9 +1,9 @@
 package com.gzz.createcode.template.data;
 
-import com.gzz.createcode.common.CodeUtil;
+import com.gzz.createcode.common.Utils;
 
 public class Controller {
-	public static StringBuilder genSB(String pName, String clsUpp, String auth, String cName,String idType, String lowUpp) {
+	public static StringBuilder create(String pName, String clsUpp, String auth, String cName,String idType, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("package " + pName + ";");
 		sb.append("\r\nimport java.util.List;");
@@ -16,7 +16,7 @@ public class Controller {
 		sb.append("\r\nimport org.springframework.web.bind.annotation.RestController;");
 		sb.append("\r\nimport com.dl.keep.common.util.Page;");
 
-		sb.append(CodeUtil.classComment(auth, cName + "数据控制器层"));
+		sb.append(Utils.classNote(auth, cName + "数据控制器层"));
 		sb.append("\r\n@RestController");
 		sb.append("\r\n@RequestMapping(\"" + lowUpp + "\")");
 		sb.append("\r\npublic class " + clsUpp + "Controller {");
@@ -25,39 +25,39 @@ public class Controller {
 		sb.append("\r\n	@Autowired");
 		sb.append("\r\n	private " + clsUpp + "Service service; //注入" + cName + "数据逻辑层");
 
-		sb.append(CodeUtil.methodComment("新增" + cName + "记录"));
+		sb.append(Utils.methodNote("新增" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"save\")");
 		sb.append("\r\n	public int save(@RequestBody " + clsUpp + " " + lowUpp + ") {");
 		sb.append("\r\n		return service.save(" + lowUpp + ");");
 		sb.append("\r\n	}");
 
-		sb.append(CodeUtil.methodComment("删除" + cName + "记录(多条)"));
+		sb.append(Utils.methodNote("删除" + cName + "记录(多条)"));
 		sb.append("\r\n	@RequestMapping(\"delete\")");
 		sb.append("\r\n	public int delete(@RequestParam(\"ids[]\") " + idType + " ids[]) {");
 		sb.append("\r\n		return service.delete(ids);");
 		sb.append("\r\n	}");
 
-		sb.append(CodeUtil.methodComment("修改" + cName + "记录"));
+		sb.append(Utils.methodNote("修改" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"update\")");
 		sb.append("\r\n	public int update(@RequestBody " + clsUpp + " " + lowUpp + ") {");
 		sb.append("\r\n		return service.update(" + lowUpp + ");");
 		sb.append("\r\n	}");
-		sb.append(CodeUtil.methodComment("按条件查询分页" + cName + "列表"));
+		sb.append(Utils.methodNote("按条件查询分页" + cName + "列表"));
 		sb.append("\r\n	@RequestMapping(\"queryPage\")");
 		sb.append("\r\n	public Page<" + clsUpp + "> queryPage(@RequestBody " + clsUpp + "Cond cond ){");
 		sb.append("\r\n		return service.queryPage(cond);");
 		sb.append("\r\n	}");
-		sb.append(CodeUtil.methodComment("按条件查询不分页" + cName + "列表"));
+		sb.append(Utils.methodNote("按条件查询不分页" + cName + "列表"));
 		sb.append("\r\n	@RequestMapping(\"queryList\")");
 		sb.append("\r\n	public List<" + clsUpp + "> queryList(@RequestBody " + clsUpp + "Cond cond ){");
 		sb.append("\r\n		return service.queryList(cond);");
 		sb.append("\r\n	}");
-		sb.append(CodeUtil.methodComment("按主键查单个" + cName + "记录"));
+		sb.append(Utils.methodNote("按主键查单个" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"findById\")");
 		sb.append("\r\n	public " + clsUpp + " findById(@RequestParam(\"id\") " + idType + " id) {");
 		sb.append("\r\n		return service.findById(id);");
 		sb.append("\r\n	}");
-		sb.append(CodeUtil.methodComment("按条件查询" + cName + "记录个数"));
+		sb.append(Utils.methodNote("按条件查询" + cName + "记录个数"));
 		sb.append("\r\n	@RequestMapping(\"queryCount\")");
 		sb.append("\r\n	public long queryCount(@RequestBody " + clsUpp + "Cond cond ){");
 		sb.append("\r\n		return service.queryCount(cond);");

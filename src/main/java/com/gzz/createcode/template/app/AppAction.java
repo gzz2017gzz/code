@@ -1,9 +1,9 @@
 package com.gzz.createcode.template.app;
 
-import com.gzz.createcode.common.CodeUtil;
+import com.gzz.createcode.common.Utils;
 
 public class AppAction {
-	public static StringBuilder genSB(String pName, String clsUpp, String auth, String cName, String idType, String lowUpp) {
+	public static StringBuilder create(String pName, String clsUpp, String auth, String cName, String idType, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("package " + pName + ";");
 		sb.append("\r\n");
@@ -25,7 +25,7 @@ public class AppAction {
 		sb.append("\r\nimport com.dl.keep.common.util.MessageInfo;");
 		sb.append("\r\nimport com.dl.keep.common.util.Page;");
 		sb.append("\r\n");
-		sb.append(CodeUtil.classComment(auth, cName + "app端Swagger控制器类"));
+		sb.append(Utils.classNote(auth, cName + "app端Swagger控制器类"));
 		sb.append("\r\n@RestController");
 		sb.append("\r\n@RequestMapping(\"" + lowUpp + "\")");
 		sb.append("\r\npublic class " + clsUpp + "Action extends PrincipalAction {");
@@ -33,13 +33,13 @@ public class AppAction {
 		sb.append("\r\n	private final Log logger = LogFactory.getLog(getClass());");
 		sb.append("\r\n	@Autowired");
 		sb.append("\r\n	private " + clsUpp + "Bus bus; //注入" + cName + "业务逻辑类");
-		sb.append(CodeUtil.methodComment("新增" + cName + "记录"));
+		sb.append(Utils.methodNote("新增" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"save\")");
 		sb.append("\r\n	public SwaggerRespImpl<Integer> save(@RequestBody " + clsUpp + " " + lowUpp + ", Principal principal) {");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.save(" + lowUpp + "));");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append(CodeUtil.methodComment("验证方法"));
+		sb.append(Utils.methodNote("验证方法"));
 		sb.append("\r\n	@RequestMapping(\"validate\")");
 		sb.append("\r\n	public MessageInfo validate(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
 		sb.append("\r\n		MessageInfo mi = new MessageInfo();");
@@ -52,39 +52,39 @@ public class AppAction {
 		sb.append("\r\n		return mi;");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append(CodeUtil.methodComment("删除" + cName + "记录"));
+		sb.append(Utils.methodNote("删除" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"delete\")");
 		sb.append("\r\n	public SwaggerRespImpl<Integer> delete(@RequestParam(\"id\") " + idType + " id) {");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.delete(new " + idType + "[] { id }));");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append(CodeUtil.methodComment("修改" + cName + "记录"));
+		sb.append(Utils.methodNote("修改" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"update\")");
 		sb.append("\r\n	public SwaggerRespImpl<Integer> update(@RequestBody " + clsUpp + " " + lowUpp + ", Principal principal) {");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.update(" + lowUpp + "));");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append(CodeUtil.methodComment("按条件查询分页" + cName + "列表"));
+		sb.append(Utils.methodNote("按条件查询分页" + cName + "列表"));
 		sb.append("\r\n	@RequestMapping(\"queryPage\")");
 		sb.append("\r\n	public SwaggerRespImpl<Page<" + clsUpp + ">> queryPage(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
 		sb.append("\r\n		// cond.setBranch_id(getDefaultBranchId(principal));");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.queryPage(cond));");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append(CodeUtil.methodComment("按条件查询不分页" + cName + "列表"));
+		sb.append(Utils.methodNote("按条件查询不分页" + cName + "列表"));
 		sb.append("\r\n	@RequestMapping(\"queryList\")");
 		sb.append("\r\n	public SwaggerRespImpl<List<" + clsUpp + ">> queryList(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
 		sb.append("\r\n		// cond.setBranch_id(getDefaultBranchId(principal));");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.queryList(cond));");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append(CodeUtil.methodComment("按条件查询" + cName + "记录个数"));
+		sb.append(Utils.methodNote("按条件查询" + cName + "记录个数"));
 		sb.append("\r\n	@RequestMapping(\"queryCount\")");
 		sb.append("\r\n	public SwaggerRespImpl<Long> queryCount(@RequestBody " + clsUpp + "Cond cond) {");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.queryCount(cond));");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append(CodeUtil.methodComment("按主键查询单条" + cName + "记录"));
+		sb.append(Utils.methodNote("按主键查询单条" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"findById\")");
 		sb.append("\r\n	public SwaggerRespImpl<" + clsUpp + "> findById(@RequestParam(\"id\") " + idType + " id) {");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.findById(id));");

@@ -2,11 +2,11 @@ package com.gzz.createcode.template.vuex;
 
 import java.util.List;
 
-import com.gzz.createcode.common.CodeUtil;
+import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.model.Field;
 
 public class VuexDialog {
-	public static StringBuilder genSB(List<Field> fList, String cName, String auth, String lowUpp) {
+	public static StringBuilder create(List<Field> fList, String cName, String auth, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder filed = new StringBuilder();
 		int i = 0;
@@ -19,7 +19,7 @@ public class VuexDialog {
 			String comments = field.getComment();
 			filed.append("\r\n        <FormItem label=\"" + comments + "\" prop=\"" + name + "\"><Input placeholder=\"" + comments + "\" v-model=\"form." + name + "\"></Input></FormItem>");
 		}
-		sb.append(CodeUtil.vueHead(cName + "新增与修改", auth));
+		sb.append(Utils.pageNote(cName + "新增与修改", auth));
 		sb.append("\r\n<template>");
 		sb.append("\r\n  <Modal :title=\"title\" v-model=\"show\" :scrollable=\"false\" :mask-closable=\"false\" width=\"400\">");
 		sb.append("\r\n    <Form :model=\"form\" ref=\"form\" :rules=\"rules\" :label-width=\"100\">");

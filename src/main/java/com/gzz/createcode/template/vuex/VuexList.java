@@ -2,11 +2,11 @@ package com.gzz.createcode.template.vuex;
 
 import java.util.List;
 
-import com.gzz.createcode.common.CodeUtil;
+import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.model.Field;
 
 public class VuexList {
-	public static StringBuilder genSB(List<Field> fList, String clsUpp, String cName, String auth, String lowUpp) {
+	public static StringBuilder create(List<Field> fList, String clsUpp, String cName, String auth, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder pageColum = new StringBuilder();
 		StringBuilder cond = new StringBuilder();
@@ -17,7 +17,7 @@ public class VuexList {
 			cond.append("\r\n      <FormItem label=\"" + comments + "\"><Input placeholder=\"请输入" + comments + "\" v-model=\"form." + name + "\"></Input></FormItem>");
 			pageColum.append("\r\n          {title: '" + comments + "', key: '" + name + "'},");
 		}
-		sb.append(CodeUtil.vueHead(cName + "列表", auth));
+		sb.append(Utils.pageNote(cName + "列表", auth));
 		sb.append("\r\n<template>");
 		sb.append("\r\n  <div><h3>" + cName + "管理</h3>");
 		sb.append("\r\n    <hr/>");

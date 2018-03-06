@@ -2,11 +2,11 @@ package com.gzz.createcode.template.vue;
 
 import java.util.List;
 
-import com.gzz.createcode.common.CodeUtil;
+import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.model.Field;
 
 public class VueDialog {
-	public static StringBuilder genSB(List<Field> fList, String lowUpp, String cName, String auth) {
+	public static StringBuilder create(List<Field> fList, String lowUpp, String cName, String auth) {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder filed = new StringBuilder();
 		StringBuilder validate = new StringBuilder();
@@ -28,7 +28,7 @@ public class VueDialog {
 			validate.append("\r\n            {min: 1, max: 10, message: '" + comments + "长度不正确', trigger: 'blur'},");
 			validate.append("\r\n          ],");
 		}
-		sb.append(CodeUtil.vueHead(cName + "新增与修改", auth));
+		sb.append(Utils.pageNote(cName + "新增与修改", auth));
 		sb.append("\r\n<template>");
 		sb.append("\r\n  <el-dialog :title=\"title\" :visible.sync=\"show\" :close-on-click-modal=\"false\" :close-on-press-escape=\"false\">");
 		sb.append("\r\n    <el-form :model=\"form\" ref=\"form\" :rules=\"rules\" label-width=\"100px\">");

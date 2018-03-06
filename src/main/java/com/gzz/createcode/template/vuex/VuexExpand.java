@@ -2,11 +2,11 @@ package com.gzz.createcode.template.vuex;
 
 import java.util.List;
 
-import com.gzz.createcode.common.CodeUtil;
+import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.model.Field;
 
 public class VuexExpand {
-	public static StringBuilder genSB(List<Field> fList, String cName, String auth) {
+	public static StringBuilder create(List<Field> fList, String cName, String auth) {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder colum = new StringBuilder();
 
@@ -16,7 +16,7 @@ public class VuexExpand {
 			colum.append("\r\n      <Col span=\"6\"><span class=\"expand-key\">" + comments + "</span>");
 			colum.append("\r\n      <span class=\"expand-value\">{{ row." + fName + "}}</span></Col>");
 		}
-		sb.append(CodeUtil.vueHead(cName + "折叠扩展", auth));
+		sb.append(Utils.pageNote(cName + "折叠扩展", auth));
 		sb.append("\r\n<template>");
 		sb.append("\r\n  <div>");
 		sb.append("\r\n    <Row class=\"expand-row\">");

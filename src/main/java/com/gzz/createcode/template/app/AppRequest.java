@@ -1,9 +1,9 @@
 package com.gzz.createcode.template.app;
 
-import com.gzz.createcode.common.CodeUtil;
+import com.gzz.createcode.common.Utils;
 
 public class AppRequest {
-	public static StringBuilder genSB(String pName, String clsUpp, String auth, String cName, String idType, String lowUpp) {
+	public static StringBuilder create(String pName, String clsUpp, String auth, String cName, String idType, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("package " + pName + ";");
 		sb.append("\r\n");
@@ -29,9 +29,9 @@ public class AppRequest {
 		sb.append("\r\n/**");
 		sb.append("\r\n * @友情提示: 请清理掉用不到的代码包括这段注释");
 		sb.append("\r\n **/");
-		sb.append(CodeUtil.classComment(auth, cName + "--网络请求层"));
+		sb.append(Utils.classNote(auth, cName + "--网络请求层"));
 		sb.append("\r\npublic class " + clsUpp + "Request {");
-		sb.append(CodeUtil.methodComment("新增" + cName));
+		sb.append(Utils.methodNote("新增" + cName));
 		sb.append("\r\n	public void save(" + clsUpp + " " + lowUpp + ", Listener<JSONObject> listener) {");
 		sb.append("\r\n		JSONObject json = null;");
 		sb.append("\r\n		try {");
@@ -55,7 +55,7 @@ public class AppRequest {
 		sb.append("\r\n	}");
 		sb.append("\r\n");
 		sb.append("\r\n	");
-		sb.append(CodeUtil.methodComment("修改" + cName));
+		sb.append(Utils.methodNote("修改" + cName));
 		sb.append("\r\n	public void update(" + clsUpp + " " + lowUpp + ", Listener<JSONObject> listener) {");
 		sb.append("\r\n		JSONObject json = null;");
 		sb.append("\r\n		try {");
@@ -78,7 +78,7 @@ public class AppRequest {
 		sb.append("\r\n		MyApplication.getHttpQueues().add(request);");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append(CodeUtil.methodComment("按主键删除" + cName));
+		sb.append(Utils.methodNote("按主键删除" + cName));
 		sb.append("\r\n	public void delete(" + idType + " id, Listener<String> listener) {");
 		sb.append("\r\n		StringRequest request = new StringRequest(1, Constants.HOST + \"" + lowUpp
 				+ "/delete?id=\" + id, listener, new Response.ErrorListener() {");
@@ -97,7 +97,7 @@ public class AppRequest {
 		sb.append("\r\n		MyApplication.getHttpQueues().add(request);");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append(CodeUtil.methodComment("按条件查询" + cName + "列表"));
+		sb.append(Utils.methodNote("按条件查询" + cName + "列表"));
 		sb.append("\r\n	public void queryList(" + clsUpp + "Cond cond, Listener<JSONObject> listener) {");
 		sb.append("\r\n		JSONObject json = null;");
 		sb.append("\r\n		try {");
@@ -122,7 +122,7 @@ public class AppRequest {
 		sb.append("\r\n	}");
 		sb.append("\r\n");
 		sb.append("\r\n ");
-		sb.append(CodeUtil.methodComment("按条件查询" + cName + "分页列表"));
+		sb.append(Utils.methodNote("按条件查询" + cName + "分页列表"));
 		sb.append("\r\n	public void queryPage(" + clsUpp + "Cond cond, Listener<JSONObject> listener) {");
 		sb.append("\r\n");
 		sb.append("\r\n		JSONObject json = null;");
@@ -147,7 +147,7 @@ public class AppRequest {
 		sb.append("\r\n	}");
 		sb.append("\r\n");
 		sb.append("\r\n ");
-		sb.append(CodeUtil.methodComment("按主键查询" + cName + "单个数据"));
+		sb.append(Utils.methodNote("按主键查询" + cName + "单个数据"));
 		sb.append("\r\n	public void findById(" + idType + " id, Listener<String> listener) {");
 		sb.append("\r\n		StringRequest request = new StringRequest(1, Constants.HOST + \"" + lowUpp
 				+ "/findById?id=\" + id, listener, new Response.ErrorListener() {");
@@ -167,7 +167,7 @@ public class AppRequest {
 		sb.append("\r\n	}");
 		sb.append("\r\n");
 		sb.append("\r\n ");
-		sb.append(CodeUtil.methodComment("按条件查询" + cName + "数据个数"));
+		sb.append(Utils.methodNote("按条件查询" + cName + "数据个数"));
 		sb.append("\r\n	public void queryCount(" + clsUpp + "Cond cond, Listener<JSONObject> listener) {");
 		sb.append("\r\n		JSONObject json = null;");
 		sb.append("\r\n		try {");

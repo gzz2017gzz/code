@@ -2,13 +2,11 @@ package com.gzz.createcode.mvc.service;
 
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.common.base.CaseFormat;
-import com.gzz.createcode.common.CodeUtil;
+import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.dao.CodeDao;
 import com.gzz.createcode.mvc.model.CodeCond;
 import com.gzz.createcode.mvc.model.Field;
@@ -42,7 +40,7 @@ import com.gzz.createcode.template.vuex.VuexList;
  */
 @Service
 public class CodeService {
-	Log logger = LogFactory.getLog(CodeService.class);// 日志类
+//	private Log logger = LogFactory.getLog(CodeService.class);// 日志类
 	@Autowired
 	protected CodeDao dao;
 
@@ -53,52 +51,52 @@ public class CodeService {
 		String auth = cond.getAuth();// 作者
 		String model = cond.getModel();// 模块名
 		String pName = "com." + cond.getCompany() + "." + cond.getPrj() + "." + cond.getModel() + ".";
-		String basePath = CodeUtil.getBasePath() + "com/" + cond.getCompany() + "/" + cond.getPrj() + "/" + model + "/";
+		String basePath = Utils.getBasePath() + "com/" + cond.getCompany() + "/" + cond.getPrj() + "/" + model + "/";
 		for (Table table : cond.getC_list()) {
 			String tName = table.getT_name();// 表名
 			cond.setT_name_eq(tName);
 			List<Field> fList = dao.queryColumnList(cond);// 字段列表
 			String cName = table.getC_name();// 表注释中文名
 			String clsUpp = table.getCls_upp();// 类名(首字母大写)
- 			String clsLow = clsUpp.toLowerCase();// 类名小写
-			String lowUpp = CodeUtil.firstLower(clsUpp);
-			logger.info(lowUpp);
-			String idType = CodeUtil.keyType(fList);// 主键数据类型
+			String clsLow = clsUpp.toLowerCase();// 类名小写
+			String lowUpp = Utils.firstLower(clsUpp);
+			// logger.info(lowUpp);
+			String idType = Utils.keyType(fList);// 主键数据类型
 
 			String path = basePath + "model/" + clsLow + "/" + clsUpp;// 数据模型
-			CodeUtil.writeFile(path + ".java", Model.genSB(pName + clsLow, clsUpp, fList, auth, cName));
-			CodeUtil.writeFile(path + "Cond.java", Condition.genSB(pName + clsLow, clsUpp, fList, auth, cName));
+			Utils.write(path + ".java", Model.create(pName + clsLow, clsUpp, fList, auth, cName));
+			Utils.write(path + "Cond.java", Condition.create(pName + clsLow, clsUpp, fList, auth, cName));
 
 			path = basePath + "data/" + clsLow + "/" + clsUpp;// 数据访问
-			CodeUtil.writeFile(path + "Dao.java", Dao.genSB(pName + clsLow, clsUpp, auth, cName, fList, tName, idType));
-			CodeUtil.writeFile(path + "Service.java", Serv.genSB(pName + clsLow, clsUpp, auth, cName, idType, lowUpp));
-			CodeUtil.writeFile(path + "Controller.java", Controller.genSB(pName + clsLow, clsUpp, auth, cName, idType, lowUpp));
+			Utils.write(path + "Dao.java", Dao.create(pName + clsLow, clsUpp, auth, cName, fList, tName, idType));
+			Utils.write(path + "Service.java", Serv.create(pName + clsLow, clsUpp, auth, cName, idType, lowUpp));
+			Utils.write(path + "Controller.java", Controller.create(pName + clsLow, clsUpp, auth, cName, idType, lowUpp));
 
 			path = basePath + "center/" + clsLow + "/";// 层务逻辑
-			CodeUtil.writeFile(path + "I" + clsUpp + "Client.java", Client.genSB(pName + clsLow, clsUpp, auth, cName, idType, lowUpp));
-			CodeUtil.writeFile(path + clsUpp + "Bus.java", Bus.genSB(pName + clsLow, clsUpp, auth, cName, idType, lowUpp));
-			CodeUtil.writeFile(path + clsUpp + "Action.java", Action.genSB(pName + clsLow, clsUpp, auth, cName, idType,  lowUpp));
+			Utils.write(path + "I" + clsUpp + "Client.java", Client.create(pName + clsLow, clsUpp, auth, cName, idType, lowUpp));
+			Utils.write(path + clsUpp + "Bus.java", Bus.create(pName + clsLow, clsUpp, auth, cName, idType, lowUpp));
+			Utils.write(path + clsUpp + "Action.java", Action.create(pName + clsLow, clsUpp, auth, cName, idType, lowUpp));
 
 			path = basePath + "vue/" + clsLow + "/" + clsUpp;// vue前端
-			CodeUtil.writeFile(path + "List.vue", VueList.genSB(fList, clsUpp, cName, auth, lowUpp));
-			CodeUtil.writeFile(path + "Dialog.vue", VueDialog.genSB(fList, lowUpp, cName, auth));
+			Utils.write(path + "List.vue", VueList.create(fList, clsUpp, cName, auth, lowUpp));
+			Utils.write(path + "Dialog.vue", VueDialog.create(fList, lowUpp, cName, auth));
 
 			path = basePath + "vuex/" + clsLow + "/" + clsUpp;// vuex前端
-			CodeUtil.writeFile(path + "Mock.js", VueMockJs.genSB(fList, lowUpp, cName, auth));
-			CodeUtil.writeFile(path + "List.vue", VuexList.genSB(fList, clsUpp, cName, auth,  lowUpp));
-			CodeUtil.writeFile(path + "Dialog.vue", VuexDialog.genSB(fList,   cName, auth, lowUpp));
-			CodeUtil.writeFile(path + ".js", VuexJs.genSB(fList,  cName, auth, lowUpp));
-			CodeUtil.writeFile(path + "Expand.vue", VuexExpand.genSB(fList, cName, auth));
-			CodeUtil.writeFile(path + "index.js", VuexIndexJs.genSB(fList, clsUpp, cName, auth));
+			Utils.write(path + "Mock.js", VueMockJs.create(fList, lowUpp, cName, auth));
+			Utils.write(path + "List.vue", VuexList.create(fList, clsUpp, cName, auth, lowUpp));
+			Utils.write(path + "Dialog.vue", VuexDialog.create(fList, cName, auth, lowUpp));
+			Utils.write(path + ".js", VuexJs.create(fList, cName, auth, lowUpp));
+			Utils.write(path + "Expand.vue", VuexExpand.create(fList, cName, auth));
+			Utils.write(path + "index.js", VuexIndexJs.create(fList, clsUpp, cName, auth));
 
 			path = basePath + "app/" + clsLow + "/" + clsUpp;// 安卓前端
-			CodeUtil.writeFile(path + "Request.java", AppRequest.genSB(pName + clsLow, clsUpp, auth, cName, idType, lowUpp));
-			CodeUtil.writeFile(path + "Service.java", AppService.genSB(pName + clsLow, clsUpp, auth, cName, idType, lowUpp));
-			CodeUtil.writeFile(path + ".java", AppModel.genSB(pName + clsLow, clsUpp, fList, auth, cName));
-			CodeUtil.writeFile(path + "Cond.java", AppCondition.genSB(pName + clsLow, clsUpp, fList, auth, cName));
-			CodeUtil.writeFile(path + "Action.java", AppAction.genSB(pName + clsLow, clsUpp, auth, cName, idType, lowUpp));
+			Utils.write(path + "Request.java", AppRequest.create(pName + clsLow, clsUpp, auth, cName, idType, lowUpp));
+			Utils.write(path + "Service.java", AppService.create(pName + clsLow, clsUpp, auth, cName, idType, lowUpp));
+			Utils.write(path + ".java", AppModel.create(pName + clsLow, clsUpp, fList, auth, cName));
+			Utils.write(path + "Cond.java", AppCondition.create(pName + clsLow, clsUpp, fList, auth, cName));
+			Utils.write(path + "Action.java", AppAction.create(pName + clsLow, clsUpp, auth, cName, idType, lowUpp));
 		}
-		CodeUtil.setPermissions();
+		Utils.setPermissions();
 	}
 
 	/**

@@ -1,9 +1,9 @@
 package com.gzz.createcode.template.app;
 
-import com.gzz.createcode.common.CodeUtil;
+import com.gzz.createcode.common.Utils;
 
 public class AppService {
-	public static StringBuilder genSB(String pName, String clsUpp, String auth, String cName, String idType, String lowUpp) {
+	public static StringBuilder create(String pName, String clsUpp, String auth, String cName, String idType, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("package " + pName + ";");
 		sb.append("\r\n");
@@ -23,13 +23,13 @@ public class AppService {
 		sb.append("\r\n/**");
 		sb.append("\r\n * @友情提示: 请清理掉用不到的代码包括这段注释");
 		sb.append("\r\n **/");
-		sb.append(CodeUtil.classComment(auth, cName + "--业务逻辑"));
+		sb.append(Utils.classNote(auth, cName + "--业务逻辑"));
 		sb.append("\r\npublic class " + clsUpp + "Service {");
 		sb.append("\r\n	private " + clsUpp + "Request request = new " + clsUpp + "Request();");
 		sb.append("\r\n	private Gson gson = new GsonBuilder().setDateFormat(\"yyyy-MM-dd HH:mm:ss\").create();");
 		sb.append("\r\n	private SimpleDateFormat sdf= new SimpleDateFormat(\"yyyy-MM-dd HH:mm:ss\");");
 		sb.append("\r\n");
-		sb.append(CodeUtil.methodComment("新增" + cName));
+		sb.append(Utils.methodNote("新增" + cName));
 		sb.append("\r\n	public void save() {");
 		sb.append("\r\n		" + clsUpp + " " + lowUpp + " = new " + clsUpp + "();");
 		sb.append("\r\n		// TODO 准备数据");
@@ -47,7 +47,7 @@ public class AppService {
 		sb.append("\r\n");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append(CodeUtil.methodComment("修改" + cName));
+		sb.append(Utils.methodNote("修改" + cName));
 		sb.append("\r\n	public void update() {");
 		sb.append("\r\n		" + clsUpp + " " + lowUpp + " = new " + clsUpp + "();");
 		sb.append("\r\n		// TODO 准备数据");
@@ -65,7 +65,7 @@ public class AppService {
 		sb.append("\r\n");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append(CodeUtil.methodComment("按主键删除" + cName));
+		sb.append(Utils.methodNote("按主键删除" + cName));
 		sb.append("\r\n	public void delete() {");
 		sb.append("\r\n		" + idType + " id = null;");
 		sb.append("\r\n		// TODO 准备数据");
@@ -82,7 +82,7 @@ public class AppService {
 		sb.append("\r\n		});");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append(CodeUtil.methodComment("按条件查询" + cName + "列表"));
+		sb.append(Utils.methodNote("按条件查询" + cName + "列表"));
 		sb.append("\r\n	public void queryList() {");
 		sb.append("\r\n		" + clsUpp + "Cond cond = new " + clsUpp + "Cond();");
 		sb.append("\r\n		// TODO 准备查询条件");
@@ -101,7 +101,7 @@ public class AppService {
 		sb.append("\r\n		});");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append(CodeUtil.methodComment("按条件查询" + cName + "分页列表"));
+		sb.append(Utils.methodNote("按条件查询" + cName + "分页列表"));
 		sb.append("\r\n	public void queryPage() {");
 		sb.append("\r\n		" + clsUpp + "Cond cond = new " + clsUpp + "Cond();");
 		sb.append("\r\n		// TODO 准备查询条件");
@@ -124,7 +124,7 @@ public class AppService {
 		sb.append("\r\n");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append(CodeUtil.methodComment("按主键查询单个" + cName));
+		sb.append(Utils.methodNote("按主键查询单个" + cName));
 		sb.append("\r\n	public void findById() {");
 		sb.append("\r\n		" + idType + " id = null;");
 		sb.append("\r\n		// TODO 准备数据");
@@ -144,7 +144,7 @@ public class AppService {
 		sb.append("\r\n");
 		sb.append("\r\n	}");
 		sb.append("\r\n ");
-		sb.append(CodeUtil.methodComment("按条件查询" + cName + "数据个数"));
+		sb.append(Utils.methodNote("按条件查询" + cName + "数据个数"));
 		sb.append("\r\n	public void queryCount() {");
 		sb.append("\r\n		" + clsUpp + "Cond cond = new " + clsUpp + "Cond();");
 		sb.append("\r\n		// TODO 准备查询条件");

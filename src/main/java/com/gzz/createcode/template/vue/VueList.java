@@ -2,11 +2,11 @@ package com.gzz.createcode.template.vue;
 
 import java.util.List;
 
-import com.gzz.createcode.common.CodeUtil;
+import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.model.Field;
 
 public class VueList {
-	public static StringBuilder genSB(List<Field> fList, String clsUpp, String cName, String auth, String lowUpp) {
+	public static StringBuilder create(List<Field> fList, String clsUpp, String cName, String auth, String lowUpp) {
 		String idName = fList.get(0).getName().toLowerCase();
 		StringBuilder sb = new StringBuilder();
 		StringBuilder pageColum = new StringBuilder();
@@ -25,7 +25,7 @@ public class VueList {
 			expand.append("\r\n                  </el-col>");
 			pageColum.append("\r\n      <el-table-column prop=\"" + fName + "\" label=\"" + comments + "\"></el-table-column>");
 		}
-		sb.append(CodeUtil.vueHead(cName + "列表", auth));
+		sb.append(Utils.pageNote(cName + "列表", auth));
 		sb.append("\r\n<template>");
 		sb.append("\r\n  <div><h3>" + cName + "</h3>");
 		sb.append("\r\n    <hr/>");

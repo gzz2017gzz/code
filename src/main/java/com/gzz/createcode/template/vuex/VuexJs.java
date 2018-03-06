@@ -2,11 +2,11 @@ package com.gzz.createcode.template.vuex;
 
 import java.util.List;
 
-import com.gzz.createcode.common.CodeUtil;
+import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.model.Field;
 
 public class VuexJs {
-	public static StringBuilder genSB(List<Field> fList, String cName, String auth, String lowUpp) {
+	public static StringBuilder create(List<Field> fList, String cName, String auth, String lowUpp) {
 		String idName = fList.get(0).getName().toLowerCase();
 		StringBuilder sb = new StringBuilder();
 		StringBuilder pageColum = new StringBuilder();
@@ -25,7 +25,7 @@ public class VuexJs {
 			validate.append("\r\n            {min: 1, max: 10, message: '" + comments + "长度不正确', trigger: 'blur'},");
 			validate.append("\r\n          ],");
 		}
-		sb.append(CodeUtil.vueHead(cName + "业务逻辑", auth));
+		sb.append(Utils.pageNote(cName + "业务逻辑", auth));
 		sb.append("\r\nimport http from '../../utils/http';");
 		sb.append("\r\nimport {Message, Modal} from 'iview';");
 		sb.append("\r\n//初始数据");
