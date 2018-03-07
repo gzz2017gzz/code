@@ -162,14 +162,14 @@ public class Utils {
 		return !System.getProperty("os.name").toLowerCase().startsWith("windows");
 	}
 
-	public static String getBasePath() {
+	public static String path() {
 		return isLinux() ? "/data/samba_root/code/" : "d:/";
 	}
 
 	public static void setPermissions() {
 		if (isLinux()) {
 			try {
-				Runtime.getRuntime().exec("chmod 777 -R " + getBasePath());
+				Runtime.getRuntime().exec("chmod 777 -R " + path());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

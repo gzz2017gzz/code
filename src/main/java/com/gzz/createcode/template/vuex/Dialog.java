@@ -5,7 +5,7 @@ import java.util.List;
 import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.model.Field;
 
-public class VuexDialog {
+public class Dialog {
 	public static StringBuilder create(List<Field> fList, String cName, String auth, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder filed = new StringBuilder();

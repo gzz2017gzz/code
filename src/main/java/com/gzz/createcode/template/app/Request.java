@@ -2,7 +2,7 @@ package com.gzz.createcode.template.app;
 
 import com.gzz.createcode.common.Utils;
 
-public class AppRequest {
+public class Request {
 	public static StringBuilder create(String pName, String clsUpp, String auth, String cName, String idType, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("package " + pName + ";");

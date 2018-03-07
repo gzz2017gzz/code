@@ -2,6 +2,7 @@ package com.gzz.createcode.mvc.model;
 
 import java.util.List;
 
+import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.common.base.BaseCondition;
 
 import lombok.Getter;
@@ -22,8 +23,15 @@ public class CodeCond extends BaseCondition {
 	private String t_name_eq;
 	private String db_user;// 数据库用户名
 	private String company;// 公司名
-	private String prj;// 项目名
 	private String model;// 模块名
 	private String auth;// 作者名
 	private List<Table> c_list;// 生成代码用的数据
+
+	public String pack(String app, String low) {
+		return "com." + company + "." + app + "." + model + "." + low;
+	}
+
+	public String base(String app, String low, String upp) {
+		return Utils.path() + "com/" + company + "/" + app + "/" + model + "/" + low + "/" + upp;
+	}
 }

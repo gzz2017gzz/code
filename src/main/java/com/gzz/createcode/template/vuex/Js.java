@@ -5,7 +5,7 @@ import java.util.List;
 import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.model.Field;
 
-public class VuexJs {
+public class Js {
 	public static StringBuilder create(List<Field> fList, String cName, String auth, String lowUpp) {
 		String idName = fList.get(0).getName().toLowerCase();
 		StringBuilder sb = new StringBuilder();
@@ -26,7 +26,7 @@ public class VuexJs {
 			validate.append("\r\n          ],");
 		}
 		sb.append(Utils.pageNote(cName + "业务逻辑", auth));
-		sb.append("\r\nimport http from '../../utils/http';");
+		sb.append("\r\nimport http from '../../../utils/http';");
 		sb.append("\r\nimport {Message, Modal} from 'iview';");
 		sb.append("\r\n//初始数据");
 		sb.append("\r\nconst initForm = {");
@@ -35,7 +35,7 @@ public class VuexJs {
 		sb.append("\r\n//模型");
 		sb.append("\r\nexport default {");
 		sb.append("\r\n  state: {");
-		sb.append("\r\n    // list page");
+		sb.append("\r\n    //分页列表");
 		sb.append("\r\n    total: 0,");
 		sb.append("\r\n    page: 1,");
 		sb.append("\r\n    dataList: [],");
@@ -43,7 +43,7 @@ public class VuexJs {
 		sb.append("\r\n    searchForm: {");
 		sb.append(initform);
 		sb.append("\r\n    },");
-		sb.append("\r\n    //saveOrUpdate");
+		sb.append("\r\n    //新增与修改");
 		sb.append("\r\n    form: {...initForm},");
 		sb.append("\r\n    rules: {");
 		sb.append(validate);

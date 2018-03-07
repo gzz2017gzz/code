@@ -5,7 +5,7 @@ import java.util.List;
 import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.model.Field;
 
-public class VuexList {
+public class ListPage {
 	public static StringBuilder create(List<Field> fList, String clsUpp, String cName, String auth, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder pageColum = new StringBuilder();
@@ -58,9 +58,7 @@ public class VuexList {
 		sb.append("\r\n            width: 50,");
 		sb.append("\r\n            render: (h, params) => {");
 		sb.append("\r\n              return h(" + clsUpp + "Expand, {");
-		sb.append("\r\n                props: {");
-		sb.append("\r\n                  row: params.row");
-		sb.append("\r\n                }");
+		sb.append("\r\n                props: {row: params.row}");
 		sb.append("\r\n              })");
 		sb.append("\r\n            }");
 		sb.append("\r\n          },");
@@ -71,13 +69,8 @@ public class VuexList {
 		sb.append("\r\n            render: (h, params) => {");
 		sb.append("\r\n              return h('div', [");
 		sb.append("\r\n                h('Button', {");
-		sb.append("\r\n                  props: {");
-		sb.append("\r\n                    type: 'primary',");
-		sb.append("\r\n                    size: 'small'");
-		sb.append("\r\n                  },");
-		sb.append("\r\n                  style: {");
-		sb.append("\r\n                    marginRight: '5px'");
-		sb.append("\r\n                  },");
+		sb.append("\r\n                  props: {type:'primary',size:'small'},");
+		sb.append("\r\n                  style: {marginRight: '5px'},");
 		sb.append("\r\n                  on: {");
 		sb.append("\r\n                    click: () => {");
 		sb.append("\r\n                      that.editDialog(params.row)");
@@ -85,10 +78,7 @@ public class VuexList {
 		sb.append("\r\n                  }");
 		sb.append("\r\n                }, '编辑'),");
 		sb.append("\r\n                h('Button', {");
-		sb.append("\r\n                  props: {");
-		sb.append("\r\n                    type: 'primary',");
-		sb.append("\r\n                    size: 'small'");
-		sb.append("\r\n                  },");
+		sb.append("\r\n                  props: {type: 'primary',size: 'small'},");
 		sb.append("\r\n                  on: {");
 		sb.append("\r\n                    click: () => {");
 		sb.append("\r\n                      that.$store.dispatch('" + lowUpp + "/deleteAction', params.row)");
@@ -134,8 +124,7 @@ public class VuexList {
 		sb.append("\r\n    }");
 		sb.append("\r\n  }");
 		sb.append("\r\n</script>");
-		sb.append("\r\n<style>");
-		sb.append("\r\n</style>");
+		sb.append("\r\n<style></style>");
 		return sb;
 	}
 }

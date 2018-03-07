@@ -10,15 +10,15 @@
 	【请去掉类名中表名前缀部分(BasePerson改为Person)】
 	【确保表名注释与字段注释为中文(点击[查看]按钮)】
 	【代码存在时可调整[公司名][项目名][模块名]】<br>
- 	目录说明:
-	【model实体类→common】
-	【data数据访问微服务→web-data,app-data】
-	【center业务逻辑微服务→web-center,app-center】
-	【vue前端vue+element】
-	【vuex前端vuex+iview】
-	【app安卓端】<br>
+<!--  	目录说明: -->
+<!-- 	【model实体类→common】 -->
+<!-- 	【data数据访问微服务→web-data,app-data】 -->
+<!-- 	【center业务逻辑微服务→web-center,app-center】 -->
+<!-- 	【vue前端vue+element】 -->
+<!-- 	【vuex前端vuex+iview】 -->
+<!-- 	【app安卓端】<br> -->
 	代码路径: 
-	【\\192.168.1.97\public\code】
+	 \\192.168.1.97\public\code\com\dl
     </div>
     <div class="search">
         表名
@@ -28,8 +28,8 @@
         <el-input v-model="form.auth" style="width:150px" size="small"></el-input>
         公司名
         <el-input v-model="form.company" style="width:150px" size="small"></el-input>
-        项目名
-        <el-input v-model="form.prj" style="width:150px" size="small"></el-input>
+        项目名:[common,webcenter,webdata,appcenter,vue,vuex,android]
+         
         模块名
         <el-input v-model="form.model" style="width:150px" size="small"></el-input>
         <el-button @click="createCode" type="primary" size="small">生成代码</el-button>
@@ -74,7 +74,6 @@
                     c_list: [],
                     auth: "gzz_gzz@163.com",
                     company: "dl",
-                    prj: "webdata",
                     model: "card",
                 },
                 t_list: [],

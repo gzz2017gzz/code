@@ -5,7 +5,7 @@ import java.util.List;
 import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.model.Field;
 
-public class VuexExpand {
+public class Expand {
 	public static StringBuilder create(List<Field> fList, String cName, String auth) {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder colum = new StringBuilder();
@@ -26,9 +26,7 @@ public class VuexExpand {
 		sb.append("\r\n</template>");
 		sb.append("\r\n<script>");
 		sb.append("\r\n  export default {");
-		sb.append("\r\n    props: {");
-		sb.append("\r\n      row: Object");
-		sb.append("\r\n    }");
+		sb.append("\r\n    props: {row: Object}");
 		sb.append("\r\n  };");
 		sb.append("\r\n</script>");
 		sb.append("\r\n<style scoped>");
