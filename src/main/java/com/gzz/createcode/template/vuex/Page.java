@@ -5,7 +5,7 @@ import java.util.List;
 import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.model.Field;
 
-public class ListPage {
+public class Page {
 	public static StringBuilder create(List<Field> fList, String clsUpp, String cName, String auth, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder pageColum = new StringBuilder();

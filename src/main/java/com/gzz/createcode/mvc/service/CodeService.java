@@ -30,7 +30,7 @@ import com.gzz.createcode.template.vuex.Dialog;
 import com.gzz.createcode.template.vuex.Expand;
 import com.gzz.createcode.template.vuex.IndexJs;
 import com.gzz.createcode.template.vuex.Js;
-import com.gzz.createcode.template.vuex.ListPage;
+import com.gzz.createcode.template.vuex.Page;
 
 /**
  * @功能描述:生成列表类型代码的实现类
@@ -90,7 +90,7 @@ public class CodeService {
 
 			path = cond.base("vuex", low, upp);
 			Utils.write(path + "Mock.js", VueMockJs.create(fList, lowUpp, cName, auth));
-			Utils.write(path + "List.vue", ListPage.create(fList, upp, cName, auth, lowUpp));
+			Utils.write(path + "List.vue", Page.create(fList, upp, cName, auth, lowUpp));
 			Utils.write(path + "Dialog.vue", Dialog.create(fList, cName, auth, lowUpp));
 			Utils.write(path + ".js", Js.create(fList, cName, auth, lowUpp));
 			Utils.write(path + "Expand.vue", Expand.create(fList, cName, auth));

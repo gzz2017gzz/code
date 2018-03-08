@@ -24,9 +24,9 @@ public class Dialog {
 		sb.append("\r\n  <Modal :title=\"title\" v-model=\"show\" :scrollable=\"false\" :mask-closable=\"false\" width=\"400\">");
 		sb.append("\r\n    <Form :model=\"form\" ref=\"form\" :rules=\"rules\" :label-width=\"100\">");
 		sb.append("\r\n      <Row>");
-		sb.append("\r\n        <Col>");
+		sb.append("\r\n        <i-col>");
 		sb.append(filed);
-		sb.append("\r\n        </Col>");
+		sb.append("\r\n        </i-col>");
 		sb.append("\r\n      </Row>");
 		sb.append("\r\n    </Form>");
 		sb.append("\r\n    <div slot=\"footer\" style=\"text-align: right\">");
