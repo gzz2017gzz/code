@@ -8,8 +8,10 @@ import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.gzz.createcode.mvc.model.Field;
 
 /**
@@ -135,6 +137,20 @@ public class Utils {
 			}
 		}
 		return mm;
+	}
+
+	/**
+	 * @方法说明: 去掉第一个单词
+	 */
+	public static String delFirWord(String tName) {
+		return tName.substring(tName.indexOf("_") + 1);
+	}
+
+	public static void main(String[] args) {
+		logger.info(delFirWord("abcd_efg_hig_lmn"));
+		logger.info(delFirWord("efg_hig_lmn"));
+		logger.info(delFirWord("hig_lmn"));
+		logger.info(delFirWord("lmn"));
 	}
 
 	/**

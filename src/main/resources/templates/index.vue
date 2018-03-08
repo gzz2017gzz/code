@@ -6,10 +6,10 @@
 <div id="app">
    <div style="color: blue;font-size: 14px;" >
 	注意:
-	【请修改作者名(可以为中文)】
-	【请去掉类名中表名前缀部分(BasePerson改为Person)】
-	【确保表名注释与字段注释为中文(点击[查看]按钮)】
-	【代码存在时可调整[公司名][项目名][模块名]】<br>
+	【请调整作者名(可以为中文)】
+	【请调整[模块名]】
+	【确保表名注释与字段名注释为中文(点击[查看])】
+	【<span style="color: red;" >已去掉</span>类名中表名前缀部分(BasePerson改为Person)】<br>
 <!--  	目录说明: -->
 <!-- 	【model实体类→common】 -->
 <!-- 	【data数据访问微服务→web-data,app-data】 -->
@@ -38,7 +38,7 @@
         <el-table-column type="selection" width="40"></el-table-column>
         <el-table-column prop="t_name" label="表名"></el-table-column>
         <el-table-column prop="comment" label="注释"></el-table-column>
-        <el-table-column label="类名">
+        <el-table-column label="建议类名">
             <template slot-scope="props">
                 <el-input v-model="props.row.cls_upp" size="small"></el-input>
             </template>

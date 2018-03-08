@@ -62,27 +62,29 @@ public class CodeService {
 
 			pName = cond.pack("common", low);
 			path = cond.base("common", low, upp);
-
 			Utils.write(path + ".java", Model.create(pName, upp, fList, auth, cName));
 			Utils.write(path + "Cond.java", Condition.create(pName, upp, fList, auth, cName));
 
 			pName = cond.pack("webdata", low);
 			path = cond.base("webdata", low, upp);
-
 			Utils.write(path + "Dao.java", Dao.create(pName, upp, auth, cName, fList, tName, idType));
 			Utils.write(path + "Service.java", Serv.create(pName, upp, auth, cName, idType, lowUpp));
 			Utils.write(path + "Controller.java", Controller.create(pName, upp, auth, cName, idType, lowUpp));
 
 			pName = cond.pack("webcenter", low);
 			path = cond.base("webcenter", low, upp);
+			Utils.write(path + "Action.java", Action.create(pName, upp, auth, cName, idType, lowUpp));
 
 			Utils.write(path + "Bus.java", Bus.create(pName, upp, auth, cName, idType, lowUpp));
-			Utils.write(path + "Action.java", Action.create(pName, upp, auth, cName, idType, lowUpp));
 			path = cond.base("webcenter", low, "I" + upp);
 			Utils.write(path + "Client.java", Client.create(pName, upp, auth, cName, idType, lowUpp));
+
 			pName = cond.pack("appcenter", low);
 			path = cond.base("appcenter", low, upp);
 			Utils.write(path + "Action.java", AppAction.create(pName + low, upp, auth, cName, idType, lowUpp));
+			Utils.write(path + "Bus.java", Bus.create(pName, upp, auth, cName, idType, lowUpp));
+			path = cond.base("appcenter", low, "I" + upp);
+			Utils.write(path + "Client.java", Client.create(pName, upp, auth, cName, idType, lowUpp));
 
 			path = cond.base("vue", low, upp);
 			Utils.write(path + "List.vue", VueList.create(fList, upp, cName, auth, lowUpp));
@@ -98,7 +100,6 @@ public class CodeService {
 
 			pName = cond.pack("android", low);
 			path = cond.base("android", low, upp);
-
 			Utils.write(path + "Request.java", Request.create(pName + low, upp, auth, cName, idType, lowUpp));
 			Utils.write(path + "Service.java", Serv.create(pName + low, upp, auth, cName, idType, lowUpp));
 			Utils.write(path + ".java", AppModel.create(pName + low, upp, fList, auth, cName));
@@ -113,7 +114,7 @@ public class CodeService {
 	public List<Table> queryTableList(CodeCond para) {
 		List<Table> list = dao.queryTableList(para);
 		list.forEach(item -> {
-			item.setCls_upp(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, item.getT_name()));
+			item.setCls_upp(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Utils.delFirWord(item.getT_name())));
 			item.setC_name(item.getComment());
 		});
 		return list;

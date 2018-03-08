@@ -32,10 +32,10 @@ public class AppAction {
 		sb.append("\r\nimport com.dl.keep.common.util.Page;");
 		sb.append("\r\n");
 		sb.append(Utils.classNote(auth, "[" + cName + "]app端Swagger控制器类"));
-		sb.append("\r\n\t@Api(value = \"[" + cName + "]控制器\", description = \"[" + cName + "]相关操作\")");
-		sb.append("\r\n\t@RestController");
-		sb.append("\r\n\t@RequestMapping(\"" + lowUpp + "\")");
-		sb.append("\r\n\tpublic class " + clsUpp + "Action extends PrincipalAction {");
+		sb.append("\r\n@Api(value = \"[" + cName + "]控制器\", description = \"[" + cName + "]相关操作\")");
+		sb.append("\r\n@RestController");
+		sb.append("\r\n@RequestMapping(\"" + lowUpp + "\")");
+		sb.append("\r\npublic class " + clsUpp + "Action extends PrincipalAction {");
 		sb.append("\r\n\t@SuppressWarnings(\"unused\")");
 		sb.append("\r\n	private final Log logger = LogFactory.getLog(getClass());");
 		sb.append("\r\n	@Autowired");
@@ -111,16 +111,18 @@ public class AppAction {
 		sb.append("\r\n	}");
 
 		sb.append(Utils.methodNote("验证方法"));
-		sb.append("\r\n	@RequestMapping(\"validate\")");
-		sb.append("\r\n	public MessageInfo validate(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
-		sb.append("\r\n		MessageInfo mi = new MessageInfo();");
+		sb.append("\r\n\t@ApiOperation(value = \"按条件验证方法[" + cName + "]相关相信息\", notes = \"返回验证结果\")");
+		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"cond\", value = \"[" + cName + "]查询条件对象\", required = true, dataType = \"" + clsUpp + "Cond\"),");
+		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
+
+		sb.append("\r\n	@RequestMapping(value=\"validate\", method = RequestMethod.POST)");
+		sb.append("\r\n	public SwaggerRespImpl<Integer> validate(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
 		sb.append("\r\n		// 此处写验证逻辑");
 		sb.append("\r\n		// cond.setfield(...)");
 		sb.append("\r\n		// int count=bus.queryCount(cond)");
 		sb.append("\r\n		// if(count = 0){");
-		sb.append("\r\n		// mi.setMessage(1, \"记录个数不能为0!\");");
 		sb.append("\r\n		// }");
-		sb.append("\r\n		return mi;");
+		sb.append("\r\n		return new SwaggerRespImpl<>(1);");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
 		sb.append("\r\n}");
