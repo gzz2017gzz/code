@@ -17,7 +17,7 @@ public class VueDialog {
 			if (i == 1) {// 第一个字段ID字段不生成
 				continue;
 			}
-			String name = field.getName().toLowerCase();
+			String name = field.getName();
 			String comments = field.getComment();
 			filed.append("\r\n          <el-form-item label=\"" + comments + "\" prop=\"" + name + "\">");
 			filed.append("\r\n            <el-input placeholder=\"请输入" + comments + "\" v-model=\"form." + name + "\"></el-input>");

@@ -9,13 +9,10 @@ public class Expand {
 	public static StringBuilder create(List<Field> fList, String cName, String auth) {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder colum = new StringBuilder();
-
-		for (Field field : fList) {
-			String fName = field.getName().toLowerCase();
-			String comments = field.getComment();
-			colum.append("\r\n      <Col span=\"6\"><span class=\"expand-key\">" + comments + "</span>");
-			colum.append("\r\n      <span class=\"expand-value\">{{ row." + fName + "}}</span></Col>");
-		}
+		fList.forEach(fi -> {
+			colum.append("\r\n      <Col span=\"6\"><span class=\"expand-key\">" + fi.getComment() + "</span>");
+			colum.append("\r\n      <span class=\"expand-value\">{{ row." + fi.getName() + "}}</span></Col>");
+		});
 		sb.append(Utils.pageNote(cName + "折叠扩展", auth));
 		sb.append("\r\n<template>");
 		sb.append("\r\n  <div>");
@@ -33,15 +30,11 @@ public class Expand {
 		sb.append("\r\n  .expand-row {");
 		sb.append("\r\n    margin-bottom: 6px;");
 		sb.append("\r\n  }");
-		sb.append("\r\n");
 		sb.append("\r\n  .expand-key {");
 		sb.append("\r\n    font-weight: bold;");
 		sb.append("\r\n    line-height: 25px;");
 		sb.append("\r\n  }");
-		sb.append("\r\n");
-		sb.append("\r\n  .expand-value {");
-		sb.append("\r\n");
-		sb.append("\r\n  }");
+		sb.append("\r\n  .expand-value {}");
 		sb.append("\r\n</style>");
 		return sb;
 	}

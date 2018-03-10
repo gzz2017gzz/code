@@ -11,7 +11,7 @@ public class VueMockJs {
 		StringBuilder columdata = new StringBuilder();
 		for (Field field : fList) {
 			String type = field.getType();
-			String name = field.getName().toLowerCase();
+			String name = field.getName();
 			String comments = field.getComment();
 			if (type.equals("String"))
 				columdata.append("\r\n        " + name + ": \"@word(5,10)\",//" + comments);

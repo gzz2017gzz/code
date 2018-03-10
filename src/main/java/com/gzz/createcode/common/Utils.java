@@ -27,22 +27,22 @@ public class Utils {
 	/**
 	 * @方法说明:name前后各加一个字符，中间用逗号分隔，去掉最后的逗号.去掉第一个字段(ID)
 	 */
-	public static StringBuilder add(List<Field> list, String start, String end, int word) {
+	public static StringBuilder addNoId(List<Field> list, String start, String end, int word) {
 		StringBuilder sb = null;
 		if (word == 1)
-			sb = add(list, start, end);
+			sb = addu(list, start, end);
 		if (word == 2)
-			sb = addLower(list, start, end);
+			sb = addl(list, start, end);
 		return sb.delete(0, sb.indexOf(",") + 1);
 	}
 
-	public static StringBuilder add(List<Field> list, String start, String end) {
+	public static StringBuilder addu(List<Field> list, String start, String end) {
 		StringBuilder sb = new StringBuilder();
-		list.forEach(item -> sb.append(start + Utils.firstUpper(item.getName().toLowerCase()) + end));
+		list.forEach(item -> sb.append(start + Utils.firstUpper(item.getName()) + end));
 		return sb.delete(sb.length() - 1, sb.length());
 	}
 
-	public static StringBuilder addLower(List<Field> list, String start, String end) {
+	public static StringBuilder addl(List<Field> list, String start, String end) {
 		StringBuilder sb = new StringBuilder();
 		list.forEach(item -> sb.append(start + item.getName() + end));
 		return sb.delete(sb.length() - 1, sb.length());

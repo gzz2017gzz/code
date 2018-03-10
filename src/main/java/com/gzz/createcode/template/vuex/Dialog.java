@@ -8,16 +8,11 @@ import com.gzz.createcode.mvc.model.Field;
 public class Dialog {
 	public static StringBuilder create(List<Field> fList, String cName, String auth, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
-		StringBuilder filed = new StringBuilder();
-		int i = 0;
-		for (Field field : fList) {
-			i++;
-			if (i == 1) {// 第一个字段ID字段不生成
-				continue;
-			}
-			String name = field.getName().toLowerCase();
-			String comments = field.getComment();
-			filed.append("\r\n        <FormItem label=\"" + comments + "\" prop=\"" + name + "\"><Input placeholder=\"" + comments + "\" v-model=\"form." + name + "\"></Input></FormItem>");
+		StringBuilder field = new StringBuilder();
+		for (Field fi : fList) {
+			String name = fi.getName();
+			String comments = fi.getComment();
+			field.append("\r\n        <FormItem label=\"" + comments + "\" prop=\"" + name + "\"><Input placeholder=\"" + comments + "\" v-model=\"form." + name + "\"></Input></FormItem>");
 		}
 		sb.append(Utils.pageNote(cName + "新增与修改", auth));
 		sb.append("\r\n<template>");
@@ -25,7 +20,7 @@ public class Dialog {
 		sb.append("\r\n    <Form :model=\"form\" ref=\"form\" :rules=\"rules\" :label-width=\"100\">");
 		sb.append("\r\n      <Row>");
 		sb.append("\r\n        <i-col>");
-		sb.append(filed);
+		sb.append(field);
 		sb.append("\r\n        </i-col>");
 		sb.append("\r\n      </Row>");
 		sb.append("\r\n    </Form>");

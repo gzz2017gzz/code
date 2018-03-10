@@ -18,7 +18,7 @@ public class AppCondition {
 		StringBuilder setGet = new StringBuilder();
 		for (Field fiel : fList) {
 			String comments = fiel.getComment();
-			String fName = fiel.getName().toLowerCase();
+			String fName = fiel.getName();
 			String type = fiel.getType();
 			field.append("\r\n	private " + type + " " + fName + ";// " + comments);
 			setGet.append("\r\n	public " + type + " get" + Utils.firstUpper(fName) + "() {");

@@ -3,7 +3,7 @@ package com.gzz.createcode.template.data;
 import com.gzz.createcode.common.Utils;
 
 public class Controller {
-	public static StringBuilder create(String pName, String clsUpp, String auth, String cName,String idType, String lowUpp) {
+	public static StringBuilder create(String pName, String upp, String auth, String cName,String idType, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("package " + pName + ";");
 		sb.append("\r\nimport java.util.List;");
@@ -19,15 +19,15 @@ public class Controller {
 		sb.append(Utils.classNote(auth, cName + "数据控制器层"));
 		sb.append("\r\n@RestController");
 		sb.append("\r\n@RequestMapping(\"" + lowUpp + "\")");
-		sb.append("\r\npublic class " + clsUpp + "Controller {");
+		sb.append("\r\npublic class " + upp + "Controller {");
 		sb.append("\r\n	@SuppressWarnings(\"unused\")");
 		sb.append("\r\n	private final Log logger = LogFactory.getLog(getClass());");
 		sb.append("\r\n	@Autowired");
-		sb.append("\r\n	private " + clsUpp + "Service service; //注入" + cName + "数据逻辑层");
+		sb.append("\r\n	private " + upp + "Service service; //注入" + cName + "数据逻辑层");
 
 		sb.append(Utils.methodNote("新增" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"save\")");
-		sb.append("\r\n	public int save(@RequestBody " + clsUpp + " " + lowUpp + ") {");
+		sb.append("\r\n	public int save(@RequestBody " + upp + " " + lowUpp + ") {");
 		sb.append("\r\n		return service.save(" + lowUpp + ");");
 		sb.append("\r\n	}");
 
@@ -39,27 +39,27 @@ public class Controller {
 
 		sb.append(Utils.methodNote("修改" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"update\")");
-		sb.append("\r\n	public int update(@RequestBody " + clsUpp + " " + lowUpp + ") {");
+		sb.append("\r\n	public int update(@RequestBody " + upp + " " + lowUpp + ") {");
 		sb.append("\r\n		return service.update(" + lowUpp + ");");
 		sb.append("\r\n	}");
 		sb.append(Utils.methodNote("按条件查询分页" + cName + "列表"));
 		sb.append("\r\n	@RequestMapping(\"queryPage\")");
-		sb.append("\r\n	public Page<" + clsUpp + "> queryPage(@RequestBody " + clsUpp + "Cond cond ){");
+		sb.append("\r\n	public Page<" + upp + "> queryPage(@RequestBody " + upp + "Cond cond ){");
 		sb.append("\r\n		return service.queryPage(cond);");
 		sb.append("\r\n	}");
 		sb.append(Utils.methodNote("按条件查询不分页" + cName + "列表"));
 		sb.append("\r\n	@RequestMapping(\"queryList\")");
-		sb.append("\r\n	public List<" + clsUpp + "> queryList(@RequestBody " + clsUpp + "Cond cond ){");
+		sb.append("\r\n	public List<" + upp + "> queryList(@RequestBody " + upp + "Cond cond ){");
 		sb.append("\r\n		return service.queryList(cond);");
 		sb.append("\r\n	}");
 		sb.append(Utils.methodNote("按主键查单个" + cName + "记录"));
 		sb.append("\r\n	@RequestMapping(\"findById\")");
-		sb.append("\r\n	public " + clsUpp + " findById(@RequestParam(\"id\") " + idType + " id) {");
+		sb.append("\r\n	public " + upp + " findById(@RequestParam(\"id\") " + idType + " id) {");
 		sb.append("\r\n		return service.findById(id);");
 		sb.append("\r\n	}");
 		sb.append(Utils.methodNote("按条件查询" + cName + "记录个数"));
 		sb.append("\r\n	@RequestMapping(\"queryCount\")");
-		sb.append("\r\n	public long queryCount(@RequestBody " + clsUpp + "Cond cond ){");
+		sb.append("\r\n	public long queryCount(@RequestBody " + upp + "Cond cond ){");
 		sb.append("\r\n		return service.queryCount(cond);");
 		sb.append("\r\n	}");
 		sb.append("\r\n}");

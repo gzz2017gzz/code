@@ -12,7 +12,7 @@ public class Page {
 		StringBuilder cond = new StringBuilder();
 
 		for (Field field : fList) {
-			String name = field.getName().toLowerCase();
+			String name = field.getName();
 			String comments = field.getComment();
 			cond.append("\r\n      <FormItem label=\"" + comments + "\"><Input placeholder=\"请输入" + comments + "\" v-model=\"form." + name + "\"></Input></FormItem>");
 			pageColum.append("\r\n          {title: '" + comments + "', key: '" + name + "'},");

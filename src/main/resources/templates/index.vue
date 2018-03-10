@@ -3,39 +3,27 @@
 <script type="text/javascript" src="vue.min.js"></script>
 <script type="text/javascript" src="element.min.js"></script>
 <script type="text/javascript" src="axios.min.js"></script>
+<body>
 <div id="app">
-   <div style="color: blue;font-size: 14px;" >
-	注意:
-	【请调整作者名(可以为中文)】
-	【请调整[模块名]】
-	【确保表名注释与字段名注释为中文(点击[查看])】
-	【<span style="color: red;" >已去掉</span>类名中表名前缀部分(BasePerson改为Person)】<br>
-<!--  	目录说明: -->
-<!-- 	【model实体类→common】 -->
-<!-- 	【data数据访问微服务→web-data,app-data】 -->
-<!-- 	【center业务逻辑微服务→web-center,app-center】 -->
-<!-- 	【vue前端vue+element】 -->
-<!-- 	【vuex前端vuex+iview】 -->
-<!-- 	【app安卓端】<br> -->
-	代码路径: 
-	 \\192.168.1.97\public\code\com\dl
+    <div style="color: blue; font-size: 14px;">
+        【<span style="color: red;">注意</span>】
+        【调整[作者名]\[模块名],点击[查看]确保表名注释与字段名注释<span style="color: red;">为中文</span>,
+        建议类名中表名前缀部分<span style="color: red;">已去掉</span>】 【<span style="color: red;">代码路径</span>】【\\192.168.1.97\public\code\com\dl】
     </div>
     <div class="search">
         表名
-        <el-input v-model="form.t_name" placeholder="请输入表名" style="width:150px" size="small"></el-input>
+        <el-input v-model="form.t_name" placeholder="请输入表名" style="width:100px" size="small"></el-input>
         <el-button @click="query" type="primary" size="small">查询</el-button>
         作者名
-        <el-input v-model="form.auth" style="width:150px" size="small"></el-input>
+        <el-input v-model="form.auth" style="width:100px" size="small"></el-input>
         公司名
-        <el-input v-model="form.company" style="width:150px" size="small"></el-input>
-        项目名:[common,webcenter,webdata,appcenter,vue,vuex,android]
-         
-        模块名
-        <el-input v-model="form.model" style="width:150px" size="small"></el-input>
+        <el-input v-model="form.company" style="width:100px" size="small"></el-input>
+        项目名[common,webcenter,webdata,appcenter,vue,vuex,android]模块名
+        <el-input v-model="form.model" style="width:100px" size="small"></el-input>
         <el-button @click="createCode" type="primary" size="small">生成代码</el-button>
     </div>
     <el-table :data="filterTableList" class="tabClass" @selection-change="onSelectChange" border size="small">
-        <el-table-column type="selection" width="40"></el-table-column>
+        <el-table-column type="selection" width="40px"></el-table-column>
         <el-table-column prop="t_name" label="表名"></el-table-column>
         <el-table-column prop="comment" label="注释"></el-table-column>
         <el-table-column label="建议类名">
@@ -48,10 +36,8 @@
                 <el-input v-model="props.row.c_name" size="small"></el-input>
             </template>
         </el-table-column>
-        <el-table-column label="字段信息" width="80" >
-            <template slot-scope="props">
-                <span style="" @click="queryfieldList(props.row.t_name)">查看</span>
-            </template>
+        <el-table-column label="字段信息" width="100px">
+            <template slot-scope="props"><span style="" @click="queryfieldList(props.row.t_name)">查看</span></template>
         </el-table-column>
     </el-table>
     <br>
@@ -59,10 +45,11 @@
         <el-table :data="f_list" class="tabClass" border size="small">
             <el-table-column prop="name" label="字段名"></el-table-column>
             <el-table-column prop="comment" label="字段注释"></el-table-column>
-            <el-table-column prop="type" label="数据类型"></el-table-column>
+            <el-table-column prop="type" label="JAVA数据类型"></el-table-column>
         </el-table>
     </el-dialog>
 </div>
+</body>
 <script>
     axios.defaults.headers.post['Content-Type'] = 'application/json';
     new Vue({
@@ -72,7 +59,7 @@
                 form: {
                     t_name: '',
                     c_list: [],
-                    auth: "gzz_gzz@163.com",
+                    auth: "高振中",
                     company: "dl",
                     model: "card",
                 },
@@ -85,7 +72,7 @@
             this.query();
         },
         computed: {
-        	filterTableList() {
+            filterTableList() {
                 const that = this;
                 return that.t_list.filter(item => item.t_name.indexOf(that.form.t_name) != -1);
             }
@@ -124,17 +111,28 @@
     });
 </script>
 <style>
+    #app {
+        width: 1160px;
+        margin: auto;
+        position: absolute;
+        top: 5;
+        left: 5;
+        right: 5;
+        bottom: 5;
+    }
+
     .search {
         padding-bottom: 10px;
+        padding-top: 10px;
     }
 
     .tabClass .el-input--small .el-input__inner {
-        height: 20px;
+        height: 25px;
     }
 
     .tabClass .cell {
-        font-size: 13px;
-        line-height: 16px;
+        font-size: 14px;
+        line-height: 25px;
     }
 
     .el-table--small td, .el-table--small th {

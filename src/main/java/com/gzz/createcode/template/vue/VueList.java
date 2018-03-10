@@ -122,9 +122,7 @@ public class VueList {
 		sb.append("\r\n        });");
 		sb.append("\r\n      }");
 		sb.append("\r\n    },");
-		sb.append("\r\n    components: {");
-		sb.append("\r\n      " + clsUpp + "Dialog");
-		sb.append("\r\n    }");
+		sb.append("\r\n    components: { " + clsUpp + "Dialog }");
 		sb.append("\r\n  }");
 		sb.append("\r\n</script>");
 		sb.append("\r\n<style></style>");

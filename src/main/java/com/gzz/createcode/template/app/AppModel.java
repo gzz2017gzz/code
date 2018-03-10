@@ -16,7 +16,7 @@ public class AppModel {
 		sb.append(Utils.classNote(auth, cName + "--实体类"));
 		sb.append("\r\npublic class " + clsUpp + " {");
 		for (Field map : fList) {
-			String name = map.getName().toLowerCase();
+			String name = map.getName();
 			String type = map.getType();
 			String comments = map.getComment();
 			field.append("\r\n\tprivate " + type + " " + name + ";// " + comments);

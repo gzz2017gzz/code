@@ -17,28 +17,23 @@ public class Condition {
 		sb.append(Utils.classNote(auth, cName + "查询条件实体类"));
 		sb.append("\r\n@Setter");
 		sb.append("\r\n@Getter");
-		sb.append("\r\npublic class " + clsUpp + "Cond extends BaseCondition  {");
-		StringBuilder fieldstr = new StringBuilder();
-		StringBuilder condition = new StringBuilder();
-		for (Field field : fList) {
-			String	comments = field.getComment();
-			String	fName = field.getName().toLowerCase();
-			String	type = field.getType();
-			fieldstr.append("\r\n	private " + type + " " + fName + ";// " + comments);
-			if (type.equals("String")) {
-				condition.append("\r\n		//add(" + fName + ", \"AND t." + fName + " LIKE ?\", 3);");
-			} else {
-				condition.append("\r\n		//add(" + fName + ", \"AND t." + fName + " = ?\");");
-			}
+		sb.append("\r\npublic class " + clsUpp + "Cond extends BaseCondition {");
+		StringBuilder field = new StringBuilder();
+		StringBuilder cond = new StringBuilder();
+		for (Field fie : fList) {
+			String fName = fie.getName();
+			String type = fie.getType();
+			field.append("\r\n\tprivate " + type + " " + fName + ";// " + fie.getComment());
+			cond.append("\r\n\t\t//add(" + fName + ", \"AND t." + fName + (type.equals("String") ? " LIKE ?\", 3);" : " = ?\");"));
 		}
-		sb.append(Utils.methodNote("拼加自定义条件;可添加新条件、属性字段,删除不用的条件、属性字段"));
+		sb.append(Utils.methodNote("拼加自定义条件 "));
 		sb.append("\r\n	@Override");
 		sb.append("\r\n	public void addCondition() { ");
-		sb.append(condition);
+		sb.append(cond);
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append("\r\n\t//页面查询条件的ID名称、查询条可以自行增减、把不用条件清理掉");
-		sb.append(fieldstr);
+		sb.append("\r\n\t//查询条件,把不用条件清理掉");
+		sb.append(field);
 		sb.append("\r\n");
 		sb.append("\r\n}");
 		return sb;

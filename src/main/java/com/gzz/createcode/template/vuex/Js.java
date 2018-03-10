@@ -15,7 +15,7 @@ public class Js {
 		StringBuilder validate = new StringBuilder();
 
 		for (Field field : fList) {
-			String name = field.getName().toLowerCase();
+			String name = field.getName();
 			String comments = field.getComment();
 			initform.append("\r\n          " + name + ": null,");
 			cond.append("\r\n      <FormItem label=\"" + comments + "\"><Input placeholder=\"请输入" + comments + "\" size=\"small\" v-model=\"form." + name + "\"></Input></FormItem>");
