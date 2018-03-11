@@ -1,10 +1,8 @@
 package com.gzz.createcode.common;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -22,27 +20,28 @@ import com.gzz.createcode.mvc.model.Field;
 
 public class Utils {
 	private static Log logger = LogFactory.getLog(Utils.class);
-	private static String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+	private static String time;
 
-	/**
-	 * @方法说明:name前后各加一个字符，中间用逗号分隔，去掉最后的逗号.去掉第一个字段(ID)
-	 */
+	public static void setTime() {
+		time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+	}
+
 	public static StringBuilder addNoId(List<Field> list, String start, String end, int word) {
 		StringBuilder sb = null;
 		if (word == 1)
-			sb = addu(list, start, end);
+			sb = addupp(list, start, end);
 		if (word == 2)
-			sb = addl(list, start, end);
+			sb = addlow(list, start, end);
 		return sb.delete(0, sb.indexOf(",") + 1);
 	}
 
-	public static StringBuilder addu(List<Field> list, String start, String end) {
+	public static StringBuilder addupp(List<Field> list, String start, String end) {
 		StringBuilder sb = new StringBuilder();
 		list.forEach(item -> sb.append(start + Utils.firstUpper(item.getName()) + end));
 		return sb.delete(sb.length() - 1, sb.length());
 	}
 
-	public static StringBuilder addl(List<Field> list, String start, String end) {
+	public static StringBuilder addlow(List<Field> list, String start, String end) {
 		StringBuilder sb = new StringBuilder();
 		list.forEach(item -> sb.append(start + item.getName() + end));
 		return sb.delete(sb.length() - 1, sb.length());
@@ -98,16 +97,9 @@ public class Utils {
 	 * @方法说明: 写文件
 	 */
 	public static void write(String path, StringBuilder sb) {
-		// File file = new File(path);
-		// if (file.exists()) {
-		// logger.error("文件已经存在:" + path);
-		// throw new RuntimeException();
-		// }
-		createDir(path);
 		try {
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path), "UTF-8"));
-			writer.write(sb.toString());
-			writer.close();
+			Files.createDirectories(Paths.get(path).getParent());
+			Files.write(Paths.get(path), sb.toString().getBytes("UTF-8"));
 		} catch (IOException e) {
 			logger.info("写入文件时出现异常 " + path);
 			e.printStackTrace();
@@ -115,28 +107,10 @@ public class Utils {
 	}
 
 	/**
-	 * @方法说明: 创建文件夹
-	 */
-	public static void createDir(String path) {
-		File file = new File(path);
-		File parent = file.getParentFile();
-		if (parent != null && !parent.exists()) {
-			parent.mkdirs();
-		}
-	}
-
-	/**
 	 * @方法说明: 实体类文件中是否增加java.util.Date的导入
 	 */
 	public static String dateImport(List<Field> list) {
-		String mm = "";
-		for (Field field : list) {
-			if (field.getType().equals("Date")) {
-				mm = "\r\nimport java.util.Date;";
-				break;
-			}
-		}
-		return mm;
+		return list.parallelStream().filter(i -> i.getType().equals("Date")).count() > 0 ? "\r\nimport java.util.Date;" : "";
 	}
 
 	/**
@@ -146,25 +120,11 @@ public class Utils {
 		return tName.substring(tName.indexOf("_") + 1);
 	}
 
-	public static void main(String[] args) {
-		logger.info(delFirWord("abcd_efg_hig_lmn"));
-		logger.info(delFirWord("efg_hig_lmn"));
-		logger.info(delFirWord("hig_lmn"));
-		logger.info(delFirWord("lmn"));
-	}
-
 	/**
 	 * @方法说明: 实体类文件中是否增加java.math.BigDecimal的导入
 	 */
 	public static String bigImport(List<Field> list) {
-		String mm = "";
-		for (Field field : list) {
-			if (field.getType().equals("BigDecimal")) {
-				mm = "\r\nimport java.math.BigDecimal;";
-				break;
-			}
-		}
-		return mm;
+		return list.parallelStream().filter(i -> i.getType().equals("BigDecimal")).count() > 0 ? "\r\nimport java.math.BigDecimal;" : "";
 	}
 
 	/**
@@ -182,7 +142,7 @@ public class Utils {
 		return isLinux() ? "/data/samba_root/code/" : "d:/";
 	}
 
-	public static void setPermissions() {
+	public static void chmod() {
 		if (isLinux()) {
 			try {
 				Runtime.getRuntime().exec("chmod 777 -R " + path());

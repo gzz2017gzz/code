@@ -26,15 +26,15 @@ public class Dao {
 		sb.append("\r\n\tprivate StringBuilder insert = new StringBuilder();");
 		sb.append(Utils.methodNote("构造方法,用于拼加SQL及初始化工作"));
 		sb.append("\r\n\tpublic " + upp + "Dao () {");
-		sb.append("\r\n\t\tselect.append(\"SELECT " + Utils.addl(fList, "t.", ",") + " FROM " + tName + " t WHERE 1=1\");");
+		sb.append("\r\n\t\tselect.append(\"SELECT " + Utils.addlow(fList, "t.", ",") + " FROM " + tName + " t WHERE 1=1\");");
 		sb.append("\r\n");
-		sb.append("\r\n\t\tinsert.append(\"INSERT INTO " + tName + " (" + Utils.addl(fList, "", ",") + ")\");");
-		sb.append("\r\n\t\tinsert.append(\" VALUES (" + Utils.addl(fList, ":", ",") + ")\");");
+		sb.append("\r\n\t\tinsert.append(\"INSERT INTO " + tName + " (" + Utils.addlow(fList, "", ",") + ")\");");
+		sb.append("\r\n\t\tinsert.append(\" VALUES (" + Utils.addlow(fList, ":", ",") + ")\");");
 		sb.append("\r\n\t}");
 		sb.append(Utils.methodNote("新增" + cName + "记录"));
 		sb.append("\r\n\tpublic int save(" + upp + " vo) {");
-		sb.append("\r\n\t\tString sql = \"REPLACE INTO " + tName + " (" + Utils.addl(fList, "", ",") + ") VALUES " + Utils.add(fList.size()) + " \";");
-		sb.append("\r\n\t\tObject[] params ={" + Utils.addu(fList, "vo.get", "(),") + "};");
+		sb.append("\r\n\t\tString sql = \"REPLACE INTO " + tName + " (" + Utils.addlow(fList, "", ",") + ") VALUES " + Utils.add(fList.size()) + " \";");
+		sb.append("\r\n\t\tObject[] params ={" + Utils.addupp(fList, "vo.get", "(),") + "};");
 		sb.append("\r\n\t\t//logger.info(SqlUtil.showSql(sql, params));//显示SQL语句");
 		sb.append("\r\n\t\treturn jdbcTemplate.update(sql, params);");
 		sb.append("\r\n\t}");
@@ -51,7 +51,7 @@ public class Dao {
 
 		sb.append(Utils.methodNote("物理删除" + cName + "记录(多条)"));
 		sb.append("\r\n	public int delete(" + idType + " ids[]) {");
-		sb.append("\r\n		String sql = \"DELETE FROM " + tName + " WHERE " + idName + "\" + SqlUtil.ArrayToIn(ids);//数值型ID使用ArrayToInNum");
+		sb.append("\r\n		String sql = \"DELETE FROM " + tName + " WHERE " + idName + "\" + SqlUtil.ArrayToIn(ids);");
 		sb.append("\r\n		return jdbcTemplate.update(sql);");
 		sb.append("\r\n	}");
 		sb.append(Utils.methodNote("按ID查找单个" + cName + "实体"));

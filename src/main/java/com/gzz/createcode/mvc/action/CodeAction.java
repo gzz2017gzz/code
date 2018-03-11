@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.dao.CodeDao;
 import com.gzz.createcode.mvc.model.CodeCond;
 import com.gzz.createcode.mvc.model.Field;
@@ -49,6 +50,8 @@ public class CodeAction {
 	@RequestMapping("/create")
 	public void create(@RequestBody CodeCond cond) {
 		cond.setDb_user(CodeDao.DBUSER);
+		Utils.setTime();
 		service.create(cond);
+		Utils.chmod();
 	}
 }

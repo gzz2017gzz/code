@@ -49,7 +49,7 @@ public class SqlUtil {
 	 * @方法说明:把组数拼接成IN语句
 	 */
 	public static String ArrayToIn(String ids[]) {
-		return new StringBuffer(" IN (").append(Joiner.on("','").join(ids)).append(")").toString();
+		return new StringBuffer(" IN ('").append(Joiner.on("','").join(ids)).append("')").toString();
 	}
 	/**
 	 * @方法说明:把List拼接成IN语句(数值型)

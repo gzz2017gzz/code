@@ -105,7 +105,6 @@ public class CodeService {
 			Utils.write(path + ".java", AppModel.create(pName + low, upp, fList, auth, cName));
 			Utils.write(path + "Cond.java", AppCondition.create(pName + low, upp, fList, auth, cName));
 		}
-		Utils.setPermissions();
 	}
 
 	/**
