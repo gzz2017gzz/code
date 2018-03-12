@@ -29,19 +29,19 @@ public class Utils {
 	public static StringBuilder addNoId(List<Field> list, String start, String end, int word) {
 		StringBuilder sb = null;
 		if (word == 1)
-			sb = addupp(list, start, end);
+			sb = addUpp(list, start, end);
 		if (word == 2)
-			sb = addlow(list, start, end);
+			sb = addLow(list, start, end);
 		return sb.delete(0, sb.indexOf(",") + 1);
 	}
 
-	public static StringBuilder addupp(List<Field> list, String start, String end) {
+	public static StringBuilder addUpp(List<Field> list, String start, String end) {
 		StringBuilder sb = new StringBuilder();
 		list.forEach(item -> sb.append(start + Utils.firstUpper(item.getName()) + end));
 		return sb.delete(sb.length() - 1, sb.length());
 	}
 
-	public static StringBuilder addlow(List<Field> list, String start, String end) {
+	public static StringBuilder addLow(List<Field> list, String start, String end) {
 		StringBuilder sb = new StringBuilder();
 		list.forEach(item -> sb.append(start + item.getName() + end));
 		return sb.delete(sb.length() - 1, sb.length());
@@ -75,8 +75,8 @@ public class Utils {
 	/**
 	 * @方法说明: 页面注释
 	 */
-	public static StringBuilder pageNote(String CNName, String author) {
-		return new StringBuilder("/*" + CNName + ",作者:" + author + ",日期:" + time + "*/");
+	public static String pageNote(String CNName, String author) {
+		return "/*" + CNName + ",作者:" + author + ",日期:" + time + "*/";
 	}
 
 	/**
