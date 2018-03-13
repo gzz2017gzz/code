@@ -26,71 +26,56 @@ public class Utils {
 		time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 	}
 
-	public static StringBuilder addNoId(List<Field> list, String start, String end, int word) {
-		StringBuilder sb = null;
-		if (word == 1)
-			sb = addUpp(list, start, end);
-		if (word == 2)
-			sb = addLow(list, start, end);
-		return sb.delete(0, sb.indexOf(",") + 1);
-	}
-
-	public static StringBuilder addUpp(List<Field> list, String start, String end) {
+	public static StringBuilder add(List<Field> list, String start, String end, boolean noId, boolean firstUp) {
 		StringBuilder sb = new StringBuilder();
-		list.forEach(item -> sb.append(start + Utils.firstUpper(item.getName()) + end));
-		return sb.delete(sb.length() - 1, sb.length());
-	}
-
-	public static StringBuilder addLow(List<Field> list, String start, String end) {
-		StringBuilder sb = new StringBuilder();
-		list.forEach(item -> sb.append(start + item.getName() + end));
+		list.forEach(item -> sb.append(start + (firstUp ? Utils.firstUpper(item.getName()) : item.getName()) + end));
+		if (noId)
+			sb.delete(0, sb.indexOf(",") + 1);
 		return sb.delete(sb.length() - 1, sb.length());
 	}
 
 	/**
-	 * @方法说明:生成指字问号个数中间用豆号分隔两边加括号
+	 * @方法说明:生成指个数问号两边加括号
 	 */
-	public static StringBuilder add(int count) {
+	public static StringBuilder add(List<Field> list) {
 		StringBuilder sb = new StringBuilder("(");
-		for (int i = 0; i < count; i++) {
-			sb.append("?,");
-		}
+		list.forEach(item -> sb.append("?,"));
 		return sb.delete(sb.length() - 1, sb.length()).append(")");
 	}
 
 	/**
 	 * @方法说明: 类注释
 	 */
-	public static StringBuilder classNote(String author, String name) {
-		return new StringBuilder().append("\r\n").append("\r\n/**").append("\r\n * @类说明:" + name).append("\r\n * @author:" + author).append("\r\n * @date:" + time).append("\r\n **/");
+	public static String classNote(String auth, String name) {
+		return String.format("\r\n\r\n/**\r\n * @类说明:%s\r\n * @author:%s\r\n * @date:%s\r\n **/", name, auth, time);
 	}
 
 	/**
 	 * @方法说明: 方法注释
 	 */
-	public static StringBuilder methodNote(String method_name) {
-		return new StringBuilder().append("\r\n").append("\r\n	/**").append("\r\n	 * @方法说明:" + method_name).append("\r\n	 **/");
+	public static String methodNote(String name) {
+		return String.format("\r\n\r\n	/**\r\n	 * @方法说明:%s\r\n	 **/", name);
 	}
 
 	/**
 	 * @方法说明: 页面注释
 	 */
-	public static String pageNote(String CNName, String author) {
-		return "/*" + CNName + ",作者:" + author + ",日期:" + time + "*/";
+	public static String pageNote(String cName, String auth) {
+		return String.format("/*%s,作者:%s,日期:%s*/", cName, auth, time);
 	}
 
 	/**
 	 * @方法说明: 首字母大写
 	 */
-	public static String firstUpper(String name) {
-		return name.substring(0, 1).toUpperCase() + name.substring(1, name.length());
+	public static String firstUpper(String word) {
+		return word.substring(0, 1).toUpperCase() + word.substring(1, word.length());
 	}
 
 	/**
 	 * @方法说明: 首字母小写
 	 */
-	public static String firstLower(String name) {
-		return name.substring(0, 1).toLowerCase() + name.substring(1, name.length());
+	public static String firstLower(String word) {
+		return word.substring(0, 1).toLowerCase() + word.substring(1, word.length());
 	}
 
 	/**

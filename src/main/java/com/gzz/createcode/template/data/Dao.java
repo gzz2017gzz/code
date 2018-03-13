@@ -26,20 +26,20 @@ public class Dao {
 		sb.append("\r\n\tprivate StringBuilder insert = new StringBuilder();");
 		sb.append(Utils.methodNote("构造方法,用于拼加SQL及初始化工作"));
 		sb.append("\r\n\tpublic " + upp + "Dao () {");
-		sb.append("\r\n\t\tselect.append(\"SELECT " + Utils.addLow(fList, "t.", ",") + " FROM " + tName + " t WHERE 1=1\");");
+		sb.append("\r\n\t\tselect.append(\"SELECT " + Utils.add(fList, "t.", ",", false, false) + " FROM " + tName + " t WHERE 1=1\");");
 		sb.append("\r\n");
-		sb.append("\r\n\t\tinsert.append(\"INSERT INTO " + tName + " (" + Utils.addLow(fList, "", ",") + ")\");");
-		sb.append("\r\n\t\tinsert.append(\" VALUES (" + Utils.addLow(fList, ":", ",") + ")\");");
+		sb.append("\r\n\t\tinsert.append(\"INSERT INTO " + tName + " (" + Utils.add(fList, "", ",", false, false) + ")\");");
+		sb.append("\r\n\t\tinsert.append(\" VALUES (" + Utils.add(fList, ":", ",", false, false) + ")\");");
 		sb.append("\r\n\t}");
 		sb.append(Utils.methodNote("新增" + cName + "记录"));
 		sb.append("\r\n\tpublic int save(" + upp + " vo) {");
-		sb.append("\r\n\t\tString sql = \"REPLACE INTO " + tName + " (" + Utils.addLow(fList, "", ",") + ") VALUES " + Utils.add(fList.size()) + " \";");
-		sb.append("\r\n\t\tObject[] params ={" + Utils.addUpp(fList, "vo.get", "(),") + "};");
+		sb.append("\r\n\t\tString sql = \"REPLACE INTO " + tName + " (" + Utils.add(fList, "", ",", false, false) + ") VALUES " + Utils.add(fList) + " \";");
+		sb.append("\r\n\t\tObject[] params ={" + Utils.add(fList, "vo.get", "(),", false, true) + "};");
 		sb.append("\r\n\t\t//logger.info(SqlUtil.showSql(sql, params));//显示SQL语句");
 		sb.append("\r\n\t\treturn jdbcTemplate.update(sql, params);");
 		sb.append("\r\n\t}");
 
-		sb.append(Utils.methodNote("新增" + cName + "记录返回自增涨主键值"));
+		sb.append(Utils.methodNote("新增" + cName + "记录并返回自增涨主键值"));
 		sb.append("\r\n\tpublic long saveReturnPK(" + upp + " vo) {");
 		sb.append("\r\n\t\treturn saveKey(vo, insert.toString(), \"" + idName + "\");");
 		sb.append("\r\n\t}");
@@ -62,12 +62,11 @@ public class Dao {
 		sb.append("\r\n	}");
 		sb.append(Utils.methodNote("更新" + cName + "记录"));
 		sb.append("\r\n	public int update(" + upp + " vo) {");
-		sb.append("\r\n\t\tString sql = \"UPDATE " + tName + " SET " + Utils.addNoId(fList, "", "=?,", 2) + " WHERE " + idName + "=? \";");
-		sb.append("\r\n		Object[] params = {");
-		sb.append(Utils.addNoId(fList, "vo.get", "(),", 1) + ",vo.get" + Utils.firstUpper(idName) + "()};");
+		sb.append("\r\n\t\tString sql = \"UPDATE " + tName + " SET " + Utils.add(fList, "", "=?,", true, false) + " WHERE " + idName + "=? \";");
+		sb.append("\r\n		Object[] params = {" + Utils.add(fList, "vo.get", "(),", true, true) + ",vo.get" + Utils.firstUpper(idName) + "()};");
 		sb.append("\r\n		return jdbcTemplate.update(sql, params);");
 		sb.append("\r\n	}");
-		sb.append(Utils.methodNote("按条件查询分页" + cName + "列表-根据需要替换成自己的SQL"));
+		sb.append(Utils.methodNote("按条件查询分页" + cName + "列表"));
 		sb.append("\r\n	public Page<" + upp + "> queryPage(" + upp + "Cond cond) {");
 		sb.append("\r\n		StringBuilder sb = new StringBuilder(select);");
 		sb.append("\r\n		sb.append(cond.getCondition());");
@@ -76,7 +75,7 @@ public class Dao {
 		sb.append("\r\n		return queryPage(sb.toString(), cond, " + upp + ".class);");
 		sb.append("\r\n	}");
 
-		sb.append(Utils.methodNote("按条件查询不分页" + cName + "列表(使用范型)-根据需要替换成自己的SQL"));
+		sb.append(Utils.methodNote("按条件查询不分页" + cName + "列表"));
 		sb.append("\r\n	public List<" + upp + "> queryList(" + upp + "Cond cond) {");
 		sb.append("\r\n		StringBuilder sb = new StringBuilder(select);");
 		sb.append("\r\n		sb.append(cond.getCondition());");

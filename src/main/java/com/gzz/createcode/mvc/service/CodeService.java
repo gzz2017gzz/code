@@ -14,6 +14,7 @@ import com.gzz.createcode.mvc.model.Table;
 import com.gzz.createcode.template.app.AppAction;
 import com.gzz.createcode.template.app.AppCondition;
 import com.gzz.createcode.template.app.AppModel;
+import com.gzz.createcode.template.app.AppService;
 import com.gzz.createcode.template.app.Request;
 import com.gzz.createcode.template.center.Action;
 import com.gzz.createcode.template.center.Bus;
@@ -101,7 +102,7 @@ public class CodeService {
 			pName = cond.pack("android", low);
 			path = cond.base("android", low, upp);
 			Utils.write(path + "Request.java", Request.create(pName + low, upp, auth, cName, idType, lowUpp));
-			Utils.write(path + "Service.java", Serv.create(pName + low, upp, auth, cName, idType, lowUpp));
+			Utils.write(path + "Service.java", AppService.create(pName + low, upp, auth, cName, idType, lowUpp));
 			Utils.write(path + ".java", AppModel.create(pName + low, upp, fList, auth, cName));
 			Utils.write(path + "Cond.java", AppCondition.create(pName + low, upp, fList, auth, cName));
 		}
