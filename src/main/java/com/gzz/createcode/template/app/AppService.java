@@ -16,9 +16,9 @@ public class AppService {
 		sb.append("\r\nimport com.google.gson.GsonBuilder;");
 		sb.append("\r\nimport com.google.gson.reflect.TypeToken;");
 		sb.append("\r\n");
-		sb.append("\r\nimport com.gzz.DLResult;");
-		sb.append("\r\nimport com.gzz.Page;");
-		sb.append("\r\nimport com.gzz.ToastUtils;");
+		sb.append("\r\nimport com.cn.danceland.myapplication.bean.DLResult;");
+		sb.append("\r\nimport com.cn.danceland.myapplication.bean.Page;");
+		sb.append("\r\nimport com.cn.danceland.myapplication.utils.ToastUtils;");
 		sb.append("\r\n");
 		sb.append("\r\n/**");
 		sb.append("\r\n * @友情提示: 请清理掉用不到的代码包括这段注释");

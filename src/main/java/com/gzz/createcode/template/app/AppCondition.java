@@ -11,7 +11,7 @@ public class AppCondition {
 		sb.append("package " + pName + ";");
 		sb.append(Utils.dateImport(fList));
 		sb.append(Utils.bigImport(fList));
-		sb.append("\r\nimport com.dl.keep.common.util.base.BaseCondition;");
+		sb.append("\r\nimport com.cn.danceland.myapplication.bean.BaseCondition;");
 		sb.append(Utils.classNote(auth, cName + "--查询条件实体"));
 		sb.append("\r\npublic class " + clsUpp + "Cond extends BaseCondition  {");
 		StringBuilder field = new StringBuilder();

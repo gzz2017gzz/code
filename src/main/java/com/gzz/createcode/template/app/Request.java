@@ -21,10 +21,10 @@ public class Request {
 		sb.append("\r\nimport com.android.volley.toolbox.StringRequest;");
 		sb.append("\r\nimport com.google.gson.Gson;");
 		sb.append("\r\n");
-		sb.append("\r\nimport com.gzz.Constants;");
-		sb.append("\r\nimport com.gzz.MyApplication;");
-		sb.append("\r\nimport com.gzz.SPUtils;");
-		sb.append("\r\nimport com.gzz.ToastUtils;");
+		sb.append("\r\nimport com.cn.danceland.myapplication.MyApplication;");
+		sb.append("\r\nimport com.cn.danceland.myapplication.utils.Constants;");
+		sb.append("\r\nimport com.cn.danceland.myapplication.utils.SPUtils;");
+		sb.append("\r\nimport com.cn.danceland.myapplication.utils.ToastUtils;");
 		sb.append("\r\n");
 		sb.append("\r\n/**");
 		sb.append("\r\n * @友情提示: 请清理掉用不到的代码包括这段注释");
@@ -39,8 +39,7 @@ public class Request {
 		sb.append("\r\n		} catch (JSONException e) {");
 		sb.append("\r\n			e.printStackTrace();");
 		sb.append("\r\n		}");
-		sb.append("\r\n		JsonObjectRequest request = new JsonObjectRequest(1, Constants.HOST + \"" + lowUpp
-				+ "/save\", json, listener, new Response.ErrorListener() {");
+		sb.append("\r\n		JsonObjectRequest request = new JsonObjectRequest(1, Constants.HOST + \"" + lowUpp + "/save\", json, listener, new Response.ErrorListener() {");
 		sb.append("\r\n			public void onErrorResponse(VolleyError error) {");
 		sb.append("\r\n				ToastUtils.showToastShort(\"请检查手机网络！\");");
 		sb.append("\r\n			}");
@@ -63,8 +62,7 @@ public class Request {
 		sb.append("\r\n		} catch (JSONException e) {");
 		sb.append("\r\n			e.printStackTrace();");
 		sb.append("\r\n		}");
-		sb.append("\r\n		JsonObjectRequest request = new JsonObjectRequest(1, Constants.HOST + \"" + lowUpp
-				+ "/update\", json, listener, new Response.ErrorListener() {");
+		sb.append("\r\n		JsonObjectRequest request = new JsonObjectRequest(1, Constants.HOST + \"" + lowUpp + "/update\", json, listener, new Response.ErrorListener() {");
 		sb.append("\r\n			public void onErrorResponse(VolleyError error) {");
 		sb.append("\r\n				ToastUtils.showToastShort(\"请检查手机网络！\");");
 		sb.append("\r\n			}");
@@ -80,8 +78,7 @@ public class Request {
 		sb.append("\r\n");
 		sb.append(Utils.methodNote("按主键删除" + cName));
 		sb.append("\r\n	public void delete(" + idType + " id, Listener<String> listener) {");
-		sb.append("\r\n		StringRequest request = new StringRequest(1, Constants.HOST + \"" + lowUpp
-				+ "/delete?id=\" + id, listener, new Response.ErrorListener() {");
+		sb.append("\r\n		StringRequest request = new StringRequest(1, Constants.HOST + \"" + lowUpp + "/delete?id=\" + id, listener, new Response.ErrorListener() {");
 		sb.append("\r\n			@Override");
 		sb.append("\r\n			public void onErrorResponse(VolleyError volleyError) {");
 		sb.append("\r\n				ToastUtils.showToastShort(\"请检查手机网络！\");");
@@ -106,8 +103,7 @@ public class Request {
 		sb.append("\r\n			// LogUtil.i(" + lowUpp + ".toString());");
 		sb.append("\r\n			e.printStackTrace();");
 		sb.append("\r\n		}");
-		sb.append("\r\n		JsonObjectRequest request = new JsonObjectRequest(1, Constants.HOST + \"" + lowUpp
-				+ "/queryList\", json, listener, new Response.ErrorListener() {");
+		sb.append("\r\n		JsonObjectRequest request = new JsonObjectRequest(1, Constants.HOST + \"" + lowUpp + "/queryList\", json, listener, new Response.ErrorListener() {");
 		sb.append("\r\n			public void onErrorResponse(VolleyError error) {");
 		sb.append("\r\n				ToastUtils.showToastShort(\"请检查手机网络！\");");
 		sb.append("\r\n			}");
@@ -131,8 +127,7 @@ public class Request {
 		sb.append("\r\n		} catch (JSONException e) {");
 		sb.append("\r\n			e.printStackTrace();");
 		sb.append("\r\n		}");
-		sb.append("\r\n		JsonObjectRequest request = new JsonObjectRequest(1, Constants.HOST + \"" + lowUpp
-				+ "/queryPage\", json, listener, new Response.ErrorListener() {");
+		sb.append("\r\n		JsonObjectRequest request = new JsonObjectRequest(1, Constants.HOST + \"" + lowUpp + "/queryPage\", json, listener, new Response.ErrorListener() {");
 		sb.append("\r\n			public void onErrorResponse(VolleyError error) {");
 		sb.append("\r\n				ToastUtils.showToastShort(\"请检查手机网络！\");");
 		sb.append("\r\n			}");
@@ -149,8 +144,7 @@ public class Request {
 		sb.append("\r\n ");
 		sb.append(Utils.methodNote("按主键查询" + cName + "单个数据"));
 		sb.append("\r\n	public void findById(" + idType + " id, Listener<String> listener) {");
-		sb.append("\r\n		StringRequest request = new StringRequest(1, Constants.HOST + \"" + lowUpp
-				+ "/findById?id=\" + id, listener, new Response.ErrorListener() {");
+		sb.append("\r\n		StringRequest request = new StringRequest(1, Constants.HOST + \"" + lowUpp + "/findById?id=\" + id, listener, new Response.ErrorListener() {");
 		sb.append("\r\n			@Override");
 		sb.append("\r\n			public void onErrorResponse(VolleyError volleyError) {");
 		sb.append("\r\n				ToastUtils.showToastShort(\"请检查手机网络！\");");
@@ -176,8 +170,7 @@ public class Request {
 		sb.append("\r\n			// LogUtil.i(" + lowUpp + ".toString());");
 		sb.append("\r\n			e.printStackTrace();");
 		sb.append("\r\n		}");
-		sb.append("\r\n		JsonObjectRequest request = new JsonObjectRequest(1, Constants.HOST + \"" + lowUpp
-				+ "/queryCount\", json, listener, new Response.ErrorListener() {");
+		sb.append("\r\n		JsonObjectRequest request = new JsonObjectRequest(1, Constants.HOST + \"" + lowUpp + "/queryCount\", json, listener, new Response.ErrorListener() {");
 		sb.append("\r\n			public void onErrorResponse(VolleyError error) {");
 		sb.append("\r\n				ToastUtils.showToastShort(\"请检查手机网络！\");");
 		sb.append("\r\n			}");

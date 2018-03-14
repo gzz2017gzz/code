@@ -26,14 +26,18 @@ public class Condition {
 			field.append("\r\n\tprivate " + type + " " + fName + ";// " + fie.getComment());
 			cond.append("\r\n\t\t//add(" + fName + ", \"AND t." + fName + (type.equals("String") ? " LIKE ?\", 3);" : " = ?\");"));
 		}
+		cond.append("\r\n\t\t//add(ids, \"AND t.id IN \");");
+		
 		sb.append(Utils.methodNote("拼加自定义条件 "));
 		sb.append("\r\n	@Override");
 		sb.append("\r\n	public void addCondition() { ");
 		sb.append(cond);
 		sb.append("\r\n	}");
 		sb.append("\r\n");
-		sb.append("\r\n\t//查询条件,把不用条件清理掉");
+		sb.append("\r\n\t//查询条件,把不用的条件清理掉");
 		sb.append(field);
+		sb.append("\r\n\t//private List<Long> ids;// 主键列表");
+		
 		sb.append("\r\n");
 		sb.append("\r\n}");
 		return sb;
