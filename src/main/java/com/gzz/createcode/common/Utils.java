@@ -29,8 +29,7 @@ public class Utils {
 	public static StringBuilder add(List<Field> list, String start, String end, boolean noId, boolean firstUp) {
 		StringBuilder sb = new StringBuilder();
 		list.forEach(item -> sb.append(start + (firstUp ? Utils.firstUpper(item.getName()) : item.getName()) + end));
-		if (noId)
-			sb.delete(0, sb.indexOf(",") + 1);
+		if (noId) sb.delete(0, sb.indexOf(",") + 1);
 		return sb.delete(sb.length() - 1, sb.length());
 	}
 
@@ -128,12 +127,11 @@ public class Utils {
 	}
 
 	public static void chmod() {
-		if (isLinux()) {
-			try {
-				Runtime.getRuntime().exec("chmod 777 -R " + path());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		try {
+			if (isLinux()) Runtime.getRuntime().exec("chmod 777 -R " + path());
+		} catch (IOException e) {
+			logger.info("设置权限时出现异常 !");
+			e.printStackTrace();
 		}
 	}
 }

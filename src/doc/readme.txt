@@ -6,3 +6,5 @@ eclipse的git插件使用,其他开发软件也类似
 #设置用户的邮箱
 #email = $EMAIL,
 如果是eclipse，修改后得关闭eclipse，再次打开后才会生效
+
+keytool -genkey -alias tomcat  -storetype PKCS12 -keyalg RSA -keysize 2048  -keystore keystore.p12 -validity 3650

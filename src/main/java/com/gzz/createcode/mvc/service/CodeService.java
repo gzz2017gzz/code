@@ -49,16 +49,15 @@ public class CodeService {
 	 */
 	public void create(CodeCond cond) {
 		String auth = cond.getAuth();// 作者
-		String pName;
-		String path;
+		String pName;// 包名
+		String path;// 路径
 		for (Table table : cond.getC_list()) {
-			String tName = table.getT_name();// 表名
-			cond.setT_name_eq(tName);
-			List<Field> fList = dao.queryColumnList(cond);// 字段列表
+			cond.setT_name_eq(table.getT_name());// 表名
+			List<Field> fList = dao.queryFields(cond);// 字段列表
 			String cName = table.getC_name();// 表注释中文名
-			String upp = table.getCls_upp();// 类名(首字母大写)
-			String low = upp.toLowerCase();// 类名小写
-			String lowUpp = Utils.firstLower(upp);
+			String upp = table.getCls_upp();// 驼峰类名(首字母大写)
+			String low = upp.toLowerCase();// 类名小写(只用包路径)
+			String lowUpp = Utils.firstLower(upp);// 驼峰变量类名(首字母小写)
 			String idType = Utils.keyType(fList);// 主键数据类型
 
 			pName = cond.pack("common", low);
@@ -68,7 +67,7 @@ public class CodeService {
 
 			pName = cond.pack("webdata", low);
 			path = cond.base("webdata", low, upp);
-			Utils.write(path + "Dao.java", Dao.create(pName, upp, auth, cName, fList, tName, idType));
+			Utils.write(path + "Dao.java", Dao.create(pName, upp, auth, cName, fList, table.getT_name(), idType));
 			Utils.write(path + "Service.java", Serv.create(pName, upp, auth, cName, idType, lowUpp));
 			Utils.write(path + "Controller.java", Controller.create(pName, upp, auth, cName, idType, lowUpp));
 
@@ -87,11 +86,11 @@ public class CodeService {
 			path = cond.base("appcenter", low, "I" + upp);
 			Utils.write(path + "Client.java", Client.create(pName, upp, auth, cName, idType, lowUpp));
 
-			path = cond.base("vue", low, upp);
+			path = cond.base("vue-element", low, upp);
 			Utils.write(path + "List.vue", VueList.create(fList, upp, cName, auth, lowUpp));
 			Utils.write(path + "Dialog.vue", VueDialog.create(fList, lowUpp, cName, auth));
 
-			path = cond.base("vuex", low, upp);
+			path = cond.base("vuex-iview", low, upp);
 			Utils.write(path + "Mock.js", VueMockJs.create(fList, lowUpp, cName, auth));
 			Utils.write(path + "List.vue", Page.create(fList, upp, cName, auth, lowUpp));
 			Utils.write(path + "Dialog.vue", Dialog.create(fList, cName, auth, lowUpp));
@@ -111,8 +110,8 @@ public class CodeService {
 	/**
 	 * @功能描述: 查询数据库中表名列表
 	 */
-	public List<Table> queryTableList(CodeCond para) {
-		List<Table> list = dao.queryTableList(para);
+	public List<Table> queryTables(CodeCond para) {
+		List<Table> list = dao.queryTables(para);
 		list.forEach(item -> {
 			item.setCls_upp(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Utils.delFirWord(item.getT_name())));
 			item.setC_name(item.getComment());
@@ -123,7 +122,7 @@ public class CodeService {
 	/**
 	 * @功能描述: 查询数据库中字段名列表
 	 */
-	public List<Field> queryColumnList(CodeCond cond) {
-		return dao.queryColumnList(cond);
+	public List<Field> queryFields(CodeCond cond) {
+		return dao.queryFields(cond);
 	}
 }

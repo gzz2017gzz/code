@@ -45,7 +45,7 @@ public class CodeDao extends BaseDao {
 	/**
 	 * @功能描述: 查询表名列表
 	 */
-	public List<Table> queryTableList(CodeCond cond) {
+	public List<Table> queryTables(CodeCond cond) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("SELECT table_name t_name,if(table_comment='',table_name,table_comment) comment FROM information_schema.tables WHERE 1=1");
 		sb.append(cond.getCondition());
@@ -57,7 +57,7 @@ public class CodeDao extends BaseDao {
 	 * @功能描述: 查询字段名列表
 	 */
 
-	public List<Field> queryColumnList(CodeCond cond) {
+	public List<Field> queryFields(CodeCond cond) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(" SELECT COLUMN_NAME NAME,");
 		sb.append(" CASE WHEN COLUMN_COMMENT = '' THEN COLUMN_NAME ELSE COLUMN_COMMENT	END COMMENT,");

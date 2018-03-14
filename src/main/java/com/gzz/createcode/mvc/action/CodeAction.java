@@ -31,7 +31,7 @@ public class CodeAction {
 	@RequestMapping("/queryList")
 	public List<Table> queryList(@RequestBody CodeCond cond) {
 		cond.setDb_user(CodeDao.DBUSER);
-		List<Table> queryTableList = service.queryTableList(cond);
+		List<Table> queryTableList = service.queryTables(cond);
 		return queryTableList;
 	}
 
@@ -41,7 +41,7 @@ public class CodeAction {
 	@RequestMapping("/queryField")
 	public List<Field> queryField(@RequestBody CodeCond cond) {
 		cond.setDb_user(CodeDao.DBUSER);
-		return service.queryColumnList(cond);
+		return service.queryFields(cond);
 	}
 
 	/**

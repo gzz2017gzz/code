@@ -13,7 +13,8 @@ public class Condition {
 		sb.append(Utils.bigImport(fList));
 		sb.append("\r\nimport lombok.Getter;");
 		sb.append("\r\nimport lombok.Setter;");
-		sb.append("\r\nimport com.codegen.common.base.BaseCondition;");
+		sb.append("\r\n");
+		sb.append("\r\nimport com.dl.keep.common.domain.center.card;");
 		sb.append(Utils.classNote(auth, cName + "查询条件实体类"));
 		sb.append("\r\n@Setter");
 		sb.append("\r\n@Getter");
