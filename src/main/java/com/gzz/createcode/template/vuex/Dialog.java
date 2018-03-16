@@ -12,11 +12,11 @@ public class Dialog {
 		for (Field fi : fList) {
 			String name = fi.getName();
 			String comments = fi.getComment();
-			field.append("\r\n        <FormItem label=\"" + comments + "\" prop=\"" + name + "\"><Input placeholder=\"" + comments + "\" v-model=\"form." + name + "\"></Input></FormItem>");
+			field.append("\r\n        	<FormItem label=\"" + comments + "\" prop=\"" + name + "\"><Input placeholder=\"" + comments + "\" v-model=\"form." + name + "\"></Input></FormItem>");
 		}
 		sb.append(Utils.pageNote(cName + "新增与修改", auth));
 		sb.append("\r\n<template>");
-		sb.append("\r\n  <Modal :title=\"title\" v-model=\"show\" :scrollable=\"false\" :mask-closable=\"false\" width=\"400\">");
+		sb.append("\r\n  <Modal :title=\"title\" v-model=\"show\" :scrollable=\"false\" :mask-closable=\"false\" width=\"600\">");
 		sb.append("\r\n    <Form :model=\"form\" ref=\"form\" :rules=\"rules\" :label-width=\"100\">");
 		sb.append("\r\n      <Row>");
 		sb.append("\r\n        <i-col>");

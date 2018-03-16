@@ -8,6 +8,7 @@ import com.gzz.createcode.mvc.model.Field;
 public class Page {
 	public static StringBuilder create(List<Field> fList, String clsUpp, String cName, String auth, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
+		
 		StringBuilder pageColum = new StringBuilder();
 		StringBuilder cond = new StringBuilder();
 
@@ -19,7 +20,8 @@ public class Page {
 		}
 		sb.append(Utils.pageNote(cName + "列表", auth));
 		sb.append("\r\n<template>");
-		sb.append("\r\n  <div><h3>" + cName + "管理</h3>");
+		sb.append("\r\n  <div>");
+		sb.append("\r\n  	<h3>" + cName + "管理</h3>");
 		sb.append("\r\n    <hr/>");
 		sb.append("\r\n    <Form inline :label-width=\"70\">");
 		sb.append(cond);

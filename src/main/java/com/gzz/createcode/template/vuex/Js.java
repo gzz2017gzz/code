@@ -7,19 +7,19 @@ import com.gzz.createcode.mvc.model.Field;
 
 public class Js {
 	public static StringBuilder create(List<Field> fList, String cName, String auth, String lowUpp) {
-		String idName = fList.get(0).getName().toLowerCase();
 		StringBuilder sb = new StringBuilder();
-		StringBuilder pageColum = new StringBuilder();
+		String idName = fList.get(0).getName();
+		StringBuilder colum = new StringBuilder();
 		StringBuilder cond = new StringBuilder();
-		StringBuilder initform = new StringBuilder();
+		StringBuilder form = new StringBuilder();
 		StringBuilder validate = new StringBuilder();
 
 		for (Field field : fList) {
 			String name = field.getName();
 			String comments = field.getComment();
-			initform.append("\r\n          " + name + ": null, //"+comments);
+			form.append("\r\n          " + name + ": null, //"+comments);
 			cond.append("\r\n      <FormItem label=\"" + comments + "\"><Input placeholder=\"请输入" + comments + "\" size=\"small\" v-model=\"form." + name + "\"></Input></FormItem>");
-			pageColum.append("\r\n          { title: '" + comments + "', key: '" + name + "'},");
+			colum.append("\r\n          { title: '" + comments + "', key: '" + name + "'},");
 			validate.append("\r\n          " + name + ": [");
 			validate.append("\r\n            {required: true, message: '请输入" + comments + "', trigger: 'blur'},");
 			validate.append("\r\n            {min: 1, max: 10, message: '" + comments + "长度不正确', trigger: 'blur'},");
@@ -30,7 +30,7 @@ public class Js {
 		sb.append("\r\nimport {Message, Modal} from 'iview';");
 		sb.append("\r\n//初始数据");
 		sb.append("\r\nconst initForm = {");
-		sb.append(initform);
+		sb.append(form);
 		sb.append("\r\n};");
 		sb.append("\r\n//模型");
 		sb.append("\r\nexport default {");
@@ -41,7 +41,7 @@ public class Js {
 		sb.append("\r\n    dataList: [],");
 		sb.append("\r\n    loading: false,");
 		sb.append("\r\n    searchForm: {");
-		sb.append(initform);
+		sb.append(form);
 		sb.append("\r\n    },");
 		sb.append("\r\n    //新增与修改");
 		sb.append("\r\n    form: {...initForm},");

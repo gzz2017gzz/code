@@ -7,23 +7,23 @@ import com.gzz.createcode.mvc.model.Field;
 
 public class VueList {
 	public static StringBuilder create(List<Field> fList, String clsUpp, String cName, String auth, String lowUpp) {
-		String idName = fList.get(0).getName().toLowerCase();
 		StringBuilder sb = new StringBuilder();
-		StringBuilder pageColum = new StringBuilder();
+		String idName = fList.get(0).getName();
+		StringBuilder colum = new StringBuilder();
 		StringBuilder initform = new StringBuilder();
 		StringBuilder expand = new StringBuilder();
 		StringBuilder cond = new StringBuilder();
-		for (Field field : fList) {
-			String fName = field.getName().toLowerCase();
-			String comments = field.getComment();
-			cond.append("\r\n      <el-form-item label=\"" + comments + "\">");
-			cond.append("\r\n        <el-input placeholder=\"请输入" + comments + "\" size=\"small\" v-model=\"form." + fName + "\"></el-input>");
+		for (Field fie : fList) {
+			String fName = fie.getName();
+			String note = fie.getComment();
+			cond.append("\r\n      <el-form-item label=\"" + note + "\">");
+			cond.append("\r\n        <el-input placeholder=\"请输入" + note + "\" size=\"small\" v-model=\"form." + fName + "\"></el-input>");
 			cond.append("\r\n      </el-form-item>");
-			initform.append("\r\n          " + fName + ": null,");
+			initform.append("\r\n          " + fName + ": null,//" + note);
 			expand.append("\r\n                  <el-col :span=\"6\">");
-			expand.append("\r\n                    <el-form-item label=\"" + comments + "\">{{props.row." + fName + "}}</el-form-item>");
+			expand.append("\r\n                    <el-form-item label=\"" + note + "\">{{props.row." + fName + "}}</el-form-item>");
 			expand.append("\r\n                  </el-col>");
-			pageColum.append("\r\n      <el-table-column prop=\"" + fName + "\" label=\"" + comments + "\"></el-table-column>");
+			colum.append("\r\n      <el-table-column prop=\"" + fName + "\" label=\"" + note + "\"></el-table-column>");
 		}
 		sb.append(Utils.pageNote(cName + "列表", auth));
 		sb.append("\r\n<template>");
@@ -46,7 +46,7 @@ public class VueList {
 		sb.append("\r\n            </el-form>");
 		sb.append("\r\n        </template>");
 		sb.append("\r\n      </el-table-column>");
-		sb.append(pageColum);
+		sb.append(colum);
 		sb.append("\r\n      <el-table-column label=\"操作\" width=\"150\">");
 		sb.append("\r\n        <template slot-scope=\"props\">");
 		sb.append("\r\n          <div>");

@@ -57,7 +57,7 @@ public class VueMockJs {
 		sb.append("\r\n      res.json(data.content);");
 		sb.append("\r\n    }, 500);");
 		sb.append("\r\n  },");
-		sb.append("\r\n  'DELETE /api/" + lowUpp + "/delete': function (req, res, next) {");
+		sb.append("\r\n  'POST /api/" + lowUpp + "/delete': function (req, res, next) {");
 		sb.append("\r\n    setTimeout(function () {");
 		sb.append("\r\n      res.json({});");
 		sb.append("\r\n    }, 500);");

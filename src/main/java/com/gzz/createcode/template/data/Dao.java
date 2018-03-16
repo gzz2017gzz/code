@@ -84,6 +84,8 @@ public class Dao {
 		sb.append("\r\n	public List<" + upp + "> queryList(" + upp + "Cond cond) {");
 		sb.append("\r\n		StringBuilder sb = new StringBuilder(select);");
 		sb.append("\r\n		sb.append(cond.getCondition());");
+		sb.append("\r\n		//sb.append(\" ORDER BY operate_time DESC\");");
+		
 		sb.append("\r\n		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<>(" + upp + ".class));");
 		sb.append("\r\n	}");
 

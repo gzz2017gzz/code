@@ -11,18 +11,13 @@ public class VueDialog {
 		StringBuilder filed = new StringBuilder();
 		StringBuilder validate = new StringBuilder();
 		StringBuilder initform = new StringBuilder();
-		int i = 0;
 		for (Field field : fList) {
-			i++;
-			if (i == 1) {// 第一个字段ID字段不生成
-				continue;
-			}
 			String name = field.getName();
 			String comments = field.getComment();
 			filed.append("\r\n          <el-form-item label=\"" + comments + "\" prop=\"" + name + "\">");
 			filed.append("\r\n            <el-input placeholder=\"请输入" + comments + "\" v-model=\"form." + name + "\"></el-input>");
 			filed.append("\r\n          </el-form-item>");
-			initform.append("\r\n          " + name + ": null,");
+			initform.append("\r\n          " + name + ": null,//"+comments);
 			validate.append("\r\n          " + name + ": [");
 			validate.append("\r\n            {required: true, message: '请输入" + comments + "', trigger: 'blur'},");
 			validate.append("\r\n            {min: 1, max: 10, message: '" + comments + "长度不正确', trigger: 'blur'},");
