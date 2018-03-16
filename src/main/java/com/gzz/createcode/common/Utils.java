@@ -26,11 +26,27 @@ public class Utils {
 		time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 	}
 
-	public static StringBuilder add(List<Field> list, String start, String end, boolean noId, boolean firstUp) {
+	/**
+	 * @param list字段列表
+	 * @param prefix前缀
+	 * @param suffix后缀
+	 * @param noId不包括主键
+	 * @param isUp首字母大写
+	 */
+	public static StringBuilder add(List<Field> list, String prefix, String suffix, boolean noId, String wrap) {
 		StringBuilder sb = new StringBuilder();
-		list.forEach(item -> sb.append(start + (firstUp ? Utils.firstUpper(item.getName()) : item.getName()) + end));
-		if (noId) sb.delete(0, sb.indexOf(",") + 1);
-		return sb.delete(sb.length() - 1, sb.length());
+		for (int i = 0; i < list.size(); i++) {
+			Field field = list.get(i);
+			sb.append((i != 0 && i % 10 == 0) ? "\"); \r\n\t\t".concat(wrap).concat(".append(\"") : "");
+			sb.append(prefix.concat(field.getName()).concat(suffix));
+		}
+		return noId ? sb.delete(0, sb.indexOf(",") + 1).delete(sb.length() - 1, sb.length()) : sb.delete(sb.length() - 1, sb.length());
+	}
+
+	public static StringBuilder add(List<Field> list, String prefix, String suffix, boolean noId) {
+		StringBuilder sb = new StringBuilder();
+		list.forEach(item -> sb.append(prefix.concat(Utils.firstUpper(item.getName())).concat(suffix)));
+		return noId ? sb.delete(0, sb.indexOf(",") + 1).delete(sb.length() - 1, sb.length()) : sb.delete(sb.length() - 1, sb.length());
 	}
 
 	/**
@@ -128,7 +144,8 @@ public class Utils {
 
 	public static void chmod() {
 		try {
-			if (isLinux()) Runtime.getRuntime().exec("chmod 777 -R " + path());
+			if (isLinux())
+				Runtime.getRuntime().exec("chmod 777 -R " + path());
 		} catch (IOException e) {
 			logger.info("设置权限时出现异常 !");
 			e.printStackTrace();

@@ -10,8 +10,10 @@ public class Expand {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder colum = new StringBuilder();
 		fList.forEach(fi -> {
-			colum.append("\r\n      <Col span=\"6\"><span class=\"expand-key\">" + fi.getComment() + "</span>");
-			colum.append("\r\n      <span class=\"expand-value\">{{ row." + fi.getName() + "}}</span></Col>");
+			colum.append("\r\n      <i-col span=\"6\">");
+			colum.append("\r\n      	<span class=\"expand-key\">" + fi.getComment() + "</span>");
+			colum.append("\r\n      	<span class=\"expand-value\">{{ row." + fi.getName() + "}}</span>");
+			colum.append("\r\n      </i-col>");
 		});
 		sb.append(Utils.pageNote(cName + "折叠扩展", auth));
 		sb.append("\r\n<template>");

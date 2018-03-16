@@ -73,7 +73,7 @@ public class AppAction {
 		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
 		sb.append("\r\n	@RequestMapping( value=\"queryPage\", method = RequestMethod.POST)");
 		sb.append("\r\n	public SwaggerRespImpl<Page<" + clsUpp + ">> queryPage(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
-		sb.append("\r\n		// cond.setBranch_id(getDefaultBranchId(principal));");
+		sb.append("\r\n		// cond.setBranch_id(getSessionBranchId(principal));");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.queryPage(cond));");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
@@ -84,7 +84,7 @@ public class AppAction {
 
 		sb.append("\r\n	@RequestMapping( value=\"queryList\", method = RequestMethod.POST)");
 		sb.append("\r\n	public SwaggerRespImpl<List<" + clsUpp + ">> queryList(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
-		sb.append("\r\n		// cond.setBranch_id(getDefaultBranchId(principal));");
+		sb.append("\r\n		// cond.setBranch_id(getSessionBranchId(principal));");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.queryList(cond));");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
