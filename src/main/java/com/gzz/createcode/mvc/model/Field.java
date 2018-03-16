@@ -6,7 +6,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Field {
-	private String name;
-	private String comment;
-	private String type;
+	private String name;// 字段名
+	private String comment;// 注释
+	private String type;// 数据类型
 }

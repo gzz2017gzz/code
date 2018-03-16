@@ -19,8 +19,8 @@ public class CodeCond extends BaseCondition {
 		add(db_user, "AND table_schema=?");
 	}
 
-	private String t_name;
-	private String t_name_eq;
+	private String t_name;// 表名模糊
+	private String t_name_eq;// 表名等于
 	private String db_user;// 数据库用户名
 	private String company;// 公司名
 	private String model;// 模块名
