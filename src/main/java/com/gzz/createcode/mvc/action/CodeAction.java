@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gzz.createcode.common.Utils;
@@ -28,7 +29,7 @@ public class CodeAction {
 	/**
 	 * @功能描述: 查询数据库中表名列表
 	 */
-	@RequestMapping("/queryList")
+	@RequestMapping(value = "/queryList", method = RequestMethod.POST)
 	public List<Table> queryList(@RequestBody CodeCond cond) {
 		cond.setDb_user(CodeDao.DBUSER);
 		List<Table> queryTableList = service.queryTables(cond);
@@ -38,7 +39,7 @@ public class CodeAction {
 	/**
 	 * @功能描述: 查询数据库中表名列表
 	 */
-	@RequestMapping("/queryField")
+	@RequestMapping(value = "/queryField", method = RequestMethod.POST)
 	public List<Field> queryField(@RequestBody CodeCond cond) {
 		cond.setDb_user(CodeDao.DBUSER);
 		return service.queryFields(cond);
@@ -47,7 +48,7 @@ public class CodeAction {
 	/**
 	 * @功能描述: 生成代码
 	 */
-	@RequestMapping("/create")
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public void create(@RequestBody CodeCond cond) {
 		cond.setDb_user(CodeDao.DBUSER);
 		Utils.setTime();

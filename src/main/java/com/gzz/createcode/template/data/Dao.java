@@ -35,10 +35,10 @@ public class Dao {
 		sb.append(Utils.methodNote("新增" + cName + "记录"));
 		sb.append("\r\n\tpublic int save(" + upp + " vo) {");
 		sb.append("\r\n\t\tStringBuilder sql = new StringBuilder();");
-		sb.append("\r\n\t\tsql.append(\"REPLACE INTO " + tName + " (" + Utils.add(fList, "", ",", false, "sql") + "\");");
+		sb.append("\r\n\t\tsql.append(\"REPLACE INTO " + tName + " (" + Utils.add(fList, "", ",", false, "sql") + "\"));");
 		sb.append("\r\n\t\tsql.append(\" VALUES " + Utils.add(fList) + " \");");
 		sb.append("\r\n\t\tObject[] params ={" + Utils.add(fList, "vo.get", "(),", false) + "};");
-		sb.append("\r\n\t\t//logger.info(SqlUtil.showSql(sql, params));//显示SQL语句");
+		sb.append("\r\n\t\t//logger.info(SqlUtil.showSql(sql.toString(), params));//显示SQL语句");
 		sb.append("\r\n\t\treturn jdbcTemplate.update(sql.toString(), params);");
 		sb.append("\r\n\t}");
 

@@ -14,12 +14,14 @@ public class Page<T> {
 	private int pageSize = 10;// 页大小(每页记录条)
 	private long rowCount;// 记录总数
 	private int curpage = 0;// 当前页码
+	private int pageCount;// 当前页码
 
-	public Page(List<T> dataList, int curpage, long rowCount, int pagesize) {
+	public Page(List<T> dataList, int curpage, long rowCount, int pagesize, int pageCount) {
 		this.dataList.addAll(dataList);
 		this.pageSize = pagesize;
 		this.rowCount = rowCount;
 		this.curpage = curpage;
+		this.pageCount = pageCount;
 	}
 
 	public List<T> getDataList() {
@@ -35,11 +37,31 @@ public class Page<T> {
 	}
 
 	public long getPageCount() {
-		return rowCount % pageSize == 0 ? rowCount / pageSize : rowCount / pageSize + 1;
+		return pageCount;
 	}
 
 	public int getCurpage() {
 		return curpage;
+	}
+
+	public void setDataList(List<T> dataList) {
+		this.dataList = dataList;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public void setRowCount(long rowCount) {
+		this.rowCount = rowCount;
+	}
+
+	public void setCurpage(int curpage) {
+		this.curpage = curpage;
+	}
+
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
 	}
 
 }

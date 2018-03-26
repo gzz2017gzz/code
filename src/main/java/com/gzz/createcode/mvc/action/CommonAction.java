@@ -2,6 +2,7 @@ package com.gzz.createcode.mvc.action;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @功能描述:首页的跳转类
@@ -13,7 +14,7 @@ public class CommonAction {
 	/**
 	 * @功能描述: 进入主页面的跳转
 	 */
-	@RequestMapping("/")
+	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
 	public String index() {
 		return "index";
 	}

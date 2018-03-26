@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -18,23 +19,23 @@ import org.springframework.jdbc.support.KeyHolder;
  * @author gzz_gzz@163.com
  * @date 2018-02-15
  */
+@Scope("prototype")
 public class BaseDao {
-	protected final Log logger = LogFactory.getLog(BaseDao.class);// 日志类
+	protected final Log logger = LogFactory.getLog(BaseDao.class);
 	@Autowired
-	protected JdbcTemplate jdbcTemplate;// jdbc模版类
+	protected JdbcTemplate jdbcTemplate;
 	@Autowired
-	protected NamedParameterJdbcTemplate nameJdbcTemplate;// jdbc模版类
+	protected NamedParameterJdbcTemplate nameJdbcTemplate;
 
 	protected <T> Page<T> queryPage(String sql, BaseCondition cond, Class<T> clazz) {
-		String countSQL = "SELECT count(1) FROM (" + sql + ") t";// 统计记录个数的SQL语句
-		int rowCount = jdbcTemplate.queryForObject(countSQL, cond.getArray(), Integer.class);// 查询记录个数
-		cond.setRowCount(rowCount);
-		int pageSize = cond.getSize();// 页大小
-		int curPage = cond.getPage();// 当前页
-//		cond.setPageCount(rowCount % pageSize == 0 ? rowCount / pageSize : rowCount / pageSize + 1);// 页数
-		String listSql = sql + " LIMIT " + curPage * pageSize + "," + pageSize;// 查询分页数据列表的SQL语句
+		String countSQL = "SELECT count(1) FROM (" + sql + ") t";
+		int rowCount = jdbcTemplate.queryForObject(countSQL, cond.getArray(), Integer.class);
+		int pageSize = cond.getSize();
+		int curPage = cond.getPage();
+		int pageCount = rowCount % pageSize == 0 ? rowCount / pageSize : rowCount / pageSize + 1;
+		String listSql = sql + " LIMIT " + curPage * pageSize + "," + pageSize;
 		List<T> dataList = jdbcTemplate.query(listSql.toString(), cond.getArray(), new BeanPropertyRowMapper<T>(clazz));
-		return new Page<T>(dataList, cond.getPage(), cond.getSize(), cond.getRowCount());
+		return new Page<T>(dataList, cond.getPage(), rowCount, cond.getSize(), pageCount);
 	}
 
 	protected <T> int[] batchOperate(List<T> list, String sql) {

@@ -14,7 +14,7 @@ public class Condition {
 		sb.append("\r\nimport lombok.Getter;");
 		sb.append("\r\nimport lombok.Setter;");
 		sb.append("\r\n");
-		sb.append("\r\nimport com.dl.keep.common.domain.center.card;");
+		sb.append("\r\ncom.dl.keep.common.util.base.BaseCondition;");
 		sb.append(Utils.classNote(auth, cName + "查询条件实体类"));
 		sb.append("\r\n@Setter");
 		sb.append("\r\n@Getter");
