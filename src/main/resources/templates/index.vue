@@ -1,4 +1,4 @@
-<title>代码生成器-ELEMENT版gzz_gzz@163.com</title>
+<title>代码生成器(gzz_gzz@163.com)</title>
 <link rel="stylesheet" type="text/css" href="element.css">
 <script type="text/javascript" src="vue.min.js"></script>
 <script type="text/javascript" src="element.min.js"></script>
@@ -7,20 +7,17 @@
 <div id="app">
     <div style="color: blue; font-size: 14px;">
         【<span style="color: red;">注意</span>】
-        【调整[作者名]\[模块名],点击[查看]确保表名注释与字段名注释<span style="color: red;">为中文</span>,
+        【调整[作者名]\[模块名],点击[查看字段]确保表名注释与字段名注释<span style="color: red;">为中文</span>,
         建议类名中表名前缀部分<span style="color: red;">已去掉</span>】 【<span style="color: red;">代码路径</span>】【\\192.168.1.97\public\code\com\dl】
     </div>
     <div class="search">
-        表名
-        <el-input v-model="form.t_name" placeholder="请输入表名" style="width:100px" size="small"></el-input>
+        表名<el-input v-model="form.t_name" placeholder="请输入表名" style="width:160px" size="small"></el-input>
         <el-button @click="query" type="primary" size="small">查询</el-button>
-        作者名
-        <el-input v-model="form.auth" style="width:100px" size="small"></el-input>
-        公司名
-        <el-input v-model="form.company" style="width:100px" size="small"></el-input>
-        项目名[common,webcenter,webdata,appcenter,vue,vuex,android]模块名
-        <el-input v-model="form.model" style="width:100px" size="small"></el-input>
+        作者名<el-input v-model="form.auth" style="width:80px" size="small"></el-input>
+        公司名<el-input v-model="form.company" style="width:80px" size="small"></el-input>
+        模块名 <el-input v-model="form.model" style="width:80px" size="small"></el-input>
         <el-button @click="createCode" type="primary" size="small">生成代码</el-button>
+        项目名[common,webcenter,webdata,appcenter,vue,vuex,android]
     </div>
     <el-table :data="filterTableList" class="tabClass" @selection-change="onSelectChange" border size="small">
         <el-table-column type="selection" width="40px"></el-table-column>
@@ -37,10 +34,9 @@
             </template>
         </el-table-column>
         <el-table-column label="字段信息" width="100px">
-            <template slot-scope="props"><span style="" @click="queryfieldList(props.row.t_name)">查看</span></template>
+            <template slot-scope="props"> <el-button @click="queryfieldList(props.row.t_name)" type="primary" size="small">查看字段</el-button></template>
         </el-table-column>
     </el-table>
-    <br>
     <el-dialog :visible.sync="show">
         <el-table :data="f_list" class="tabClass" border size="small">
             <el-table-column prop="name" label="字段名"></el-table-column>
@@ -49,7 +45,6 @@
         </el-table>
     </el-dialog>
 </div>
-</body>
 <script>
     axios.defaults.headers.post['Content-Type'] = 'application/json';
     new Vue({
@@ -110,15 +105,16 @@
         },
     });
 </script>
+</body>
 <style>
     #app {
         width: 1160px;
         margin: auto;
         position: absolute;
-        top: 5;
-        left: 5;
-        right: 5;
-        bottom: 5;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
     }
 
     .search {
@@ -136,6 +132,9 @@
     }
 
     .el-table--small td, .el-table--small th {
-        padding: 0px 0;
+        padding: 0px 0px;
+    }
+    .el-input__inner {
+     padding: 0px 5px;
     }
 </style>
