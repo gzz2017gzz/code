@@ -12,11 +12,11 @@
     </div>
     <div class="search">
         表名<el-input v-model="form.t_name" placeholder="请输入表名" style="width:160px" size="small"></el-input>
-        <el-button @click="query" type="primary" size="small">查询</el-button>
+        <el-button @click="query" type="primary" size="small"  >查询</el-button>
         作者名<el-input v-model="form.auth" style="width:80px" size="small"></el-input>
         公司名<el-input v-model="form.company" style="width:80px" size="small"></el-input>
         模块名 <el-input v-model="form.model" style="width:80px" size="small"></el-input>
-        <el-button @click="createCode" type="primary" size="small">生成代码</el-button>
+        <el-button @click="createCode" type="primary" size="small"   >生成代码</el-button>
         项目名[common,webcenter,webdata,appcenter,vue,vuex,android]
     </div>
     <el-table :data="filterTableList" class="tabClass" @selection-change="onSelectChange" border size="small">
@@ -137,4 +137,8 @@
     .el-input__inner {
      padding: 0px 5px;
     }
+    .el-button.el-button--primary.el-button--small {
+     padding: 0px 5px;height:22px;
+    }
+     
 </style>
