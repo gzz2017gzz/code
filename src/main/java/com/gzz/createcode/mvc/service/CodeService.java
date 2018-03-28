@@ -29,6 +29,8 @@ import com.gzz.createcode.template.model.Model;
 import com.gzz.createcode.template.vue.VueDialog;
 import com.gzz.createcode.template.vue.VueList;
 import com.gzz.createcode.template.vue.VueMockJs;
+import com.gzz.createcode.template.vueiview.VueIviewDialog;
+import com.gzz.createcode.template.vueiview.VueIviewList;
 import com.gzz.createcode.template.vuex.Dialog;
 import com.gzz.createcode.template.vuex.Expand;
 import com.gzz.createcode.template.vuex.IndexJs;
@@ -42,7 +44,7 @@ import com.gzz.createcode.template.vuex.Page;
  */
 @Service
 public class CodeService {
-	// private Log logger = LogFactory.getLog(CodeService.class);// 日志类
+//	 private Log logger = LogFactory.getLog(CodeService.class);// 日志类
 	@Autowired
 	protected CodeDao dao;
 
@@ -89,7 +91,7 @@ public class CodeService {
 
 			pName = cond.pack("appcenter", low);
 			path = cond.base("appcenter", low, upp);
-			Utils.write(path + "Action.java", AppAction.create(pName + low, upp, auth, cName, idType, lowUpp));
+			Utils.write(path + "Action.java", AppAction.create(pName, upp, auth, cName, idType, lowUpp));
 			Utils.write(path + "Bus.java", Bus.create(pName, upp, auth, cName, idType, lowUpp));
 			path = cond.base("appcenter", low, "I" + upp);
 			Utils.write(path + "Client.java", Client.create(pName, upp, auth, cName, idType, lowUpp));
@@ -97,6 +99,10 @@ public class CodeService {
 			path = cond.base("vue-element", low, upp);
 			Utils.write(path + "List.vue", VueList.create(fList, upp, cName, auth, lowUpp));
 			Utils.write(path + "Dialog.vue", VueDialog.create(fList, lowUpp, cName, auth));
+			
+			path = cond.base("vue-iview", low, upp);
+			Utils.write(path + "List.vue", VueIviewList.create(fList, upp, cName, auth, lowUpp));
+			Utils.write(path + "Dialog.vue", VueIviewDialog.create(fList, lowUpp, cName, auth));
 
 			path = cond.base("vuex-iview", low, upp);
 			Utils.write(path + "Mock.js", VueMockJs.create(fList, lowUpp, cName, auth));
