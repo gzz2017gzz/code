@@ -1,4 +1,4 @@
-package com.gzz.createcode.template.vue;
+package com.gzz.createcode.template.vueelement;
 
 import java.util.List;
 
