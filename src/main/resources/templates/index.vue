@@ -11,13 +11,13 @@
         建议类名中表名前缀部分<span style="color: red;">已去掉</span>】 【<span style="color: red;">代码路径</span>】【\\192.168.1.97\public\code\com\dl】
     </div>
     <div class="search">
-        表名<el-input v-model="form.t_name" placeholder="请输入表名" style="width:160px" size="small"></el-input>
+        表名<el-input v-model="form.t_name" placeholder="请输入表名" style="width:100px" size="small"></el-input>
         <el-button @click="query" type="primary" size="small"  >查询</el-button>
-        作者名<el-input v-model="form.auth" style="width:80px" size="small"></el-input>
-        公司名<el-input v-model="form.company" style="width:80px" size="small"></el-input>
-        模块名 <el-input v-model="form.model" style="width:80px" size="small"></el-input>
+        作者名<el-input v-model="form.auth" style="width:60px" size="small"></el-input>
+        公司名<el-input v-model="form.company" style="width:60px" size="small"></el-input>
+        模块名 <el-input v-model="form.model" style="width:60px" size="small"></el-input>
         <el-button @click="createCode" type="primary" size="small"   >生成代码</el-button>
-        项目名[common,webcenter,webdata,appcenter,vue,vuex,android]
+        项目名[common,webcenter,webdata,vue+element,vue+iview,vuex+iview,android]
     </div>
     <el-table :data="filterTableList" class="tabClass" @selection-change="onSelectChange" border size="small">
         <el-table-column type="selection" width="40px"></el-table-column>
