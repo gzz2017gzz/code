@@ -99,11 +99,14 @@ public class CodeService {
 			path = cond.base("vue-element", low, upp);
 			Utils.write(path + "List.vue", VueList.create(fList, upp, cName, auth, lowUpp));
 			Utils.write(path + "Dialog.vue", VueDialog.create(fList, lowUpp, cName, auth));
+			Utils.write(path + "Mock.js", VueMockJs.create(fList, lowUpp, cName, auth));
 			
 			path = cond.base("vue-iview", low, upp);
 			Utils.write(path + "List.vue", VueIviewList.create(fList, upp, cName, auth, lowUpp));
 			Utils.write(path + "Dialog.vue", VueIviewDialog.create(fList, lowUpp, cName, auth));
-
+			Utils.write(path + "Mock.js", VueMockJs.create(fList, lowUpp, cName, auth));
+			Utils.write(path + "Expand.vue", Expand.create(fList, cName, auth));
+			
 			path = cond.base("vuex-iview", low, upp);
 			Utils.write(path + "Mock.js", VueMockJs.create(fList, lowUpp, cName, auth));
 			Utils.write(path + "List.vue", Page.create(fList, upp, cName, auth, lowUpp));
