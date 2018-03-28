@@ -10,7 +10,6 @@ public class Js {
 		StringBuilder sb = new StringBuilder();
 		String idName = fList.get(0).getName();
 		StringBuilder colum = new StringBuilder();
-		StringBuilder cond = new StringBuilder();
 		StringBuilder form = new StringBuilder();
 		StringBuilder validate = new StringBuilder();
 
@@ -18,8 +17,7 @@ public class Js {
 			String name = field.getName();
 			String comments = field.getComment();
 			form.append("\r\n          " + name + ": null, //"+comments);
-			cond.append("\r\n      <FormItem label=\"" + comments + "\"><Input placeholder=\"请输入" + comments + "\" size=\"small\" v-model=\"form." + name + "\"></Input></FormItem>");
-			colum.append("\r\n          { title: '" + comments + "', key: '" + name + "'},");
+ 			colum.append("\r\n          { title: '" + comments + "', key: '" + name + "'},");
 			validate.append("\r\n          " + name + ": [");
 			validate.append("\r\n            {required: true, message: '请输入" + comments + "', trigger: 'blur'},");
 			validate.append("\r\n            {min: 1, max: 10, message: '" + comments + "长度不正确', trigger: 'blur'},");
