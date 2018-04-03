@@ -1,6 +1,13 @@
 package com.gzz.createcode.mvc.action;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gzz.createcode.common.Utils;
+import com.gzz.createcode.common.ZipUtils;
 import com.gzz.createcode.mvc.dao.CodeDao;
 import com.gzz.createcode.mvc.model.CodeCond;
 import com.gzz.createcode.mvc.model.Field;
@@ -55,4 +63,19 @@ public class CodeAction {
 		service.create(cond);
 		Utils.chmod();
 	}
+
+	@RequestMapping(value = { "/downCode" }, method = { RequestMethod.GET })
+	public void downCode(HttpServletResponse response) throws IOException {
+		String fileName = "code.zip";
+		ZipUtils.createZip(Utils.path() + "com", Utils.path() + fileName);
+		Path path = Paths.get(Utils.path() + fileName);
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+		response.setHeader("Content-Length", "" + Files.size(path));
+		response.setContentType("application/zip");
+		OutputStream out = response.getOutputStream();
+		out.write(Files.readAllBytes(path));
+		out.flush();
+		out.close();
+	}
+
 }

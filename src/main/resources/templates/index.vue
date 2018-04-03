@@ -17,6 +17,7 @@
         公司名<el-input v-model="form.company" style="width:60px" size="small"></el-input>
         模块名 <el-input v-model="form.model" style="width:60px" size="small"></el-input>
         <el-button @click="createCode" type="primary" size="small"   >生成代码</el-button>
+        <el-button @click="downCode" type="primary" size="small"   >下载</el-button>
         项目名[common,webcenter,webdata,vue+element,vue+iview,vuex+iview,android]
     </div>
     <el-table :data="filterTableList" class="tabClass" @selection-change="onSelectChange" border size="small">
@@ -101,6 +102,9 @@
                 }).catch(res => {
                     this.$notify.error({title: '失败', message: '生成代码失败,请检查代码是否已经存在!'});
                 });
+            },
+            downCode(){
+                location.href = "/code/downCode";
             }
         },
     });

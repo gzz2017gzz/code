@@ -1,9 +1,8 @@
 package com.gzz.createcode.template.vueiview;
 
-import java.util.List;
-
 import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.model.Field;
+import java.util.List;
 
 public class VueIviewDialog {
 	public static StringBuilder create(List<Field> fList, String lowUpp, String cName, String auth) {
@@ -14,7 +13,8 @@ public class VueIviewDialog {
 		for (Field fi : fList) {
 			String name = fi.getName();
 			String comments = fi.getComment();
-			field.append("\r\n        	<FormItem label=\"" + comments + "\" prop=\"" + name + "\"><Input placeholder=\"" + comments + "\" v-model=\"form." + name + "\"></Input></FormItem>");
+			field.append("\r\n        \t<FormItem label=\"" + comments + "\" prop=\"" + name
+					+ "\"><Input placeholder=\"" + comments + "\" v-model=\"form." + name + "\"></Input></FormItem>");
 			initform.append("\r\n          " + name + ": null,//" + comments);
 			validate.append("\r\n          " + name + ": [");
 			validate.append("\r\n            {required: true, message: '请输入" + comments + "', trigger: 'blur'},");
@@ -23,7 +23,8 @@ public class VueIviewDialog {
 		}
 		sb.append(Utils.pageNote(cName + "新增与修改", auth));
 		sb.append("\r\n<template>");
-		sb.append("\r\n  <Modal :title=\"title\" v-model=\"show\" :scrollable=\"false\" :mask-closable=\"false\" width=\"600\">");
+		sb.append(
+				"\r\n  <Modal :title=\"title\" v-model=\"show\" :scrollable=\"false\" :mask-closable=\"false\" width=\"600\">");
 		sb.append("\r\n    <Form :model=\"form\" ref=\"form\" :rules=\"rules\" :label-width=\"100\">");
 		sb.append("\r\n      <Row>");
 		sb.append("\r\n        <i-col>");
@@ -48,7 +49,7 @@ public class VueIviewDialog {
 		sb.append("\r\n        dialogMode: \"save\",");
 		sb.append("\r\n        show: false,");
 		sb.append("\r\n        rules: {");
-		sb.append(validate);// 验证
+		sb.append(validate);
 		sb.append("\r\n        }");
 		sb.append("\r\n      }");
 		sb.append("\r\n    },");
@@ -59,23 +60,23 @@ public class VueIviewDialog {
 		sb.append("\r\n          if (!valid) {");
 		sb.append("\r\n            return;");
 		sb.append("\r\n          }");
-		sb.append("\r\n          that.$http.post(\"/api/" + lowUpp + "/\" + that.dialogMode, JSON.stringify(that.form)).then(res => {");
-		sb.append("\r\n        		this.show = false;");
-		sb.append("\r\n            	that.refresh();");
-		sb.append("\r\n        		Message.success({");
-		sb.append("\r\n          		content: '保存" + cName + "信息成功'");
-		sb.append("\r\n       		});");
+		sb.append("\r\n          that.$http.post(\"/api/" + lowUpp
+				+ "/\" + that.dialogMode, JSON.stringify(that.form)).then(res => {");
+		sb.append("\r\n        \t\tthis.show = false;");
+		sb.append("\r\n            \tthat.refresh();");
+		sb.append("\r\n        \t\tMessage.success({");
+		sb.append("\r\n          \t\tcontent: '保存" + cName + "信息成功'");
+		sb.append("\r\n       \t\t});");
 		sb.append("\r\n          }).catch(res => {");
-		sb.append("\r\n        		Message.error({");
-		sb.append("\r\n          		content: '保存" + cName + "信息失败' + res");
-		sb.append("\r\n       		});");
+		sb.append("\r\n        \t\tMessage.error({");
+		sb.append("\r\n          \t\tcontent: '保存" + cName + "信息失败' + res");
+		sb.append("\r\n       \t\t});");
 		sb.append("\r\n          });");
 		sb.append("\r\n        });");
 		sb.append("\r\n      },");
 		sb.append("\r\n      initForm() {//初始数据");
 		sb.append("\r\n        return {");
-		sb.append(initform);// 字段
-		sb.append("\r\n          name: ''");
+		sb.append(initform);
 		sb.append("\r\n        }");
 		sb.append("\r\n      },");
 		sb.append("\r\n      addDialog() {//新增");
