@@ -11,48 +11,48 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 public class ZipUtils {
+	@SuppressWarnings("unused")
 	private static Log logger = LogFactory.getLog(ZipUtils.class);
 
 	public static void createZip(String sourcePath, String zipPath) {
-		FileOutputStream fos = null;
-		ZipOutputStream zos = null;
 		try {
-			fos = new FileOutputStream(zipPath);
-			zos = new ZipOutputStream(fos);
+			FileOutputStream fos = new FileOutputStream(zipPath);
+			ZipOutputStream zos = new ZipOutputStream(fos);
 			writeZip(new File(sourcePath), "", zos);
-			return;
+			zos.close();
 		} catch (FileNotFoundException e) {
-			logger.error("创建ZIP文件失败", e);
-		} finally {
-			try {
-				if (zos != null) {
-					zos.close();
-				}
-			} catch (IOException e) {
-				logger.error("创建ZIP文件失败", e);
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void delDir(File f) {
+		if (f.isDirectory()) {
+			File[] subFiles = f.listFiles();
+			for (File subFile : subFiles) {
+				delDir(subFile);
 			}
 		}
+		f.delete();
 	}
 
 	private static void writeZip(File file, String parentPath, ZipOutputStream zos) {
-		if (file.exists()) {
-			if (file.isDirectory()) {
-				parentPath = parentPath + file.getName() + File.separator;
-				File[] files = file.listFiles();
-				if (files.length != 0) {
-					for (File f : files) {
-						writeZip(f, parentPath, zos);
+		try {
+			if (file.exists()) {
+				if (file.isDirectory()) {
+					parentPath = parentPath + file.getName() + File.separator;
+					File[] files = file.listFiles();
+					if (files.length != 0) {
+						for (File f : files) {
+							writeZip(f, parentPath, zos);
+						}
+					} else {
+						zos.putNextEntry(new ZipEntry(parentPath));
 					}
 				} else {
-					try {
-						zos.putNextEntry(new ZipEntry(parentPath));
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			} else {
-				FileInputStream fis = null;
-				try {
+					FileInputStream fis = null;
 					fis = new FileInputStream(file);
 					ZipEntry ze = new ZipEntry(parentPath + file.getName());
 					zos.putNextEntry(ze);
@@ -62,20 +62,13 @@ public class ZipUtils {
 						zos.write(content, 0, len);
 						zos.flush();
 					}
-				} catch (FileNotFoundException e) {
-					logger.error("创建ZIP文件失败", e);
-				} catch (IOException e) {
-					logger.error("创建ZIP文件失败", e);
-				} finally {
-					try {
-						if (fis != null) {
-							fis.close();
-						}
-					} catch (IOException e) {
-						logger.error("创建ZIP文件失败", e);
-					}
+					fis.close();
 				}
 			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
