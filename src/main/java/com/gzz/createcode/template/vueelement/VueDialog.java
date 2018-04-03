@@ -72,7 +72,6 @@ public class VueDialog {
 		sb.append("\r\n      initForm() {//初始数据");
 		sb.append("\r\n        return {");
 		sb.append(initform);// 字段
-		sb.append("\r\n          name: ''");
 		sb.append("\r\n        }");
 		sb.append("\r\n      },");
 		sb.append("\r\n      addDialog() {//新增");
