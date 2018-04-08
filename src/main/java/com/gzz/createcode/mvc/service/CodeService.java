@@ -22,8 +22,6 @@ import com.gzz.createcode.template.center.Client;
 import com.gzz.createcode.template.data.Controller;
 import com.gzz.createcode.template.data.Dao;
 import com.gzz.createcode.template.data.Serv;
-import com.gzz.createcode.template.ios.IosModelH;
-import com.gzz.createcode.template.ios.IosModelM;
 import com.gzz.createcode.template.model.Condition;
 import com.gzz.createcode.template.model.Model;
 import com.gzz.createcode.template.vueelement.VueDialog;
@@ -65,9 +63,9 @@ public class CodeService {
 			String idType = Utils.keyType(fList);// 主键数据类型
 
 			
-			path = cond.base("ios", low, upp);
-			Utils.write(path + ".h", IosModelH.create( upp, fList, auth, cName));
-			Utils.write(path + ".m", IosModelM.create( upp, fList, auth, cName));
+//			path = cond.base("ios", low, upp);
+//			Utils.write(path + ".h", IosModelH.create( upp, fList, auth, cName));
+//			Utils.write(path + ".m", IosModelM.create( upp, fList, auth, cName));
  
 			
 			pName = cond.pack("common", low);

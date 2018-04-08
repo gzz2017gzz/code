@@ -1,5 +1,6 @@
 package com.gzz.createcode.mvc.action;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
@@ -10,13 +11,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gzz.createcode.common.Utils;
-import com.gzz.createcode.common.ZipUtils;
 import com.gzz.createcode.mvc.dao.CodeDao;
 import com.gzz.createcode.mvc.model.CodeCond;
 import com.gzz.createcode.mvc.model.Field;
@@ -37,7 +38,7 @@ public class CodeAction {
 	/**
 	 * @功能描述: 查询数据库中表名列表
 	 */
-	@RequestMapping(value = "/queryList", method = RequestMethod.POST)
+	@PostMapping("/queryList")
 	public List<Table> queryList(@RequestBody CodeCond cond) {
 		cond.setDb_user(CodeDao.DBUSER);
 		List<Table> queryTableList = service.queryTables(cond);
@@ -47,7 +48,7 @@ public class CodeAction {
 	/**
 	 * @功能描述: 查询数据库中表名列表
 	 */
-	@RequestMapping(value = "/queryField", method = RequestMethod.POST)
+	@PostMapping("/queryField")
 	public List<Field> queryField(@RequestBody CodeCond cond) {
 		cond.setDb_user(CodeDao.DBUSER);
 		return service.queryFields(cond);
@@ -56,7 +57,7 @@ public class CodeAction {
 	/**
 	 * @功能描述: 生成代码
 	 */
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@PostMapping("/create")
 	public void create(@RequestBody CodeCond cond) {
 		cond.setDb_user(CodeDao.DBUSER);
 		Utils.setTime();
@@ -64,16 +65,19 @@ public class CodeAction {
 		Utils.chmod();
 	}
 
-	@RequestMapping(value = { "/downCode" }, method = { RequestMethod.GET })
+	@GetMapping("/downCode")
 	public void downCode(HttpServletResponse response) throws IOException {
 		String fileName = "code.zip";
-		ZipUtils.createZip(Utils.path() + "com", Utils.path() + fileName);
+		Utils.createZip(Utils.path() + "com", Utils.path() + fileName);
+		Utils.delDir(new File(Utils.path() + "com/dl/"));
 		Path path = Paths.get(Utils.path() + fileName);
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
 		response.setHeader("Content-Length", "" + Files.size(path));
 		response.setContentType("application/zip");
 		OutputStream out = response.getOutputStream();
 		out.write(Files.readAllBytes(path));
+		
+		
 		out.flush();
 		out.close();
 	}
