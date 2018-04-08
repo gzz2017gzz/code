@@ -1,0 +1,14 @@
+server:
+  port: 9090
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.92:3306/keep?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: T_dl123456
+#server: 
+#    ssl: 
+#      key-store: classpath:keystore.p12
+#      key-store-password: 38967098gzz
+#      keyStoreType: PKCS12
+#      keyAlias: jetty

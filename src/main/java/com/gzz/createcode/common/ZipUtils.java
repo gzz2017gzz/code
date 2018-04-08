@@ -28,14 +28,13 @@ public class ZipUtils {
 
 	}
 
-	public static void delDir(File f) {
-		if (f.isDirectory()) {
-			File[] subFiles = f.listFiles();
-			for (File subFile : subFiles) {
+	public static void delDir(File file) {
+		if (file.isDirectory()) {
+			for (File subFile : file.listFiles()) {
 				delDir(subFile);
 			}
 		}
-		f.delete();
+		file.delete();
 	}
 
 	private static void writeZip(File file, String parentPath, ZipOutputStream zos) {
