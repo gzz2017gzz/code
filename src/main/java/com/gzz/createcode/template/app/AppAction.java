@@ -14,7 +14,7 @@ public class AppAction {
 		sb.append("\r\nimport org.apache.commons.logging.LogFactory;");
 		sb.append("\r\nimport org.springframework.beans.factory.annotation.Autowired;");
 		sb.append("\r\nimport org.springframework.web.bind.annotation.RequestBody;");
-		sb.append("\r\nimport org.springframework.web.bind.annotation.RequestMapping;");
+		sb.append("\r\nimport org.springframework.web.bind.annotation.PostMapping;");
 		sb.append("\r\nimport org.springframework.web.bind.annotation.RequestParam;");
 		sb.append("\r\nimport org.springframework.web.bind.annotation.RestController;");
 		sb.append("\r\nimport org.springframework.web.bind.annotation.RequestMethod;");
@@ -44,7 +44,7 @@ public class AppAction {
 		sb.append("\r\n\t@ApiOperation(value = \"新增[" + cName + "]\", notes = \"返回影响记录行数\")");
 		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"" + lowUpp + "\", value = \"[" + cName + "]对象\", required = true, dataType = \"" + clsUpp + "\"),");
 		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
-		sb.append("\r\n\t@RequestMapping( value = \"save\", method = RequestMethod.POST)");
+		sb.append("\r\n\t@PostMapping(\"save\")");
 		sb.append("\r\n	public SwaggerRespImpl<Integer> save(@RequestBody " + clsUpp + " " + lowUpp + ", Principal principal) {");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.save(" + lowUpp + "));");
 		sb.append("\r\n	}");
@@ -53,7 +53,7 @@ public class AppAction {
 		sb.append("\r\n\t@ApiOperation(value = \"删除[" + cName + "]\", notes = \"返回影响记录行数\")");
 		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"id\", value = \"[" + cName + "]主键\", required = true, dataType = \"" + idType + "\", paramType = \"query\"),");
 		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
-		sb.append("\r\n\t@RequestMapping( value = \"delete\", method = RequestMethod.POST)");
+		sb.append("\r\n\t@PostMapping( \"delete\" )");
 		sb.append("\r\n	public SwaggerRespImpl<Integer> delete(@RequestParam(\"id\") " + idType + " id) {");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.delete(new " + idType + "[] { id }));");
 		sb.append("\r\n	}");
@@ -62,7 +62,7 @@ public class AppAction {
 		sb.append("\r\n\t@ApiOperation(value = \"修改[" + cName + "]\", notes = \"返回影响记录行数\")");
 		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"" + lowUpp + "\", value = \"[" + cName + "]对象\", required = true, dataType = \"" + clsUpp + "\"),");
 		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
-		sb.append("\r\n\t@RequestMapping( value = \"update\", method = RequestMethod.POST)");
+		sb.append("\r\n\t@PostMapping(\"update\")");
 		sb.append("\r\n	public SwaggerRespImpl<Integer> update(@RequestBody " + clsUpp + " " + lowUpp + ", Principal principal) {");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.update(" + lowUpp + "));");
 		sb.append("\r\n	}");
@@ -71,7 +71,7 @@ public class AppAction {
 		sb.append("\r\n\t@ApiOperation(value = \"按条件查询分页[" + cName + "]列表\", notes = \"返回分页[" + cName + "]列表\")");
 		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"cond\", value = \"[" + cName + "]查询条件对象\", required = true, dataType = \"" + clsUpp + "Cond\"),");
 		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
-		sb.append("\r\n	@RequestMapping( value=\"queryPage\", method = RequestMethod.POST)");
+		sb.append("\r\n	@PostMapping( \"queryPage\")");
 		sb.append("\r\n	public SwaggerRespImpl<Page<" + clsUpp + ">> queryPage(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
 		sb.append("\r\n		// cond.setBranch_id(getSessionBranchId(principal));");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.queryPage(cond));");
@@ -82,7 +82,7 @@ public class AppAction {
 		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"cond\", value = \"[" + cName + "]查询条件对象\", required = true, dataType = \"" + clsUpp + "Cond\"),");
 		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
 
-		sb.append("\r\n	@RequestMapping( value=\"queryList\", method = RequestMethod.POST)");
+		sb.append("\r\n	@PostMapping(\"queryList\")");
 		sb.append("\r\n	public SwaggerRespImpl<List<" + clsUpp + ">> queryList(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
 		sb.append("\r\n		// cond.setBranch_id(getSessionBranchId(principal));");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.queryList(cond));");
@@ -94,7 +94,7 @@ public class AppAction {
 		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"cond\", value = \"[" + cName + "]查询条件对象\", required = true, dataType = \"" + clsUpp + "Cond\"),");
 		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
 
-		sb.append("\r\n	@RequestMapping( value=\"queryCount\", method = RequestMethod.POST)");
+		sb.append("\r\n	@PostMapping( \"queryCount\")");
 		sb.append("\r\n	public SwaggerRespImpl<Long> queryCount(@RequestBody " + clsUpp + "Cond cond) {");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.queryCount(cond));");
 		sb.append("\r\n	}");
@@ -105,7 +105,7 @@ public class AppAction {
 		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"id\", value = \"[" + cName + "]的主键\", required = true, dataType = \"" + idType + "\", paramType = \"query\"),");
 		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
 
-		sb.append("\r\n	@RequestMapping( value=\"findById\", method = RequestMethod.POST)");
+		sb.append("\r\n	@PostMapping( \"findById\")");
 		sb.append("\r\n	public SwaggerRespImpl<" + clsUpp + "> findById(@RequestParam(\"id\") " + idType + " id) {");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.findById(id));");
 		sb.append("\r\n	}");
@@ -115,7 +115,7 @@ public class AppAction {
 		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"cond\", value = \"[" + cName + "]查询条件对象\", required = true, dataType = \"" + clsUpp + "Cond\"),");
 		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
 
-		sb.append("\r\n	@RequestMapping(value=\"validate\", method = RequestMethod.POST)");
+		sb.append("\r\n	@PostMapping( \"validate\")");
 		sb.append("\r\n	public SwaggerRespImpl<Integer> validate(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
 		sb.append("\r\n		// 此处写验证逻辑");
 		sb.append("\r\n		// cond.setfield(...)");
