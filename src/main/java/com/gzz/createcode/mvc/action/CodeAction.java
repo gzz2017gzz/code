@@ -59,6 +59,7 @@ public class CodeAction {
 	 */
 	@PostMapping("/create")
 	public void create(@RequestBody CodeCond cond) {
+		Utils.delDir(new File(Utils.path() + "com/dl/"));
 		cond.setDb_user(CodeDao.DBUSER);
 		Utils.setTime();
 		service.create(cond);
@@ -69,15 +70,12 @@ public class CodeAction {
 	public void downCode(HttpServletResponse response) throws IOException {
 		String fileName = "code.zip";
 		Utils.createZip(Utils.path() + "com", Utils.path() + fileName);
-		Utils.delDir(new File(Utils.path() + "com/dl/"));
 		Path path = Paths.get(Utils.path() + fileName);
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
 		response.setHeader("Content-Length", "" + Files.size(path));
 		response.setContentType("application/zip");
 		OutputStream out = response.getOutputStream();
 		out.write(Files.readAllBytes(path));
-		
-		
 		out.flush();
 		out.close();
 	}

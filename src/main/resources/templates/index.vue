@@ -7,8 +7,8 @@
 <div id="app">
     <div style="color: blue; font-size: 14px;">
         【<span style="color: red;">注意</span>】
-        【调整[作者名]\[模块名],点击[查看字段]确保表名注释与字段名注释<span style="color: red;">为中文</span>,
-        建议类名中表名前缀部分<span style="color: red;">已去掉</span>】 【<span style="color: red;">代码路径</span>】【\\192.168.1.97\public\code\com\dl】
+        【调整[作者名]\[模块名],点击[查看字段]确保表名注释与字段名注释<span style="color: red;">为中文</span>,建议类名中表名前缀部分<span style="color: red;">已去掉</span>】
+        【<span style="color: red;">代码路径</span>】【\\192.168.1.97\public\code\com\dl】
     </div>
     <div class="search">
         表名<el-input v-model="form.t_name" placeholder="请输入表名" style="width:100px" size="small"></el-input>
@@ -17,7 +17,6 @@
         公司名<el-input v-model="form.company" style="width:60px" size="small"></el-input>
         模块名 <el-input v-model="form.model" style="width:60px" size="small"></el-input>
         <el-button @click="createCode" type="primary" size="small"   >生成代码</el-button>
-        <el-button @click="downCode" type="primary" size="small"   >下载</el-button>
         项目名[common,webcenter,webdata,vue+element,vue+iview,vuex+iview,android]
     </div>
     <el-table :data="filterTableList" class="tabClass" @selection-change="onSelectChange" border size="small">
@@ -99,20 +98,18 @@
                 }
                 axios.post("/code/create", JSON.stringify(this.form)).then(res => {
                     this.$notify.info({title: '消息', message: '生成代码成功'});
+                	location.href = "/code/downCode";
                 }).catch(res => {
                     this.$notify.error({title: '失败', message: '生成代码失败,请检查代码是否已经存在!'});
                 });
             },
-            downCode(){
-                location.href = "/code/downCode";
-            }
         },
     });
 </script>
 </body>
 <style>
     #app {
-        width: 1160px;
+        width: 1260px;
         margin: auto;
         position: absolute;
         top: 5px;
