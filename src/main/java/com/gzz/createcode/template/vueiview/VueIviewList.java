@@ -14,9 +14,9 @@ public class VueIviewList {
 		for (Field field : fList) {
 			String name = field.getName();
 			String comments = field.getComment();
-			cond.append("\r\n      <FormItem label=\"" + comments + "\"><Input placeholder=\"请输入" + comments
-					+ "\" v-model=\"form." + name + "\"></Input></FormItem>");
+			cond.append("\r\n      <FormItem label=\"" + comments + "\"><Input placeholder=\"请输入" + comments + "\" v-model=\"form." + name + "\"/></FormItem>");
 			pageColum.append("\r\n          {title: '" + comments + "', key: '" + name + "'},");
+			initform.append("\r\n\t\t\t"+name+":null,//"+comments);
 		}
 		sb.append(Utils.pageNote(cName + "列表", auth));
 		sb.append("\r\n<template>");
@@ -27,18 +27,15 @@ public class VueIviewList {
 		sb.append(cond);
 
 		sb.append("\r\n      <FormItem>");
-		sb.append(
-				"\r\n        <Button icon=\"search\" @click=\"refresh\" title=\"根据输入的条件查询\" type=\"primary\">查询</Button>");
+		sb.append("\r\n        <Button icon=\"search\" @click=\"refresh\" title=\"根据输入的条件查询\" type=\"primary\">查询</Button>");
 		sb.append("\r\n        <Button type=\"primary\" icon=\"plus\" @click=\"doAdd()\" title=\"添加\" >添加</Button>");
 		sb.append("\r\n      </FormItem>");
 		sb.append("\r\n    </Form>");
-		sb.append(
-				"\r\n    <Table :loading=\"loading\" :columns=\"tableHeader\" :data=\"dataList\" style=\"width: 100%\"></Table>");
+		sb.append("\r\n    <Table :loading=\"loading\" :columns=\"tableHeader\" :data=\"dataList\" style=\"width: 100%\"></Table>");
 
 		sb.append("\r\n    <br/>");
 		sb.append("\r\n    <div style=\"text-align: right\" v-if=\"total > 0\">");
-		sb.append("\r\n      <Page size=\"small\" :current=\"page\" :total=\"total\" show-total");
-		sb.append("\r\n            @on-change=\"(curr) => {this.page = curr ; this.refresh();}\"></Page>");
+		sb.append("\r\n      <Page size=\"small\" :current=\"page\" :total=\"total\" show-total @on-change=\"(curr) => {this.page = curr ; this.refresh();}\"></Page>");
 		sb.append("\r\n    </div>");
 		sb.append("\r\n    <" + clsUpp + "Dialog ref=\"dialog\" :refresh=\"refresh\"></" + clsUpp + "Dialog>");
 		sb.append("\r\n  </div>");
@@ -108,8 +105,7 @@ public class VueIviewList {
 		sb.append("\r\n        const that = this;");
 		sb.append("\r\n        that.loading = true;");
 		sb.append("\r\n        const requestData = {...that.form, page: that.page - 1};");
-		sb.append("\r\n        that.$http.post(\"/api/" + lowUpp
-				+ "/queryPage\", JSON.stringify(requestData)).then(res => {");
+		sb.append("\r\n        that.$http.post(\"/api/" + lowUpp + "/queryPage\", JSON.stringify(requestData)).then(res => {");
 		sb.append("\r\n          that.loading = false;");
 		sb.append("\r\n          that.dataList = res.data.content;");
 		sb.append("\r\n          that.total = res.data.totalElements;");

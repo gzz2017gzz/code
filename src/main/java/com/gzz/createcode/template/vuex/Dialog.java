@@ -12,7 +12,7 @@ public class Dialog {
 		for (Field fi : fList) {
 			String name = fi.getName();
 			String comments = fi.getComment();
-			field.append("\r\n        	<FormItem label=\"" + comments + "\" prop=\"" + name + "\"><Input placeholder=\"" + comments + "\" v-model=\"form." + name + "\"></Input></FormItem>");
+			field.append("\r\n        	<FormItem label=\"" + comments + "\" prop=\"" + name + "\"><Input placeholder=\"" + comments + "\" v-model=\"form." + name + "\"/></FormItem>");
 		}
 		sb.append(Utils.pageNote(cName + "新增与修改", auth));
 		sb.append("\r\n<template>");
