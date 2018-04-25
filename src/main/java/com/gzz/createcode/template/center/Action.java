@@ -11,6 +11,8 @@ public class Action {
 		sb.append("\r\nimport org.apache.commons.logging.LogFactory;");
 		sb.append("\r\nimport org.springframework.beans.factory.annotation.Autowired;");
 		sb.append("\r\nimport org.springframework.web.bind.annotation.RequestBody;");
+		sb.append("\r\nimport org.springframework.web.bind.annotation.DeleteMapping;");
+		sb.append("\r\nimport org.springframework.web.bind.annotation.GetMapping;");
 		sb.append("\r\nimport org.springframework.web.bind.annotation.PostMapping;");
 		sb.append("\r\nimport org.springframework.web.bind.annotation.RequestParam;");
 		sb.append("\r\nimport org.springframework.web.bind.annotation.RestController;");
@@ -44,7 +46,7 @@ public class Action {
 		sb.append("\r\n\t\treturn mi;");
 		sb.append("\r\n\t}");
 		sb.append(Utils.methodNote("删除" + cName + "记录(多条)"));
-		sb.append("\r\n	@PostMapping(\"delete\")");
+		sb.append("\r\n	@DeleteMapping(\"delete\")");
 		sb.append("\r\n	public int delete(@RequestParam(\"ids[]\") " + idType + " ids[]) {");
 		sb.append("\r\n		return bus.delete(ids);");
 		sb.append("\r\n	}");
@@ -71,11 +73,13 @@ public class Action {
 		sb.append("\r\n		return bus.queryCount(cond);");
 		sb.append("\r\n	}");
 		sb.append(Utils.methodNote("按主键查找单个" + cName + "记录"));
-		sb.append("\r\n	@PostMapping(\"findById\")");
+		sb.append("\r\n	@GetMapping(\"findById\")");
 		sb.append("\r\n	public " + clsUpp + " findById(@RequestParam(\"id\") " + idType + " id) {");
 		sb.append("\r\n		return bus.findById(id);");
 		sb.append("\r\n	}");
 		sb.append("\r\n}");
 		return sb;
+		
+		
 	}
 }

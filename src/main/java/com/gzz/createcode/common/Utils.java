@@ -25,6 +25,8 @@ import com.gzz.createcode.mvc.model.Field;
  * @date 2018-02-15
  */
 
+
+
 public class Utils {
 	private static Log logger = LogFactory.getLog(Utils.class);
 	private static String time;
