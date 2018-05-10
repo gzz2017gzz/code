@@ -57,12 +57,7 @@ public class Dao {
 		sb.append("\r\n		String sql = \"DELETE FROM " + tName + " WHERE " + idName + "\" + SqlUtil.ArrayToIn(ids);");
 		sb.append("\r\n		return jdbcTemplate.update(sql);");
 		sb.append("\r\n	}");
-		sb.append(Utils.methodNote("按ID查找单个" + cName + "实体"));
-		sb.append("\r\n	public " + upp + " findById(" + idType + " id) {");
-		sb.append("\r\n		StringBuilder sb = new StringBuilder(select);");
-		sb.append("\r\n		sb.append(\" AND t." + idName + "=?\");");
-		sb.append("\r\n		return jdbcTemplate.queryForObject(sb.toString(), new Object[]{id}, new BeanPropertyRowMapper<>(" + upp + ".class));");
-		sb.append("\r\n	}");
+
 		sb.append(Utils.methodNote("更新" + cName + "记录"));
 		sb.append("\r\n	public int update(" + upp + " vo) {");
 		sb.append("\r\n\t\tStringBuilder sql = new StringBuilder();");
@@ -81,25 +76,31 @@ public class Dao {
 		sb.append("\r\n	}");
 
 		sb.append(Utils.methodNote("按条件查询不分页" + cName + "列表"));
-		sb.append("\r\n	public List<" + upp + "> queryList(" + upp + "Cond cond) {");
-		sb.append("\r\n		StringBuilder sb = new StringBuilder(select);");
-		sb.append("\r\n		sb.append(cond.getCondition());");
-		sb.append("\r\n		//sb.append(\" ORDER BY operate_time DESC\");");
-		
-		sb.append("\r\n		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<>(" + upp + ".class));");
-		sb.append("\r\n	}");
+		sb.append("\r\n//	public List<" + upp + "> queryList(" + upp + "Cond cond) {");
+		sb.append("\r\n//		StringBuilder sb = new StringBuilder(select);");
+		sb.append("\r\n//		sb.append(cond.getCondition());");
+		sb.append("\r\n//		//sb.append(\" ORDER BY operate_time DESC\");");
+		sb.append("\r\n//		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<>(" + upp + ".class));");
+		sb.append("\r\n//	}");
+
+		sb.append(Utils.methodNote("按ID查找单个" + cName + "实体"));
+		sb.append("\r\n//	public " + upp + " findById(" + idType + " id) {");
+		sb.append("\r\n//		StringBuilder sb = new StringBuilder(select);");
+		sb.append("\r\n//		sb.append(\" AND t." + idName + "=?\");");
+		sb.append("\r\n//		return jdbcTemplate.queryForObject(sb.toString(), new Object[]{id}, new BeanPropertyRowMapper<>(" + upp + ".class));");
+		sb.append("\r\n//	}");
 
 		sb.append(Utils.methodNote("按条件查询" + cName + "记录个数"));
-		sb.append("\r\n	public long queryCount(" + upp + "Cond cond) {");
-		sb.append("\r\n		String countSql = \"SELECT COUNT(1) FROM " + tName + " t WHERE 1=1\" + cond.getCondition();");
-		sb.append("\r\n		return jdbcTemplate.queryForObject(countSql, cond.getArray(), Long.class);");
-		sb.append("\r\n	}");
+		sb.append("\r\n//	public long queryCount(" + upp + "Cond cond) {");
+		sb.append("\r\n//		String countSql = \"SELECT COUNT(1) FROM " + tName + " t WHERE 1=1\" + cond.getCondition();");
+		sb.append("\r\n//		return jdbcTemplate.queryForObject(countSql, cond.getArray(), Long.class);");
+		sb.append("\r\n//	}");
 
 		sb.append(Utils.methodNote("逻辑删除" + cName + "记录(多条)"));
-		sb.append("\r\n	public int deleteLogic(" + idType + " ids[]) {");
-		sb.append("\r\n		String sql = \"UPDATE " + tName + " SET delete_remark=1 WHERE " + idName + "\" + SqlUtil.ArrayToIn(ids);");
-		sb.append("\r\n		return jdbcTemplate.update(sql);");
-		sb.append("\r\n	}");
+		sb.append("\r\n//	public int deleteLogic(" + idType + " ids[]) {");
+		sb.append("\r\n//		String sql = \"UPDATE " + tName + " SET delete_remark=1 WHERE " + idName + "\" + SqlUtil.ArrayToIn(ids);");
+		sb.append("\r\n//		return jdbcTemplate.update(sql);");
+		sb.append("\r\n//	}");
 		sb.append("\r\n}");
 		return sb;
 	}

@@ -42,26 +42,30 @@ public class Controller {
 		sb.append("\r\n	public int update(@RequestBody " + upp + " " + lowUpp + ") {");
 		sb.append("\r\n		return service.update(" + lowUpp + ");");
 		sb.append("\r\n	}");
+		
 		sb.append(Utils.methodNote("按条件查询分页" + cName + "列表"));
 		sb.append("\r\n	@PostMapping(\"queryPage\")");
 		sb.append("\r\n	public Page<" + upp + "> queryPage(@RequestBody " + upp + "Cond cond ){");
 		sb.append("\r\n		return service.queryPage(cond);");
 		sb.append("\r\n	}");
+		
 		sb.append(Utils.methodNote("按条件查询不分页" + cName + "列表"));
-		sb.append("\r\n	@PostMapping(\"queryList\")");
-		sb.append("\r\n	public List<" + upp + "> queryList(@RequestBody " + upp + "Cond cond ){");
-		sb.append("\r\n		return service.queryList(cond);");
-		sb.append("\r\n	}");
+		sb.append("\r\n//	@PostMapping(\"queryList\")");
+		sb.append("\r\n//	public List<" + upp + "> queryList(@RequestBody " + upp + "Cond cond ){");
+		sb.append("\r\n//		return service.queryList(cond);");
+		sb.append("\r\n//	}");
+		
 		sb.append(Utils.methodNote("按主键查单个" + cName + "记录"));
-		sb.append("\r\n	@PostMapping(\"findById\")");
-		sb.append("\r\n	public " + upp + " findById(@RequestParam(\"id\") " + idType + " id) {");
-		sb.append("\r\n		return service.findById(id);");
-		sb.append("\r\n	}");
+		sb.append("\r\n//	@PostMapping(\"findById\")");
+		sb.append("\r\n//	public " + upp + " findById(@RequestParam(\"id\") " + idType + " id) {");
+		sb.append("\r\n//		return service.findById(id);");
+		sb.append("\r\n//	}");
+		
 		sb.append(Utils.methodNote("按条件查询" + cName + "记录个数"));
-		sb.append("\r\n	@PostMapping(\"queryCount\")");
-		sb.append("\r\n	public long queryCount(@RequestBody " + upp + "Cond cond ){");
-		sb.append("\r\n		return service.queryCount(cond);");
-		sb.append("\r\n	}");
+		sb.append("\r\n//	@PostMapping(\"queryCount\")");
+		sb.append("\r\n//	public long queryCount(@RequestBody " + upp + "Cond cond ){");
+		sb.append("\r\n//		return service.queryCount(cond);");
+		sb.append("\r\n//	}");
 		sb.append("\r\n}");
 		return sb;
 	}

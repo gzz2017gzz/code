@@ -78,52 +78,52 @@ public class AppAction {
 		sb.append("\r\n	}");
 		sb.append("\r\n");
 		sb.append(Utils.methodNote("按条件查询不分页[" + cName + "]列表"));
-		sb.append("\r\n\t@ApiOperation(value = \"按条件查询不分页[" + cName + "]列表\", notes = \"返回不分页[" + cName + "]列表\")");
-		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"cond\", value = \"[" + cName + "]查询条件对象\", required = true, dataType = \"" + clsUpp + "Cond\"),");
-		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
+		sb.append("\r\n//\t@ApiOperation(value = \"按条件查询不分页[" + cName + "]列表\", notes = \"返回不分页[" + cName + "]列表\")");
+		sb.append("\r\n//\t@ApiImplicitParams({ @ApiImplicitParam(name = \"cond\", value = \"[" + cName + "]查询条件对象\", required = true, dataType = \"" + clsUpp + "Cond\"),");
+		sb.append("\r\n//\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
 
-		sb.append("\r\n	@PostMapping(\"queryList\")");
-		sb.append("\r\n	public SwaggerRespImpl<List<" + clsUpp + ">> queryList(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
+		sb.append("\r\n//	@PostMapping(\"queryList\")");
+		sb.append("\r\n//	public SwaggerRespImpl<List<" + clsUpp + ">> queryList(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
 		sb.append("\r\n		// cond.setBranch_id(getSessionBranchId(principal));");
-		sb.append("\r\n		return new SwaggerRespImpl<>(bus.queryList(cond));");
-		sb.append("\r\n	}");
+		sb.append("\r\n//		return new SwaggerRespImpl<>(bus.queryList(cond));");
+		sb.append("\r\n//	}");
 		sb.append("\r\n");
 		sb.append(Utils.methodNote("按条件查询[" + cName + "]记录个数"));
 
-		sb.append("\r\n\t@ApiOperation(value = \"按条件查询[" + cName + "]记录个数\", notes = \"返回记录个数\")");
-		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"cond\", value = \"[" + cName + "]查询条件对象\", required = true, dataType = \"" + clsUpp + "Cond\"),");
-		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
+		sb.append("\r\n//\t@ApiOperation(value = \"按条件查询[" + cName + "]记录个数\", notes = \"返回记录个数\")");
+		sb.append("\r\n//\t@ApiImplicitParams({ @ApiImplicitParam(name = \"cond\", value = \"[" + cName + "]查询条件对象\", required = true, dataType = \"" + clsUpp + "Cond\"),");
+		sb.append("\r\n//\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
 
-		sb.append("\r\n	@PostMapping( \"queryCount\")");
-		sb.append("\r\n	public SwaggerRespImpl<Long> queryCount(@RequestBody " + clsUpp + "Cond cond) {");
-		sb.append("\r\n		return new SwaggerRespImpl<>(bus.queryCount(cond));");
-		sb.append("\r\n	}");
+		sb.append("\r\n//	@PostMapping( \"queryCount\")");
+		sb.append("\r\n//	public SwaggerRespImpl<Long> queryCount(@RequestBody " + clsUpp + "Cond cond) {");
+		sb.append("\r\n//		return new SwaggerRespImpl<>(bus.queryCount(cond));");
+		sb.append("\r\n//	}");
 		sb.append("\r\n");
 		sb.append(Utils.methodNote("按主键查询单条[" + cName + "]记录"));
 
-		sb.append("\r\n\t@ApiOperation(value = \"按主键查询单个[" + cName + "]记录\", notes = \"返回单个[" + cName + "]对象\")");
-		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"id\", value = \"[" + cName + "]的主键\", required = true, dataType = \"" + idType + "\", paramType = \"query\"),");
-		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
+		sb.append("\r\n//\t@ApiOperation(value = \"按主键查询单个[" + cName + "]记录\", notes = \"返回单个[" + cName + "]对象\")");
+		sb.append("\r\n//\t@ApiImplicitParams({ @ApiImplicitParam(name = \"id\", value = \"[" + cName + "]的主键\", required = true, dataType = \"" + idType + "\", paramType = \"query\"),");
+		sb.append("\r\n//\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
 
-		sb.append("\r\n	@PostMapping( \"findById\")");
-		sb.append("\r\n	public SwaggerRespImpl<" + clsUpp + "> findById(@RequestParam(\"id\") " + idType + " id) {");
-		sb.append("\r\n		return new SwaggerRespImpl<>(bus.findById(id));");
-		sb.append("\r\n	}");
+		sb.append("\r\n//	@PostMapping( \"findById\")");
+		sb.append("\r\n//	public SwaggerRespImpl<" + clsUpp + "> findById(@RequestParam(\"id\") " + idType + " id) {");
+		sb.append("\r\n//		return new SwaggerRespImpl<>(bus.findById(id));");
+		sb.append("\r\n//	}");
 
 		sb.append(Utils.methodNote("验证方法"));
-		sb.append("\r\n\t@ApiOperation(value = \"按条件验证方法[" + cName + "]相关相信息\", notes = \"返回验证结果\")");
-		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"cond\", value = \"[" + cName + "]查询条件对象\", required = true, dataType = \"" + clsUpp + "Cond\"),");
-		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
+		sb.append("\r\n//\t@ApiOperation(value = \"按条件验证方法[" + cName + "]相关相信息\", notes = \"返回验证结果\")");
+		sb.append("\r\n//\t@ApiImplicitParams({ @ApiImplicitParam(name = \"cond\", value = \"[" + cName + "]查询条件对象\", required = true, dataType = \"" + clsUpp + "Cond\"),");
+		sb.append("\r\n//\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
 
-		sb.append("\r\n	@PostMapping( \"validate\")");
-		sb.append("\r\n	public SwaggerRespImpl<Integer> validate(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
+		sb.append("\r\n//	@PostMapping( \"validate\")");
+		sb.append("\r\n//	public SwaggerRespImpl<Integer> validate(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
 		sb.append("\r\n		// 此处写验证逻辑");
 		sb.append("\r\n		// cond.setfield(...)");
 		sb.append("\r\n		// int count=bus.queryCount(cond)");
 		sb.append("\r\n		// if(count = 0){");
 		sb.append("\r\n		// }");
-		sb.append("\r\n		return new SwaggerRespImpl<>(1);");
-		sb.append("\r\n	}");
+		sb.append("\r\n//		return new SwaggerRespImpl<>(1);");
+		sb.append("\r\n//	}");
 		sb.append("\r\n");
 		sb.append("\r\n}");
 		return sb;

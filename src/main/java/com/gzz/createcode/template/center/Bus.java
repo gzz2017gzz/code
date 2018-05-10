@@ -24,30 +24,37 @@ public class Bus {
 		sb.append("\r\n	public int save(" + clsUpp + " " + lowUpp + ") {");
 		sb.append("\r\n		return client.save(" + lowUpp + ");");
 		sb.append("\r\n	}");
+		
 		sb.append(Utils.methodNote("删除" + cName + "记录(多条)"));
 		sb.append("\r\n	public int delete(" + idType + " ids[]) {");
 		sb.append("\r\n		return client.delete(ids);//物理删除");
 		sb.append("\r\n	}");
-		sb.append(Utils.methodNote("按主键查找单个" + cName + "记录"));
-		sb.append("\r\n	public " + clsUpp + " findById(" + idType + " id) {");
-		sb.append("\r\n		return client.findById(id);");
-		sb.append("\r\n	}");
+
 		sb.append(Utils.methodNote("更新" + cName + "记录"));
 		sb.append("\r\n	public int update(" + clsUpp + " " + lowUpp + ") {");
 		sb.append("\r\n		return client.update(" + lowUpp + ");");
 		sb.append("\r\n	}");
+		
 		sb.append(Utils.methodNote("按条件查询分页" + cName + "列表"));
 		sb.append("\r\n	public Page<" + clsUpp + "> queryPage(" + clsUpp + "Cond cond) {");
 		sb.append("\r\n		return client.queryPage(cond);");
 		sb.append("\r\n	}");
+		
 		sb.append(Utils.methodNote("按条件查询不分页" + cName + "列表"));
-		sb.append("\r\n	public List<" + clsUpp + "> queryList(" + clsUpp + "Cond cond) {");
-		sb.append("\r\n		return client.queryList(cond);");
-		sb.append("\r\n	}");
+		sb.append("\r\n//	public List<" + clsUpp + "> queryList(" + clsUpp + "Cond cond) {");
+		sb.append("\r\n//		return client.queryList(cond);");
+		sb.append("\r\n//	}");
+		
 		sb.append(Utils.methodNote("按条件查询" + cName + "记录个数"));
-		sb.append("\r\n	public long queryCount(" + clsUpp + "Cond cond) {");
-		sb.append("\r\n		return client.queryCount(cond);");
-		sb.append("\r\n	}");
+		sb.append("\r\n//	public long queryCount(" + clsUpp + "Cond cond) {");
+		sb.append("\r\n//		return client.queryCount(cond);");
+		sb.append("\r\n//	}");
+		
+		sb.append(Utils.methodNote("按主键查找单个" + cName + "记录"));
+		sb.append("\r\n//	public " + clsUpp + " findById(" + idType + " id) {");
+		sb.append("\r\n//		return client.findById(id);");
+		sb.append("\r\n//	}");
+		
 		sb.append("\r\n}");
 		return sb;
 	}
