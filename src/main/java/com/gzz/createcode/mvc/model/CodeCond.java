@@ -26,6 +26,8 @@ public class CodeCond extends BaseCondition {
 	private String model;// 模块名
 	private String auth;// 作者名
 	private List<Table> c_list;// 生成代码用的数据
+	
+	private String sql;
 
 	public String pack(String app, String low) {
 		return "com." + company + "." + app + "." + model + "." + low;

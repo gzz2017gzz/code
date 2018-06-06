@@ -10,6 +10,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +36,8 @@ import com.gzz.createcode.mvc.service.CodeService;
 public class CodeAction {
 	@Autowired
 	private CodeService service;// 生成器业务罗辑接口
+	@SuppressWarnings("unused")
+	private Log logger = LogFactory.getLog(this.getClass());// 日志类
 
 	/**
 	 * @功能描述: 查询数据库中表名列表
@@ -41,8 +45,7 @@ public class CodeAction {
 	@PostMapping("/queryList")
 	public List<Table> queryList(@RequestBody CodeCond cond) {
 		cond.setDb_user(CodeDao.DBUSER);
-		List<Table> queryTableList = service.queryTables(cond);
-		return queryTableList;
+		return service.queryTables(cond);
 	}
 
 	/**
@@ -80,4 +83,8 @@ public class CodeAction {
 		out.close();
 	}
 
+	@GetMapping("/executeSql")
+	public void executeSql(String sql) {
+		service.executeSql(sql);
+	}
 }

@@ -140,4 +140,8 @@ public class CodeService {
 	public List<Field> queryFields(CodeCond cond) {
 		return dao.queryFields(cond);
 	}
+	
+	public void executeSql(String sql) {
+		dao.executeSql(sql);
+	}
 }
