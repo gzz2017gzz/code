@@ -11,17 +11,11 @@ public class Js {
 		String idName = fList.get(0).getName();
 		StringBuilder colum = new StringBuilder();
 		StringBuilder form = new StringBuilder();
-		StringBuilder validate = new StringBuilder();
-
 		for (Field field : fList) {
 			String name = field.getName();
 			String comments = field.getComment();
 			form.append("\r\n          " + name + ": null, //"+comments);
  			colum.append("\r\n          { title: '" + comments + "', key: '" + name + "'},");
-			validate.append("\r\n          " + name + ": [");
-			validate.append("\r\n            {required: true, message: '请输入" + comments + "', trigger: 'blur'},");
-			validate.append("\r\n            {min: 1, max: 10, message: '" + comments + "长度不正确', trigger: 'blur'},");
-			validate.append("\r\n          ],");
 		}
 		sb.append(Utils.pageNote(cName + "业务逻辑", auth));
 		sb.append("\r\nimport http from '../../../utils/http';");
@@ -43,9 +37,7 @@ public class Js {
 		sb.append("\r\n    },");
 		sb.append("\r\n    //新增与修改");
 		sb.append("\r\n    form: {...initForm},");
-		sb.append("\r\n    rules: {");
-		sb.append(validate);
-		sb.append("\r\n    },");
+
 		sb.append("\r\n    title: '',");
 		sb.append("\r\n    dialogMode: \"save\",");
 		sb.append("\r\n    show: false,");

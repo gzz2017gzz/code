@@ -9,10 +9,15 @@ public class Dialog {
 	public static StringBuilder create(List<Field> fList, String cName, String auth, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder field = new StringBuilder();
+		StringBuilder validate = new StringBuilder();
 		for (Field fi : fList) {
 			String name = fi.getName();
 			String comments = fi.getComment();
 			field.append("\r\n        	<FormItem label=\"" + comments + "\" prop=\"" + name + "\"><Input placeholder=\"" + comments + "\" v-model=\"form." + name + "\"/></FormItem>");
+			validate.append("\r\n          " + name + ": [");
+			validate.append("\r\n            {required: true, message: '请输入" + comments + "', trigger: 'blur'},");
+			validate.append("\r\n            {min: 1, max: 10, message: '" + comments + "长度不正确', trigger: 'blur'},");
+			validate.append("\r\n          ],");
 		}
 		sb.append(Utils.pageNote(cName + "新增与修改", auth));
 		sb.append("\r\n<template>");
@@ -34,12 +39,15 @@ public class Dialog {
 		sb.append("\r\n  import  {mapState, mapGetters, mapMutations, mapActions}  from 'vuex';");
 		sb.append("\r\n  export default {");
 		sb.append("\r\n    data() {");
-		sb.append("\r\n      return {}");
+		sb.append("\r\n      return { ");
+		sb.append("\r\n    		rules: {");
+		sb.append(validate);
+		sb.append("\r\n    		},");
+		sb.append("\r\n       }");
 		sb.append("\r\n    }, computed: {");
 		sb.append("\r\n      ...mapGetters({}),");
 		sb.append("\r\n      ...mapState({");
 		sb.append("\r\n        form: (state) => state." + lowUpp + ".form,");
-		sb.append("\r\n        rules: (state) => state." + lowUpp + ".rules,");
 		sb.append("\r\n        title: (state) => state." + lowUpp + ".title,");
 		sb.append("\r\n        dialogMode: (state) => state." + lowUpp + ".dialogMode,");
 		sb.append("\r\n      }),");
