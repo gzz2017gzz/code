@@ -35,7 +35,8 @@ public class VueIviewList {
 
 		sb.append("\r\n    <br/>");
 		sb.append("\r\n    <div style=\"text-align: right\" v-if=\"total > 0\">");
-		sb.append("\r\n      <Page size=\"small\" :current=\"page\" :total=\"total\" show-total @on-change=\"(curr) => {this.page = curr ; this.refresh();}\"></Page>");
+		sb.append("\r\n      <Page size=\"small\" :current=\"page\" :total=\"total\" show-total  @on-change=\"(curr) => {this.page = curr ; this.refresh();}");
+		sb.append("\r\n      show-sizer @on-page-size-change=\"(pageSize) => { this.pageSize = pageSize ; this.refresh();}\" :page-size=\"pageSize\"  \"></Page>");
 		sb.append("\r\n    </div>");
 		sb.append("\r\n    <" + clsUpp + "Dialog ref=\"dialog\" :refresh=\"refresh\"></" + clsUpp + "Dialog>");
 		sb.append("\r\n  </div>");
@@ -89,6 +90,7 @@ public class VueIviewList {
 		sb.append("\r\n        ],");
 		sb.append("\r\n        total: 0,");
 		sb.append("\r\n        page: 1,");
+		sb.append("\r\n        pageSize: 20,");
 		sb.append("\r\n        dataList: [],");
 		sb.append("\r\n        form: {");
 		sb.append(initform);
@@ -104,7 +106,7 @@ public class VueIviewList {
 		sb.append("\r\n      refresh() {");
 		sb.append("\r\n        const that = this;");
 		sb.append("\r\n        that.loading = true;");
-		sb.append("\r\n        const requestData = {...that.form, page: that.page - 1};");
+		sb.append("\r\n        const requestData = {...that.form, page: that.page - 1,size:that.pageSize};");
 		sb.append("\r\n        that.$http.post(\"/api/" + lowUpp + "/queryPage\", JSON.stringify(requestData)).then(res => {");
 		sb.append("\r\n          that.loading = false;");
 		sb.append("\r\n          that.dataList = res.data.content;");

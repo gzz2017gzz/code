@@ -58,8 +58,8 @@ public class VueList {
 		sb.append("\r\n    </el-table>");
 		sb.append("\r\n    <br/>");
 		sb.append("\r\n    <div style=\"text-align: right\" v-if=\"total > 0\">");
-		sb.append("\r\n      <el-pagination small layout=\"prev, pager, next\" :current-page=\"page\" :total=\"total\"");
-		sb.append("\r\n                     @current-change=\"(curr) => {this.page = curr ; this.refresh();}\"></el-pagination>");
+		sb.append("\r\n      <el-pagination small layout=\"sizes,prev, pager, next\" :current-page=\"page\" :total=\"total\" @current-change=\"(curr) => {this.page = curr ; this.refresh();}\"");
+		sb.append("\r\n       :page-sizes=\"[10, 15, 20, 100]\" @size-change=\"(s) => {this.size = s ; this.refresh();}\" :page-size=\"size\"></el-pagination>");
 		sb.append("\r\n    </div>");
 		sb.append("\r\n    <" + clsUpp + "Dialog ref=\"dialog\" :refresh=\"refresh\"></" + clsUpp + "Dialog>");
 		sb.append("\r\n  </div>");
@@ -72,6 +72,7 @@ public class VueList {
 		sb.append("\r\n      return {");
 		sb.append("\r\n        total: 0,");
 		sb.append("\r\n        page: 1,");
+		sb.append("\r\n        size: 1,");
 		sb.append("\r\n        dataList: [],");
 		sb.append("\r\n        form: {");
 		sb.append(initform);
@@ -87,7 +88,7 @@ public class VueList {
 		sb.append("\r\n      refresh() {");
 		sb.append("\r\n        const that = this;");
 		sb.append("\r\n        that.loading = true;");
-		sb.append("\r\n        const requestData = {...that.form, page: that.page - 1};");
+		sb.append("\r\n        const requestData = {...that.form, page: that.page - 1, size: that.size};");
 		sb.append("\r\n        that.$http.post(\"/api/" + lowUpp + "/queryPage\", JSON.stringify(requestData)).then(res => {");
 		sb.append("\r\n          that.loading = false;");
 		sb.append("\r\n          that.dataList = res.data.content;");
