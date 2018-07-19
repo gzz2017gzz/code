@@ -72,7 +72,7 @@ public class VueList {
 		sb.append("\r\n      return {");
 		sb.append("\r\n        total: 0,");
 		sb.append("\r\n        page: 1,");
-		sb.append("\r\n        size: 1,");
+		sb.append("\r\n        size: 20,");
 		sb.append("\r\n        dataList: [],");
 		sb.append("\r\n        form: {");
 		sb.append(initform);
