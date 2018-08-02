@@ -112,9 +112,7 @@ public class VueIviewList {
 		sb.append("\r\n          that.dataList = res.data.content;");
 		sb.append("\r\n          that.total = res.data.totalElements;");
 		sb.append("\r\n        }).catch(res => {");
-		sb.append("\r\n        \t\tMessage.error({");
-		sb.append("\r\n          \t\tcontent: \"获取" + cName + "列表失败：\" + res");
-		sb.append("\r\n       \t\t });");
+		sb.append("\r\n        \t\tMessage.error({ content: \"获取" + cName + "列表失败：\" + res });");
 		sb.append("\r\n        });");
 		sb.append("\r\n      },");
 		sb.append("\r\n      doAdd() {");
@@ -133,20 +131,15 @@ public class VueIviewList {
 		sb.append("\r\n       \t   this.$http.delete(\"/api/" + lowUpp + "/delete\", {");
 		sb.append("\r\n            params: {ids: [row." + idName + "]}");
 		sb.append("\r\n       \t   }).then(res => {");
-		sb.append("\r\n         \t   Message.success({");
-		sb.append("\r\n           \t   content: \"删除成功\"");
-		sb.append("\r\n          \t  });");
+		sb.append("\r\n         \t   Message.success({ content: \"删除成功\" });");
 		sb.append("\r\n          \t  that.refresh();");
 		sb.append("\r\n          }).catch(res => {");
-		sb.append("\r\n            Message.error({");
-		sb.append("\r\n              content: \"删除失败：\" + res");
-		sb.append("\r\n            });");
+		sb.append("\r\n            Message.error({ content: \"删除失败：\" + res });");
 		sb.append("\r\n          });");
 		sb.append("\r\n        },");
 		sb.append("\r\n        onCancel: () => {");
 		sb.append("\r\n        }");
 		sb.append("\r\n      });");
-
 		sb.append("\r\n      }");
 		sb.append("\r\n    },");
 		sb.append("\r\n    components: {" + clsUpp + "Dialog," + clsUpp + "Expand },");

@@ -61,13 +61,9 @@ public class VueIviewDialog {
 		sb.append("\r\n          that.$http.post(\"/api/" + lowUpp + "/\" + that.dialogMode, JSON.stringify(that.form)).then(res => {");
 		sb.append("\r\n        \t\tthis.show = false;");
 		sb.append("\r\n            \tthat.refresh();");
-		sb.append("\r\n        \t\tMessage.success({");
-		sb.append("\r\n          \t\tcontent: '保存" + cName + "信息成功'");
-		sb.append("\r\n       \t\t});");
+		sb.append("\r\n        \t\tMessage.success({ content: '保存" + cName + "信息成功'});");
 		sb.append("\r\n          }).catch(res => {");
-		sb.append("\r\n        \t\tMessage.error({");
-		sb.append("\r\n          \t\tcontent: '保存" + cName + "信息失败' + res");
-		sb.append("\r\n       \t\t});");
+		sb.append("\r\n        \t\tMessage.error({ content: '保存" + cName + "信息失败' + res });");
 		sb.append("\r\n          });");
 		sb.append("\r\n        });");
 		sb.append("\r\n      },");
