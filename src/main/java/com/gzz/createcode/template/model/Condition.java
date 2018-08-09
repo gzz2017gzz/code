@@ -13,9 +13,9 @@ public class Condition {
 		sb.append(Utils.bigImport(fList));
 		sb.append("\r\nimport lombok.Getter;");
 		sb.append("\r\nimport lombok.Setter;");
-		sb.append("\r\nimport lombok.AllArgsConstructor;");
+//		sb.append("\r\nimport lombok.AllArgsConstructor;");
 		sb.append("\r\nimport lombok.Builder;");
-		sb.append("\r\nimport lombok.NoArgsConstructor;");
+//		sb.append("\r\nimport lombok.NoArgsConstructor;");
 		sb.append("\r\nimport lombok.experimental.Accessors;");
 		sb.append("\r\n");
 		sb.append("\r\nimport com.dl.keep.common.util.base.BaseCondition;");
@@ -24,8 +24,8 @@ public class Condition {
 		sb.append("\r\n@Getter");
 		sb.append("\r\n@Accessors(chain = true)");
 		sb.append("\r\n@Builder");
-		sb.append("\r\n@AllArgsConstructor");
-		sb.append("\r\n@NoArgsConstructor");
+//		sb.append("\r\n@AllArgsConstructor");
+//		sb.append("\r\n@NoArgsConstructor");
 		sb.append("\r\npublic class " + clsUpp + "Cond extends BaseCondition {");
 		StringBuilder field = new StringBuilder();
 		StringBuilder cond = new StringBuilder();

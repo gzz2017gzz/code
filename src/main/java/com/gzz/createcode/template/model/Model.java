@@ -15,17 +15,17 @@ public class Model {
 		sb.append(Utils.bigImport(fList));
 		sb.append("\r\nimport lombok.Getter;");
 		sb.append("\r\nimport lombok.Setter;");
-		sb.append("\r\nimport lombok.AllArgsConstructor;");
+//		sb.append("\r\nimport lombok.AllArgsConstructor;");
 		sb.append("\r\nimport lombok.Builder;");
-		sb.append("\r\nimport lombok.NoArgsConstructor;");
+//		sb.append("\r\nimport lombok.NoArgsConstructor;");
 		sb.append("\r\nimport lombok.experimental.Accessors;");
 		sb.append(Utils.classNote(auth, cName + "实体类"));
 		sb.append("\r\n@Setter");
 		sb.append("\r\n@Getter");
 		sb.append("\r\n@Accessors(chain = true)");
 		sb.append("\r\n@Builder");
-		sb.append("\r\n@AllArgsConstructor");
-		sb.append("\r\n@NoArgsConstructor");
+//		sb.append("\r\n@AllArgsConstructor");
+//		sb.append("\r\n@NoArgsConstructor");
 		sb.append("\r\npublic class " + upp + " {");
 		for (Field fi : fList) {
 			String type = fi.getType();
