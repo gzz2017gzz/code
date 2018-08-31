@@ -16,7 +16,6 @@ import java.util.zip.ZipOutputStream;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.google.common.collect.Lists;
 import com.gzz.createcode.mvc.model.Field;
 
 /**
@@ -24,8 +23,6 @@ import com.gzz.createcode.mvc.model.Field;
  * @author gzz_gzz@163.com
  * @date 2018-02-15
  */
-
-
 
 public class Utils {
 	private static Log logger = LogFactory.getLog(Utils.class);
@@ -59,7 +56,7 @@ public class Utils {
 	}
 
 	/**
-	 * @方法说明:生成指个数问号两边加括号
+	 * @方法说明:生成指定个数问号两边加括号
 	 */
 	public static StringBuilder add(List<Field> list) {
 		StringBuilder sb = new StringBuilder("(");
@@ -162,32 +159,32 @@ public class Utils {
 	}
 	//////////////////////////////////////////////
 	
-	public static boolean isEmptyString(final CharSequence cs) {
-		return cs == null || cs.length() == 0;
-	}
+//	public static boolean isEmptyString(final CharSequence cs) {
+//		return cs == null || cs.length() == 0;
+//	}
+//
+//	public static <T> boolean isEmptyList(final List<T> list) {
+//		return list == null || list.size() == 0;
+//	}
+//
+//	public static boolean notEmptyString(final CharSequence cs) {
+//		return cs != null && cs.length() >= 0;
+//	}
+//
+//	public static <T> boolean notEmptyList(final List<T> list) {
+//		return list != null && list.size() >= 0;
+//	}
 
-	public static <T> boolean isEmptyList(final List<T> list) {
-		return list == null || list.size() == 0;
-	}
-
-	public static boolean notEmptyString(final CharSequence cs) {
-		return cs != null && cs.length() >= 0;
-	}
-
-	public static <T> boolean notEmptyList(final List<T> list) {
-		return list != null && list.size() >= 0;
-	}
-
-	public static void main(String[] args) {
-		logger.info(isEmptyString(""));
-		logger.info(isEmptyString(null));
-		List<Integer> list = Lists.newArrayList();
-		logger.info(isEmptyList(null));
-		logger.info(isEmptyList(list));
-		list.add(1);
-		logger.info(isEmptyList(list));
-		logger.info(notEmptyList(list));
-	}
+//	public static void main(String[] args) {
+//		logger.info(isEmptyString(""));
+//		logger.info(isEmptyString(null));
+//		List<Integer> list = Lists.newArrayList();
+//		logger.info(isEmptyList(null));
+//		logger.info(isEmptyList(list));
+//		list.add(1);
+//		logger.info(isEmptyList(list));
+//		logger.info(notEmptyList(list));
+//	}
 	/////////////////////////////////
 	public static void createZip(String sourcePath, String zipPath) {
 		try {

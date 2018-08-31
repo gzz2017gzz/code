@@ -35,8 +35,8 @@ public class VueIviewList {
 
 		sb.append("\r\n    <br/>");
 		sb.append("\r\n    <div style=\"text-align: right\" v-if=\"total > 0\">");
-		sb.append("\r\n      <Page size=\"small\" :current=\"page\" :total=\"total\" show-total  @on-change=\"(curr) => {this.page = curr ; this.refresh();}");
-		sb.append("\r\n      show-sizer @on-page-size-change=\"(pageSize) => { this.pageSize = pageSize ; this.refresh();}\" :page-size=\"pageSize\"  \"></Page>");
+		sb.append("\r\n      <Page size=\"small\" :current=\"page\" :total=\"total\" show-total  @on-change=\"(curr) => {this.page = curr ; this.refresh();}\"");
+		sb.append("\r\n      show-sizer @on-page-size-change=\"(pageSize) => { this.pageSize = pageSize ; this.refresh();}\" :page-size=\"pageSize\"></Page>");
 		sb.append("\r\n    </div>");
 		sb.append("\r\n    <" + clsUpp + "Dialog ref=\"dialog\" :refresh=\"refresh\"></" + clsUpp + "Dialog>");
 		sb.append("\r\n  </div>");

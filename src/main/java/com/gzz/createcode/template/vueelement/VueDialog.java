@@ -15,7 +15,7 @@ public class VueDialog {
 			String name = field.getName();
 			String comments = field.getComment();
 			filed.append("\r\n          <el-form-item label=\"" + comments + "\" prop=\"" + name + "\">");
-			filed.append("\r\n            <el-input placeholder=\"请输入" + comments + "\" v-model=\"form." + name + "\"></el-input>");
+			filed.append("\r\n            <el-input placeholder=\"请输入" + comments + "\" v-model=\"form." + name + "\"/>");
 			filed.append("\r\n          </el-form-item>");
 			initform.append("\r\n          " + name + ": null,//"+comments);
 			validate.append("\r\n          " + name + ": [");

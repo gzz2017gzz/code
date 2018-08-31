@@ -17,7 +17,7 @@ public class VueList {
 			String fName = fie.getName();
 			String note = fie.getComment();
 			cond.append("\r\n      <el-form-item label=\"" + note + "\">");
-			cond.append("\r\n        <el-input placeholder=\"请输入" + note + "\" size=\"small\" v-model=\"form." + fName + "\"></el-input>");
+			cond.append("\r\n        <el-input placeholder=\"请输入" + note + "\" size=\"small\" v-model=\"form." + fName + "\"/>");
 			cond.append("\r\n      </el-form-item>");
 			initform.append("\r\n          " + fName + ": null,//" + note);
 			expand.append("\r\n                  <el-col :span=\"6\">");
@@ -58,8 +58,8 @@ public class VueList {
 		sb.append("\r\n    </el-table>");
 		sb.append("\r\n    <br/>");
 		sb.append("\r\n    <div style=\"text-align: right\" v-if=\"total > 0\">");
-		sb.append("\r\n      <el-pagination small layout=\"sizes,prev, pager, next\" :current-page=\"page\" :total=\"total\" @current-change=\"(curr) => {this.page = curr ; this.refresh();}\"");
-		sb.append("\r\n       :page-sizes=\"[10, 15, 20, 100]\" @size-change=\"(s) => {this.size = s ; this.refresh();}\" :page-size=\"size\"></el-pagination>");
+		sb.append("\r\n      <el-pagination small layout=\"sizes,prev, pager, next\" :current-page=\"page\" @current-change=\"(curr) => {this.page = curr ; this.refresh();}\"");
+		sb.append("\r\n        :total=\"total\" :page-sizes=\"[10, 15, 20, 100]\" @size-change=\"(s) => {this.size = s ; this.refresh();}\" :page-size=\"size\"></el-pagination>");
 		sb.append("\r\n    </div>");
 		sb.append("\r\n    <" + clsUpp + "Dialog ref=\"dialog\" :refresh=\"refresh\"></" + clsUpp + "Dialog>");
 		sb.append("\r\n  </div>");
@@ -107,9 +107,7 @@ public class VueList {
 		sb.append("\r\n      doDelete(row) {");
 		sb.append("\r\n        const that = this;");
 		sb.append("\r\n        this.$confirm('你确定要删除吗?', '提示', {");
-		sb.append("\r\n          confirmButtonText: '确定',");
-		sb.append("\r\n          cancelButtonText: '取消',");
-		sb.append("\r\n          type: 'warning'");
+		sb.append("\r\n          confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning'");
 		sb.append("\r\n        }).then(() => {");
 		sb.append("\r\n          that.$http.delete(\"/api/" + lowUpp + "/delete\", {");
 		sb.append("\r\n            params: {ids: [row." + idName + "]}");
