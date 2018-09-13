@@ -10,6 +10,8 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * @功能说明:拼加页面查询条件的基础类
  * @author gzz_gzz@163.com
@@ -19,10 +21,11 @@ import org.apache.commons.logging.LogFactory;
 public abstract class BaseCondition {
 	private Log logger = LogFactory.getLog(getClass());// 日志类
 	private List<Object> paramList = new ArrayList<Object>();// 参数值
+	@ApiModelProperty(hidden = true)
 	private StringBuffer condition = new StringBuffer();// 条件语句
-
+	@ApiModelProperty(value = "页大小", dataType = "Integer")
 	private Integer size = 10;// 页大小(每页记录条)
-
+	@ApiModelProperty(value = "当前页", dataType = "Integer")
 	private Integer page = 0;// 当前页码
 	private Map<String, String> orderMap = new HashMap<>();// 支持的排序字段
 	private Map<String, String> order = new HashMap<>();// 当前使用的排序字段
@@ -31,6 +34,7 @@ public abstract class BaseCondition {
 		this.orderMap.put(param, field);
 	}
 
+	@ApiModelProperty(hidden = true)
 	public String getOrderSql() {
 		String sql = "";
 		if (order.size() > 0) {
@@ -177,6 +181,7 @@ public abstract class BaseCondition {
 	/**
 	 * @功能: 将List转为数组
 	 */
+	@ApiModelProperty(hidden = true)
 	public Object[] getArray() {
 		return paramList.toArray();
 	}
@@ -184,6 +189,7 @@ public abstract class BaseCondition {
 	/**
 	 * @功能: 取条件字符串
 	 */
+
 	public String getCondition() {
 		// 清除查询条件
 		condition.setLength(0);
@@ -222,6 +228,7 @@ public abstract class BaseCondition {
 		this.page = page;
 	}
 
+	@ApiModelProperty(hidden = true)
 	public Map<String, String> getOrder() {
 		return order;
 	}

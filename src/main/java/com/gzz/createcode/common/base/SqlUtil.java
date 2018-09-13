@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.google.common.base.Joiner;
+
 /**
  * @功能描述:代码工具
  * @author gzz_gzz@163.com
@@ -36,7 +37,7 @@ public class SqlUtil {
 	/**
 	 * @方法说明:把组数拼接成IN语句
 	 */
-	public static String ArrayToIn(Long ids[]) {
+ 	public static String ArrayToIn(Long ids[]) {
 		return new StringBuffer(" IN (").append(Joiner.on(",").join(ids)).append(")").toString();
 	}
 	/**
