@@ -1,16 +1,23 @@
 package com.gzz.createcode.mvc.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.common.base.CaseFormat;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.dao.CodeDao;
 import com.gzz.createcode.mvc.model.CodeCond;
 import com.gzz.createcode.mvc.model.Field;
 import com.gzz.createcode.mvc.model.Table;
+
 import com.gzz.createcode.template.app.AppAction;
 import com.gzz.createcode.template.app.AppCondition;
 import com.gzz.createcode.template.app.AppModel;
@@ -45,11 +52,14 @@ public class CodeService {
 //	 private Log logger = LogFactory.getLog(CodeService.class);// 日志类
 	@Autowired
 	protected CodeDao dao;
+	@Autowired
+	protected FreemarkerUtils utils;
 
 	/**
 	 * @功能描述:生成代码
 	 */
 	public void create(CodeCond cond) {
+		String dateFormart = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 		String auth = cond.getAuth();// 作者
 		String pName;// 包名
 		String path;// 路径
@@ -61,17 +71,34 @@ public class CodeService {
 			String low = upp.toLowerCase();// 类名小写(只用包路径)
 			String lowUpp = Utils.firstLower(upp);// 驼峰变量类名(首字母小写)
 			String idType = Utils.keyType(fList);// 主键数据类型
-
-			
+			Map<String, Object> params = Maps.newHashMap();
+			params.put("fList", fList);
+			params.put("auth", auth);
+			params.put("cName", cName);
+			params.put("lowUpp", lowUpp);
+			params.put("idType", idType);
+			params.put("table", table.getT_name());
+			params.put("id", fList.get(0));
+			params.put("cond", cond);
+			params.put("tName", table.getT_name());
+			params.put("idName", fList.get(0).getName());
+			// 类名称
+			params.put("upp", upp);
+			params.put("time", dateFormart);
+			List<String> importList = Lists.newArrayList();
+			importList.add(Utils.dateImport(fList));
+			importList.add(Utils.bigImport(fList));
+			params.put("importList", importList);
 //			path = cond.base("ios", low, upp);
 //			Utils.write(path + ".h", IosModelH.create( upp, fList, auth, cName));
 //			Utils.write(path + ".m", IosModelM.create( upp, fList, auth, cName));
- 
-			
+
 			pName = cond.pack("common", low);
 			path = cond.base("common", low, upp);
+			params.put("pName", pName);
 			Utils.write(path + ".java", Model.create(pName, upp, fList, auth, cName));
 			Utils.write(path + "Cond.java", Condition.create(pName, upp, fList, auth, cName));
+ //			utils.parse("code/Model.java", params, path + ".java");
 
 			pName = cond.pack("webdata", low);
 			path = cond.base("webdata", low, upp);
@@ -89,7 +116,7 @@ public class CodeService {
 
 			pName = cond.pack("appcenter", low);
 			path = cond.base("appcenter", low, upp);
-			Utils.write(path + "Action.java", AppAction.create(pName, upp, auth, cName, idType, lowUpp,fList));
+			Utils.write(path + "Action.java", AppAction.create(pName, upp, auth, cName, idType, lowUpp, fList));
 			Utils.write(path + "Bus.java", Bus.create(pName, upp, auth, cName, idType, lowUpp));
 			path = cond.base("appcenter", low, "I" + upp);
 			Utils.write(path + "Client.java", Client.create(pName, upp, auth, cName, idType, lowUpp));
@@ -98,13 +125,13 @@ public class CodeService {
 			Utils.write(path + "List.vue", VueList.create(fList, upp, cName, auth, lowUpp));
 			Utils.write(path + "Dialog.vue", VueDialog.create(fList, lowUpp, cName, auth));
 			Utils.write(path + "Mock.js", VueMockJs.create(fList, lowUpp, cName, auth));
-			
+
 			path = cond.base("vue-iview", low, upp);
 			Utils.write(path + "List.vue", VueIviewList.create(fList, upp, cName, auth, lowUpp));
 			Utils.write(path + "Dialog.vue", VueIviewDialog.create(fList, lowUpp, cName, auth));
 			Utils.write(path + "Mock.js", VueMockJs.create(fList, lowUpp, cName, auth));
 			Utils.write(path + "Expand.vue", Expand.create(fList, cName, auth));
-			
+
 			path = cond.base("vuex-iview", low, upp);
 			Utils.write(path + "Mock.js", VueMockJs.create(fList, lowUpp, cName, auth));
 			Utils.write(path + "List.vue", Page.create(fList, upp, cName, auth, lowUpp));
@@ -120,6 +147,7 @@ public class CodeService {
 			Utils.write(path + ".java", AppModel.create(pName + low, upp, fList, auth, cName));
 			Utils.write(path + "Cond.java", AppCondition.create(pName + low, upp, fList, auth, cName));
 		}
+
 	}
 
 	/**
@@ -140,7 +168,7 @@ public class CodeService {
 	public List<Field> queryFields(CodeCond cond) {
 		return dao.queryFields(cond);
 	}
-	
+
 	public void executeSql(String sql) {
 		dao.executeSql(sql);
 	}

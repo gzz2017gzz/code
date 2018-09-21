@@ -34,7 +34,6 @@ import java.util.List;
 public class CodeAction {
 	@Autowired
 	private CodeService service;// 生成器业务罗辑接口
-	@SuppressWarnings("unused")
 	private Log logger = LogFactory.getLog(this.getClass());// 日志类
 
 	/**
