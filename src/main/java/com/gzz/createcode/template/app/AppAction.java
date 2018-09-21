@@ -1,10 +1,27 @@
 package com.gzz.createcode.template.app;
 
+import java.util.List;
+
 import com.gzz.createcode.common.Utils;
+import com.gzz.createcode.mvc.model.Field;
 
 public class AppAction {
-	public static StringBuilder create(String pName, String clsUpp, String auth, String cName, String idType, String lowUpp) {
+	public static StringBuilder create(String pName, String clsUpp, String auth, String cName, String idType, String lowUpp, List<Field> fList) {
 		StringBuilder sb = new StringBuilder();
+		StringBuilder field = new StringBuilder();
+		field.append("\r\n\t@ApiImplicitParams({");
+		for (Field fie : fList) {
+			field.append("\r\n\t\t@ApiImplicitParam(name = \"" + fie.getName() + "\", required = true, value = \"" + fie.getComment() + "\",dataType=\""+fie.getType()+"\", paramType = \"query\"),");
+		}
+		field.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
+
+		StringBuilder code = new StringBuilder();
+		code.append("\r\n\t\t@ApiResponses({");
+		code.append("\r\n\t\t	@ApiResponse(code = 0, message = \"靠，居然成功了\"),");
+		code.append("\r\n\t\t	@ApiResponse(code = 1, message = \"说出来你可能不信，我居然会失败\"),");
+		code.append("\r\n\t\t	@ApiResponse(code = 2, message = \"对方不想理你，并向你抛来一个空指针\")");
+		code.append("\r\n\t\t})");
+
 		sb.append("package " + pName + ";");
 		sb.append("\r\n");
 		sb.append("\r\nimport java.security.Principal;");
@@ -42,10 +59,12 @@ public class AppAction {
 		sb.append("\r\n	private " + clsUpp + "Bus bus; //注入[" + cName + "]业务逻辑类");
 		sb.append(Utils.methodNote("新增[" + cName + "]记录"));
 		sb.append("\r\n\t@ApiOperation(value = \"新增[" + cName + "]\", notes = \"返回影响记录行数\")");
-		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"" + lowUpp + "\", value = \"[" + cName + "]对象\", required = true, dataType = \"" + clsUpp + "\"),");
-		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
+
+		sb.append(field);
+		sb.append(code);
+		
 		sb.append("\r\n\t@PostMapping(\"save\")");
-		sb.append("\r\n	public SwaggerRespImpl<Integer> save(@RequestBody " + clsUpp + " " + lowUpp + ", Principal principal) {");
+		sb.append("\r\n	public SwaggerRespImpl<Integer> save(" + clsUpp + " " + lowUpp + ", Principal principal) {");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.save(" + lowUpp + "));");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
@@ -53,6 +72,7 @@ public class AppAction {
 		sb.append("\r\n\t@ApiOperation(value = \"删除[" + cName + "]\", notes = \"返回影响记录行数\")");
 		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"id\", value = \"[" + cName + "]主键\", required = true, dataType = \"" + idType + "\", paramType = \"query\"),");
 		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
+		sb.append(code);
 		sb.append("\r\n\t@PostMapping( \"delete\" )");
 		sb.append("\r\n	public SwaggerRespImpl<Integer> delete(@RequestParam(\"id\") " + idType + " id) {");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.delete(new " + idType + "[] { id }));");
@@ -60,40 +80,36 @@ public class AppAction {
 		sb.append("\r\n");
 		sb.append(Utils.methodNote("修改[" + cName + "]记录"));
 		sb.append("\r\n\t@ApiOperation(value = \"修改[" + cName + "]\", notes = \"返回影响记录行数\")");
-		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"" + lowUpp + "\", value = \"[" + cName + "]对象\", required = true, dataType = \"" + clsUpp + "\"),");
-		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
+		sb.append(field);
+		sb.append(code);
 		sb.append("\r\n\t@PostMapping(\"update\")");
-		sb.append("\r\n	public SwaggerRespImpl<Integer> update(@RequestBody " + clsUpp + " " + lowUpp + ", Principal principal) {");
+		sb.append("\r\n	public SwaggerRespImpl<Integer> update(" + clsUpp + " " + lowUpp + ", Principal principal) {");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.update(" + lowUpp + "));");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
 		sb.append(Utils.methodNote("按条件查询分页[" + cName + "]列表"));
 		sb.append("\r\n\t@ApiOperation(value = \"按条件查询分页[" + cName + "]列表\", notes = \"返回分页[" + cName + "]列表\")");
-		sb.append("\r\n\t@ApiImplicitParams({ @ApiImplicitParam(name = \"cond\", value = \"[" + cName + "]查询条件对象\", required = true, dataType = \"" + clsUpp + "Cond\"),");
-		sb.append("\r\n\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
+		sb.append(field);
+		sb.append(code);
 		sb.append("\r\n	@PostMapping( \"queryPage\")");
-		sb.append("\r\n	public SwaggerRespImpl<Page<" + clsUpp + ">> queryPage(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
+		sb.append("\r\n	public SwaggerRespImpl<Page<" + clsUpp + ">> queryPage(" + clsUpp + "Cond cond, Principal principal) {");
 		sb.append("\r\n		// cond.setBranch_id(getSessionBranchId(principal));");
 		sb.append("\r\n		return new SwaggerRespImpl<>(bus.queryPage(cond));");
 		sb.append("\r\n	}");
 		sb.append("\r\n");
 		sb.append(Utils.methodNote("按条件查询不分页[" + cName + "]列表"));
-		sb.append("\r\n//\t@ApiOperation(value = \"按条件查询不分页[" + cName + "]列表\", notes = \"返回不分页[" + cName + "]列表\")");
-		sb.append("\r\n//\t@ApiImplicitParams({ @ApiImplicitParam(name = \"cond\", value = \"[" + cName + "]查询条件对象\", required = true, dataType = \"" + clsUpp + "Cond\"),");
-		sb.append("\r\n//\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
-
-		sb.append("\r\n//	@PostMapping(\"queryList\")");
-		sb.append("\r\n//	public SwaggerRespImpl<List<" + clsUpp + ">> queryList(@RequestBody " + clsUpp + "Cond cond, Principal principal) {");
+		sb.append("\r\n\t@ApiOperation(value = \"按条件查询不分页[" + cName + "]列表\", notes = \"返回不分页[" + cName + "]列表\")");
+		sb.append(field);
+		sb.append(code);
+		sb.append("\r\n	@PostMapping(\"queryList\")");
+		sb.append("\r\n	public SwaggerRespImpl<List<" + clsUpp + ">> queryList(" + clsUpp + "Cond cond, Principal principal) {");
 		sb.append("\r\n		// cond.setBranch_id(getSessionBranchId(principal));");
-		sb.append("\r\n//		return new SwaggerRespImpl<>(bus.queryList(cond));");
-		sb.append("\r\n//	}");
+		sb.append("\r\n		return new SwaggerRespImpl<>(bus.queryList(cond));");
+		sb.append("\r\n	}");
 		sb.append("\r\n");
 		sb.append(Utils.methodNote("按条件查询[" + cName + "]记录个数"));
 
 		sb.append("\r\n//\t@ApiOperation(value = \"按条件查询[" + cName + "]记录个数\", notes = \"返回记录个数\")");
-		sb.append("\r\n//\t@ApiImplicitParams({ @ApiImplicitParam(name = \"cond\", value = \"[" + cName + "]查询条件对象\", required = true, dataType = \"" + clsUpp + "Cond\"),");
-		sb.append("\r\n//\t\t@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
-
 		sb.append("\r\n//	@PostMapping( \"queryCount\")");
 		sb.append("\r\n//	public SwaggerRespImpl<Long> queryCount(@RequestBody " + clsUpp + "Cond cond) {");
 		sb.append("\r\n//		return new SwaggerRespImpl<>(bus.queryCount(cond));");

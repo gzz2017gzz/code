@@ -19,7 +19,7 @@ import org.apache.commons.logging.LogFactory;
 import com.gzz.createcode.mvc.model.Field;
 
 /**
- * @功能描述:代码生成辅助类
+ * @功能说明 代码生成辅助类
  * @author gzz_gzz@163.com
  * @date 2018-02-15
  */
@@ -33,11 +33,11 @@ public class Utils {
 	}
 
 	/**
-	 * @param list字段列表
-	 * @param prefix前缀
-	 * @param suffix后缀
-	 * @param noId不包括主键
-	 * @param isUp首字母大写
+	 * @param list 字段列表
+	 * @param prefix 前缀
+	 * @param suffix 后缀
+	 * @param noId 不包括主键
+	 * @param wrap 换行
 	 */
 	public static StringBuilder add(List<Field> list, String prefix, String suffix, boolean noId, String wrap) {
 		StringBuilder sb = new StringBuilder();
@@ -56,7 +56,7 @@ public class Utils {
 	}
 
 	/**
-	 * @方法说明:生成指定个数问号两边加括号
+	 * @功能说明 生成指定个数问号两边加括号
 	 */
 	public static StringBuilder add(List<Field> list) {
 		StringBuilder sb = new StringBuilder("(");
@@ -68,21 +68,21 @@ public class Utils {
 	 * @方法说明: 类注释
 	 */
 	public static String classNote(String auth, String name) {
-		return String.format("\r\n\r\n/**\r\n * @类说明:%s\r\n * @author:%s\r\n * @date:%s\r\n **/", name, auth, time);
+		return String.format("\r\n\r\n/**\r\n * @类说明:%s\r\n * @author %s\r\n * @date:%s\r\n **/", name, auth, time);
 	}
 
 	/**
 	 * @方法说明: 方法注释
 	 */
 	public static String methodNote(String name) {
-		return String.format("\r\n\r\n	/**\r\n	 * @方法说明:%s\r\n	 **/", name);
+		return String.format("\r\n\r\n	/**\r\n	 * @方法说明 %s\r\n	 **/", name);
 	}
 
 	/**
 	 * @方法说明: 页面注释
 	 */
 	public static String pageNote(String cName, String auth) {
-		return String.format("/*%s,作者:%s,日期:%s*/", cName, auth, time);
+		return String.format("/*%s,作者 %s,日期:%s*/", cName, auth, time);
 	}
 
 	/**

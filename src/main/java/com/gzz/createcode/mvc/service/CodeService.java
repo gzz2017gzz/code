@@ -89,7 +89,7 @@ public class CodeService {
 
 			pName = cond.pack("appcenter", low);
 			path = cond.base("appcenter", low, upp);
-			Utils.write(path + "Action.java", AppAction.create(pName, upp, auth, cName, idType, lowUpp));
+			Utils.write(path + "Action.java", AppAction.create(pName, upp, auth, cName, idType, lowUpp,fList));
 			Utils.write(path + "Bus.java", Bus.create(pName, upp, auth, cName, idType, lowUpp));
 			path = cond.base("appcenter", low, "I" + upp);
 			Utils.write(path + "Client.java", Client.create(pName, upp, auth, cName, idType, lowUpp));
