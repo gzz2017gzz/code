@@ -145,7 +145,8 @@ public class Utils {
 	}
 
 	public static String path() {
-		return isLinux() ? "/data/samba_root/code/" : "d:/";
+//		return isLinux() ? "/data/samba_root/code/" : "d:/";
+		return System.getProperty("user.dir") + "/src/main/java/";
 	}
 
 	public static void chmod() {
