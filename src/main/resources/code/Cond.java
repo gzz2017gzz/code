@@ -41,8 +41,8 @@ public class ${upp}Cond extends BaseCondition {
     
     // 查询条件
 <#list fList as fi>
-	@ApiModelProperty(value = "${fi.comment}", dataType = "${fi.type}")
-	private ${fi.type} ${fi.name};
+	@ApiModelProperty(hidden = true)
+	private ${fi.type} ${fi.name}; // ${fi.comment}
 </#list>
 	// private List<Long> ids;// 主键列表
 }

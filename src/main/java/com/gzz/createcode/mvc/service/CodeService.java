@@ -76,27 +76,23 @@ public class CodeService {
 			params.put("replaceValuesFields", Utils.add(fList));
 			params.put("paramsFields", Utils.add(fList, "vo.get", "(),", false));
 			params.put("updateFields", Utils.add(fList, "", "=?,", true, "sql"));
-			params.put("updateParams",
-					Utils.add(fList, "vo.get", "(),", true) + ",vo.get" + Utils.firstUpper(idName) + "()");
+			params.put("updateParams", Utils.add(fList, "vo.get", "(),", true) + ",vo.get" + Utils.firstUpper(idName) + "()");
 
 			pName = cond.pack("createcode", low);
 			path = cond.base("createcode", low, upp);
-//			path = cond.base("ios", low, upp);
-//			Utils.write(path + ".h", IosModelH.create( upp, fList, auth, cName));
-//			Utils.write(path + ".m", IosModelM.create( upp, fList, auth, cName));
-
-			pName = cond.pack("common", low);
-			path = cond.base("common", low, upp);
-			params.put("pName", pName);
-			utils.parse("code/Model.java", params, path + ".java");
-			utils.parse("code/Cond.java", params, path + "Cond.java");
 
 			pName = cond.pack("createcode", low);
 			path = cond.base("createcode", low, upp);
 			params.put("pName", pName);
-			utils.parse("code/Dao.java", params, path + "Dao.java");
-			utils.parse("code/Service.java", params, path + "Service.java");
-			utils.parse("code/Controller.java", params, path + "Controller.java");
+			utils.process("code/Model.java", params, path + ".java");
+			utils.process("code/Cond.java", params, path + "Cond.java");
+
+			pName = cond.pack("createcode", low);
+			path = cond.base("createcode", low, upp);
+			params.put("pName", pName);
+			utils.process("code/Dao.java", params, path + "Dao.java");
+			utils.process("code/Service.java", params, path + "Service.java");
+			utils.process("code/Controller.java", params, path + "Controller.java");
 
 		}
 

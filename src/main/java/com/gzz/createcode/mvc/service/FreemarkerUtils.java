@@ -30,7 +30,7 @@ public class FreemarkerUtils {
 		cfg.setDefaultEncoding("UTF-8");
 	}
 
-	public void parse(String templateName, Map<String, Object> params, String outPath) {
+	public void process(String templateName, Map<String, Object> params, String outPath) {
 		try {
 			File file = new File(outPath);
 			template = cfg.getTemplate(templateName);
