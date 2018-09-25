@@ -33,11 +33,11 @@ public class Utils {
 	}
 
 	/**
-	 * @param list 字段列表
+	 * @param list   字段列表
 	 * @param prefix 前缀
 	 * @param suffix 后缀
-	 * @param noId 不包括主键
-	 * @param wrap 换行
+	 * @param noId   不包括主键
+	 * @param wrap   换行
 	 */
 	public static StringBuilder add(List<Field> list, String prefix, String suffix, boolean noId, String wrap) {
 		StringBuilder sb = new StringBuilder();
@@ -145,8 +145,8 @@ public class Utils {
 	}
 
 	public static String path() {
-//		return isLinux() ? "/data/samba_root/code/" : "d:/";
-		return System.getProperty("user.dir") + "/src/main/java/";
+		return isLinux() ? "/data/samba_root/code/" : "d:/";
+//		return System.getProperty("user.dir") + "/src/main/java/";
 	}
 
 	public static void chmod() {
@@ -159,7 +159,7 @@ public class Utils {
 		}
 	}
 	//////////////////////////////////////////////
-	
+
 //	public static boolean isEmptyString(final CharSequence cs) {
 //		return cs == null || cs.length() == 0;
 //	}

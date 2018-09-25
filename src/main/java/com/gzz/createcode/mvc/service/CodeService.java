@@ -36,12 +36,9 @@ public class CodeService {
 	 * @功能描述:生成代码
 	 */
 	public void create(CodeCond cond) {
-
 		String dateFormart = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-
 		String auth = cond.getAuth();// 作者
-		String pName;// 包名
-		String path;// 路径
+
 		for (Table table : cond.getC_list()) {
 			cond.setT_name_eq(table.getT_name());// 表名
 			List<Field> fList = dao.queryFields(cond);// 字段列表
@@ -77,22 +74,14 @@ public class CodeService {
 			params.put("paramsFields", Utils.add(fList, "vo.get", "(),", false));
 			params.put("updateFields", Utils.add(fList, "", "=?,", true, "sql"));
 			params.put("updateParams", Utils.add(fList, "vo.get", "(),", true) + ",vo.get" + Utils.firstUpper(idName) + "()");
-
-			pName = cond.pack("createcode", low);
-			path = cond.base("createcode", low, upp);
-
-			pName = cond.pack("createcode", low);
-			path = cond.base("createcode", low, upp);
-			params.put("pName", pName);
-			utils.process("code/Model.java", params, path + ".java");
-			utils.process("code/Cond.java", params, path + "Cond.java");
-
-			pName = cond.pack("createcode", low);
-			path = cond.base("createcode", low, upp);
-			params.put("pName", pName);
-			utils.process("code/Dao.java", params, path + "Dao.java");
-			utils.process("code/Service.java", params, path + "Service.java");
-			utils.process("code/Controller.java", params, path + "Controller.java");
+			
+			List<String> templates = utils.getTemplates();
+			templates.forEach(item -> {
+				String[] split = item.split("/");
+				params.put("pName", cond.pack(split[0], low));
+				params.put("path", cond.path(split[0], low));
+				utils.process(item, params);
+			});
 
 		}
 

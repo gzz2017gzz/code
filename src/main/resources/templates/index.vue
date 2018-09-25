@@ -8,7 +8,6 @@
     <div style="color: blue;">
         【<span style="color: red;">注意</span>】
         【调整[作者名]\[模块名],点击[查看字段]确保表名注释与字段名注释<span style="color: red;">为中文</span>,建议类名中表名前缀部分<span style="color: red;">已去掉</span>】
-        【<span style="color: red;">代码路径</span>】【\\192.168.1.97\public\code\com\dl】
     </div>
     <div class="search">
         表名

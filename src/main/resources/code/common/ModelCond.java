@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiModelProperty;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(value = "${upp}", description = "${cName}查询条件实体")
+@ApiModel(value = "${upp}Cond", description = "${cName}查询条件实体")
 public class ${upp}Cond extends BaseCondition {
 
     /**

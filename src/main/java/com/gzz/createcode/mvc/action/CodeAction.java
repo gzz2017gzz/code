@@ -64,7 +64,7 @@ public class CodeAction {
 		cond.setDb_user(CodeDao.DBUSER);
 		Utils.setTime();
 		service.create(cond);
-		Utils.chmod();
+//		Utils.chmod();
 	}
 
 	@GetMapping("/downCode")
