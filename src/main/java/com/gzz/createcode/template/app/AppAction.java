@@ -17,9 +17,7 @@ public class AppAction {
 
 		StringBuilder code = new StringBuilder();
 		code.append("\r\n\t\t@ApiResponses({");
-		code.append("\r\n\t\t	@ApiResponse(code = 0, message = \"靠，居然成功了\"),");
-		code.append("\r\n\t\t	@ApiResponse(code = 1, message = \"说出来你可能不信，我居然会失败\"),");
-		code.append("\r\n\t\t	@ApiResponse(code = 2, message = \"对方不想理你，并向你抛来一个空指针\")");
+		code.append("\r\n\t\t	@ApiResponse(code = 0, message = \"成功\"),");
 		code.append("\r\n\t\t})");
 
 		sb.append("package " + pName + ";");

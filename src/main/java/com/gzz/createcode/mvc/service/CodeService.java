@@ -1,14 +1,16 @@
 package com.gzz.createcode.mvc.service;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
+ 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.common.base.CaseFormat;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.mvc.dao.CodeDao;
 import com.gzz.createcode.mvc.model.CodeCond;
@@ -39,7 +41,6 @@ import com.gzz.createcode.template.vuex.Js;
 import com.gzz.createcode.template.vuex.Page;
 
 import freemarker.template.Configuration;
-import freemarker.template.Template;
 import freemarker.template.Version;
 
 /**
@@ -59,108 +60,18 @@ public class CodeService {
 	// private Log logger = LogFactory.getLog(CodeService.class);// 日志类
 	@Autowired
 	protected CodeDao dao;
-	// public void create1(CodeCond cond) throws Exception {
-	//
-	//
-	// String baseUrl = "codetemplate";
-	// String dateFormart = new SimpleDateFormat("yyyy-MM-dd
-	// HH:mm:ss").format(new Date());
-	// List<String> vms = scanDriverService.doScanService(baseUrl, ".vm");
-	// for (Table table : cond.getC_list()) {
-	// String auth = cond.getAuth();// 作者
-	// //用工参数
-	// cond.setT_name_eq(table.getT_name());// 表名
-	// List<Field> fList = dao.queryFields(cond).stream().map(item -> {
-	// item.setBigName(Utils.firstUpper(item.getName()));
-	// return item;
-	// }).collect(Collectors.toList());// 字段列表
-	// String cName = table.getC_name();// 表注释中文名
-	// String upp = table.getCls_upp();// 驼峰类名(首字母大写)
-	// String low = upp.toLowerCase();// 类名小写(只用包路径)
-	// String lowUpp = Utils.firstLower(upp);// 驼峰变量类名(首字母小写)
-	// String idType = Utils.keyType(fList);// 主键数据类型
-	// String idName = fList.get(0).getName();
-	//
-	// //组装对象
-	// Map<String,Object> jsonObject = new HashMap<>();
-	// jsonObject.put("fList", fList);
-	// jsonObject.put("auth", auth);
-	// jsonObject.put("cName", cName);
-	// jsonObject.put("lowUpp", lowUpp);
-	// jsonObject.put("idType", idType);
-	// jsonObject.put("table", table.getT_name());
-	// jsonObject.put("id", fList.get(0));
-	// jsonObject.put("cond", cond);
-	// jsonObject.put("tName", table.getT_name());
-	// jsonObject.put("idName", fList.get(0).getName());
-	// //类名称
-	// jsonObject.put("clsUpp", upp);
-	// jsonObject.put("upp", upp);
-	// jsonObject.put("time", dateFormart);
-	// //各种参数追加
-	// jsonObject.put("selectFields", Utils.add(fList, "t.", ",", false,
-	// "select"));
-	// jsonObject.put("insertFields", Utils.add(fList, "", ",", true,
-	// "insert"));
-	// jsonObject.put("insertValuesFields", Utils.add(fList, ":", ",", true,
-	// "insert"));
-	// jsonObject.put("replaceFields", Utils.add(fList, "", ",", false, "sql"));
-	// jsonObject.put("replaceValuesFields", Utils.add(fList));
-	// jsonObject.put("paramsFields", Utils.add(fList, "vo.get", "(),", false));
-	// jsonObject.put("updateFields", Utils.add(fList, "", "=?,", true, "sql"));
-	// jsonObject.put("updateParams", Utils.add(fList, "vo.get", "(),", true) +
-	// ",vo.get" + Utils.firstUpper(idName) + "()");
-	// //其他附属数据
-	// List<String> importList = Lists.newArrayList();
-	// importList.add(Utils.dateImport(fList));
-	// importList.add(Utils.bigImport(fList));
-	// jsonObject.put("importList", importList);
-	// //
-	// jsonObject.put("dollar", "$");
-	// //java 代码生成
-	// parseVmTemplate(vms, baseUrl, jsonObject, cond, upp, low);
-	// }
-	// }
-	//
-	// /**
-	// * 只生成java 类，目前
-	// */
-	// public void parseVmTemplate(List<String> vms, String baseUrl, JSONObject
-	// jsonObject, CodeCond cond, String upp, String low) throws IOException {
-	// //循环模板，进行合并
-	// for (String vm : vms) {
-	// //获得文件名称
-	//
-	// String vmName = vm.substring(0, vm.length() - 3);
-	// vm = "/" + vmName.replaceAll("[.]", "/") + ".vm";
-	// //拼接文件地址
-	// String dirName = vmName.substring(("/" + baseUrl + "/").length() - 1);
-	// String clazzName = dirName.substring(dirName.lastIndexOf(".") + 1);
-	// dirName = dirName.substring(0, dirName.lastIndexOf("."));
-	//
-	// //计算包名
-	// String pName = cond.pack(dirName, low);
-	// String fileType = clazzName.substring(clazzName.lastIndexOf("_"));
-	// upp = clazzName.replaceAll("Model", jsonObject.getString("clsUpp"));
-	// upp = upp.substring(0, upp.length() - fileType.length());
-	// String path = cond.base(dirName, low, upp);
-	//
-	// jsonObject.put("pName", pName);
-	// Files.createDirectories(Paths.get(path).getParent());
-	// velocityEngineService.parse(vm, jsonObject, path + fileType.replace('_',
-	// '.'));
-	//
-	// }
-	// }
+ 
+	@Autowired
+	protected FreemarkerUtils utils;
+ 
 
 	/**
 	 * @功能描述:生成代码
 	 */
 	public void create(CodeCond cond) {
-
-		// Template template = config.getTemplate("hello.ftl");
-		// template.process(map,new FileWriter("F:\\bb.html"));
-
+ 
+		String dateFormart = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+ 
 		String auth = cond.getAuth();// 作者
 		String pName;// 包名
 		String path;// 路径
@@ -172,17 +83,43 @@ public class CodeService {
 			String low = upp.toLowerCase();// 类名小写(只用包路径)
 			String lowUpp = Utils.firstLower(upp);// 驼峰变量类名(首字母小写)
 			String idType = Utils.keyType(fList);// 主键数据类型
+ 
 
 			// path = cond.base("ios", low, upp);
 			// Utils.write(path + ".h", IosModelH.create( upp, fList, auth,
 			// cName));
 			// Utils.write(path + ".m", IosModelM.create( upp, fList, auth,
 			// cName));
+ 
+			Map<String, Object> params = Maps.newHashMap();
+			params.put("fList", fList);
+			params.put("auth", auth);
+			params.put("cName", cName);
+			params.put("lowUpp", lowUpp);
+			params.put("idType", idType);
+			params.put("table", table.getT_name());
+			params.put("id", fList.get(0));
+			params.put("cond", cond);
+			params.put("tName", table.getT_name());
+			params.put("idName", fList.get(0).getName());
+			// 类名称
+			params.put("upp", upp);
+			params.put("time", dateFormart);
+			List<String> importList = Lists.newArrayList();
+			importList.add(Utils.dateImport(fList));
+			importList.add(Utils.bigImport(fList));
+			params.put("importList", importList);
+//			path = cond.base("ios", low, upp);
+//			Utils.write(path + ".h", IosModelH.create( upp, fList, auth, cName));
+//			Utils.write(path + ".m", IosModelM.create( upp, fList, auth, cName));
+ 
 
 			pName = cond.pack("common", low);
 			path = cond.base("common", low, upp);
+			params.put("pName", pName);
 			Utils.write(path + ".java", Model.create(pName, upp, fList, auth, cName));
 			Utils.write(path + "Cond.java", Condition.create(pName, upp, fList, auth, cName));
+ //			utils.parse("code/Model.java", params, path + ".java");
 
 			pName = cond.pack("webdata", low);
 			path = cond.base("webdata", low, upp);
@@ -231,6 +168,7 @@ public class CodeService {
 			Utils.write(path + ".java", AppModel.create(pName + low, upp, fList, auth, cName));
 			Utils.write(path + "Cond.java", AppCondition.create(pName + low, upp, fList, auth, cName));
 		}
+
 	}
 
 	/**
