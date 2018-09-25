@@ -1,7 +1,6 @@
 package com.gzz.createcode.test;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -25,7 +24,7 @@ import io.swagger.annotations.ApiResponses;
 /**
  * @类说明:[部门]app端Swagger控制器类
  * @author 高振中
- * @date:2018-09-21 15:19:21
+ * @date:2018-09-21 18:14:40
  **/
 @Api(value = "[部门]控制器", description = "[部门]相关操作")
 @RestController
@@ -138,29 +137,29 @@ public class DeptAction  {
 	/**
 	 * @方法说明 按条件查询不分页[部门]列表
 	 **/
-	@ApiOperation(value = "按条件查询不分页[部门]列表", notes = "返回不分页[部门]列表")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = "dept_id", required = true, value = "主键",dataType="Long", paramType = "query"),
-		@ApiImplicitParam(name = "branch_id", required = true, value = "门店主键",dataType="Long", paramType = "query"),
-		@ApiImplicitParam(name = "parent_id", required = true, value = "上级ID",dataType="Long", paramType = "query"),
-		@ApiImplicitParam(name = "name", required = true, value = "部门名称",dataType="String", paramType = "query"),
-		@ApiImplicitParam(name = "level", required = true, value = "级别",dataType="Byte", paramType = "query"),
-		@ApiImplicitParam(name = "leaf", required = true, value = "是否叶子",dataType="Byte", paramType = "query"),
-		@ApiImplicitParam(name = "enable", required = true, value = "可用标志",dataType="Byte", paramType = "query"),
-		@ApiImplicitParam(name = "remark", required = true, value = "备注",dataType="String", paramType = "query"),
-		@ApiImplicitParam(name = "create_time", required = true, value = "创建时间",dataType="Date", paramType = "query"),
-		@ApiImplicitParam(name = "creator", required = true, value = "创建人",dataType="Long", paramType = "query"),
-		@ApiImplicitParam(name = "Authorization", value = "Token",required = true, dataType = "string", paramType = "header") })
-		@ApiResponses({
-			@ApiResponse(code = 0, message = "靠，居然成功了"),
-			@ApiResponse(code = 1, message = "说出来你可能不信，我居然会失败"),
-			@ApiResponse(code = 2, message = "对方不想理你，并向你抛来一个空指针")
-		})
-	@PostMapping("queryList")
-	public SwaggerRespImpl<List<Dept>> queryList(DeptCond cond, Principal principal) {
+	//@ApiOperation(value = "按条件查询不分页[部门]列表", notes = "返回不分页[部门]列表")
+	//@ApiImplicitParams({
+		//@ApiImplicitParam(name = "dept_id", required = true, value = "主键",dataType="Long", paramType = "query"),
+		//@ApiImplicitParam(name = "branch_id", required = true, value = "门店主键",dataType="Long", paramType = "query"),
+		//@ApiImplicitParam(name = "parent_id", required = true, value = "上级ID",dataType="Long", paramType = "query"),
+		//@ApiImplicitParam(name = "name", required = true, value = "部门名称",dataType="String", paramType = "query"),
+		//@ApiImplicitParam(name = "level", required = true, value = "级别",dataType="Byte", paramType = "query"),
+		//@ApiImplicitParam(name = "leaf", required = true, value = "是否叶子",dataType="Byte", paramType = "query"),
+		//@ApiImplicitParam(name = "enable", required = true, value = "可用标志",dataType="Byte", paramType = "query"),
+		//@ApiImplicitParam(name = "remark", required = true, value = "备注",dataType="String", paramType = "query"),
+		//@ApiImplicitParam(name = "create_time", required = true, value = "创建时间",dataType="Date", paramType = "query"),
+		//@ApiImplicitParam(name = "creator", required = true, value = "创建人",dataType="Long", paramType = "query"),
+		//@ApiImplicitParam(name = "Authorization", value = "Token",required = true, dataType = "string", paramType = "header") })
+		//@ApiResponses({
+			//@ApiResponse(code = 0, message = "靠，居然成功了"),
+			//@ApiResponse(code = 1, message = "说出来你可能不信，我居然会失败"),
+			//@ApiResponse(code = 2, message = "对方不想理你，并向你抛来一个空指针")
+		//})
+	//@PostMapping("queryList")
+	//public SwaggerRespImpl<List<Dept>> queryList(DeptCond cond, Principal principal) {
 		// cond.setBranch_id(getSessionBranchId(principal));
-		return new SwaggerRespImpl<>(bus.queryList(cond));
-	}
+	//	return new SwaggerRespImpl<>(bus.queryList(cond));
+	//}
 
 
 	/**

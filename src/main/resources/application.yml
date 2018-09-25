@@ -6,12 +6,12 @@ server:
 spring:
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.1.92:3306/keep?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    username: root
-    password: T_dl123456
-#    url: jdbc:mysql://localhost:3306/keep?useUnicode=true&characterEncoding=utf-8&useSSL=false
+#    url: jdbc:mysql://192.168.1.92:3306/keep?useUnicode=true&characterEncoding=utf-8&useSSL=false
 #    username: root
-#    password: gzz123
+#    password: T_dl123456
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
 #server: 
 #    ssl: 
 #      key-store: classpath:keystore.p12

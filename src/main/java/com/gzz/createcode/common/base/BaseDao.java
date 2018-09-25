@@ -1,5 +1,6 @@
 package com.gzz.createcode.common.base;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -53,4 +54,18 @@ public class BaseDao {
 		return keyHolder.getKey().longValue();
 	}
 
+	/**
+	 * @方法说明:用于批操作显示SQL
+	 */
+	public <T> String getField(Class<T> clazz) {
+		StringBuilder sql = new StringBuilder();
+		Field[] fields = clazz.getDeclaredFields();
+
+		for (Field field : fields) {
+			logger.info(field.getName());
+			sql.append("t." + field.getName() + ",");
+		}
+		sql.deleteCharAt(sql.length() - 1);
+		return sql.toString();
+	}
 }
