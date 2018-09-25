@@ -40,6 +40,11 @@ public class AppAction {
 		sb.append("\r\nimport io.swagger.annotations.ApiImplicitParam;");
 		sb.append("\r\nimport io.swagger.annotations.ApiImplicitParams;");
 		sb.append("\r\nimport io.swagger.annotations.ApiOperation;");
+		sb.append("\r\nimport io.swagger.annotations.ApiResponse;");
+		sb.append("\r\nimport io.swagger.annotations.ApiResponses;");
+		
+		
+		
 		sb.append("\r\n");
 		sb.append("\r\nimport com.dl.appcenter.common.bean.SwaggerRespImpl;");
 		sb.append("\r\nimport com.dl.appcenter.common.util.PrincipalAction;");
@@ -98,14 +103,22 @@ public class AppAction {
 		sb.append("\r\n	}");
 		sb.append("\r\n");
 		sb.append(Utils.methodNote("按条件查询不分页[" + cName + "]列表"));
-		sb.append("\r\n\t@ApiOperation(value = \"按条件查询不分页[" + cName + "]列表\", notes = \"返回不分页[" + cName + "]列表\")");
-		sb.append(field);
-		sb.append(code);
-		sb.append("\r\n	@PostMapping(\"queryList\")");
-		sb.append("\r\n	public SwaggerRespImpl<List<" + clsUpp + ">> queryList(" + clsUpp + "Cond cond, Principal principal) {");
+		sb.append("\r\n\t//@ApiOperation(value = \"按条件查询不分页[" + cName + "]列表\", notes = \"返回不分页[" + cName + "]列表\")");
+		sb.append("\r\n\t//@ApiImplicitParams({");
+		for (Field fie : fList) {
+			sb.append("\r\n\t\t//@ApiImplicitParam(name = \"" + fie.getName() + "\", required = true, value = \"" + fie.getComment() + "\",dataType=\""+fie.getType()+"\", paramType = \"query\"),");
+		}
+		sb.append("\r\n\t\t//@ApiImplicitParam(name = \"Authorization\", value = \"Token\",required = true, dataType = \"string\", paramType = \"header\") })");
+		sb.append("\r\n\t\t//@ApiResponses({");
+		sb.append("\r\n\t\t	//@ApiResponse(code = 0, message = \"靠，居然成功了\"),");
+		sb.append("\r\n\t\t	//@ApiResponse(code = 1, message = \"说出来你可能不信，我居然会失败\"),");
+		sb.append("\r\n\t\t	//@ApiResponse(code = 2, message = \"对方不想理你，并向你抛来一个空指针\")");
+		sb.append("\r\n\t\t//})");
+		sb.append("\r\n	//@PostMapping(\"queryList\")");
+		sb.append("\r\n	//public SwaggerRespImpl<List<" + clsUpp + ">> queryList(" + clsUpp + "Cond cond, Principal principal) {");
 		sb.append("\r\n		// cond.setBranch_id(getSessionBranchId(principal));");
-		sb.append("\r\n		return new SwaggerRespImpl<>(bus.queryList(cond));");
-		sb.append("\r\n	}");
+		sb.append("\r\n	//	return new SwaggerRespImpl<>(bus.queryList(cond));");
+		sb.append("\r\n	//}");
 		sb.append("\r\n");
 		sb.append(Utils.methodNote("按条件查询[" + cName + "]记录个数"));
 

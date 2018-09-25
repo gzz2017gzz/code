@@ -33,8 +33,8 @@ public class Condition {
 		for (Field fie : fList) {
 			String fName = fie.getName();
 			String type = fie.getType();
-			field.append("\r\n\t@ApiModelProperty(value = \"" + fie.getComment()+ "\", dataType = \"" + type + "\")");
-			field.append("\r\n\tprivate " + type + " " + fName + ";");
+			field.append("\r\n\t@ApiModelProperty(hidden = true)");
+			field.append("\r\n\tprivate " + type + " " + fName + "; // " + fie.getComment());
 			cond.append("\r\n\t\t//add(" + fName + ", \"AND t." + fName + (type.equals("String") ? " LIKE ?\", 3);" : " = ?\");"));
 		}
 		cond.append("\r\n\t\t//add(ids, \"AND t.id IN \");");
