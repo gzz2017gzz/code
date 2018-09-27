@@ -6,14 +6,9 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.PostConstruct;
-
 import org.springframework.stereotype.Component;
-
-import com.google.common.collect.Lists;
 import com.google.common.io.Files;
-
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;
 import freemarker.template.MalformedTemplateNameException;
@@ -25,12 +20,13 @@ import freemarker.template.TemplateNotFoundException;
 public class FreemarkerUtils {
 	private Configuration cfg = new Configuration(Configuration.VERSION_2_3_28);
 	private Template template;
+	private List<String> templates;
 
 	@PostConstruct
 	public void init() {
 		cfg.setClassForTemplateLoading(this.getClass(), "/code/");
 		cfg.setDefaultEncoding("UTF-8");
-
+		templates = ScanUtils.scanTemplate("code");
 	}
 
 	public void process(String templateName, Map<String, Object> params) {
@@ -57,14 +53,7 @@ public class FreemarkerUtils {
 	}
 
 	public List<String> getTemplates() {
-		List<String> list = Lists.newArrayList();
-		list.add("common/Model.java");
-		list.add("common/ModelCond.java");
-
-		list.add("webdata/ModelDao.java");
-		list.add("webdata/ModelService.java");
-		list.add("webdata/ModelController.java");
-		return list;
+		return templates;
 	}
 
 }

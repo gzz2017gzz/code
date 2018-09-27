@@ -37,21 +37,21 @@ public class CodeAction {
 	private Log logger = LogFactory.getLog(this.getClass());// 日志类
 
 	/**
-	 * @功能描述  查询数据库中表名列表
+	 * @功能描述 查询数据库中表名列表
 	 */
 	@PostMapping("/queryList")
 	public List<Table> queryList(@RequestBody CodeCond cond) {
-		logger.info(CodeDao.DBUSER);
-		cond.setDb_user(CodeDao.DBUSER);
+		logger.info(CodeDao.dbName);
+		cond.setDb_name(CodeDao.dbName);
 		return service.queryTables(cond);
 	}
 
 	/**
-//	 * @功能描述 查询数据库中表名列表
+	 * // * @功能描述 查询数据库中表名列表
 	 */
 	@PostMapping("/queryField")
 	public List<Field> queryField(@RequestBody CodeCond cond) {
-		cond.setDb_user(CodeDao.DBUSER);
+		cond.setDb_name(CodeDao.dbName);
 		return service.queryFields(cond);
 	}
 
@@ -61,10 +61,10 @@ public class CodeAction {
 	@PostMapping("/create")
 	public void create(@RequestBody CodeCond cond) {
 		Utils.delDir(new File(Utils.path() + "com/dl/"));
-		cond.setDb_user(CodeDao.DBUSER);
+		cond.setDb_name(CodeDao.dbName);
 		Utils.setTime();
 		service.create(cond);
-//		Utils.chmod();
+		Utils.chmod();
 	}
 
 	@GetMapping("/downCode")

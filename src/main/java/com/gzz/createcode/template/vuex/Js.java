@@ -9,13 +9,11 @@ public class Js {
 	public static StringBuilder create(List<Field> fList, String cName, String auth, String lowUpp) {
 		StringBuilder sb = new StringBuilder();
 		String idName = fList.get(0).getName();
-		StringBuilder colum = new StringBuilder();
 		StringBuilder form = new StringBuilder();
 		for (Field field : fList) {
 			String name = field.getName();
 			String comments = field.getComment();
 			form.append("\r\n          " + name + ": null, //"+comments);
- 			colum.append("\r\n          { title: '" + comments + "', key: '" + name + "'},");
 		}
 		sb.append(Utils.pageNote(cName + "业务逻辑", auth));
 		sb.append("\r\nimport http from '../../../utils/http';");

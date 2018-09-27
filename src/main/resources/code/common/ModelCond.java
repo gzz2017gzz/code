@@ -36,7 +36,7 @@ public class ${upp}Cond extends BaseCondition {
 		add(${fi.name}, "AND t.${fi.name} = ?");
 </#if>
 </#list>
-    	// add(ids, "AND t.id IN ");");
+    	// add(ids, "AND t.id IN ");
     }
     
     // 查询条件
