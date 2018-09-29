@@ -24,7 +24,7 @@
 <script>
 import {Message, Modal} from 'iview';
 import ${upp}Dialog from './${upp}Dialog.vue';
-import ${upp}Expand from './${upp}Expand.vue';
+import ${upp}ListExpand from './${upp}ListExpand.vue';
   export default {
     data: function () {
       const that = this;
@@ -124,7 +124,7 @@ import ${upp}Expand from './${upp}Expand.vue';
       });
       }
     },
-    components: {${upp}Dialog,${upp}Expand},
+    components: {${upp}Dialog,${upp}ListExpand},
   }
 </script>
 <style></style>

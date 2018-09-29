@@ -42,20 +42,16 @@ public class CodeService {
 		for (Table table : cond.getC_list()) {
 			cond.setT_name_eq(table.getT_name());// 表名
 			List<Field> fList = this.queryFields(cond);// 字段列表
-			String cName = table.getC_name();// 表注释中文名
 			String upp = table.getCls_upp();// 驼峰类名(首字母大写)
 			String low = upp.toLowerCase();// 类名小写(只用包路径)
-			String lowUpp = Utils.firstLower(upp);// 驼峰变量类名(首字母小写)
-			String idType = Utils.keyType(fList);// 主键数据类型
-			String idName = fList.get(0).getName();
 			Map<String, Object> params = Maps.newHashMap();
 			params.put("fList", fList);
 			params.put("auth", auth);
-			params.put("cName", cName);
+			params.put("cName", table.getC_name());// 表注释中文名
 			params.put("upp", upp);
-			params.put("lowUpp", lowUpp);
+			params.put("lowUpp", Utils.firstLower(upp));// 驼峰变量类名(首字母小写)
 			params.put("low", low);
-			params.put("idType", idType);
+			params.put("idType", Utils.keyType(fList));// 主键数据类型
 			params.put("table", table.getT_name());
 			params.put("id", fList.get(0));
 			params.put("cond", cond);
@@ -73,7 +69,7 @@ public class CodeService {
 			params.put("replaceValuesFields", Utils.add(fList));
 			params.put("paramsFields", Utils.add(fList, "vo.get", "(),", false));
 			params.put("updateFields", Utils.add(fList, "", "=?,", true, "sql"));
-			params.put("updateParams", Utils.add(fList, "vo.get", "(),", true) + ",vo.get" + Utils.firstUpper(idName) + "()");
+			params.put("updateParams", Utils.add(fList, "vo.get", "(),", true) + ",vo.get" + Utils.firstUpper(fList.get(0).getName()) + "()");
 			params.put("dollar", "$");
 			params.put("model", cond.getModel());
 			List<String> templates = utils.getTemplates();

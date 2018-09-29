@@ -66,7 +66,7 @@
                     t_name: '',
                     c_list: [],
                     auth: "高振中",
-                    company: "gzz",
+                    company: "dl",
                     model: "card",
                     sqlText: null,
                 },

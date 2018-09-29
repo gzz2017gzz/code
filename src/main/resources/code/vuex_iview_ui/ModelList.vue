@@ -23,11 +23,11 @@
 </template>
 <script>
  import ${upp}Dialog from './${upp}Dialog.vue';
- import ${upp}Expand from './${upp}Expand.vue';
+ import ${upp}ListExpand from './${upp}ListExpand.vue';
  import {mapState, mapGetters, mapMutations, mapActions} from 'vuex';
 
  export default {
-   components: {${upp}Dialog,${upp}Expand},
+   components: {${upp}Dialog,${upp}ListExpand},
    data: function () {
      const that = this;
      return {
