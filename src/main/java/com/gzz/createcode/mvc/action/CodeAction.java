@@ -1,21 +1,5 @@
 package com.gzz.createcode.mvc.action;
 
-import com.gzz.createcode.common.Utils;
-import com.gzz.createcode.mvc.dao.CodeDao;
-import com.gzz.createcode.mvc.model.CodeCond;
-import com.gzz.createcode.mvc.model.Field;
-import com.gzz.createcode.mvc.model.Table;
-import com.gzz.createcode.mvc.service.CodeService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -23,6 +7,22 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.gzz.createcode.common.Utils;
+import com.gzz.createcode.mvc.dao.CodeDao;
+import com.gzz.createcode.mvc.model.CodeCond;
+import com.gzz.createcode.mvc.model.Field;
+import com.gzz.createcode.mvc.model.Table;
+import com.gzz.createcode.mvc.service.CodeService;
 
 /**
  * @功能描述 代码生成器控制器类
@@ -34,14 +34,13 @@ import java.util.List;
 public class CodeAction {
 	@Autowired
 	private CodeService service;// 生成器业务罗辑接口
-	private Log logger = LogFactory.getLog(this.getClass());// 日志类
+//	private Log logger = LogFactory.getLog(this.getClass());// 日志类
 
 	/**
 	 * @功能描述 查询数据库中表名列表
 	 */
 	@PostMapping("/queryList")
 	public List<Table> queryList(@RequestBody CodeCond cond) {
-		logger.info(CodeDao.dbName);
 		cond.setDb_name(CodeDao.dbName);
 		return service.queryTables(cond);
 	}

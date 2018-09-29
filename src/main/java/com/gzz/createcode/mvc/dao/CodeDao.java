@@ -11,7 +11,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.gzz.createcode.common.base.BaseDao;
-import com.gzz.createcode.common.base.SqlUtil;
 import com.gzz.createcode.mvc.model.CodeCond;
 import com.gzz.createcode.mvc.model.Field;
 import com.gzz.createcode.mvc.model.Table;
@@ -51,7 +50,7 @@ public class CodeDao extends BaseDao {
 		StringBuilder sb = new StringBuilder();
 		sb.append("SELECT table_name t_name,if(table_comment='',table_name,table_comment) comment FROM information_schema.tables WHERE 1=1");
 		sb.append(cond.getCondition());
-		logger.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
+//		logger.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
 		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<>(Table.class));
 	}
 
