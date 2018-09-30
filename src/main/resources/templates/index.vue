@@ -22,6 +22,7 @@
         <el-button @click="createCode" type="primary" size="small">生成代码</el-button>
         项目名[common,webcenter,webdata,vue+element,vue+iview,vuex+iview,android]
         <el-button @click="openSql" type="primary" size="small">建表</el-button>
+        <el-button @click="downfile" type="primary" size="small">下载</el-button>
     </div>
     <el-table :data="filterTableList" class="tabClass" @selection-change="onSelectChange" border size="small">
         <el-table-column type="selection" width="40px"></el-table-column>
@@ -57,7 +58,8 @@
     </el-dialog>
 </div>
 <script>
-    axios.defaults.headers.post['Content-Type'] = 'application/json';
+    axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
+    
     new Vue({
         el: '#app',
         data: function () {
@@ -94,9 +96,50 @@
                     this.$notify.error({title: '失败', message: '加载表信息败!'});
                 });
             },
-            openSql(t_name) {
+            openSql() {
                 this.showSql = true;
             },
+            downfile() {
+					  axios({
+					    method: 'post',
+					    url: 'api/user/',
+					    data: {
+					        name: 'Fred',
+					        type: 5
+					    },
+					    responseType: 'arraybuffer',
+					}).then(res => {
+					console.log(res)
+					let header=res.headers
+					console.log(header)
+				let bname=	res.headers.branchname
+					    console.log(encodeURI(decodeURI(bname)))
+					     console.log( encodeURIComponent((bname)))
+					 
+			 
+					      this.download(res.data); 
+					}).catch((error) => {
+					
+					})
+ 
+            },
+            
+                  download (data) {
+        if (!data) {
+          return
+        }
+        // window.location.href=window.URL.createObjectURL(new Blob([data],{type:"application/vnd.ms-excel"}));
+        let url = window.URL.createObjectURL(new Blob([data],{type:"application/vnd.ms-excel"}));
+
+        let link = document.createElement('a');
+        link.style.display = 'none';
+        link.href = url;
+       // let fileName=moment(Date.now()).format('YYYYMMDDHHmmss')+'.xls'
+       // link.setAttribute('download', fileName);
+        document.body.appendChild(link);
+        link.click()
+        document.body.removeChild(link);
+      },
             executeSql() {
                 // {params: {sql: this.form.sqlText}}
                 axios.get("/code/executeSql",  {params: {sql : this.form.sqlText}}).then(res => {

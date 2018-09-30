@@ -102,6 +102,11 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.39</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<version>2.6.12</version>
+		</dependency>
 		<!-- <dependency> -->
 		<!-- <groupId>org.apache.commons</groupId> -->
 		<!-- <artifactId>commons-lang3</artifactId> -->
