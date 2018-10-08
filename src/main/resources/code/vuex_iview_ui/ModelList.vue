@@ -36,7 +36,7 @@
            type: 'expand',
            width: 50,
            render: (h, params) => {
-             return h(${upp}Expand, {
+             return h(${upp}ListExpand, {
                props: {row: params.row}
              })
            }
