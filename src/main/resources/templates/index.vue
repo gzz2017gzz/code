@@ -21,7 +21,7 @@
         <el-input v-model="form.model" style="width:60px" size="small"></el-input>
         <el-button @click="createCode" type="primary" size="small">生成代码</el-button>
         项目名[common,webcenter,webdata,vue+element,vue+iview,vuex+iview,android]
-        <el-button @click="openSql" type="primary" size="small">建表</el-button>
+<!--         <el-button @click="openSql" type="primary" size="small">建表</el-button> -->
     </div>
     <el-table :data="filterTableList" class="tabClass" @selection-change="onSelectChange" border size="small">
         <el-table-column type="selection" width="40px"></el-table-column>
@@ -40,7 +40,7 @@
         <el-table-column label="操作" width="150px">
             <template slot-scope="props">
                 <el-button @click="queryfieldList(props.row.t_name)" type="primary" size="small">查看字段</el-button>
-                <el-button @click="deleteTable(props.row.t_name)" type="primary" size="small">删除表</el-button>
+<!--                 <el-button @click="deleteTable(props.row.t_name)" type="primary" size="small">删除表</el-button> -->
             </template>
         </el-table-column>
     </el-table>

@@ -5,18 +5,19 @@ import java.io.IOException;
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-import com.google.common.collect.Lists;
+ 
 
 public class ScanUtils {
 
 	public static List<String> scanTemplate(String packageName) {
-		List<String> list = Lists.newArrayList();
+		List<String> list =  new ArrayList<>();
 		try {
 			URL baseURL = Thread.currentThread().getContextClassLoader().getResource(packageName);
 			if ("file".equals(baseURL.getProtocol())) {
@@ -31,7 +32,7 @@ public class ScanUtils {
 	}
 
 	private static List<String> scanJar(URL baseURL, String packageName) throws IOException {
-		List<String> classList = Lists.newArrayList();
+		List<String> classList =  new ArrayList<>();
 		JarFile jar = ((JarURLConnection) baseURL.openConnection()).getJarFile();
 		Enumeration<JarEntry> entries = jar.entries();
 		while (entries.hasMoreElements()) {
@@ -48,8 +49,8 @@ public class ScanUtils {
 		if (!dir.exists() || !dir.isDirectory()) {
 			throw new Exception("没有找到对应的包");
 		}
-		List<String> fileList = Lists.newArrayList();
-		LinkedList<File> dirs = Lists.newLinkedList();
+		List<String> fileList =  new ArrayList<>();
+		LinkedList<File> dirs = new LinkedList<>();
 		dirs.add(dir);
 		while (!dirs.isEmpty()) {
 			File son = dirs.removeFirst();

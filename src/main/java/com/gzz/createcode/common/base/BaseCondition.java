@@ -3,8 +3,6 @@ package com.gzz.createcode.common.base;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import io.swagger.annotations.ApiModelProperty;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,11 +17,11 @@ import java.util.List;
 public abstract class BaseCondition {
 	protected Log logger = LogFactory.getLog(getClass());// 日志类
 	private List<Object> paramList = new ArrayList<>();// 参数值
-	@ApiModelProperty(hidden = true)
+
 	private StringBuffer condition = new StringBuffer();// 条件语句
-	@ApiModelProperty(value = "页大小", dataType = "Long")
+
 	private Integer size = 10;// 页大小(每页记录条)
-	@ApiModelProperty(value = "当前页", dataType = "Long")
+
 	private Integer page = 0;// 当前页码
 
 	/**
@@ -145,12 +143,9 @@ public abstract class BaseCondition {
 	}
 
 	/**
-	 * @param value
-	 *            :属性名称
-	 * @param strSQL
-	 *            :参数SQL字符
-	 * @param pos
-	 *            :字句中百分号出现位置
+	 * @param value  :属性名称
+	 * @param strSQL :参数SQL字符
+	 * @param pos    :字句中百分号出现位置
 	 * @功能说明 拼加条件使用like关键字模糊查询时
 	 */
 	protected void add(String value, String strSQL, int pos) {
