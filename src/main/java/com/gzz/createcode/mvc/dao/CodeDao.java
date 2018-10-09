@@ -82,9 +82,6 @@ public class CodeDao extends BaseDao {
 		// logger.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
 		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<Field>(Field.class));
 	}
-
-	public void executeSql(String sql) {
-		jdbcTemplate.execute(sql);
-	}
+ 
 
 }

@@ -59,9 +59,8 @@ public class CodeAction {
 	 */
 	@PostMapping("/create")
 	public void create(@RequestBody CodeCond cond) {
-		Utils.delDir(new File(Utils.path() + "com/dl/"));
+		Utils.delDir(new File(Utils.path() + "com/" + cond.getCompany() + "/"));
 		cond.setDb_name(CodeDao.dbName);
-//		Utils.setTime();
 		service.create(cond);
 		Utils.chmod();
 	}
@@ -79,9 +78,5 @@ public class CodeAction {
 		out.flush();
 		out.close();
 	}
-
-	@GetMapping("/executeSql")
-	public void executeSql(String sql) {
-		service.executeSql(sql);
-	}
+ 
 }

@@ -21,7 +21,7 @@
         <el-input v-model="form.model" style="width:60px" size="small"></el-input>
         <el-button @click="createCode" type="primary" size="small">生成代码</el-button>
         项目名[common,webcenter,webdata,vue+element,vue+iview,vuex+iview,android]
-<!--         <el-button @click="openSql" type="primary" size="small">建表</el-button> -->
+ 
     </div>
     <el-table :data="filterTableList" class="tabClass" @selection-change="onSelectChange" border size="small">
         <el-table-column type="selection" width="40px"></el-table-column>
@@ -40,7 +40,7 @@
         <el-table-column label="操作" width="150px">
             <template slot-scope="props">
                 <el-button @click="queryfieldList(props.row.t_name)" type="primary" size="small">查看字段</el-button>
-<!--                 <el-button @click="deleteTable(props.row.t_name)" type="primary" size="small">删除表</el-button> -->
+ 
             </template>
         </el-table-column>
     </el-table>
@@ -51,10 +51,7 @@
             <el-table-column prop="type" label="JAVA数据类型"></el-table-column>
         </el-table>
     </el-dialog>
-    <el-dialog :visible.sync="showSql" title="执行SQL(只能一条一条执行!)">
-        <el-input type="textarea" v-model="form.sqlText" rows="20"></el-input>
-        <el-button @click="executeSql" type="primary" size="small">运行</el-button>
-    </el-dialog>
+ 
 </div>
 <script>
     axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
@@ -98,23 +95,23 @@
             openSql() {
                 this.showSql = true;
             },
-            executeSql() {
-                // {params: {sql: this.form.sqlText}}
-                axios.get("/code/executeSql",  {params: {sql : this.form.sqlText}}).then(res => {
-                    this.showSql = false;
-                    this.query();
-                }).catch(res => {
-                    this.$notify.error({title: 'SQL执行失败', message: '请输入正确的建表语句!'});
-                });
-            },
-            deleteTable(tableName) {
-                axios.get("/code/executeSql",  {params: {sql :" DROP TABLE IF EXISTS "+tableName}}).then(res => {
-                    this.showSql = false;
-                    this.query();
-                }).catch(res => {
-                    this.$notify.error({title: 'SQL执行失败', message: '请输入正确的建表语句!'});
-                });
-            },
+//             executeSql() {
+//                 // {params: {sql: this.form.sqlText}}
+//                 axios.get("/code/executeSql",  {params: {sql : this.form.sqlText}}).then(res => {
+//                     this.showSql = false;
+//                     this.query();
+//                 }).catch(res => {
+//                     this.$notify.error({title: 'SQL执行失败', message: '请输入正确的建表语句!'});
+//                 });
+//             },
+//             deleteTable(tableName) {
+//                 axios.get("/code/executeSql",  {params: {sql :" DROP TABLE IF EXISTS "+tableName}}).then(res => {
+//                     this.showSql = false;
+//                     this.query();
+//                 }).catch(res => {
+//                     this.$notify.error({title: 'SQL执行失败', message: '请输入正确的建表语句!'});
+//                 });
+//             },
             onSelectChange(val) {
                 this.form.c_list = val;
             },

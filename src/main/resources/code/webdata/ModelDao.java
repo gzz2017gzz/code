@@ -21,7 +21,7 @@ public class ${upp}Dao extends BaseDao{
      */
     public ${upp}Dao () {
     	select.append("SELECT ${selectFields}");
-		select.append(" FROM ${tName} t WHERE 1=1");
+    	select.append(" FROM ${tName} t WHERE 1=1");
 		
         insert.append("INSERT INTO ${tName} (${insertFields}) ");
         insert.append(" VALUES (${insertValuesFields})");
@@ -87,7 +87,7 @@ public class ${upp}Dao extends BaseDao{
      * @方法说明 按条件查询不分页${cName}列表
      */
     public List<${upp}> queryList(${upp}Cond cond) {
-    	 StringBuilder sb = new StringBuilder(select);
+    	StringBuilder sb = new StringBuilder(select);
     	sb.append(cond.getCondition());
     	//sb.append(" ORDER BY operate_time DESC");
     	return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<>(${upp}.class));

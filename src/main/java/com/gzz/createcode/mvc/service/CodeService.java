@@ -105,8 +105,5 @@ public class CodeService {
 		list.forEach(item -> item.setBigName(Utils.firstUpper(item.getName())));
 		return list;
 	}
-
-	public void executeSql(String sql) {
-		dao.executeSql(sql);
-	}
+ 
 }
