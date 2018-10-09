@@ -1,4 +1,4 @@
-package com.gzz.createcode.mvc.service;
+package com.gzz.createcode.common;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,7 +32,7 @@ public class FreemarkerUtils {
 		cfg.setClassForTemplateLoading(this.getClass(), "/code/");
 		cfg.setDefaultEncoding("UTF-8");
 //		templates = this.getTemplates();
-		templates = ScanUtils.scanTemplate("code");
+		templates = Utils.scanTemplate("code");
 	}
 
 	public void process(String templateName, Map<String, Object> params) {

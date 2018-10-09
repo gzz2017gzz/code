@@ -5,16 +5,17 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.net.JarURLConnection;
+import java.net.URL;
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import com.gzz.createcode.mvc.model.Field;
 
@@ -25,12 +26,6 @@ import com.gzz.createcode.mvc.model.Field;
  */
 
 public class Utils {
-	private static Log logger = LogFactory.getLog(Utils.class);
-	private static String time;
-
-	public static void setTime() {
-		time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-	}
 
 	/**
 	 * @param list   字段列表
@@ -65,27 +60,6 @@ public class Utils {
 	}
 
 	/**
-	 * @方法说明: 类注释
-	 */
-	public static String classNote(String auth, String name) {
-		return String.format("\r\n\r\n/**\r\n * @类说明:%s\r\n * @author %s\r\n * @date:%s\r\n **/", name, auth, time);
-	}
-
-	/**
-	 * @方法说明: 方法注释
-	 */
-	public static String methodNote(String name) {
-		return String.format("\r\n\r\n	/**\r\n	 * @方法说明 %s\r\n	 **/", name);
-	}
-
-	/**
-	 * @方法说明: 页面注释
-	 */
-	public static String pageNote(String cName, String auth) {
-		return String.format("/*%s,作者 %s,日期:%s*/", cName, auth, time);
-	}
-
-	/**
 	 * @方法说明: 首字母大写
 	 */
 	public static String firstUpper(String word) {
@@ -97,19 +71,6 @@ public class Utils {
 	 */
 	public static String firstLower(String word) {
 		return word.substring(0, 1).toLowerCase() + word.substring(1, word.length());
-	}
-
-	/**
-	 * @方法说明: 写文件
-	 */
-	public static void write(String path, StringBuilder sb) {
-		try {
-			Files.createDirectories(Paths.get(path).getParent());
-			Files.write(Paths.get(path), sb.toString().getBytes("UTF-8"));
-		} catch (IOException e) {
-			logger.info("写入文件时出现异常 " + path);
-			e.printStackTrace();
-		}
 	}
 
 	/**
@@ -154,39 +115,11 @@ public class Utils {
 			if (isLinux())
 				Runtime.getRuntime().exec("chmod 777 -R " + path());
 		} catch (IOException e) {
-			logger.info("设置权限时出现异常 !");
+//			logger.info("设置权限时出现异常 !");
 			e.printStackTrace();
 		}
 	}
-	//////////////////////////////////////////////
 
-//	public static boolean isEmptyString(final CharSequence cs) {
-//		return cs == null || cs.length() == 0;
-//	}
-//
-//	public static <T> boolean isEmptyList(final List<T> list) {
-//		return list == null || list.size() == 0;
-//	}
-//
-//	public static boolean notEmptyString(final CharSequence cs) {
-//		return cs != null && cs.length() >= 0;
-//	}
-//
-//	public static <T> boolean notEmptyList(final List<T> list) {
-//		return list != null && list.size() >= 0;
-//	}
-
-//	public static void main(String[] args) {
-//		logger.info(isEmptyString(""));
-//		logger.info(isEmptyString(null));
-//		List<Integer> list = Lists.newArrayList();
-//		logger.info(isEmptyList(null));
-//		logger.info(isEmptyList(list));
-//		list.add(1);
-//		logger.info(isEmptyList(list));
-//		logger.info(notEmptyList(list));
-//	}
-	/////////////////////////////////
 	public static void createZip(String sourcePath, String zipPath) {
 		try {
 			FileOutputStream fos = new FileOutputStream(zipPath);
@@ -242,5 +175,54 @@ public class Utils {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static List<String> scanTemplate(String packageName) {
+		List<String> list = new ArrayList<>();
+		try {
+			URL baseURL = Thread.currentThread().getContextClassLoader().getResource(packageName);
+			if ("file".equals(baseURL.getProtocol())) {
+				list = scanFile(baseURL);
+			} else if ("jar".equals(baseURL.getProtocol())) {
+				list = scanJar(baseURL, packageName);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	private static List<String> scanJar(URL baseURL, String packageName) throws IOException {
+		List<String> classList = new ArrayList<>();
+		JarFile jar = ((JarURLConnection) baseURL.openConnection()).getJarFile();
+		Enumeration<JarEntry> entries = jar.entries();
+		while (entries.hasMoreElements()) {
+			String urlName = entries.nextElement().getName();
+			if (urlName.startsWith(packageName) && (urlName.endsWith("java") || urlName.endsWith("vue"))) {
+				classList.add(urlName.replace(packageName + "/", ""));
+			}
+		}
+		return classList;
+	}
+
+	private static List<String> scanFile(URL path) throws Exception {
+		File dir = new File(URLDecoder.decode(path.getFile(), "UTF-8"));
+		if (!dir.exists() || !dir.isDirectory()) {
+			throw new Exception("没有找到对应的包");
+		}
+		List<String> fileList = new ArrayList<>();
+		LinkedList<File> dirs = new LinkedList<>();
+		dirs.add(dir);
+		while (!dirs.isEmpty()) {
+			File son = dirs.removeFirst();
+			if (son.isDirectory()) {
+				for (File childFile : son.listFiles()) {
+					dirs.add(childFile);
+				}
+			} else if (son.getName().endsWith("java") || son.getName().endsWith("vue")) {
+				fileList.add(son.getAbsolutePath().substring(dir.getAbsolutePath().length() + 1).replace("\\", "/"));
+			}
+		}
+		return fileList;
 	}
 }

@@ -61,7 +61,7 @@ public class CodeAction {
 	public void create(@RequestBody CodeCond cond) {
 		Utils.delDir(new File(Utils.path() + "com/dl/"));
 		cond.setDb_name(CodeDao.dbName);
-		Utils.setTime();
+//		Utils.setTime();
 		service.create(cond);
 		Utils.chmod();
 	}
