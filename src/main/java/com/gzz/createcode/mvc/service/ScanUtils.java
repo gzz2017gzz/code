@@ -57,7 +57,7 @@ public class ScanUtils {
 				for (File childFile : son.listFiles()) {
 					dirs.add(childFile);
 				}
-			} else if (son.getName().toLowerCase().endsWith("java") || son.getName().toLowerCase().endsWith("vue")) {
+			} else if (son.getName().endsWith("java") || son.getName().endsWith("vue")) {
 				fileList.add(son.getAbsolutePath().substring(dir.getAbsolutePath().length() + 1).replace("\\", "/"));
 			}
 		}

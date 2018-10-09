@@ -6,9 +6,14 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Component;
+
+import com.google.common.collect.Lists;
 import com.google.common.io.Files;
+
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;
 import freemarker.template.MalformedTemplateNameException;
@@ -26,6 +31,7 @@ public class FreemarkerUtils {
 	public void init() {
 		cfg.setClassForTemplateLoading(this.getClass(), "/code/");
 		cfg.setDefaultEncoding("UTF-8");
+//		templates = this.getTemplates();
 		templates = ScanUtils.scanTemplate("code");
 	}
 
@@ -53,39 +59,39 @@ public class FreemarkerUtils {
 	}
 
 	public List<String> getTemplates() {
-		// List<String> list = Lists.newArrayList();
-		// list.add("common/Model.java");
-		// list.add("common/ModelCond.java");
-		//
-		// list.add("webdata/ModelDao.java");
-		// list.add("webdata/ModelService.java");
-		// list.add("webdata/ModelController.java");
-		//
-		// list.add("webcenter/IModelClient.java");
-		// list.add("webcenter/ModelBus.java");
-		// list.add("webcenter/ModelAction.java");
-		//
-		// list.add("appcenter/IModelClient.java");
-		// list.add("appcenter/ModelBus.java");
-		// list.add("appcenter/ModelAction.java");
-		//
-		// list.add("android/Model.java");
-		// list.add("android/ModelCond.java");
-		// list.add("android/ModelRequest.java");
-		// list.add("android/ModelService.java");
-		//
-		// list.add("vue_element_ui/ModelDialog.vue");
-		// list.add("vue_element_ui/ModelList.vue");
-		// list.add("vue_element_ui/ModelMock.js");
-		//
-		// list.add("vue_iview_ui/ModelDialog.vue");
-		// list.add("vue_iview_ui/ModelList.vue");
-		//
-		// list.add("vuex_iview_ui/Model.js");
-		// list.add("vuex_iview_ui/ModelList.vue");
-		// list.add("vuex_iview_ui/ModelDialog.vue");
-		// list.add("vuex_iview_ui/ModelListExpand.vue");
-		// list.add("vuex_iview_ui/ModelRouter.js");
+		 List<String> list = Lists.newArrayList();
+		 list.add("common/Model.java");
+		 list.add("common/ModelCond.java");
+		
+		 list.add("webdata/ModelDao.java");
+		 list.add("webdata/ModelService.java");
+		 list.add("webdata/ModelController.java");
+		
+		 list.add("webcenter/IModelClient.java");
+		 list.add("webcenter/ModelBus.java");
+		 list.add("webcenter/ModelAction.java");
+		
+		 list.add("appcenter/IModelClient.java");
+		 list.add("appcenter/ModelBus.java");
+		 list.add("appcenter/ModelAction.java");
+		
+		 list.add("android/Model.java");
+		 list.add("android/ModelCond.java");
+		 list.add("android/ModelRequest.java");
+		 list.add("android/ModelService.java");
+		
+		 list.add("vue_element_ui/ModelDialog.vue");
+		 list.add("vue_element_ui/ModelList.vue");
+		 list.add("vue_element_ui/ModelMock.js");
+		
+		 list.add("vue_iview_ui/ModelDialog.vue");
+		 list.add("vue_iview_ui/ModelList.vue");
+		
+		 list.add("vuex_iview_ui/Model.js");
+		 list.add("vuex_iview_ui/ModelList.vue");
+		 list.add("vuex_iview_ui/ModelDialog.vue");
+		 list.add("vuex_iview_ui/ModelListExpand.vue");
+		 list.add("vuex_iview_ui/ModelRouter.js");
 
 		return templates;
 	}
