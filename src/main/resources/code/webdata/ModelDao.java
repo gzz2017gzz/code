@@ -32,7 +32,7 @@ public class ${upp}Dao extends BaseDao{
      */
     public int save(${upp} vo) {
         StringBuilder sql = new StringBuilder();
-        sql.append("REPLACE INTO ${tName} (${replaceFields}");
+        sql.append("REPLACE INTO ${tName} (${replaceFields})");
         sql.append(" VALUES ${replaceValuesFields}");
         Object[] params ={ ${paramsFields} };
         //logger.info(SqlUtil.showSql(sql.toString(), params));//显示SQL语句
