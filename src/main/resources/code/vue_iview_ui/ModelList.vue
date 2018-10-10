@@ -1,4 +1,4 @@
-/*${cName}管理,作者:${auth},日期:${time}*/
+/*${cName}列表管理,作者:${auth},日期:${time}*/
 <template>
   <div>
     <h3>${cName}管理</h3>
