@@ -1,7 +1,7 @@
 /*${cName}新增与修改,作者:${auth},日期:${time}*/
 <template>
   <el-dialog :title="title" :visible.sync="show" :close-on-click-modal="false" :close-on-press-escape="false">
-    <el-form :common="form" ref="form" :rules="rules" label-width="100px">
+    <el-form :model="form" ref="form" :rules="rules" label-width="100px">
       <el-row>
         <el-col>
           <#list fList as fi>
@@ -31,7 +31,7 @@
         <#list fList as fi>
 		  ${fi.name} :[
             {required: true, message: '请输入${fi.comment}', trigger: 'blur'},
-            {min: 1, max: 10, message: '${fi.comment}长度不正确}', trigger: 'blur'},
+            {min: 1, max: 10, message: '${fi.comment}长度不正确', trigger: 'blur'},
           ],
         </#list>
         }

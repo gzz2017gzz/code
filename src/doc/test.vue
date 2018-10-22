@@ -22,8 +22,7 @@
             	          'Content-Type': 'multipart/form-data'
             	         }
             	   }
-            	  axios(options).then((res) => {
-            	  })  
+            	  axios(options).then((res) => {})  
             },
         },
     });

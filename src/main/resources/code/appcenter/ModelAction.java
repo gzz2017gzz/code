@@ -38,7 +38,7 @@ public class ${upp}Action extends PrincipalAction {
 	private final Log logger = LogFactory.getLog(getClass());
 	
     @Autowired
-	private ${upp}Busbus; //注入[${cName}]业务逻辑类
+	private ${upp}Bus bus; //注入[${cName}]业务逻辑类
 
     /**
      * @方法说明  新增[${cName}]记录
