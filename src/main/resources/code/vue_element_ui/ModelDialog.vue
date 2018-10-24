@@ -6,7 +6,7 @@
         <el-col>
           <#list fList as fi>
           <el-form-item label='${fi.comment}' prop='${fi.name}'>
-            <el-input placeholder='请输入${fi.comment}' v-model='form.${fi.name}'/>
+            <el-input placeholder='请输入${fi.comment}' v-model='form.${fi.name}' size="small"  />
           </el-form-item>
           </#list>
         </el-col>
