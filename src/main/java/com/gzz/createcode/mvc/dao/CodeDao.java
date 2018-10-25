@@ -48,8 +48,7 @@ public class CodeDao extends BaseDao {
 	 */
 	public List<Table> queryTables(CodeCond cond) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(
-				"SELECT table_name t_name,if(table_comment='',table_name,table_comment) comment FROM information_schema.tables WHERE 1=1");
+		sb.append("SELECT table_name t_name,if(table_comment='',table_name,table_comment) comment FROM information_schema.tables WHERE 1=1");
 		sb.append(cond.getCondition());
 //		logger.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
 		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<>(Table.class));
@@ -63,13 +62,11 @@ public class CodeDao extends BaseDao {
 		StringBuilder sb = new StringBuilder();
 		sb.append(" SELECT COLUMN_NAME NAME,");
 		sb.append(" CASE WHEN COLUMN_COMMENT = '' THEN COLUMN_NAME ELSE COLUMN_COMMENT	END COMMENT,");
-		sb.append(
-				" CASE WHEN DATA_TYPE='varchar' OR DATA_TYPE='text' OR DATA_TYPE='char' OR DATA_TYPE='longtext' OR DATA_TYPE='mediumtext' THEN 'String'");
+		sb.append(" CASE WHEN DATA_TYPE='varchar' OR DATA_TYPE='text' OR DATA_TYPE='char' OR DATA_TYPE='longtext' OR DATA_TYPE='mediumtext' THEN 'String'");
 		sb.append(" WHEN DATA_TYPE = 'tinyint' THEN 'Byte'");
 		sb.append(" WHEN DATA_TYPE = 'smallint' THEN 'Short'");
 		sb.append(" WHEN DATA_TYPE = 'int' OR DATA_TYPE = 'mediumint' THEN 'Integer'");
-		sb.append(
-				" WHEN DATA_TYPE = 'datetime' OR DATA_TYPE = 'timestamp' OR DATA_TYPE = 'date' OR DATA_TYPE = 'time' THEN 'Date'");
+		sb.append(" WHEN DATA_TYPE = 'datetime' OR DATA_TYPE = 'timestamp' OR DATA_TYPE = 'date' OR DATA_TYPE = 'time' THEN 'Date'");
 		sb.append(" WHEN DATA_TYPE = 'bigint' THEN 'Long'");
 		sb.append(" WHEN DATA_TYPE = 'float' THEN 'Float'");
 		sb.append(" WHEN DATA_TYPE = 'double' THEN 'Double'");
@@ -82,6 +79,5 @@ public class CodeDao extends BaseDao {
 		// logger.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
 		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<Field>(Field.class));
 	}
- 
 
 }

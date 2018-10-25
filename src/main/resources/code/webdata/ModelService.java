@@ -25,7 +25,7 @@ public class ${upp}Service {
 	 */
 	@Transactional
 	public int save(${upp} ${lowUpp}) {
-			return dao.save(${lowUpp});
+		return dao.save(${lowUpp});
 	}
 
 	/**
