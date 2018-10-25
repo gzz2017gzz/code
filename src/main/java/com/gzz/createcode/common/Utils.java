@@ -60,56 +60,65 @@ public class Utils {
 	}
 
 	/**
-	 * @方法说明: 首字母大写
+	 * @方法说明 首字母大写
 	 */
 	public static String firstUpper(String word) {
 		return word.substring(0, 1).toUpperCase() + word.substring(1, word.length());
 	}
 
 	/**
-	 * @方法说明: 首字母小写
+	 * @方法说明 首字母小写
 	 */
 	public static String firstLower(String word) {
 		return word.substring(0, 1).toLowerCase() + word.substring(1, word.length());
 	}
 
 	/**
-	 * @方法说明: 实体类文件中是否增加java.util.Date的导入
+	 * @方法说明 实体类文件中是否增加java.util.Date的导入
 	 */
 	public static String dateImport(List<Field> list) {
 		return list.parallelStream().filter(i -> i.getType().equals("Date")).count() > 0 ? "\r\nimport java.util.Date;" : "";
 	}
 
 	/**
-	 * @方法说明: 去掉第一个单词
+	 * @方法说明 去掉第一个单词
 	 */
 	public static String delFirWord(String tName) {
 		return tName.substring(tName.indexOf("_") + 1);
 	}
 
 	/**
-	 * @方法说明: 实体类文件中是否增加java.math.BigDecimal的导入
+	 * @方法说明 实体类文件中是否增加java.math.BigDecimal的导入
 	 */
 	public static String bigImport(List<Field> list) {
 		return list.parallelStream().filter(i -> i.getType().equals("BigDecimal")).count() > 0 ? "\r\nimport java.math.BigDecimal;" : "";
 	}
 
 	/**
-	 * @方法说明: 主键数据类型
+	 * @方法说明 主键数据类型
 	 */
 	public static String keyType(List<Field> list) {
 		return list.get(0).getType();
 	}
 
+	/**
+	 * @方法说明 判断操作系统
+	 */
 	public static boolean isLinux() {
 		return !System.getProperty("os.name").toLowerCase().startsWith("windows");
 	}
 
+	/**
+	 * @方法说明 不同系统使用不同路径
+	 */
 	public static String path() {
 		return isLinux() ? "/data/samba_root/code/" : "d:/";
 //		return System.getProperty("user.dir") + "/src/main/java/";
 	}
 
+	/**
+	 * @方法说明 Linux时为目录授权
+	 */
 	public static void chmod() {
 		try {
 			if (isLinux())
@@ -120,6 +129,9 @@ public class Utils {
 		}
 	}
 
+	/**
+	 * @方法说明 压缩目录
+	 */
 	public static void createZip(String sourcePath, String zipPath) {
 		try {
 			FileOutputStream fos = new FileOutputStream(zipPath);
@@ -134,6 +146,9 @@ public class Utils {
 
 	}
 
+	/**
+	 * @方法说明 递规删除目录
+	 */
 	public static void delDir(File file) {
 		if (file.isDirectory()) {
 			for (File subFile : file.listFiles()) {
@@ -143,6 +158,9 @@ public class Utils {
 		file.delete();
 	}
 
+	/**
+	 * @方法说明 压缩目录
+	 */
 	private static void writeZip(File file, String parentPath, ZipOutputStream zos) {
 		try {
 			if (file.exists()) {
@@ -176,7 +194,10 @@ public class Utils {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * @方法说明 扫描模板
+	 */
 	public static List<String> scanTemplate(String packageName) {
 		List<String> list = new ArrayList<>();
 		try {
@@ -192,6 +213,9 @@ public class Utils {
 		return list;
 	}
 
+	/**
+	 * @方法说明 扫描jar包
+	 */
 	private static List<String> scanJar(URL baseURL, String packageName) throws IOException {
 		List<String> classList = new ArrayList<>();
 		JarFile jar = ((JarURLConnection) baseURL.openConnection()).getJarFile();
@@ -205,6 +229,9 @@ public class Utils {
 		return classList;
 	}
 
+	/**
+	 * @方法说明 扫描源文件
+	 */
 	private static List<String> scanFile(URL path) throws Exception {
 		File dir = new File(URLDecoder.decode(path.getFile(), "UTF-8"));
 		if (!dir.exists() || !dir.isDirectory()) {

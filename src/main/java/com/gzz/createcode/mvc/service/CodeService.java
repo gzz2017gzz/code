@@ -62,6 +62,7 @@ public class CodeService {
 			List<String> importList = Lists.newArrayList();
 			importList.add(Utils.dateImport(fList));
 			importList.add(Utils.bigImport(fList));
+			
 			params.put("importList", importList);
 			params.put("selectFields", Utils.add(fList, "t.", ",", false, "select"));
 			params.put("insertFields", Utils.add(fList, "", ",", true, "insert"));
@@ -72,9 +73,9 @@ public class CodeService {
 			params.put("updateFields", Utils.add(fList, "", "=?,", true, "sql"));
 			params.put("updateParams", Utils.add(fList, "vo.get", "(),", true) + ",vo.get" + Utils.firstUpper(fList.get(0).getName()) + "()");
 			params.put("dollar", "$");
+			
 			params.put("model", cond.getModel());
-			List<String> templates = utils.getTemplates();
-			templates.forEach(item -> {
+			utils.getTemplates().forEach(item -> {
 				String[] split = item.split("/");
 				params.put("pName", cond.pack(split[0], low));
 				params.put("path", cond.path(split[0], low));
@@ -105,5 +106,5 @@ public class CodeService {
 		list.forEach(item -> item.setBigName(Utils.firstUpper(item.getName())));
 		return list;
 	}
- 
+
 }
