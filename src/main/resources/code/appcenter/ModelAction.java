@@ -54,7 +54,7 @@ public class ${upp}Action extends PrincipalAction {
         @ApiResponse(code = 0, message = "操作成功")
     })
     @PostMapping("save")
-	public SwaggerRespImpl<Integer> save(@RequestBody ${upp} ${lowUpp}, Principal principal) {
+	public SwaggerRespImpl<Integer> save(${upp} ${lowUpp}, Principal principal) {
     	return new SwaggerRespImpl<>(bus.save(${lowUpp}));
 	}
     
@@ -79,7 +79,7 @@ public class ${upp}Action extends PrincipalAction {
         @ApiImplicitParam(name = "Authorization", value = "Token",required = true, dataType = "string", paramType = "header")
     })
     @PostMapping("update")
-    public SwaggerRespImpl<Integer> update(@RequestBody ${upp} ${lowUpp}, Principal principal) {
+    public SwaggerRespImpl<Integer> update(${upp} ${lowUpp}, Principal principal) {
         return new SwaggerRespImpl<>(bus.update(${lowUpp}));
     }
 
@@ -94,7 +94,7 @@ public class ${upp}Action extends PrincipalAction {
         @ApiImplicitParam(name = "Authorization", value = "Token",required = true, dataType = "string", paramType = "header")
     })
     @PostMapping( "queryPage")
-    public SwaggerRespImpl<Page<${upp}>> queryPage(@RequestBody ${upp}Cond cond, Principal principal) {
+    public SwaggerRespImpl<Page<${upp}>> queryPage(${upp}Cond cond, Principal principal) {
         // cond.setBranch_id(getSessionBranchId(principal));
         return new SwaggerRespImpl<>(bus.queryPage(cond));
     }
@@ -110,7 +110,7 @@ public class ${upp}Action extends PrincipalAction {
         @ApiImplicitParam(name = "Authorization", value = "Token",required = true, dataType = "string", paramType = "header")
     })
 	@PostMapping("queryList")
-    public SwaggerRespImpl<List<${upp}>> queryList(@RequestBody ${upp}Cond cond, Principal principal) {
+    public SwaggerRespImpl<List<${upp}>> queryList(${upp}Cond cond, Principal principal) {
             // cond.setBranch_id(getSessionBranchId(principal));
     		return new SwaggerRespImpl<>(bus.queryList(cond));
     }
@@ -126,7 +126,7 @@ public class ${upp}Action extends PrincipalAction {
         @ApiImplicitParam(name = "Authorization", value = "Token",required = true, dataType = "string", paramType = "header")
     })
 	@PostMapping( "queryCount")
-	public SwaggerRespImpl<Long> queryCount(@RequestBody ${upp}Cond cond) {
+	public SwaggerRespImpl<Long> queryCount(${upp}Cond cond) {
 		return new SwaggerRespImpl<>(bus.queryCount(cond));
 	}
                 
@@ -152,7 +152,7 @@ public class ${upp}Action extends PrincipalAction {
         @ApiImplicitParam(name = "Authorization", value = "Token",required = true, dataType = "string", paramType = "header")
     })
 	@PostMapping( "validate")
-    public SwaggerRespImpl<Integer> validate(@RequestBody ${upp}Cond cond, Principal principal) {
+    public SwaggerRespImpl<Integer> validate(${upp}Cond cond, Principal principal) {
                 // 此处写验证逻辑
                 // cond.setfield(...)
                 // int count=bus.queryCount(cond)
