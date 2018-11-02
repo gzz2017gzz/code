@@ -4,10 +4,10 @@ package ${pName};
 import com.gzz.createcode.common.base.BaseCondition;
 
 /**
-* @类说明 ${cName}--查询条件实体
-* @aut ${auth}
-* @date ${time}
-*/
+ * @类说明 ${cName}--查询条件实体
+ * @aut ${auth}
+ * @date ${time}
+ **/
 public class ${upp}Cond extends BaseCondition  {
 <#list fList as fi>
     private ${fi.type} ${fi.name} ;// ${fi.comment}

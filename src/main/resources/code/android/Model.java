@@ -2,10 +2,10 @@ package ${pName};
 <#list importList as item>${item}</#list>
 
 /**
-* @类说明 ${cName}--实体类
-* @auth  ${auth}
-* @date  ${time}
-*/
+ * @类说明 ${cName}--实体类
+ * @auth  ${auth}
+ * @date  ${time}
+ **/
 public class ${upp}{
 	<#list fList as fi>
     private ${fi.type}  ${fi.name} ;//  ${fi.comment}
