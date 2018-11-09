@@ -25,7 +25,7 @@ public class ${upp} {
     // 数据库中的字段
 <#list fList as fi>
 	@ApiModelProperty(value = "${fi.comment}", dataType = "${fi.type}")
-	private ${fi.type} ${fi.name};
+	private ${fi.type} ${fi.name}; // ${fi.comment}
 </#list>
     // 此处可添加查询显示辅助字段
 }

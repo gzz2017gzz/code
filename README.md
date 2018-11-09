@@ -1,7 +1,5 @@
 # 代码生成器 基于SpringCloud SpringBoot SpringJDBC VUE
 ***
-# [演示地址: http://www.gaozz.club/](http://www.gaozz.club/)
-***
 ## 生成Dao Service Controller全部代码及常用方法
 ***
 ## 生成实体类,查询条件类全部代码
@@ -18,4 +16,6 @@
 ## 移动端生成安卓部分代码
 ***
 ## 联系方式: gzz_gzz@163.com
+## [简书主页:https://www.jianshu.com/u/3bd57d5f1074](https://www.jianshu.com/u/3bd57d5f1074)
+## [演示地址:http://www.gaozz.club/](http://www.gaozz.club/)
 ***

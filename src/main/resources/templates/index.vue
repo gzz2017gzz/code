@@ -4,7 +4,7 @@
 <script type="text/javascript" src="element.min.js"></script>
 <script type="text/javascript" src="axios.min.js"></script>
 <body>
-<div id="app" style="font-size: 14px;" >
+<div id="app" style="font-size: 14px;">
     <div style="color: blue;">
         【<span style="color: red;">注意</span>】
         【调整[作者名]\[模块名],点击[查看字段]确保表名注释与字段名注释<span style="color: red;">为中文</span>,建议类名中表名前缀部分<span style="color: red;">已去掉</span>】
@@ -21,7 +21,7 @@
         <el-input v-model="form.model" style="width:60px" size="small"></el-input>
         <el-button @click="createCode" type="primary" size="small">生成代码</el-button>
         项目名[common,webcenter,webdata,vue+element,vue+iview,vuex+iview,android]
- 
+
     </div>
     <el-table :data="filterTableList" class="tabClass" @selection-change="onSelectChange" border size="small">
         <el-table-column type="selection" width="40px"></el-table-column>
@@ -40,10 +40,11 @@
         <el-table-column label="操作" width="150px">
             <template slot-scope="props">
                 <el-button @click="queryfieldList(props.row.t_name)" type="primary" size="small">查看字段</el-button>
- 
+
             </template>
         </el-table-column>
     </el-table>
+    <!--<br><br><div align="center">版权所有:高振中 联系方式:mail:gzz_gzz@163.com QQ:38967098</div>-->
     <el-dialog :visible.sync="show">
         <el-table :data="f_list" class="tabClass" border size="small">
             <el-table-column prop="name" label="字段名"></el-table-column>
@@ -51,11 +52,11 @@
             <el-table-column prop="type" label="JAVA数据类型"></el-table-column>
         </el-table>
     </el-dialog>
- 
+
 </div>
 <script>
     axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
-    
+
     new Vue({
         el: '#app',
         data: function () {
@@ -95,23 +96,6 @@
             openSql() {
                 this.showSql = true;
             },
-//             executeSql() {
-//                 // {params: {sql: this.form.sqlText}}
-//                 axios.get("/code/executeSql",  {params: {sql : this.form.sqlText}}).then(res => {
-//                     this.showSql = false;
-//                     this.query();
-//                 }).catch(res => {
-//                     this.$notify.error({title: 'SQL执行失败', message: '请输入正确的建表语句!'});
-//                 });
-//             },
-//             deleteTable(tableName) {
-//                 axios.get("/code/executeSql",  {params: {sql :" DROP TABLE IF EXISTS "+tableName}}).then(res => {
-//                     this.showSql = false;
-//                     this.query();
-//                 }).catch(res => {
-//                     this.$notify.error({title: 'SQL执行失败', message: '请输入正确的建表语句!'});
-//                 });
-//             },
             onSelectChange(val) {
                 this.form.c_list = val;
             },

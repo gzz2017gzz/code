@@ -20,4 +20,5 @@ public class Application {
 	public void setSharedVariable() {
 		resolver.setSuffix(".vue");
 	}
+
 }
