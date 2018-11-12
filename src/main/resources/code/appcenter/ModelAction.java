@@ -111,8 +111,8 @@ public class ${upp}Action extends PrincipalAction {
     })
 	@PostMapping("queryList")
     public SwaggerRespImpl<List<${upp}>> queryList(${upp}Cond cond, Principal principal) {
-            // cond.setBranch_id(getSessionBranchId(principal));
-    		return new SwaggerRespImpl<>(bus.queryList(cond));
+        // cond.setBranch_id(getSessionBranchId(principal));
+		return new SwaggerRespImpl<>(bus.queryList(cond));
     }
             
     /**
@@ -138,7 +138,7 @@ public class ${upp}Action extends PrincipalAction {
     @ApiImplicitParam(name = "Authorization", value = "Token",required = true, dataType = "string", paramType = "header") })
     @PostMapping( "findById")
     public SwaggerRespImpl<${upp}> findById(@RequestParam("id") ${idType} id) {
-    		return new SwaggerRespImpl<>(bus.findById(id));
+    	return new SwaggerRespImpl<>(bus.findById(id));
     }
 
     /**
@@ -153,12 +153,12 @@ public class ${upp}Action extends PrincipalAction {
     })
 	@PostMapping( "validate")
     public SwaggerRespImpl<Integer> validate(${upp}Cond cond, Principal principal) {
-                // 此处写验证逻辑
-                // cond.setfield(...)
-                // int count=bus.queryCount(cond)
-                // if(count = 0){
-                // }
-    		return new SwaggerRespImpl<>(1);
+        // 此处写验证逻辑
+        // cond.setfield(...)
+        // int count=bus.queryCount(cond)
+        // if(count = 0){
+        // }
+		return new SwaggerRespImpl<>(1);
     }
 }
 
