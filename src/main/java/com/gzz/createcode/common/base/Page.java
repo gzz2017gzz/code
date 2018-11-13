@@ -1,6 +1,5 @@
 package com.gzz.createcode.common.base;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,14 +8,14 @@ import java.util.List;
  * @date 2018-02-15
  */
 public class Page<T> {
-	private List<T> dataList = new ArrayList<>();
+	private List<T> dataList;
 	private int pageSize = 10;// 页大小(每页记录条)
 	private long rowCount;// 记录总数
 	private int curpage = 0;// 当前页码
 	private int pageCount;// 当前页码
 
 	public Page(List<T> dataList, int curpage, long rowCount, int pagesize, int pageCount) {
-		this.dataList.addAll(dataList);
+		this.dataList = dataList;
 		this.pageSize = pagesize;
 		this.rowCount = rowCount;
 		this.curpage = curpage;

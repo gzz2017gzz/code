@@ -5,7 +5,7 @@
     <el-form :inline="true">
       <#list fList as fi>
       <el-form-item label="${fi.comment}">
-	    <el-input placeholder="请输入${fi.comment}" size="small" v-common="form.${fi.name}"></el-input>
+	    <el-input placeholder="请输入${fi.comment}" size="small" v-model="form.${fi.name}"></el-input>
       </el-form-item>
       </#list>
       <el-form-item>
