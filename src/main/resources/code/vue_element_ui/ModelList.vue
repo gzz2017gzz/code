@@ -13,7 +13,7 @@
         <el-button type="primary" icon="plus" @click="doAdd()" title="添加" size="small">添加</el-button>
       </el-form-item>
     </el-form>
-    <el-table :data="dataList" v-loading="loading" element-loading-text="正在加载......" style="width: 100%">
+    <el-table :data="dataList" v-loading="loading" element-loading-text="正在加载......" style="width: 100%" border >
       <el-table-column type="expand">
         <template slot-scope="props">
           <el-form>
