@@ -9,7 +9,7 @@
       </#list>
       <FormItem>
         <Button icon="search" @click="refresh" title="根据输入的条件查询" type="primary">查询</Button>
-          <Button type="primary" icon="plus" @click="addDialog()" title="添加" >添加</Button>
+        <Button type="primary" icon="plus" @click="addDialog()" title="添加" >添加</Button>
       </FormItem>
     </Form>
       <Table :loading="loading" :columns="tableHeader" :data="dataList" style="width: 100%"></Table>

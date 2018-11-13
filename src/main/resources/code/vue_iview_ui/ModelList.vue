@@ -73,9 +73,9 @@ import ${upp}ListExpand from './${upp}ListExpand.vue';
         pageSize: 20,
         dataList: [],
         form: {
-		  <#list fList as fi>
-            ${fi.name} : null,// ${fi.comment}
-		  </#list>
+		    <#list fList as fi>
+          ${fi.name} : null,// ${fi.comment}
+		    </#list>
         },
         loading: false
       }

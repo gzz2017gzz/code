@@ -23,7 +23,7 @@
                 <el-form-item label="${fi.comment}">{{props.row.${fi.name}}}</el-form-item>
               </el-col>
               </#list>
-			</el-row>
+			      </el-row>
           </el-form>
 		</template>
       </el-table-column>
@@ -41,8 +41,8 @@
       </el-table>
       <br/>
       <div style="text-align: right" v-if="total > 0">
-		<el-pagination small layout="sizes,prev, pager, next" :current-page="page" :total="total" @current-change="(curr) => {this.page = curr ; this.refresh();}"
-               :page-sizes="[10, 15, 20, 100]" @size-change="(s) => {this.size = s ; this.refresh();}" :page-size="size"></el-pagination>
+		    <el-pagination layout="sizes,prev, pager, next" :current-page="page" :total="total" @current-change="(curr) => {this.page = curr ; this.refresh();}"
+                       small :page-sizes="[10, 15, 20, 100]" @size-change="(s) => {this.size = s ; this.refresh();}" :page-size="size"></el-pagination>
       </div>
       <${upp}Dialog ref="dialog" :refresh="refresh"></${upp}Dialog>
     </div>
@@ -59,10 +59,10 @@
         dataList: [],
         form: {
         <#list fList as fi>
-		   ${fi.name} : null, // ${fi.comment}
+		    ${fi.name} : null, // ${fi.comment}
         </#list>
         },
-        loading: false
+        loading: false,
       }
     },
     computed: {},
@@ -75,13 +75,13 @@
         that.loading = true;
         const requestData = {...that.form, page: that.page - 1, size: that.size};
         that.${dollar}http.post("/api/${lowUpp}/queryPage", JSON.stringify(requestData)).then(res => {
-		  that.loading = false;
-		  that.dataList = res.data.content;
-		  that.total = res.data.totalElements;
-		}).catch(res => {
-		  that.${dollar}message.error("获取${cName}列表失败：" + res);
-		  that.loading = false;
-		});
+          that.loading = false;
+          that.dataList = res.data.content;
+          that.total = res.data.totalElements;
+        }).catch(res => {
+          that.${dollar}message.error("获取${cName}列表失败：" + res);
+          that.loading = false;
+        });
       },
       doAdd() {
         this.${dollar}refs["dialog"].addDialog();
@@ -97,15 +97,16 @@
           type: 'warning'
         }).then(() => {
           that.${dollar}http.delete("/api/${lowUpp}/delete", {
-		    params: {ids: [row.${idName}]}
-		  }).then(res => {
-			that.${dollar}message.success("删除成功");
-		    that.refresh();
-		  }).catch(res => {
-		    that.${dollar}message.error("删除失败：" + res);
-		  });
+		        params: {ids: [row.${idName}]}
+		      }).then(res => {
+			      that.${dollar}message.success("删除成功");
+		        that.refresh();
+          }).catch(res => {
+            that.${dollar}message.error("删除失败：" + res);
+          });
         }).catch(() => {
-		});
+
+        });
       }
     },
     components: { ${upp}Dialog }

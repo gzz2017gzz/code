@@ -28,12 +28,11 @@
         dialogMode: "save",
 		show: false,
 		rules: {
-        <#list fList as fi>
-		  ${fi.name} :[
-            {required: true, message: '请输入${fi.comment}', trigger: 'blur'},
-            {min: 1, max: 10, message: '${fi.comment}长度不正确', trigger: 'blur'},
-          ],
-        </#list>
+      <#list fList as fi>
+      ${fi.name} :[
+        {required: true, message: '请输入${fi.comment}', trigger: 'blur'},
+        {min: 1, max: 10, message: '${fi.comment}长度不正确', trigger: 'blur'}],
+      </#list>
         }
       }
     },
@@ -56,7 +55,7 @@
       initForm() {//初始数据
         return {
           <#list fList as fi>
-            ${fi.name} : null, // ${fi.comment}
+          ${fi.name} : null, // ${fi.comment}
           </#list>
         }
       },

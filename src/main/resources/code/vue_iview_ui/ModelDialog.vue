@@ -27,12 +27,12 @@ import {Message, Modal} from 'iview';
         dialogMode: "save",
         show: false,
         rules: {
-		<#list fList as fi>
+		    <#list fList as fi>
           ${fi.name} : [
             {required: true, message: '请输入${fi.comment}', trigger: 'blur'},
             {min: 1, max: 10, message: '${fi.comment}长度不正确}', trigger: 'blur'},
           ],
-	    </#list>
+	      </#list>
         }
       }
     },
@@ -44,9 +44,9 @@ import {Message, Modal} from 'iview';
             return;
           }
           that.${dollar}http.post("/api/${lowUpp}/" + that.dialogMode, JSON.stringify(that.form)).then(res => {
-          that.show = false;
-          that.refresh();
-          Message.success({ content: '保存${cName}信息成功'});
+            that.show = false;
+            that.refresh();
+            Message.success({ content: '保存${cName}信息成功'});
           }).catch(res => {
              Message.error({ content: '保存${cName}信息失败' + res });
           });
@@ -55,7 +55,7 @@ import {Message, Modal} from 'iview';
       initForm() {//初始数据
         return {
           <#list fList as fi>
-              ${fi.name} : null,// ${fi.comment}
+          ${fi.name} : null,// ${fi.comment}
           </#list>
         }
       },
