@@ -5,7 +5,7 @@
     <el-form :inline="true">
       <#list fList as fi>
       <el-form-item label="${fi.comment}">
-	    <el-input placeholder="请输入${fi.comment}" size="small" v-model="form.${fi.name}"></el-input>
+        <el-input placeholder="请输入${fi.comment}" size="small" v-model="form.${fi.name}"></el-input>
       </el-form-item>
       </#list>
       <el-form-item>
@@ -25,24 +25,24 @@
               </#list>
 			      </el-row>
           </el-form>
-		</template>
+        </template>
       </el-table-column>
-        <#list fList as fi>
-        <el-table-column prop="${fi.name}" label="${fi.comment}"></el-table-column>
-        </#list>
-        <el-table-column label="操作" width="150">
-          <template slot-scope="props">
-            <div>
-              <el-button type="text" @click="doEdit(props.row)">编辑</el-button>
-              <el-button type="text" @click="doDelete(props.row)">删除</el-button>
-            </div>
-          </template>
-        </el-table-column>
-      </el-table>
-      <br/>
-      <div style="text-align: right" v-if="total > 0">
-		    <el-pagination layout="sizes,prev, pager, next" :current-page="page" :total="total" @current-change="(curr) => {this.page = curr ; this.refresh();}"
-                       small :page-sizes="[10, 15, 20, 100]" @size-change="(s) => {this.size = s ; this.refresh();}" :page-size="size"></el-pagination>
+      <#list fList as fi>
+      <el-table-column prop="${fi.name}" label="${fi.comment}"></el-table-column>
+      </#list>
+      <el-table-column label="操作" width="150">
+        <template slot-scope="props">
+          <div>
+            <el-button type="text" @click="doEdit(props.row)">编辑</el-button>
+            <el-button type="text" @click="doDelete(props.row)">删除</el-button>
+          </div>
+        </template>
+      </el-table-column>
+    </el-table>
+    <br/>
+    <div style="text-align: right" v-if="total > 0">
+      <el-pagination layout="sizes,prev, pager, next" :current-page="page" :total="total" @current-change="(curr) => {this.page = curr ; this.refresh();}"
+        small :page-sizes="[10, 15, 20, 100]" @size-change="(s) => {this.size = s ; this.refresh();}" :page-size="size"></el-pagination>
       </div>
       <${upp}Dialog ref="dialog" :refresh="refresh"></${upp}Dialog>
     </div>

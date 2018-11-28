@@ -35,21 +35,6 @@ public class ${upp}Action extends PrincipalAction {
 	public int save(@RequestBody ${upp} ${lowUpp}, Principal principal) {
 		return bus.save(${lowUpp});
 	}
-    
-    /**
-     * @方法说明  新增[${cName}]记录
-     */
-    //@PostMapping("validate")
-    //public MessageInfo validate(@RequestBody ${upp}Cond cond, Principal principal) {
-    //MessageInfo mi = new MessageInfo();
-    ////此处写验证逻辑
-    ////cond.setfield(...)
-    ////int count=bus.queryCount(cond)
-    ////if(count = 0){
-    ////mi.setMessage(1, "记录个数不能为0!\
-    ////}
-    //return mi;
-    //}
 
     /**
      * @方法说明 删除${cName}记录(多条)
@@ -100,4 +85,19 @@ public class ${upp}Action extends PrincipalAction {
 	public long queryCount(@RequestBody ${upp}Cond cond){
 		return bus.queryCount(cond);
 	}
+    
+    /**
+     * @方法说明  新增[${cName}]记录
+     */
+    //@PostMapping("validate")
+    //public MessageInfo validate(@RequestBody ${upp}Cond cond, Principal principal) {
+    //MessageInfo mi = new MessageInfo();
+    ////此处写验证逻辑
+    ////cond.setfield(...)
+    ////int count=bus.queryCount(cond)
+    ////if(count = 0){
+    ////mi.setMessage(1, "记录个数不能为0!\
+    ////}
+    //return mi;
+    //}
 }

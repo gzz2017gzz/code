@@ -59,19 +59,19 @@ public interface I${upp}Client {
     /**
      * @方法说明  按条件查询分页${cName}列表
      */
-    @PostMapping("queryPage")
-    String queryPageString(@RequestBody ${upp}Cond cond );
+    //@PostMapping("queryPage")
+    //String queryPageString(@RequestBody ${upp}Cond cond );
 
     /**
      * @方法说明  按条件查询不分页${cName}列表
      */
-    @PostMapping("queryList")
-    String queryListString(@RequestBody ${upp}Cond cond );
+    //@PostMapping("queryList")
+    //String queryListString(@RequestBody ${upp}Cond cond );
 
     /**
      * @方法说明  按主键查单个${cName}记录
      */
-    @PostMapping("findById")
-    String findByIdString(@RequestParam("id") ${idType} id);
+    //@PostMapping("findById")
+    //String findByIdString(@RequestParam("id") ${idType} id);
 
 }

@@ -18,17 +18,13 @@ import com.cn.danceland.myapplication.MyApplication;
 import com.cn.danceland.myapplication.utils.Constants;
 import com.cn.danceland.myapplication.utils.SPUtils;
 import com.cn.danceland.myapplication.utils.ToastUtils;
-
-/**
- * @友情提示 请清理掉用不到的代码包括这段注释
- **/
+ 
 /**
  * @类说明 ${cName}--网络请求层
  * @author ${auth}
  * @date ${time}
  **/
 public class ${upp}Request {
-
 
 	/**
 	 * @方法说明   新增[${cName}]记录

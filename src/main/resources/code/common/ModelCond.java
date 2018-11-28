@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
+//import lombok.experimental.Accessors;
 import com.gzz.createcode.common.base.BaseCondition;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiModelProperty;
  **/
 @Setter
 @Getter
-@Accessors(chain = true)
+//@Accessors(chain = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
