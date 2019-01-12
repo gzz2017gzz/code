@@ -7,9 +7,10 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 //import lombok.experimental.Accessors;
 import com.gzz.createcode.common.base.BaseCondition;
+<#if swagger == 1>
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+</#if>
 /**
  * @类说明 [${cName}]查询条件实体
  * @author: ${auth}
@@ -21,7 +22,9 @@ import io.swagger.annotations.ApiModelProperty;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+<#if swagger == 1>
 @ApiModel(value = "${upp}Cond", description = "${cName}查询条件实体")
+</#if>
 public class ${upp}Cond extends BaseCondition {
 
     /**
@@ -41,7 +44,9 @@ public class ${upp}Cond extends BaseCondition {
     
     // 查询条件
 <#list fList as fi>
+<#if swagger == 1>
 	@ApiModelProperty(hidden = true)
+</#if>	
 	private ${fi.type} ${fi.name}; // ${fi.comment}
 </#list>
 	// private List<Long> ids;// 主键列表

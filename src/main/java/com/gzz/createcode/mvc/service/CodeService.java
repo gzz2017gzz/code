@@ -59,6 +59,7 @@ public class CodeService {
 			params.put("tName", table.getT_name());
 			params.put("idName", fList.get(0).getName());
 			params.put("time", dateFormart);
+			params.put("swagger", cond.getSwagger());
 			List<String> importList = Lists.newArrayList();
 			importList.add(Utils.dateImport(fList));
 			importList.add(Utils.bigImport(fList));

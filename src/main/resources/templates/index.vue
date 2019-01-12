@@ -17,10 +17,14 @@
         <el-input v-model="form.auth" style="width:60px" size="small"></el-input>
         公司名
         <el-input v-model="form.company" style="width:60px" size="small"></el-input>
+        项目名
+        <el-input v-model="form.item_name" style="width:60px" size="small"></el-input>
         模块名
         <el-input v-model="form.model" style="width:60px" size="small"></el-input>
+  swagger
+  	<el-switch  v-model="form.swagger"  active-text="使用"  inactive-text="不使用" active-value="1" inactive-value="0"></el-switch>      
         <el-button @click="createCode" type="primary" size="small">生成代码</el-button>
-        项目名[common,webcenter,webdata,vue+element,vue+iview,vuex+iview,android]
+ 
 
     </div>
     <el-table :data="filterTableList" class="tabClass" @selection-change="onSelectChange" border size="small">
@@ -65,9 +69,10 @@
                     t_name: '',
                     c_list: [],
                     auth: "高振中",
-                    company: "dl",
-                    model: "card",
-                    sqlText: null,
+                    company: "gzz",
+                    model: "sys",
+                    item_name: "study",
+                    swagger: "0",
                 },
                 t_list: [],
                 f_list: [],
