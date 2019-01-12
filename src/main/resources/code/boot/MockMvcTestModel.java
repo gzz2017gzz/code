@@ -39,13 +39,7 @@ public class MockMvcTest${upp} {
  		//.${fi.name}("http://www.gaozz.club") // 设置【${fi.comment}】的值
  		</#list>
  		.build();
- 
-		MvcResult result = mvc.perform(post("/${lowUpp}/save")
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(new ObjectMapper().writeValueAsString(sysLog))).andExpect(status().isOk()) 
- 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)) 
-				.andReturn(); 
-		logger.info(result.getResponse().getContentAsString());
+		logger.info(doRequest("/${lowUpp}/save", ${lowUpp}));
 	}
 	/**
 	 * @方法说明 测试 查询[${cName}]列表,条件可以为空,可直接运行
@@ -57,12 +51,7 @@ public class MockMvcTest${upp} {
  		//.${fi.name}("http://www.gaozz.club")  // 设置查询条件【${fi.comment}】的值
  		</#list>	
 		.build();
-		MvcResult result = mvc.perform(post("/${lowUpp}/queryList")
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(new ObjectMapper().writeValueAsString(cond))).andExpect(status().isOk()) 
-				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)) 
-				.andReturn();// 返回执行请求的结果
-		logger.info(result.getResponse().getContentAsString());
+		logger.info(doRequest("/${lowUpp}/queryList", cond));
 	}
 	/**
 	 * @方法说明 测试 查询[${cName}]分页列表,条件可以为空,可直接运行
@@ -74,11 +63,11 @@ public class MockMvcTest${upp} {
  		//.${fi.name}("http://www.gaozz.club")  // 设置查询条件【${fi.comment}】的值
  		</#list>	
 		.build();
-		MvcResult result = mvc.perform(post("/${lowUpp}/queryPage")
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(new ObjectMapper().writeValueAsString(cond))).andExpect(status().isOk()) 
-				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)) 
-				.andReturn();// 返回执行请求的结果
-		logger.info(result.getResponse().getContentAsString());
+		logger.info(doRequest("/${lowUpp}/queryPage", cond));
+	}
+	
+	private <T> String doRequest(String url, T t) throws Exception {// restController专用测试方法
+		return mvc.perform(post(url).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(t))).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn().getResponse().getContentAsString();
 	}
 }
