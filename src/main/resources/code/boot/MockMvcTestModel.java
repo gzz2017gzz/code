@@ -3,7 +3,6 @@ package ${pName};
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
@@ -15,13 +14,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
- * @类说明 [请求日志]测试工具，将本类移到maven测试目录中或测试完成之后删除
- * @author 高振中
- * @date 2019-01-12 22:40:08
+ * @类说明 [${cName}]测试工具，将本类移到maven测试目录中或测试完成之后删除
+ * @author ${auth}
+ * @date ${time}
  **/
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -36,7 +36,7 @@ public class MockMvcTest${upp} {
 	public void save() throws Exception {
  		${upp} ${lowUpp} = ${upp}.builder()
  		<#list fList as fi>
- 		//.${fi.name}("http://www.gaozz.club") // 设置【${fi.comment}】的值
+ 		//.${fi.name}("gaozz") // 设置【${fi.comment}】的值
  		</#list>
  		.build();
 		logger.info(doRequest("/${lowUpp}/save", ${lowUpp}));
@@ -48,7 +48,7 @@ public class MockMvcTest${upp} {
 	public void queryList() throws Exception {
 		${upp}Cond cond = ${upp}Cond.builder()
  		<#list fList as fi>
- 		//.${fi.name}("http://www.gaozz.club")  // 设置查询条件【${fi.comment}】的值
+ 		//.${fi.name}("gaozz")  // 设置查询条件【${fi.comment}】的值
  		</#list>	
 		.build();
 		logger.info(doRequest("/${lowUpp}/queryList", cond));
@@ -60,9 +60,11 @@ public class MockMvcTest${upp} {
 	public void queryPage() throws Exception {
 		${upp}Cond cond = ${upp}Cond.builder()
  		<#list fList as fi>
- 		//.${fi.name}("http://www.gaozz.club")  // 设置查询条件【${fi.comment}】的值
+ 		//.${fi.name}("gaozz")  // 设置查询条件【${fi.comment}】的值
  		</#list>	
 		.build();
+		// cond.setPage(0); //当前页
+		// cond.setSize(10); //页大小
 		logger.info(doRequest("/${lowUpp}/queryPage", cond));
 	}
 	
