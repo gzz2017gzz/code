@@ -1,5 +1,5 @@
 server:
-  port: 9090
+#  port: 9090
   compression: 
     enabled: true
     mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css

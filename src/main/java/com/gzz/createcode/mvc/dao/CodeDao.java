@@ -61,7 +61,7 @@ public class CodeDao extends BaseDao {
 	public List<Field> queryFields(CodeCond cond) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(" SELECT COLUMN_NAME NAME,");
-		sb.append(" CASE WHEN COLUMN_COMMENT = '' THEN COLUMN_NAME ELSE COLUMN_COMMENT	END COMMENT,");
+		sb.append(" CASE WHEN COLUMN_COMMENT = '' THEN COLUMN_NAME ELSE COLUMN_COMMENT END COMMENT,");
 		sb.append(" CASE WHEN DATA_TYPE='varchar' OR DATA_TYPE='text' OR DATA_TYPE='char' OR DATA_TYPE='longtext' OR DATA_TYPE='mediumtext' THEN 'String'");
 		sb.append(" WHEN DATA_TYPE = 'tinyint' THEN 'Byte'");
 		sb.append(" WHEN DATA_TYPE = 'smallint' THEN 'Short'");

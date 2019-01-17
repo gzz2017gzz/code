@@ -1,6 +1,5 @@
 package com.gzz.createcode.common.base;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -16,7 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 /**
- * @功能描述:dao类公共类
+ * @功能描述 dao类公共类
  * @author gzz_gzz@163.com
  * @date 2018-02-15
  */
@@ -52,20 +51,5 @@ public class BaseDao {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(t);
 		nameJdbcTemplate.update(sql, params, keyHolder, new String[] { id });
 		return keyHolder.getKey().longValue();
-	}
-
-	/**
-	 * @方法说明:用于批操作显示SQL
-	 */
-	public <T> String getField(Class<T> clazz) {
-		StringBuilder sql = new StringBuilder();
-		Field[] fields = clazz.getDeclaredFields();
-
-		for (Field field : fields) {
-			logger.info(field.getName());
-			sql.append("t." + field.getName() + ",");
-		}
-		sql.deleteCharAt(sql.length() - 1);
-		return sql.toString();
 	}
 }

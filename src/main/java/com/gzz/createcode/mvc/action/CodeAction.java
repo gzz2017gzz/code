@@ -65,6 +65,9 @@ public class CodeAction {
 		Utils.chmod();
 	}
 
+	/**
+	 * @功能描述 下载代码
+	 */
 	@GetMapping("/downCode")
 	public void downCode(HttpServletResponse response) throws IOException {
 		String fileName = "code.zip";
