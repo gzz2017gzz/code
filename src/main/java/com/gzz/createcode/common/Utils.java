@@ -222,7 +222,7 @@ public class Utils {
 		Enumeration<JarEntry> entries = jar.entries();
 		while (entries.hasMoreElements()) {
 			String urlName = entries.nextElement().getName();
-			if (urlName.startsWith(packageName) && (urlName.endsWith("java") || urlName.endsWith("vue"))) {
+			if (urlName.startsWith(packageName) && (urlName.endsWith("java") || urlName.endsWith("vue") || urlName.endsWith("js"))) {
 				classList.add(urlName.replace(packageName + "/", ""));
 			}
 		}
@@ -246,7 +246,7 @@ public class Utils {
 				for (File childFile : son.listFiles()) {
 					dirs.add(childFile);
 				}
-			} else if (son.getName().endsWith("java") || son.getName().endsWith("vue")) {
+			} else if (son.getName().endsWith("java") || son.getName().endsWith("vue") || son.getName().endsWith("js")) {
 				fileList.add(son.getAbsolutePath().substring(dir.getAbsolutePath().length() + 1).replace("\\", "/"));
 			}
 		}

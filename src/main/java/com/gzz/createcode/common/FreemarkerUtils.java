@@ -21,6 +21,33 @@ public class FreemarkerUtils {
 		cfg.setClassForTemplateLoading(this.getClass(), "/code/");
 		cfg.setDefaultEncoding("UTF-8");
 		templates = Utils.scanTemplate("code");
+//		'android/Model.java',
+//		'android/ModelCond.java',
+//		'android/ModelRequest.java',
+//		'android/ModelService.java',
+//		'appcenter/IModelClient.java',
+//		'appcenter/ModelAction.java',
+//		'appcenter/ModelBus.java',
+//		'common/Model.java',
+//		'common/ModelCond.java',
+//		'vuex_iview_ui/Model.js',
+//		'vuex_iview_ui/ModelDialog.vue',
+//		'vuex_iview_ui/ModelList.vue',
+//		'vuex_iview_ui/ModelListExpand.vue',
+//		'vuex_iview_ui/ModelRouter.js',
+//		'vue_element_ui/ModelDialog.vue',
+//		'vue_element_ui/ModelList.vue',
+//		'vue_element_ui/ModelMock.js',
+//		'vue_iview_ui/ModelDialog.vue',
+//		'vue_iview_ui/ModelList.vue',
+//		'vue_iview_ui/ModelListExpand.vue',
+//		'webcenter/IModelClient.java',
+//		'webcenter/ModelAction.java',
+//		'webcenter/ModelBus.java',
+//		'webdata/ModelController.java',
+//		'webdata/ModelDao.java',
+//		'webdata/ModelService.java',
+
 	}
 
 	public void process(String templateName, Map<String, Object> params) {
