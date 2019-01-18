@@ -13,7 +13,7 @@ public class CommonAction {
 	/**
 	 * @功能描述 进入主页面的跳转
 	 */
-	@RequestMapping
+	@RequestMapping("/")
 	public String index() {
 		return "index";
 	}
