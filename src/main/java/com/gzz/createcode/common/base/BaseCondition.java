@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author gzz_gzz@163.com
  * @功能说明 拼加页面查询条件的基础类
+ * @author gzz_gzz@163.com
  * @date 2018-02-15
  */
 

@@ -7,8 +7,8 @@ import java.util.List;
 import com.google.common.base.Joiner;
 
 /**
- * @author gzz_gzz@163.com
  * @类说明 代码工具
+ * @author gzz_gzz@163.com
  * @date 2018-02-15
  */
 public class SqlUtil {
