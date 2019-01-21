@@ -23,7 +23,7 @@ public class ${upp}Service {
 	/**
 	 * @方法说明 新增[${cName}]记录
 	 */
-	@Transactional
+	//@Transactional
 	public int save(${upp} ${lowUpp}) {
 		return dao.save(${lowUpp});
 	}
@@ -39,7 +39,7 @@ public class ${upp}Service {
 	/**
 	 * @方法说明 更新${cName}记录
 	 */
-	@Transactional
+	//@Transactional
 	public int update(${upp} ${lowUpp}) {
 		return dao.update(${lowUpp}); 
 	}
