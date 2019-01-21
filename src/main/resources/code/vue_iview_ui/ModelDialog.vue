@@ -1,7 +1,7 @@
 /*${cName}新增与修改,作者:${auth},日期:${time}*/
 <template>
   <Modal :title="title" v-model="show" :scrollable="false" :mask-closable="false" width="600" draggable >
-    <Form :common="form" ref="form" :rules="rules" :label-width="100">
+    <Form :model="form" ref="form" :rules="rules" :label-width="100">
       <Row>
         <i-col>
           <#list fList as fi>

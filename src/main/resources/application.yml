@@ -1,5 +1,5 @@
 server:
-  port: 9090
+#  port: 9090
   compression: 
     enabled: true
     mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css
@@ -10,4 +10,4 @@ spring:
 #    url: jdbc:mysql://192.168.1.92:3306/keep?useUnicode=true&characterEncoding=utf-8&useSSL=false
 #    password: T_dl123456
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    password: root
+    password: gzz123

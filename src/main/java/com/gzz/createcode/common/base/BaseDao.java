@@ -15,7 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 /**
- * @功能描述:dao类公共类
+ * @功能描述 dao类公共类
  * @author gzz_gzz@163.com
  * @date 2018-02-15
  */

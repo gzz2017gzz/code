@@ -19,13 +19,12 @@ import com.gzz.createcode.mvc.model.Field;
 import com.gzz.createcode.mvc.model.Table;
 
 /**
- * @功能描述:生成列表类型代码的实现类
+ * @功能描述 生成列表类型代码的实现类
  * @author gzz_gzz@163.com
  * @date 2018-02-15
  */
 @Service
 public class CodeService {
-
 	// private Log logger = LogFactory.getLog(CodeService.class);// 日志类
 	@Autowired
 	protected CodeDao dao;
@@ -34,7 +33,7 @@ public class CodeService {
 	protected FreemarkerUtils utils;
 
 	/**
-	 * @功能描述:生成代码
+	 * @功能描述 生成代码
 	 */
 	public void create(CodeCond cond) {
 		String dateFormart = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
@@ -88,7 +87,7 @@ public class CodeService {
 	}
 
 	/**
-	 * @功能描述: 查询数据库中表名列表
+	 * @功能描述 查询数据库中表名列表
 	 */
 	public List<Table> queryTables(CodeCond para) {
 		List<Table> list = dao.queryTables(para);
@@ -100,7 +99,7 @@ public class CodeService {
 	}
 
 	/**
-	 * @功能描述: 查询数据库中字段名列表
+	 * @功能描述 查询数据库中字段名列表
 	 */
 	public List<Field> queryFields(CodeCond cond) {
 		List<Field> list = dao.queryFields(cond);

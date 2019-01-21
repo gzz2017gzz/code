@@ -111,7 +111,7 @@ public class ${upp}Dao extends BaseDao{
     }
     
     /**
-     * @方法说明 按条件查询${cName}记录个数
+     * @方法说明 逻辑删除多条记录
      */
     public int deleteLogic(${idType} ids[]) {
     	String sql = "UPDATE ${tName} SET delete_remark=1 WHERE ${idName}" + SqlUtil.ArrayToIn(ids);
