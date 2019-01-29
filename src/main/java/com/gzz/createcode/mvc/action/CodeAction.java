@@ -31,10 +31,10 @@ import com.gzz.createcode.mvc.service.CodeService;
  */
 @RestController
 @RequestMapping("/code")
+//@Slf4j
 public class CodeAction {
 	@Autowired
 	private CodeService service;// 生成器业务罗辑接口
-//	private Log logger = LogFactory.getLog(this.getClass());// 日志类
 
 	/**
 	 * @功能描述 查询数据库中表名列表
@@ -46,7 +46,7 @@ public class CodeAction {
 	}
 
 	/**
-	 * // * @功能描述 查询数据库中表名列表
+	 * @功能描述 查询数据库中表名列表
 	 */
 	@PostMapping("/queryField")
 	public List<Field> queryField(@RequestBody CodeCond cond) {
@@ -59,7 +59,7 @@ public class CodeAction {
 	 */
 	@PostMapping("/create")
 	public void create(@RequestBody CodeCond cond) {
-		Utils.delDir(new File(Utils.path() + "com/" + cond.getCompany() + "/"));
+		Utils.delDir(new File(Utils.path() + "com/"));
 		cond.setDb_name(CodeDao.dbName);
 		service.create(cond);
 		Utils.chmod();
