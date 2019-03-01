@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.gzz.createcode.common.base.BaseDao;
+import com.gzz.createcode.common.base.SqlUtil;
 import com.gzz.createcode.mvc.model.CodeCond;
 import com.gzz.createcode.mvc.model.Field;
 import com.gzz.createcode.mvc.model.Table;
@@ -35,7 +36,7 @@ public class CodeDao extends BaseDao {
 			ResultSet rs = dbMetaData.getTables(null, null, null, null);
 			rs.next();
 			dbName = rs.getString(1);
-//			logger.info(CodeDao.dbName);
+			logger.info(CodeDao.dbName);
 		} catch (SQLException e) {
 			logger.error("获取数据产品名称时出错");
 			e.printStackTrace();
@@ -50,7 +51,7 @@ public class CodeDao extends BaseDao {
 		StringBuilder sb = new StringBuilder();
 		sb.append("SELECT table_name t_name,if(table_comment='',table_name,table_comment) comment FROM information_schema.tables WHERE 1=1");
 		sb.append(cond.getCondition());
-//		logger.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
+		logger.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
 		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<>(Table.class));
 	}
 
@@ -76,7 +77,7 @@ public class CodeDao extends BaseDao {
 		sb.append(" FROM INFORMATION_SCHEMA.COLUMNS WHERE 1 = 1");
 		sb.append(cond.getCondition());
 		sb.append(" ORDER BY ORDINAL_POSITION");
-		// logger.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
+		logger.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
 		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<Field>(Field.class));
 	}
 

@@ -17,7 +17,7 @@ import com.gzz.createcode.mvc.dao.CodeDao;
 import com.gzz.createcode.mvc.model.CodeCond;
 import com.gzz.createcode.mvc.model.Field;
 import com.gzz.createcode.mvc.model.Table;
-
+ 
 /**
  * @功能描述 生成列表类型代码的实现类
  * @author gzz_gzz@163.com
@@ -91,6 +91,7 @@ public class CodeService {
 	 */
 	public List<Table> queryTables(CodeCond para) {
 		List<Table> list = dao.queryTables(para);
+//		log.info(list.toString());
 		list.forEach(item -> {
 			item.setCls_upp(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Utils.delFirWord(item.getT_name())));
 			item.setC_name(item.getComment());

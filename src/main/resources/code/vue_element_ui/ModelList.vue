@@ -53,16 +53,16 @@
   export default {
     data: function () {
       return {
-        total: 0,
-        page: 1,
-        size: 20,
-        dataList: [],
+        total: 0,//记录个数
+        page: 1,//当前页
+        size: 20,//页大小
+        dataList: [],//数据列表
         form: {
         <#list fList as fi>
 		    ${fi.name} : null, // ${fi.comment}
         </#list>
         },
-        loading: false,
+        loading: false,//是否加载列表
       }
     },
     computed: {},
@@ -74,10 +74,10 @@
         const that = this;
         that.loading = true;
         const requestData = {...that.form, page: that.page - 1, size: that.size};
-        that.${dollar}http.post("/api/${lowUpp}/queryPage", JSON.stringify(requestData)).then(res => {
+        that.${dollar}http.post("/${lowUpp}/queryPage", JSON.stringify(requestData)).then(res => {
           that.loading = false;
-          that.dataList = res.data.content;
-          that.total = res.data.totalElements;
+          that.dataList = res.data.dataList;//数据列表
+          that.total = res.data.rowCount;//记录个数
         }).catch(res => {
           that.${dollar}message.error("获取${cName}列表失败：" + res);
           that.loading = false;
@@ -96,9 +96,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          that.${dollar}http.delete("/api/${lowUpp}/delete", {
-		        params: {ids: [row.${idName}]}
-		      }).then(res => {
+          that.${dollar}http.delete("/${lowUpp}/delete?ids="+row.${idName}).then(res => {
 			      that.${dollar}message.success("删除成功");
 		        that.refresh();
           }).catch(res => {

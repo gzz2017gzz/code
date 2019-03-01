@@ -43,7 +43,7 @@
           if (!valid) {
             return;
           }
-          that.${dollar}http.post("/api/${lowUpp}/" + that.dialogMode, JSON.stringify(that.form)).then(res => {
+          that.${dollar}http.post("/${lowUpp}/" + that.dialogMode, JSON.stringify(that.form)).then(res => {
             that.show = false;
             that.${dollar}message.success(that.title + "成功!");
             that.refresh();
