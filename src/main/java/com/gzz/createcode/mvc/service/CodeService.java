@@ -17,7 +17,7 @@ import com.gzz.createcode.mvc.dao.CodeDao;
 import com.gzz.createcode.mvc.model.CodeCond;
 import com.gzz.createcode.mvc.model.Field;
 import com.gzz.createcode.mvc.model.Table;
- 
+
 /**
  * @功能描述 生成列表类型代码的实现类
  * @author gzz_gzz@163.com
@@ -62,7 +62,7 @@ public class CodeService {
 			List<String> importList = Lists.newArrayList();
 			importList.add(Utils.dateImport(fList));
 			importList.add(Utils.bigImport(fList));
-			
+
 			params.put("importList", importList);
 			params.put("selectFields", Utils.add(fList, "t.", ",", false, "select"));
 			params.put("insertFields", Utils.add(fList, "", ",", true, "insert"));
@@ -73,7 +73,7 @@ public class CodeService {
 			params.put("updateFields", Utils.add(fList, "", "=?,", true, "sql"));
 			params.put("updateParams", Utils.add(fList, "vo.get", "(),", true) + ",vo.get" + Utils.firstUpper(fList.get(0).getName()) + "()");
 			params.put("dollar", "$");
-			
+
 			params.put("model", cond.getModel());
 			utils.getTemplates().forEach(item -> {
 				String[] split = item.split("/");
@@ -93,7 +93,7 @@ public class CodeService {
 		List<Table> list = dao.queryTables(para);
 //		log.info(list.toString());
 		list.forEach(item -> {
-			item.setCls_upp(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Utils.delFirWord(item.getT_name())));
+			item.setCls_upp(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, item.getT_name()));
 			item.setC_name(item.getComment());
 		});
 		return list;

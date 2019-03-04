@@ -80,12 +80,12 @@ public class Utils {
 		return list.parallelStream().filter(i -> i.getType().equals("Date")).count() > 0 ? "\r\nimport java.util.Date;" : "";
 	}
 
-	/**
-	 * @方法说明 去掉第一个单词
-	 */
-	public static String delFirWord(String tName) {
-		return tName.substring(tName.indexOf("_") + 1);
-	}
+//	/**
+//	 * @方法说明 去掉第一个单词
+//	 */
+//	public static String delFirWord(String tName) {
+//		return tName.substring(tName.indexOf("_") + 1);
+//	}
 
 	/**
 	 * @方法说明 实体类文件中是否增加java.math.BigDecimal的导入

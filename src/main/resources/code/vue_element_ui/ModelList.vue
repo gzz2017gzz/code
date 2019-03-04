@@ -97,10 +97,10 @@
           type: 'warning'
         }).then(() => {
           that.${dollar}http.delete("/${lowUpp}/delete?ids="+row.${idName}).then(res => {
-			      that.${dollar}message.success("删除成功");
-		        that.refresh();
+			 that.${dollar}message.success("删除成功");
+		     that.refresh();
           }).catch(res => {
-            that.${dollar}message.error("删除失败：" + res);
+             that.${dollar}message.error("删除失败：" + res);
           });
         }).catch(() => {
 
