@@ -9,7 +9,7 @@
       </el-form-item>
       </#list>
       <el-form-item>
-        <el-button icon="search" @click="refresh(1)" title="根据输入的条件查询" size="small">查询</el-button>
+        <el-button icon="search" @click="refresh(true)" title="根据输入的条件查询" size="small">查询</el-button>
         <el-button type="primary" icon="plus" @click="doAdd()" title="添加" size="small">添加</el-button>
       </el-form-item>
     </el-form>
@@ -72,7 +72,7 @@
     methods: {
       refresh(firstPage) {
         const that = this;
-        that.page = firstPage === 1 ? 1 : that.page;//点按钮的查询转到第一页
+        that.page = (firstPage === true ? 1 : that.page);//点按钮的查询转到第一页
         that.loading = true;
         const requestData = {...that.form, page: that.page - 1, size: that.size};
         that.${dollar}http.post("/${lowUpp}/queryPage", JSON.stringify(requestData)).then(res => {
