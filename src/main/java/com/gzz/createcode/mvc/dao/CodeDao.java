@@ -1,11 +1,6 @@
 package com.gzz.createcode.mvc.dao;
 
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
-
-import javax.annotation.PostConstruct;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
@@ -23,26 +18,6 @@ import com.gzz.createcode.mvc.model.Table;
  */
 @Repository
 public class CodeDao extends BaseDao {
-	public static String dbName;// 数据库用户名
-
-	/**
-	 * @功能描述 系统变量及初始化
-	 */
-	@PostConstruct
-	private void init() {
-		DatabaseMetaData dbMetaData;
-		try {
-			dbMetaData = jdbcTemplate.getDataSource().getConnection().getMetaData();
-			ResultSet rs = dbMetaData.getTables(null, null, null, null);
-			rs.next();
-			dbName = rs.getString(1);
-			logger.info(CodeDao.dbName);
-		} catch (SQLException e) {
-			logger.error("获取数据产品名称时出错");
-			e.printStackTrace();
-		}
-
-	}
 
 	/**
 	 * @功能描述 查询表名列表
