@@ -17,5 +17,5 @@
 ***
 ## 联系方式: gzz_gzz@163.com
 ## [简书主页:https://www.jianshu.com/u/3bd57d5f1074](https://www.jianshu.com/u/3bd57d5f1074)
-## [演示地址:http://www.gaozz.club/](http://www.gaozz.club/)
+## [演示地址:http://47.104.67.56:8080//](http://47.104.67.56:8080/)
 ***
