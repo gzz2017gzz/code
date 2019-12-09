@@ -1,8 +1,8 @@
 package ${pName};
 import java.util.List;
 import com.gzz.createcode.common.base.Page;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.gzz.createcode.mvc.dao.CodeDao;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,10 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
  * @date ${time}
  **/
 @Service
+@Slf4j
 public class ${upp}Service {
-
-	@SuppressWarnings("unused")
-	private Log logger = LogFactory.getLog(getClass());
+ 
 	@Autowired
 	private ${upp}Dao dao; //注入${cName}数据访问层
 

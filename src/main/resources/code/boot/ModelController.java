@@ -1,7 +1,5 @@
 package ${pName};
 import java.util.List;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +8,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.gzz.common.base.Page;
+import com.gzz.createcode.mvc.dao.CodeDao;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @类说明 [${cName}]控制器
@@ -18,10 +19,9 @@ import com.gzz.common.base.Page;
  **/
 @RestController
 @RequestMapping("${lowUpp}")
+@Slf4j
 public class ${upp}Controller {
-
-	@SuppressWarnings("unused")
-	private final Log logger = LogFactory.getLog(getClass());
+ 
 	@Autowired
 	private ${upp}Service service; //注入${cName}数据逻辑层
 

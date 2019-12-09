@@ -2,9 +2,6 @@ package ${pName};
 
 import java.security.Principal;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +13,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 
 import com.dl.appcenter.common.bean.SwaggerRespImpl;
 import com.dl.appcenter.common.util.PrincipalAction;
@@ -23,6 +21,7 @@ import com.dl.keep.common.domain.app.${upp};
 import com.dl.keep.common.domain.app.${upp}Cond;
 import com.dl.keep.common.util.MessageInfo;
 import com.dl.keep.common.util.Page;
+import com.gzz.createcode.mvc.dao.CodeDao;
 
 /**
  * @类说明 [${cName}]app端Swagger控制器类
@@ -32,10 +31,8 @@ import com.dl.keep.common.util.Page;
 @Api(value = "[${cName}]控制器", description = "[${cName}]相关操作")
 @RestController
 @RequestMapping("${lowUpp}")
+@Slf4j
 public class ${upp}Action extends PrincipalAction {
-
-    @SuppressWarnings("unused")
-	private final Log logger = LogFactory.getLog(getClass());
 	
     @Autowired
 	private ${upp}Bus bus; //注入[${cName}]业务逻辑类

@@ -11,12 +11,15 @@ import com.gzz.createcode.mvc.model.CodeCond;
 import com.gzz.createcode.mvc.model.Field;
 import com.gzz.createcode.mvc.model.Table;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author gzz_gzz@163.com
  * @功能描述 MYSQL数据访问类
  * @date 2018-02-15
  */
 @Repository
+@Slf4j
 public class CodeDao extends BaseDao {
 
 	/**
@@ -26,7 +29,7 @@ public class CodeDao extends BaseDao {
 		StringBuilder sb = new StringBuilder();
 		sb.append("SELECT table_name t_name,if(table_comment='',table_name,table_comment) comment FROM information_schema.tables WHERE 1=1");
 		sb.append(cond.getCondition());
-		logger.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
+		log.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
 		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<>(Table.class));
 	}
 
@@ -52,7 +55,7 @@ public class CodeDao extends BaseDao {
 		sb.append(" FROM INFORMATION_SCHEMA.COLUMNS WHERE 1 = 1");
 		sb.append(cond.getCondition());
 		sb.append(" ORDER BY ORDINAL_POSITION");
-		logger.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
+		log.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
 		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<Field>(Field.class));
 	}
 

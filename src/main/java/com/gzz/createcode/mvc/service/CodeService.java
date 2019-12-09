@@ -25,7 +25,7 @@ import com.gzz.createcode.mvc.model.Table;
  */
 @Service
 public class CodeService {
-	// private Log logger = LogFactory.getLog(CodeService.class);// 日志类
+ 
 	@Autowired
 	protected CodeDao dao;
 

@@ -1,8 +1,5 @@
 package com.gzz.createcode.common.base;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +12,7 @@ import java.util.List;
  */
 
 public abstract class BaseCondition {
-	protected Log logger = LogFactory.getLog(getClass());// 日志类
+ 
 	private List<Object> paramList = new ArrayList<>();// 参数值
 	private StringBuffer condition = new StringBuffer();// 条件语句
 	private Integer size = 10;// 页大小(每页记录条)

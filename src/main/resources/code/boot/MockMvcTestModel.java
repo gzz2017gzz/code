@@ -3,9 +3,6 @@ package ${pName};
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gzz.createcode.mvc.dao.CodeDao;
+import lombok.extern.slf4j.Slf4j;
 /**
  * @类说明 [${cName}]测试工具，将本类移到maven测试目录中或测试完成之后删除
  * @author 高振中
@@ -25,8 +23,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
+@Slf4j
 public class MockMvcTest${upp} {
-	private Log logger = LogFactory.getLog(getClass());
+ 
 	@Autowired
 	private MockMvc mvc;
 	/**

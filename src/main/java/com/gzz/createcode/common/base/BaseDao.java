@@ -2,8 +2,6 @@ package com.gzz.createcode.common.base;
 
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -21,7 +19,7 @@ import org.springframework.jdbc.support.KeyHolder;
  */
 @Scope("prototype")
 public class BaseDao {
-	protected final Log logger = LogFactory.getLog(BaseDao.class);
+ 
 	@Autowired
 	protected JdbcTemplate jdbcTemplate;
 	@Autowired

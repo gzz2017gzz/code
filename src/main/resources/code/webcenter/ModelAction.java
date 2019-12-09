@@ -1,7 +1,5 @@
 package ${pName};
 import java.util.List;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 import com.dl.webcenter.common.controller.PrincipalAction;
+import com.gzz.createcode.mvc.dao.CodeDao;
+import lombok.extern.slf4j.Slf4j;
 import com.dl.keep.common.util.MessageInfo;
 import com.dl.keep.common.util.Page;
 /**
@@ -20,10 +20,8 @@ import com.dl.keep.common.util.Page;
  **/
 @RestController
 @RequestMapping("api/${lowUpp}")
+@Slf4j
 public class ${upp}Action extends PrincipalAction {
-
-	@SuppressWarnings("unused")
-	private final Log logger = LogFactory.getLog(getClass());
 
 	@Autowired
 	private ${upp}Bus bus; //${cName}Business层
