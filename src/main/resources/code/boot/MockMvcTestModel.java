@@ -13,7 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gzz.createcode.mvc.dao.CodeDao;
 import lombok.extern.slf4j.Slf4j;
 /**
  * @类说明 [${cName}]测试工具，将本类移到maven测试目录中或测试完成之后删除
@@ -38,7 +37,7 @@ public class MockMvcTest${upp} {
  		//.${fi.name}("gaozz") // 设置【${fi.comment}】的值
  		</#list>
  		.build();
-		logger.info(doRequest("/${lowUpp}/save", ${lowUpp}));
+		log.info(doRequest("/${lowUpp}/save", ${lowUpp}));
 	}
 	/**
 	 * @方法说明 测试 查询[${cName}]列表,条件可以为空,可直接运行
@@ -50,7 +49,7 @@ public class MockMvcTest${upp} {
  		//.${fi.name}("gaozz")  // 设置查询条件【${fi.comment}】的值
  		</#list>	
 		.build();
-		logger.info(doRequest("/${lowUpp}/queryList", cond));
+		log.info(doRequest("/${lowUpp}/queryList", cond));
 	}
 	/**
 	 * @方法说明 测试 查询[${cName}]分页列表,条件可以为空,可直接运行
@@ -62,9 +61,9 @@ public class MockMvcTest${upp} {
  		//.${fi.name}("gaozz")  // 设置查询条件【${fi.comment}】的值
  		</#list>	
 		.build();
-		// cond.setPage(0); //当前页
-		// cond.setSize(10); //页大小
-		logger.info(doRequest("/${lowUpp}/queryPage", cond));
+		cond.setPage(0); //当前页
+		cond.setSize(10); //页大小
+		log.info(doRequest("/${lowUpp}/queryPage", cond));
 	}
 	
 	private <T> String doRequest(String url, T t) throws Exception {// restController专用测试方法
