@@ -1,14 +1,13 @@
 package com.gzz.createcode.common.base;
 
 import java.util.List;
-
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
@@ -37,17 +36,12 @@ public class BaseDao {
 	}
 
 	protected <T> int[] batchOperate(List<T> list, String sql) {
-		SqlParameterSource[] params = new SqlParameterSource[list.size()];
-		for (int i = 0; i < list.size(); i++) {
-			params[i] = new BeanPropertySqlParameterSource(list.get(i));
-		}
-		return nameJdbcTemplate.batchUpdate(sql, params);
+		return nameJdbcTemplate.batchUpdate(sql, list.stream().map(i -> new BeanPropertySqlParameterSource(i)).collect(Collectors.toList()).toArray(new BeanPropertySqlParameterSource[] {}));
 	}
 
 	protected <T> long saveKey(T t, String sql, String id) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		SqlParameterSource params = new BeanPropertySqlParameterSource(t);
-		nameJdbcTemplate.update(sql, params, keyHolder, new String[] { id });
+		nameJdbcTemplate.update(sql, new BeanPropertySqlParameterSource(t), keyHolder, new String[] { id });
 		return keyHolder.getKey().longValue();
 	}
 }
