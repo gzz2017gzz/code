@@ -1,14 +1,15 @@
 server:
-  port: 8081
-  compression: 
-    enabled: true
-    mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css
+   port: 8081
+   compression:
+      enabled: true
+      mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css
 spring:
-  freemarker: 
-    suffix: .html
-  datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.1.224:3306/robot_dxjc?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    username: root
-    password: root
- 
+   freemarker:
+      suffix: .html
+   datasource:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.1.224:3306/robot_dxjc?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: root
+   application:
+      name: jdbc-creater
