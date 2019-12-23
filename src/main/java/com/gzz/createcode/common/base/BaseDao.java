@@ -2,6 +2,7 @@ package com.gzz.createcode.common.base;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -32,7 +33,7 @@ public class BaseDao {
 		int pageCount = rowCount % pageSize == 0 ? rowCount / pageSize : rowCount / pageSize + 1;
 		String listSql = sql + " LIMIT " + curPage * pageSize + "," + pageSize;
 		List<T> dataList = jdbcTemplate.query(listSql.toString(), cond.getArray(), new BeanPropertyRowMapper<T>(clazz));
-		return new Page<T>(dataList, curPage, rowCount, pageSize, pageCount);
+		return new Page<T>(dataList, pageSize, rowCount, curPage, pageCount);
 	}
 
 	protected <T> int[] batchOperate(List<T> list, String sql) {
