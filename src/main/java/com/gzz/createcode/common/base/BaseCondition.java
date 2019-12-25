@@ -7,12 +7,12 @@ import java.util.List;
 
 /**
  * @功能说明 拼加页面查询条件的基础类
- * @author gzz_gzz@163.com
- * @date 2018-02-15
+ * @author https://www.jianshu.com/u/3bd57d5f1074
+ * @date 2019-12-24 10:50:00
  */
 
 public abstract class BaseCondition {
- 
+
 	private List<Object> paramList = new ArrayList<>();// 参数值
 	private StringBuffer condition = new StringBuffer();// 条件语句
 	private Integer size = 10;// 页大小(每页记录条)
@@ -49,7 +49,7 @@ public abstract class BaseCondition {
 	}
 
 	/**
-	 * @功能说明  拼加条件使用等于大于小于....运算符(String类型)
+	 * @功能说明 拼加条件使用等于大于小于....运算符(String类型)
 	 */
 	protected void add(Float value, String strSQL) {
 		if (null != strSQL && null != value && !"".equals(strSQL)) {

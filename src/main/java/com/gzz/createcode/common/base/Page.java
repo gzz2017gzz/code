@@ -7,8 +7,8 @@ import lombok.Setter;
 
 /**
  * @功能描述 分页数据
- * @author gzz_gzz@163.com
- * @date 2018-02-15
+ * @author https://www.jianshu.com/u/3bd57d5f1074
+ * @date 2019-12-24 10:50:00
  */
 @Setter
 @Getter
