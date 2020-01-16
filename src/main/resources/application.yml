@@ -7,8 +7,8 @@ spring:
    freemarker:
       suffix: .html
    datasource:
-      driverClassName: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://192.168.1.224:3306/robot_dxjc?useUnicode=true&characterEncoding=utf-8&useSSL=false
+#     driverClassName: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.20.19:3306/dragon?useUnicode=true&characterEncoding=utf-8&useSSL=false
       username: root
       password: root
    application:

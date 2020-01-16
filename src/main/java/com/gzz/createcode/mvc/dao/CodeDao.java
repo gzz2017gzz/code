@@ -18,8 +18,8 @@ import lombok.extern.slf4j.Slf4j;
  * @功能描述 MYSQL数据访问类
  * @date 2018-02-15
  */
-@Repository
 @Slf4j
+@Repository
 public class CodeDao extends BaseDao {
 
 	/**

@@ -46,7 +46,10 @@ public class ${upp}Cond extends BaseCondition {
 <#if swagger == 1>
 	@ApiModelProperty(hidden = true)
 </#if>	
-	private ${fi.type} ${fi.name}; // ${fi.comment}
+	/**
+	 * ${fi.comment}
+	 */
+	private ${fi.type} ${fi.name};
 </#list>
 	// private List<Long> ids;// 主键列表
 	// 以下为自定义查询条件

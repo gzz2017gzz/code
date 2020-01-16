@@ -4,26 +4,29 @@ import java.io.File;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.PostConstruct;
+
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
 import com.google.common.io.Files;
+
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class FreemarkerUtils {
-
-	private Configuration cfg = new Configuration(Configuration.VERSION_2_3_28);
+public class FreemarkerUtils implements CommandLineRunner {
+	private Configuration cfg = new Configuration(Configuration.VERSION_2_3_29);
 	private Template template;
 	private List<String> templates;
 
-	@PostConstruct
-	public void init() {
+	@Override
+	public void run(String... args) throws Exception {
 		cfg.setClassForTemplateLoading(this.getClass(), "/code/");
 		cfg.setDefaultEncoding("UTF-8");
 		templates = Utils.scanTemplate("code");
+
 	}
 
 	public void process(String templateName, Map<String, Object> params) {

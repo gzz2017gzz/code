@@ -30,7 +30,10 @@ public class ${upp} {
 <#if swagger == 1>
 	@ApiModelProperty(value = "${fi.comment}", dataType = "${fi.type}")
 </#if>	
-	private ${fi.type} ${fi.name}; // ${fi.comment}
+	/**
+	 * ${fi.comment}
+	 */
+	private ${fi.type} ${fi.name}; 
 </#list>
     // 以下为查询显示辅助属性
 }
