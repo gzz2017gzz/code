@@ -58,24 +58,24 @@ public class ${upp}Controller {
     /**
      * @方法说明 按条件查询不分页${cName}列表
      */
-	@PostMapping("queryList")
-	public List<${upp}> queryList(@RequestBody ${upp}Cond cond ){
-		return service.queryList(cond);
-	}
+//	@PostMapping("queryList")
+//	public List<${upp}> queryList(@RequestBody ${upp}Cond cond ){
+//		return service.queryList(cond);
+//	}
 
     /**
      * @方法说明 按主键查单个${cName}记录
      */
-	@PostMapping("findById")
-	public ${upp} findById(@RequestParam("id") ${idType} id) {
-		return service.findById(id);
-	}
+//	@PostMapping("findById")
+//	public ${upp} findById(@RequestParam("id") ${idType} id) {
+//		return service.findById(id);
+//	}
 
     /**
      * @方法说明 按条件查询${cName}记录个数
      */
-	@PostMapping("queryCount")
-	public long queryCount(@RequestBody ${upp}Cond cond ){
-		return service.queryCount(cond);
-	}
+//	@PostMapping("queryCount")
+//	public long queryCount(@RequestBody ${upp}Cond cond ){
+//		return service.queryCount(cond);
+//	}
 }

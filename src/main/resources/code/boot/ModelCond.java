@@ -39,18 +39,15 @@ public class ${upp}Cond extends BaseCondition {
 		add(${fi.name}, "AND t.${fi.name} = ?");
 </#if>
 </#list>
-    	// add(ids, "AND t.id IN ");
+//		add(ids, "AND t.id IN ");
     }
-    // 以下为查询条件
+//	以下为查询条件
 <#list fList as fi>
 <#if swagger == 1>
 	@ApiModelProperty(hidden = true)
-</#if>	
-	/**
-	 * ${fi.comment}
-	 */
-	private ${fi.type} ${fi.name};
+</#if>
+	private ${fi.type} ${fi.name}; // ${fi.comment}
 </#list>
-	// private List<Long> ids;// 主键列表
-	// 以下为自定义查询条件
+//	private List<Object> ids;// 主键列表
+//	以下为自定义查询条件
 }

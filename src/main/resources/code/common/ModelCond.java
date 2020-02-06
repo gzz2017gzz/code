@@ -34,9 +34,9 @@ public class ${upp}Cond extends BaseCondition {
     public void addCondition() {
 <#list fList as fi>
 <#if fi.type == "String">
-		add(${fi.name}, "AND t.${fi.name} LIKE ?", 3);
+//		add(${fi.name}, "AND t.${fi.name} LIKE ?", 3);
 <#else>
-		add(${fi.name}, "AND t.${fi.name} = ?");
+//		add(${fi.name}, "AND t.${fi.name} = ?");
 </#if>
 </#list>
     	// add(ids, "AND t.id IN ");
@@ -45,9 +45,9 @@ public class ${upp}Cond extends BaseCondition {
     // 查询条件
 <#list fList as fi>
 <#if swagger == 1>
-	@ApiModelProperty(hidden = true)
+//	@ApiModelProperty(hidden = true)
 </#if>	
-	private ${fi.type} ${fi.name}; // ${fi.comment}
+//	private ${fi.type} ${fi.name}; // ${fi.comment}
 </#list>
-	// private List<Long> ids;// 主键列表
+//  private List<Object> ids;// 主键列表
 }

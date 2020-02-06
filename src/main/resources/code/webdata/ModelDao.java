@@ -13,7 +13,7 @@ import com.gzz.createcode.common.base.SqlUtil;
 @Repository
 public class ${upp}Dao extends BaseDao{
 
-    private StringBuilder insert = new StringBuilder();
+//    private StringBuilder insert = new StringBuilder();
     private StringBuilder select = new StringBuilder();
 
     /**
@@ -23,8 +23,8 @@ public class ${upp}Dao extends BaseDao{
     	select.append("SELECT ${selectFields}");
     	select.append(" FROM ${tName} t WHERE 1=1");
 		
-        insert.append("INSERT INTO ${tName} (${insertFields}) ");
-        insert.append(" VALUES (${insertValuesFields})");
+//        insert.append("INSERT INTO ${tName} (${insertFields}) ");
+//        insert.append(" VALUES (${insertValuesFields})");
     }
 
     /**
@@ -42,23 +42,23 @@ public class ${upp}Dao extends BaseDao{
     /**
      * @方法说明 新增${cName}记录并返回自增涨主键值
      */
-    public long saveReturnPK(${upp} vo) {
-         return saveKey(vo, insert.toString(), "${idName}");
-    }
+//    public long saveReturnPK(${upp} vo) {
+//         return saveKey(vo, insert.toString(), "${idName}");
+//    }
     
     /**
      * @方法说明 批量插入${cName}记录
      */
-    public int[] insertBatch(List<${upp}> list) {
-       return batchOperate(list, insert.toString());
-    }
+//    public int[] insertBatch(List<${upp}> list) {
+//       return batchOperate(list, insert.toString());
+//    }
     
     /**
      * @方法说明 物理删除${cName}记录(多条)
      */
-    public int delete(${idType} ids[]) {
-        String sql = "DELETE FROM ${tName} WHERE ${idName}" + SqlUtil.ArrayToIn(ids);
-        return jdbcTemplate.update(sql);
+    public int delete(Object ids[]) {
+        String sql = "DELETE FROM ${tName} WHERE ${idName} IN " + SqlUtil.ArrayToIn(ids);
+        return jdbcTemplate.update(sql,ids);
     }
     
     /**
@@ -96,26 +96,26 @@ public class ${upp}Dao extends BaseDao{
     /**
      * @方法说明 按ID查找单个${cName}实体
      */
-    public ${upp} findById(${idType} id) {
-    	StringBuilder sb = new StringBuilder(select);
-    	sb.append(" AND t.${idName}=?");
-    	return jdbcTemplate.queryForObject(sb.toString(), new Object[]{id}, new BeanPropertyRowMapper<>(${upp}.class));
-    }
+//    public ${upp} findById(${idType} id) {
+//    	StringBuilder sb = new StringBuilder(select);
+//    	sb.append(" AND t.${idName}=?");
+//    	return jdbcTemplate.queryForObject(sb.toString(), new Object[]{id}, new BeanPropertyRowMapper<>(${upp}.class));
+//    }
     
     /**
      * @方法说明 按条件查询${cName}记录个数
      */
-    public long queryCount(${upp}Cond cond) {
-    	String countSql = "SELECT COUNT(1) FROM ${tName} t WHERE 1=1" + cond.getCondition();
-    	return jdbcTemplate.queryForObject(countSql, cond.getArray(), Long.class);
-    }
+//    public long queryCount(${upp}Cond cond) {
+//    	String countSql = "SELECT COUNT(1) FROM ${tName} t WHERE 1=1" + cond.getCondition();
+//    	return jdbcTemplate.queryForObject(countSql, cond.getArray(), Long.class);
+//    }
     
     /**
      * @方法说明 逻辑删除多条记录
      */
-    public int deleteLogic(${idType} ids[]) {
-    	String sql = "UPDATE ${tName} SET delete_remark=1 WHERE ${idName}" + SqlUtil.ArrayToIn(ids);
-    	return jdbcTemplate.update(sql);
-    }
+//    public int deleteLogic(Object ids[]) {
+//    	String sql = "UPDATE ${tName} SET delete_remark=1 WHERE ${idName} IN" + SqlUtil.ArrayToIn(ids);
+//    	return jdbcTemplate.update(sql,ids);
+//    }
  
 }
