@@ -22,9 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @Repository
 public class CodeDao extends BaseDao {
 
-	/**
-	 * @功能描述 查询表名列表
-	 */
+	/** @功能描述 查询表名列表 */
 	public List<Table> queryTables(CodeCond cond) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("SELECT table_name t_name,if(table_comment='',table_name,table_comment) comment FROM information_schema.tables WHERE 1=1");
@@ -33,9 +31,7 @@ public class CodeDao extends BaseDao {
 		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<>(Table.class));
 	}
 
-	/**
-	 * @功能描述 查询字段名列表
-	 */
+	/** @功能描述 查询字段名列表 */
 
 	public List<Field> queryFields(CodeCond cond) {
 		StringBuilder sb = new StringBuilder();

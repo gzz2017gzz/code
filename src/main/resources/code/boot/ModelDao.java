@@ -24,8 +24,8 @@ public class ${upp}Dao extends BaseDao{
     public ${upp}Dao() {
     	select.append("SELECT ${selectFields}");
     	select.append(" FROM ${tName} t WHERE 1=1");
-//		insert.append("INSERT INTO ${tName} (${insertFields}) ");
-//		insert.append(" VALUES (${insertValuesFields})");
+    	//insert.append("INSERT INTO ${tName} (${insertFields}) ");
+    	//insert.append(" VALUES (${insertValuesFields})");
     }
 
     /**
@@ -35,7 +35,7 @@ public class ${upp}Dao extends BaseDao{
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO ${tName} (${replaceFields})");
         sql.append(" VALUES ${replaceValuesFields}");
-        Object[] params ={ ${paramsFields} };
+        Object[] params ={ ${insertParams} };
         //logger.info(SqlUtil.showSql(sql.toString(), params));//显示SQL语句
         return jdbcTemplate.update(sql.toString(), params);
     }

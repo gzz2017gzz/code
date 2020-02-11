@@ -2,6 +2,7 @@ package com.gzz.createcode.common;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,16 +17,23 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class FreemarkerUtils implements CommandLineRunner {
+public final class FreemarkerUtils implements CommandLineRunner {
 	private Configuration cfg = new Configuration(Configuration.VERSION_2_3_29);
 	private Template template;
-	private List<String> templates;
+	private List<String> templates = new ArrayList<>();
 
 	@Override
 	public void run(String... args) throws Exception {
 		cfg.setClassForTemplateLoading(this.getClass(), "/code/");
 		cfg.setDefaultEncoding("UTF-8");
 		templates = Utils.scanTemplate("code");
+
+//		templates.add("boot/MockMvcTestModel.java");
+//		templates.add("boot/ModelService.java");
+//		templates.add("boot/ModelDao.java");
+//		templates.add("boot/ModelController.java");
+//		templates.add("boot/ModelCond.java");
+//		templates.add("boot/Model.java");
 
 	}
 

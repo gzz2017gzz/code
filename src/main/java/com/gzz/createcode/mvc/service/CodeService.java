@@ -1,6 +1,7 @@
 package com.gzz.createcode.mvc.service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -24,13 +25,13 @@ import com.gzz.createcode.mvc.model.Table;
  * @date 2018-02-15
  */
 @Service
-public class CodeService {
- 
-	@Autowired
-	protected CodeDao dao;
+public final class CodeService {
 
 	@Autowired
-	protected FreemarkerUtils utils;
+	private CodeDao dao;
+
+	@Autowired
+	private FreemarkerUtils utils;
 
 	/**
 	 * @功能描述 生成代码
@@ -64,14 +65,19 @@ public class CodeService {
 			importList.add(Utils.bigImport(fList));
 
 			params.put("importList", importList);
-			params.put("selectFields", Utils.add(fList, "t.", ",", false, "select"));
-			params.put("insertFields", Utils.add(fList, "", ",", true, "insert"));
-			params.put("insertValuesFields", Utils.add(fList, ":", ",", true, "insert"));
-			params.put("replaceFields", Utils.add(fList, "", ",", false, "sql"));
-			params.put("replaceValuesFields", Utils.add(fList));
-			params.put("paramsFields", Utils.add(fList, "vo.get", "(),", false));
-			params.put("updateFields", Utils.add(fList, "", "=?,", true, "sql"));
-			params.put("updateParams", Utils.add(fList, "vo.get", "(),", true) + ",vo.get" + Utils.firstUpper(fList.get(0).getName()) + "()");
+			params.put("selectFields", Utils.add(fList, "t.", ",", "select"));
+			params.put("insertFields", Utils.add(fList, "", ",", "//insert"));
+			params.put("insertValuesFields", Utils.add(fList, ":", ",", "//insert"));
+
+			params.put("replaceFields", Utils.add(fList, "", ",", "sql"));
+			
+			List<Field> updates = new ArrayList<>(fList);
+			updates.remove(0);
+			params.put("updateFields", Utils.add(updates, "", "=?,", "sql"));
+			
+			params.put("replaceValuesFields", Utils.questionMark(fList.size()));
+			params.put("updateParams", Utils.addUpdate(fList, "vo.get", "()"));
+			params.put("insertParams", Utils.addInsert(fList, "vo.get", "()"));
 			params.put("dollar", "$");
 
 			params.put("model", cond.getModel());

@@ -28,7 +28,7 @@ public class BaseDao {
 	/**
 	 * @功能描述 分类查询
 	 */
-	protected <T, C extends BaseCondition> Page<T> queryPage(String sql, C cond, Class<T> clazz) {
+	protected final <T, C extends BaseCondition> Page<T> queryPage(final String sql, C cond, final Class<T> clazz) {
 		String countSQL = "SELECT count(1) FROM (" + sql + ") t";
 		int rowCount = jdbcTemplate.queryForObject(countSQL, cond.getArray(), Integer.class);
 		int pageSize = cond.getSize();
@@ -42,15 +42,14 @@ public class BaseDao {
 	/**
 	 * @功能描述 批操作
 	 */
-	protected <T> int[] batchOperate(List<T> list, String sql) {
-		return nameJdbcTemplate.batchUpdate(sql,
-				list.stream().map(i -> new BeanPropertySqlParameterSource(i)).collect(Collectors.toList()).toArray(new BeanPropertySqlParameterSource[] {}));
+	protected final <T> int[] batchOperate(final List<T> list, final String sql) {
+		return nameJdbcTemplate.batchUpdate(sql, list.stream().map(i -> new BeanPropertySqlParameterSource(i)).collect(Collectors.toList()).toArray(new BeanPropertySqlParameterSource[] {}));
 	}
 
 	/**
 	 * @功能描述 保存数据返回主键
 	 */
-	protected <T> long saveKey(T t, String sql, String id) {
+	protected final <T> long saveKey(final T t, String sql, final String id) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		nameJdbcTemplate.update(sql, new BeanPropertySqlParameterSource(t), keyHolder, new String[] { id });
 		return keyHolder.getKey().longValue();

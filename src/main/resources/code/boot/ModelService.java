@@ -1,5 +1,5 @@
 package ${pName};
-import java.util.List;
+//import java.util.List;
 import com.gzz.common.base.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
