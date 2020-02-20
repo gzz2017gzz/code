@@ -8,6 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @date ${time}
  **/
 @Mapper
-public interface ${upp}Mapper extends BaseMapper<${upp}> {
+public interface I${upp}Mapper extends BaseMapper<${upp}> {
 
 }

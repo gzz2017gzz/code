@@ -5,8 +5,11 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 /**
  * @类说明 [${cName}]实体类
@@ -15,10 +18,10 @@ import lombok.Setter;
  **/
 @Setter
 @Getter
- 
-@TableName(value = "${tName}")
 @Builder
- 
+@TableName(value = "${tName}")
+@AllArgsConstructor
+@NoArgsConstructor
 public class ${upp} extends Model<${upp}> {
 	private static final long serialVersionUID = 1L;
      <#list fList as fi>
@@ -33,7 +36,5 @@ public class ${upp} extends Model<${upp}> {
 	@TableField(value = "${fi.name}", exist = true)
     private ${fi.type} ${fi.name};
    	</#if>
-
     </#list>
-
 }

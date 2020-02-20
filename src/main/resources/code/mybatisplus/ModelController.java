@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhxd.common.web.Response;
- 
-
 /**
  * @类说明 [${cName}]控制器
  * @author ${auth}
@@ -38,9 +36,9 @@ public class ${upp}Controller {
     /**
      * @方法说明 按条件查询分页${cName}列表
      */
-    @GetMapping("/page/{current}/{size}")
-    public Response page(@RequestBody ${upp} ${lowUpp}, @PathVariable long size, @PathVariable long current) {
-        return Response.success(service.page(new Page<${upp}>(size, current), new QueryWrapper<${upp}>(${lowUpp})));
+    @PostMapping("/page/{current}/{size}")
+    public Response page(@RequestBody ${upp} ${lowUpp}, @PathVariable long current, @PathVariable long size) {
+        return Response.success(service.page(new Page<${upp}>(current,size), new QueryWrapper<${upp}>(${lowUpp})));
     }
  
     /**
@@ -52,7 +50,7 @@ public class ${upp}Controller {
     }
 
     /**
-     * @方法说明 删除${cName}记录(多条)
+     * @方法说明 按主键删除${cName}记录
      */
     @DeleteMapping("/{id}")
     public Response delete(@PathVariable Integer id) {

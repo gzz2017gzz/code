@@ -1,8 +1,6 @@
 package ${pName};
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,7 +10,7 @@ import org.springframework.stereotype.Service;
  **/
 //@Slf4j
 @Service
-public class ${upp}ServiceImpl extends ServiceImpl<${upp}Mapper, ${upp}> implements I${upp}Service {
+public class ${upp}ServiceImpl extends ServiceImpl<I${upp}Mapper, ${upp}> implements I${upp}Service {
 //    @Autowired
-//    private ${upp}Mapper ${lowUpp}Mapper;
+//    private I${upp}Mapper ${lowUpp}Mapper;
 }

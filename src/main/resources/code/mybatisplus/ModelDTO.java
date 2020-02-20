@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+
 /**
  * @类说明 [${cName}]DTO对象
  * @author ${auth}
