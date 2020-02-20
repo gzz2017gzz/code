@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${pName}.${upp}Mapper">
+    <!-- 基本resultMap -->
+    <resultMap type="${pName}.${upp}" id="${upp}">
+    	<#list fList as fi>
+       	<#if fi_index == 0>
+        <id property="${fi.name}" column="${fi.name}"/>
+       	</#if>
+       	<#if fi_index != 0>
+        <result property="${fi.name}" column="${fi.name}"/>
+       	</#if>	
+        </#list>
+    </resultMap>
+</mapper>
