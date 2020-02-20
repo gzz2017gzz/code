@@ -65,19 +65,19 @@ public final class CodeService {
 			importList.add(Utils.bigImport(fList));
 
 			params.put("importList", importList);
-			params.put("selectFields", Utils.add(fList, "t.", ",", "select"));
-			params.put("insertFields", Utils.add(fList, "", ",", "//insert"));
-			params.put("insertValuesFields", Utils.add(fList, ":", ",", "//insert"));
+			params.put("selectFields", Utils.addAllFieldWithVar(fList, "t.", ",", "select"));
+			params.put("insertFields", Utils.addAllFieldWithVar(fList, "", ",", "//insert"));
+			params.put("insertValuesFields", Utils.addAllFieldWithVar(fList, ":", ",", "//insert"));
 
-			params.put("replaceFields", Utils.add(fList, "", ",", "sql"));
+			params.put("replaceFields", Utils.addAllFieldWithVar(fList, "", ",", "sql"));
 			
 			List<Field> updates = new ArrayList<>(fList);
 			updates.remove(0);
-			params.put("updateFields", Utils.add(updates, "", "=?,", "sql"));
+			params.put("updateFields", Utils.addAllFieldWithVar(updates, "", "=?,", "sql"));
 			
 			params.put("replaceValuesFields", Utils.questionMark(fList.size()));
-			params.put("updateParams", Utils.addUpdate(fList, "vo.get", "()"));
-			params.put("insertParams", Utils.addInsert(fList, "vo.get", "()"));
+			params.put("updateParams", Utils.addUpdateField(fList, "vo.get", "()"));
+			params.put("insertParams", Utils.addAllField(fList, "vo.get", "()"));
 			params.put("dollar", "$");
 
 			params.put("model", cond.getModel());

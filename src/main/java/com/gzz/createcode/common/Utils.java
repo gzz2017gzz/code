@@ -19,21 +19,24 @@ import java.util.zip.ZipOutputStream;
 
 import com.gzz.createcode.mvc.model.Field;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @功能说明 代码生成辅助类
  * @author gzz_gzz@163.com
  * @date 2018-02-15
  */
-
+@Slf4j
 public final class Utils {
 
 	/**
+	 * @方法说明 拼接字段,getter,setter等
 	 * @param list    字段列表
 	 * @param prefix  前缀
 	 * @param suffix  后缀
 	 * @param varName 变量名
 	 */
-	public static StringBuilder add(final List<Field> list, final String prefix, final String suffix, final String varName) {
+	public static StringBuilder addAllFieldWithVar(final List<Field> list, final String prefix, final String suffix, final String varName) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < list.size(); i++) {
 			Field field = list.get(i);
@@ -43,7 +46,7 @@ public final class Utils {
 		return sb.delete(sb.length() - 1, sb.length());
 	}
 
-	public static StringBuilder addInsert(final List<Field> list, final String prefix, final String suffix) {
+	public static StringBuilder addAllField(final List<Field> list, final String prefix, final String suffix) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < list.size(); i++) {
 			Field field = list.get(i);
@@ -53,11 +56,11 @@ public final class Utils {
 		return sb.delete(sb.length() - 1, sb.length());
 	}
 
-	public static StringBuilder addUpdate(final List<Field> list, final String prefix, final String suffix) {
+	public static StringBuilder addUpdateField(final List<Field> list, final String prefix, final String suffix) {
 		List<Field> sta = new ArrayList<>(list);
 		sta.add(list.get(0));
 		sta.remove(0);
-		return addInsert(sta, prefix, suffix);
+		return addAllField(sta, prefix, suffix);
 	}
 
 	/** @方法说明 生成指定个数问号两边加括号 */
@@ -116,8 +119,7 @@ public final class Utils {
 			if (isLinux())
 				Runtime.getRuntime().exec("chmod 777 -R " + path());
 		} catch (IOException e) {
-//			logger.info("设置权限时出现异常 !");
-			e.printStackTrace();
+			log.info("设置权限时出现异常...", e);
 		}
 	}
 
@@ -129,9 +131,9 @@ public final class Utils {
 			writeZip(new File(sourcePath), "", zos);
 			zos.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			log.info("压缩文件...", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.info("压缩文件...", e);
 		}
 
 	}
@@ -175,9 +177,9 @@ public final class Utils {
 				}
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			log.info("压缩文件...", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.info("压缩文件...", e);
 		}
 	}
 
@@ -192,7 +194,7 @@ public final class Utils {
 				list = scanJar(baseURL, packageName);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info("压缩文件...", e);
 		}
 		return list;
 	}
