@@ -25,14 +25,12 @@ public class CodeDao extends BaseDao {
 	/** @功能描述 查询表名列表 */
 	public List<Table> queryTables(CodeCond cond) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT table_name t_name,if(table_comment='',table_name,table_comment) comment FROM information_schema.tables WHERE 1=1");
-		sb.append(cond.getCondition());
-		log.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
-		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<>(Table.class));
+		sb.append("SELECT table_name t_name,if(table_comment='',table_name,table_comment) comment FROM information_schema.tables WHERE table_schema=(SELECT DATABASE())");
+		log.info(sb.toString());
+		return jdbcTemplate.query(sb.toString(), new BeanPropertyRowMapper<>(Table.class));
 	}
 
 	/** @功能描述 查询字段名列表 */
-
 	public List<Field> queryFields(CodeCond cond) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(" SELECT COLUMN_NAME NAME,");
@@ -48,7 +46,7 @@ public class CodeDao extends BaseDao {
 		sb.append(" WHEN DATA_TYPE = 'decimal' THEN 'BigDecimal'");
 		sb.append(" WHEN DATA_TYPE = 'boolean' OR DATA_TYPE = 'bit' THEN 'Boolean'");
 		sb.append(" ELSE CONCAT ('无效数据类型', DATA_TYPE) END type");
-		sb.append(" FROM INFORMATION_SCHEMA.COLUMNS WHERE 1 = 1");
+		sb.append(" FROM INFORMATION_SCHEMA.COLUMNS WHERE table_schema=(SELECT DATABASE())");
 		sb.append(cond.getCondition());
 		sb.append(" ORDER BY ORDINAL_POSITION");
 		log.info(SqlUtil.showSql(sb.toString(), cond.getArray()));

@@ -19,7 +19,7 @@ import com.zhxd.common.web.Response;
  * @date ${time}
  **/
 @RestController
-@RequestMapping("${lowUpp}")
+@RequestMapping("${low}")
 public class ${upp}Controller {
 
     @Autowired

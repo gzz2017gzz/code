@@ -28,17 +28,16 @@ import com.gzz.createcode.mvc.model.Field;
 public final class Utils {
 
 	/**
-	 * @param list   字段列表
-	 * @param prefix 前缀
-	 * @param suffix 后缀
-	 * @param noId   不包括主键
-	 * @param wrap   换行
+	 * @param list    字段列表
+	 * @param prefix  前缀
+	 * @param suffix  后缀
+	 * @param varName 变量名
 	 */
-	public static StringBuilder add(final List<Field> list, final String prefix, final String suffix, final String wrap) {
+	public static StringBuilder add(final List<Field> list, final String prefix, final String suffix, final String varName) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < list.size(); i++) {
 			Field field = list.get(i);
-			sb.append((i != 0 && i % 10 == 0) ? "\"); \r\n\t\t".concat(wrap).concat(".append(\"") : "");
+			sb.append((i != 0 && i % 10 == 0) ? "\"); \r\n\t\t".concat(varName).concat(".append(\"") : "");
 			sb.append(prefix.concat(field.getName()).concat(suffix));
 		}
 		return sb.delete(sb.length() - 1, sb.length());
@@ -61,7 +60,7 @@ public final class Utils {
 		return addInsert(sta, prefix, suffix);
 	}
 
-	/** @功能说明 生成指定个数问号两边加括号 */
+	/** @方法说明 生成指定个数问号两边加括号 */
 	public static StringBuilder questionMark(final int size) {// 问号
 		StringBuilder sb = new StringBuilder("(?");
 		for (int i = 1; i < size; i++) {
@@ -85,10 +84,10 @@ public final class Utils {
 		return list.parallelStream().filter(i -> i.getType().equals("Date")).count() > 0 ? "\r\nimport java.util.Date;" : "";
 	}
 
-//	/** @方法说明 去掉第一个单词 */
-//	public static String delFirWord(String tName) {
-//		return tName.substring(tName.indexOf("_") + 1);
-//	}
+	/** @方法说明 去掉第一个单词 */
+	public static String delFirWord(String tName) {
+		return tName.substring(tName.indexOf("_") + 1);
+	}
 
 	/** @方法说明 实体类文件中是否增加java.math.BigDecimal的导入 */
 	public static String bigImport(final List<Field> list) {
@@ -227,7 +226,7 @@ public final class Utils {
 				for (File childFile : son.listFiles()) {
 					dirs.add(childFile);
 				}
-			} else if (son.getName().endsWith("java") || son.getName().endsWith("vue") || son.getName().endsWith("js")|| son.getName().endsWith("xml")) {
+			} else if (son.getName().endsWith("java") || son.getName().endsWith("vue") || son.getName().endsWith("js") || son.getName().endsWith("xml")) {
 				fileList.add(son.getAbsolutePath().substring(dir.getAbsolutePath().length() + 1).replace("\\", "/"));
 			}
 		}

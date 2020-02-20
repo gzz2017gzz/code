@@ -37,7 +37,7 @@ public final class CodeService {
 	 * @功能描述 生成代码
 	 */
 	public void create(CodeCond cond) {
-		String dateFormart = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+		String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 		String auth = cond.getAuth();// 作者
 
 		for (Table table : cond.getC_list()) {
@@ -58,7 +58,7 @@ public final class CodeService {
 			params.put("cond", cond);
 			params.put("tName", table.getT_name());
 			params.put("idName", fList.get(0).getName());
-			params.put("time", dateFormart);
+			params.put("time", date);
 			params.put("swagger", cond.getSwagger());
 			List<String> importList = Lists.newArrayList();
 			importList.add(Utils.dateImport(fList));

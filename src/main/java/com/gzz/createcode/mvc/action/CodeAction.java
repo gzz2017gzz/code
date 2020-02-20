@@ -8,11 +8,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,8 +23,6 @@ import com.gzz.createcode.mvc.model.Field;
 import com.gzz.createcode.mvc.model.Table;
 import com.gzz.createcode.mvc.service.CodeService;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @功能描述 代码生成器控制器类
  * @author gzz_gzz@163.com
@@ -34,30 +30,15 @@ import lombok.extern.slf4j.Slf4j;
  */
 @RestController
 @RequestMapping("/code")
-@Slf4j
 public class CodeAction {
 	@Autowired
 	private CodeService service;// 生成器业务罗辑接口
-	@Value("${spring.datasource.url}")
-	private String url;
-	public static String dbName;// 数据库用户名
-
-	/**
-	 * @功能描述 系统变量及初始化
-	 */
-	@PostConstruct
-	private void init() {
-		String[] split = url.split("[?]")[0].split("/");
-		dbName = split[split.length - 1];
-		log.info("当前数据库名称是:{}",dbName);
-	}
 
 	/**
 	 * @功能描述 查询数据库中表名列表
 	 */
 	@PostMapping("/queryList")
 	public List<Table> queryList(@RequestBody CodeCond cond) {
-		cond.setDb_name(dbName);
 		return service.queryTables(cond);
 	}
 
@@ -66,7 +47,6 @@ public class CodeAction {
 	 */
 	@PostMapping("/queryField")
 	public List<Field> queryField(@RequestBody CodeCond cond) {
-		cond.setDb_name(dbName);
 		return service.queryFields(cond);
 	}
 
@@ -76,7 +56,6 @@ public class CodeAction {
 	@PostMapping("/create")
 	public void create(@RequestBody CodeCond cond) {
 		Utils.delDir(new File(Utils.path() + "com/"));
-		cond.setDb_name(dbName);
 		service.create(cond);
 		Utils.chmod();
 	}
