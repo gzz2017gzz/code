@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${pName}.I${upp}Mapper">
+    <!-- 基本resultMap -->
+    <resultMap type="${pName}.${upp}" id="${upp}">
+    	<#list fList as fi>
+       	<#if fi_index == 0>
+        <id property="${fi.name}" column="${fi.name}"/>
+       	</#if>
+       	<#if fi_index != 0>
+        <result property="${fi.name}" column="${fi.name}"/>
+       	</#if>
+        </#list>
+    </resultMap>
+		<!--查询全部数据-->
+	<select id="querylist" resultMap="${upp}">
+		SELECT
+			${selectFieldsAll}
+		FROM
+			${tName} t
+		<where>
+			<#list fList as fi>
+			<if test=" ${fi.name} != null "> AND t.${fi.name} =<#noparse> #{ </#noparse>${fi.name}<#noparse> }, </#noparse></if>
+			</#list>
+		</where>
+    </select>
+
+	<!--生成insert语句并返回主键ID-->
+	<insert id="insert${upp}" parameterType="${pName}.${upp}"  useGeneratedKeys="true" keyColumn="${idName}" keyProperty="${idName}" >
+		INSERT INTO ${tName}
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<#list fList as fi>
+			<if test=" ${fi.name} != null ">${fi.name},</if>
+		</#list>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<#list fList as fi>
+			<if test=" ${fi.name} != null "><#noparse>#{</#noparse>${fi.name}<#noparse>}</#noparse>,</if>
+		</#list>
+		</trim>
+	</insert>
+
+	<update id="update${upp}ById" parameterType="${pName}.${upp}">
+		UPDATE ${tName}
+		<set>
+			 <#list fList as fi>
+			    <#if fi_index != 0>
+			 <if test=" ${fi.name} != null ">${fi.name} =<#noparse> #{ </#noparse>${fi.name}<#noparse> }, </#noparse></if>
+		        </#if>
+		     </#list>
+		</set>
+		WHERE ${idName} = <#noparse>#{</#noparse>${idName}<#noparse>}</#noparse>
+	</update>
+
+	<sql    id="whereIn">
+	<where>
+		${idName} IN
+		<foreach collection="array" item="id" separator="," open="(" close=")">
+			<#noparse> #{id}</#noparse>
+		</foreach>
+	</where>
+	</sql>
+</mapper>

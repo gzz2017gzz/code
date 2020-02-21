@@ -1,6 +1,8 @@
 package ${pName};
 //import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,6 +10,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.gzz.common.base.Page;
+
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 import com.xsrt.common.Result;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,7 +34,10 @@ public class ${upp}Controller {
      * @方法说明  新增[${cName}]记录
      */
 	@PostMapping("save")
-	public Result<Integer> save(@RequestBody ${upp} ${lowUpp}) {
+	public Result<Integer> save(@RequestBody @Valid ${upp} ${lowUpp}, BindingResult result) {
+		if (result.hasErrors()) {
+			return Result.error(1, "验证失败！", result.getFieldErrors().stream().map(FieldError::getDefaultMessage).collect(Collectors.toList()));
+		}
 		return Result.success(service.save(${lowUpp}));
 	}
 
@@ -44,7 +53,10 @@ public class ${upp}Controller {
      * @方法说明 修改${cName}记录
      */
 	@PostMapping("update")
-	public Result<Integer> update(@RequestBody ${upp} ${lowUpp}) {
+	public Result<Integer> update(@RequestBody ${upp} ${lowUpp}, BindingResult result) {
+		if (result.hasErrors()) {
+			return Result.error(1, "验证失败！", result.getFieldErrors().stream().map(FieldError::getDefaultMessage).collect(Collectors.toList()));
+		}
 		return Result.success(service.update(${lowUpp}));
 	}
 

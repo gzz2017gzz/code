@@ -37,7 +37,7 @@ public final class CodeService {
 	 * @功能描述 生成代码
 	 */
 	public void create(CodeCond cond) {
-		String dateFormart = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+		String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 		String auth = cond.getAuth();// 作者
 
 		for (Table table : cond.getC_list()) {
@@ -58,28 +58,33 @@ public final class CodeService {
 			params.put("cond", cond);
 			params.put("tName", table.getT_name());
 			params.put("idName", fList.get(0).getName());
-			params.put("time", dateFormart);
+			params.put("time", date);
 			params.put("swagger", cond.getSwagger());
 			List<String> importList = Lists.newArrayList();
 			importList.add(Utils.dateImport(fList));
 			importList.add(Utils.bigImport(fList));
 
 			params.put("importList", importList);
-			params.put("selectFields", Utils.add(fList, "t.", ",", "select"));
-			params.put("insertFields", Utils.add(fList, "", ",", "//insert"));
-			params.put("insertValuesFields", Utils.add(fList, ":", ",", "//insert"));
+			params.put("selectFields", Utils.addAllFieldWithVar(fList, "t.", ",", "select"));
+			params.put("insertFields", Utils.addAllFieldWithVar(fList, "", ",", "//insert"));
+			params.put("insertValuesFields", Utils.addAllFieldWithVar(fList, ":", ",", "//insert"));
 
-			params.put("replaceFields", Utils.add(fList, "", ",", "sql"));
+			params.put("replaceFields", Utils.addAllFieldWithVar(fList, "", ",", "sql"));
 			
 			List<Field> updates = new ArrayList<>(fList);
 			updates.remove(0);
-			params.put("updateFields", Utils.add(updates, "", "=?,", "sql"));
+			params.put("updateFields", Utils.addAllFieldWithVar(updates, "", "=?,", "sql"));
 			
 			params.put("replaceValuesFields", Utils.questionMark(fList.size()));
-			params.put("updateParams", Utils.addUpdate(fList, "vo.get", "()"));
-			params.put("insertParams", Utils.addInsert(fList, "vo.get", "()"));
+			params.put("updateParams", Utils.addUpdateField(fList, "vo.get", "()"));
+			params.put("insertParams", Utils.addAllField(fList, "vo.get", "()"));
 			params.put("dollar", "$");
 
+			
+			
+			params.put("selectFieldsAll", Utils.addAllSqlFields(fList, "t.", ""));   
+			
+			
 			params.put("model", cond.getModel());
 			utils.getTemplates().forEach(item -> {
 				String[] split = item.split("/");
