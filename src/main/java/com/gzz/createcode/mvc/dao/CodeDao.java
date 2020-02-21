@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author gzz_gzz@163.com
- * @功能描述 MYSQL数据访问类
+ * @功能描述 mysql数据访问类
  * @date 2018-02-15
  */
 @Slf4j
@@ -25,7 +25,8 @@ public class CodeDao extends BaseDao {
 	/** @功能描述 查询表名列表 */
 	public List<Table> queryTables(CodeCond cond) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT table_name t_name,if(table_comment='',table_name,table_comment) comment FROM information_schema.tables WHERE table_schema=(SELECT DATABASE())");
+		sb.append("SELECT table_name t_name,if(table_comment='',table_name,table_comment) comment");
+		sb.append(" FROM information_schema.tables WHERE table_schema=(SELECT DATABASE())");
 		log.info(sb.toString());
 		return jdbcTemplate.query(sb.toString(), new BeanPropertyRowMapper<>(Table.class));
 	}
@@ -33,7 +34,7 @@ public class CodeDao extends BaseDao {
 	/** @功能描述 查询字段名列表 */
 	public List<Field> queryFields(CodeCond cond) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(" SELECT COLUMN_NAME NAME,");
+		sb.append("SELECT COLUMN_NAME NAME,");
 		sb.append(" CASE WHEN COLUMN_COMMENT = '' THEN COLUMN_NAME ELSE COLUMN_COMMENT END COMMENT,");
 		sb.append(" CASE WHEN DATA_TYPE='varchar' OR DATA_TYPE='text' OR DATA_TYPE='char' OR DATA_TYPE='longtext' OR DATA_TYPE='mediumtext' THEN 'String'");
 		sb.append(" WHEN DATA_TYPE = 'tinyint' THEN 'Byte'");
