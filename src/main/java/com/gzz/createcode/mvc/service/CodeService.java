@@ -80,6 +80,11 @@ public final class CodeService {
 			params.put("insertParams", Utils.addAllField(fList, "vo.get", "()"));
 			params.put("dollar", "$");
 
+			
+			
+			params.put("selectFieldsAll", Utils.addAllSqlFields(fList, "t.", ""));   
+			
+			
 			params.put("model", cond.getModel());
 			utils.getTemplates().forEach(item -> {
 				String[] split = item.split("/");
