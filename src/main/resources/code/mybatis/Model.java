@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 /**
- * @类说明 [${cName}]实体类
+ * @类说明 【${cName}】实体类
  * @author ${auth}
  * @date ${time}
  **/
@@ -25,16 +25,14 @@ import lombok.Setter;
 public class ${upp} extends Model<${upp}> {
 	private static final long serialVersionUID = 1L;
      <#list fList as fi>
-    /**
-     * ${fi.comment}
-     */
+
    	<#if fi_index == 0>
    	@TableId(value = "${fi.name}", type = IdType.AUTO)
-    private ${fi.type} ${fi.name};
+    private ${fi.type} ${fi.name};  /*主键*/
    	</#if>
    	<#if fi_index != 0>
 	@TableField(value = "${fi.name}", exist = true)
-    private ${fi.type} ${fi.name};
+    private ${fi.type} ${fi.name};    /*${fi.comment}*/
    	</#if>
     </#list>
 }

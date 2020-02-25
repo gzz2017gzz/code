@@ -79,7 +79,7 @@ public final class CodeService {
 			params.put("updateParams", Utils.addUpdateField(fList, "vo.get", "()"));
 			params.put("insertParams", Utils.addAllField(fList, "vo.get", "()"));
 			params.put("dollar", "$");
-
+			params.put("well", "#");
 			
 			
 			params.put("selectFieldsAll", Utils.addAllSqlFields(fList, "t.", ""));   

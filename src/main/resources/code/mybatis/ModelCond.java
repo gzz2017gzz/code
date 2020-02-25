@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
- * @类说明 [${cName}]DTO对象
+ * @类说明 【${cName}】DTO对象
  * @author ${auth}
  * @date ${time}
  **/
@@ -20,9 +20,6 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 public class ${upp}Cond{
 	<#list fList as fi>
-    /**
-     * ${fi.comment}
-     */
-    private ${fi.type} ${fi.name};
+    private ${fi.type} ${fi.name};    /*${fi.comment}*/
     </#list>
 }

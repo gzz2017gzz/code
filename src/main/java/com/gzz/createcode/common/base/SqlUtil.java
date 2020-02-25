@@ -2,6 +2,8 @@ package com.gzz.createcode.common.base;
 
 import java.text.SimpleDateFormat;
 
+import com.gzz.createcode.common.utils.SqlFormatterUtils;
+
 /**
  * @功能描述:代码工具
  * @author https://www.jianshu.com/u/3bd57d5f1074
@@ -27,7 +29,7 @@ public final class SqlUtil {
 			}
 			sql = sql.replaceFirst("[?]", param);
 		}
-		return sql;
+		return SqlFormatterUtils.format(sql);
 	}
 
 	/**
