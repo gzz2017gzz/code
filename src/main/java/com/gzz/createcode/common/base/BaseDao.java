@@ -29,8 +29,8 @@ public class BaseDao {
 	 * @功能描述 分类查询
 	 */
 	protected final <T, C extends BaseCondition> Page<T> queryPage(final String sql, C cond, final Class<T> clazz) {
-//		String countSQL = "SELECT count(1) FROM (" + sql + ") t";
-		String countSQL = sql.replaceAll("(?i)(SELECT)(.*)(?i)(FROM)", "$1 count(1) $3");//
+//		String countSQL = "SELECT count(1) FROM (" + sql + ") t";//支持要分页的句中有嵌套select .... from,效率低
+		String countSQL = sql.replaceAll("(?i)(SELECT)(.*)(?i)(FROM)", "$1 count(1) $3");//不支持要分页的句中有嵌套select .... from,效率高
 		int rowCount = jdbcTemplate.queryForObject(countSQL, cond.getArray(), Integer.class);
 		int pageSize = cond.getSize();
 		int curPage = cond.getPage();
