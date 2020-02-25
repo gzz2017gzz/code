@@ -12,5 +12,5 @@ import org.springframework.stereotype.Service;
 @Service
 public class ${upp}ServiceImpl extends ServiceImpl<I${upp}Mapper, ${upp}> implements I${upp}Service {
 //    @Autowired
-//    private I${upp}Mapper ${lowUpp}Mapper;
+//    private I${upp}Mapper ${lowUpp}Mapper;//注入[${cName}]数据访问接口
 }

@@ -1,6 +1,12 @@
 package ${pName};
 
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,29 +29,16 @@ import com.zhxd.common.web.Response;
 public class ${upp}Controller {
 
     @Autowired
-    private I${upp}Service service;
+    private I${upp}Service service;//注入[${cName}]业务逻辑接口
 
-    /**
-     * @方法说明 按主键查单个${cName}记录
-     */
-    @GetMapping("/{id}")
-    public Response get(@PathVariable Integer id) {
-        return Response.success(service.getById(id));
-    }
-
-    /**
-     * @方法说明 按条件查询分页${cName}列表
-     */
-    @PostMapping("/page/{current}/{size}")
-    public Response page(@RequestBody ${upp} ${lowUpp}, @PathVariable long current, @PathVariable long size) {
-        return Response.success(service.page(new Page<${upp}>(current,size), new QueryWrapper<${upp}>(${lowUpp})));
-    }
- 
     /**
      * @方法说明  新增[${cName}]记录
      */
     @PostMapping
-    public Response add(@RequestBody ${upp} ${lowUpp}) {
+    public Response add(@RequestBody @Valid ${upp} ${lowUpp}, BindingResult result) {
+		if (result.hasErrors()) {
+			return Response.failure("1", result.getFieldErrors().stream().map(FieldError::getDefaultMessage).collect(Collectors.toList()).toString());
+		}
         return Response.success(service.save(${lowUpp}));
     }
 
@@ -61,7 +54,25 @@ public class ${upp}Controller {
      * @方法说明 修改${cName}记录
      */
     @PutMapping
-    public Response edit(@RequestBody ${upp} ${lowUpp}) {
+    public Response edit(@RequestBody @Valid ${upp} ${lowUpp}, BindingResult result) {
+		if (result.hasErrors()) {
+			return Response.failure("1", result.getFieldErrors().stream().map(FieldError::getDefaultMessage).collect(Collectors.toList()).toString());
+		}
         return Response.success(service.updateById(${lowUpp}));
+    }
+    /**
+     * @方法说明 按条件查询分页${cName}列表
+     */
+    @PostMapping("/page/{current}/{size}")
+    public Response page(@RequestBody ${upp} ${lowUpp}, @PathVariable long current, @PathVariable long size) {
+        return Response.success(service.page(new Page<${upp}>(current,size), new QueryWrapper<${upp}>(${lowUpp})));
+    }
+
+    /**
+     * @方法说明 按主键查单个${cName}记录
+     */
+    @GetMapping("/{id}")
+    public Response get(@PathVariable Integer id) {
+        return Response.success(service.getById(id));
     }
 }
