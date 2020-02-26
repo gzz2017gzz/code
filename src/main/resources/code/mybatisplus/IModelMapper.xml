@@ -20,7 +20,7 @@
 			${tName} t
 		<where>
 			<#list fList as fi>
-			<if test=" ${fi.name} != null AND ${fi.name} != '' "> AND t.${fi.name}=${well}{${fi.name}}</if>
+			<if test=" ${fi.name} != null and ${fi.name} != '' "> AND t.${fi.name}=${well}{${fi.name}}</if>
 			</#list>
 		</where>
     </select>
@@ -30,12 +30,12 @@
 		INSERT INTO ${tName}
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 		<#list fList as fi>
-			<if test=" ${fi.name} != null AND ${fi.name} != '' ">${fi.name},</if>
+			<if test=" ${fi.name} != null and ${fi.name} != '' ">${fi.name},</if>
 		</#list>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 		<#list fList as fi>
-			<if test=" ${fi.name} != null AND ${fi.name} != '' ">${well}{${fi.name}},</if>
+			<if test=" ${fi.name} != null and ${fi.name} != '' ">${well}{${fi.name}},</if>
 		</#list>
 		</trim>
 	</insert>
