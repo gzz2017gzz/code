@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 /**
- * @类说明 [${cName}]实体类
+ * @类说明 【${cName}】实体类
  * @author ${auth}
  * @date ${time}
  **/
