@@ -154,7 +154,7 @@ public abstract class BaseCondition {
 	}
 
 	/**
-	 * @功能说明 把一个and换成where
+	 * @功能说明 把第一个and换成where
 	 */
 
 	final public String getWhere() {

@@ -2,8 +2,8 @@ package com.gzz.createcode.mvc.model;
 
 import java.util.List;
 
-import com.gzz.createcode.common.Utils;
 import com.gzz.createcode.common.base.BaseCondition;
+import com.gzz.createcode.common.utils.Utils;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gzz.createcode.common.Utils;
+import com.gzz.createcode.common.utils.Utils;
 import com.gzz.createcode.mvc.model.CodeCond;
 import com.gzz.createcode.mvc.model.Field;
 import com.gzz.createcode.mvc.model.Table;
