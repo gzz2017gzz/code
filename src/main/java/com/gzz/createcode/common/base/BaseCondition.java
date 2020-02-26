@@ -154,6 +154,14 @@ public abstract class BaseCondition {
 	}
 
 	/**
+	 * @功能说明 把一个and换成where
+	 */
+
+	final public String getWhere() {
+		return getCondition().replaceFirst("(?i)(AND)", "WHERE");
+	}
+
+	/**
 	 * @功能说明 取条件字符串
 	 */
 

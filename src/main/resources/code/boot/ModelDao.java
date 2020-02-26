@@ -23,7 +23,7 @@ public class ${upp}Dao extends BaseDao{
      */
     public ${upp}Dao() {
     	select.append("SELECT ${selectFields}");
-    	select.append(" FROM ${tName} t WHERE 1=1");
+    	select.append(" FROM ${tName} t ");
     	//insert.append("INSERT INTO ${tName} (${insertFields}) ");
     	//insert.append(" VALUES (${insertValuesFields})");
     }
@@ -36,7 +36,7 @@ public class ${upp}Dao extends BaseDao{
         sql.append("INSERT INTO ${tName} (${replaceFields})");
         sql.append(" VALUES ${replaceValuesFields}");
         Object[] params ={ ${insertParams} };
-        //logger.info(SqlUtil.showSql(sql.toString(), params));//显示SQL语句
+        //log.info(SqlUtil.showSql(sql.toString(), params));//显示SQL语句
         return jdbcTemplate.update(sql.toString(), params);
     }
     
@@ -64,9 +64,9 @@ public class ${upp}Dao extends BaseDao{
      */
     public Page<${upp}> queryPage(${upp}Cond cond) {
         StringBuilder sb = new StringBuilder(select);
-        sb.append(cond.getCondition());
+        sb.append(cond.getWhere());
         //sb.append(cond.getOrderSql());//增加排序子句;
-        //logger.info(SqlUtil.showSql(sb.toString(),cond.getArray()));//显示SQL语句
+        //log.info(SqlUtil.showSql(sb.toString(),cond.getArray()));//显示SQL语句
         return queryPage(sb.toString(), cond, ${upp}.class);
     }
     
@@ -75,7 +75,7 @@ public class ${upp}Dao extends BaseDao{
      */
     public List<${upp}> queryList(${upp}Cond cond) {
     	StringBuilder sb = new StringBuilder(select);
-    	sb.append(cond.getCondition());
+    	sb.append(cond.getWhere());
     	//sb.append(" ORDER BY operate_time DESC");
     	return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<>(${upp}.class));
     }
@@ -93,7 +93,7 @@ public class ${upp}Dao extends BaseDao{
      * @方法说明 按条件查询${cName}记录个数
      */
 //	public long queryCount(${upp}Cond cond) {
-//		String countSql = "SELECT COUNT(1) FROM ${tName} t WHERE 1=1" + cond.getCondition();
+//		String countSql = "SELECT COUNT(1) FROM ${tName} t " + cond.getWhere();
 //		return jdbcTemplate.queryForObject(countSql, cond.getArray(), Long.class);
 //	}
     
