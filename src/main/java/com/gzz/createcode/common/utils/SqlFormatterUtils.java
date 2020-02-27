@@ -62,7 +62,6 @@ public class SqlFormatterUtils {
 		boolean beginLine = true;
 		boolean afterBeginBeforeEnd = false;
 		boolean afterByOrSetOrFromOrSelect = false;
-		boolean afterValues = false;
 		boolean afterOn = false;
 		boolean afterBetween = false;
 		boolean afterInsert = false;
@@ -256,7 +255,6 @@ public class SqlFormatterUtils {
 			out();
 			this.indent += 1;
 			newline();
-			this.afterValues = true;
 		}
 
 		private void closeParen() {
