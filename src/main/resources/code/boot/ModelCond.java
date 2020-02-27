@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 </#if>
 /**
- * @类说明 [${cName}]查询条件实体
+ * @类说明 【${cName}】查询条件实体
  * @author ${auth}
  * @date ${time}
  **/

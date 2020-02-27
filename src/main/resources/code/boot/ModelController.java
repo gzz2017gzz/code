@@ -16,7 +16,7 @@ import com.xsrt.common.Result;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @类说明 [${cName}]控制器
+ * @类说明 【${cName}】控制器
  * @author ${auth}
  * @date ${time}
  **/
@@ -29,7 +29,7 @@ public class ${upp}Controller {
 	private ${upp}Service service; //注入${cName}业务逻辑层
 
     /**
-     * @方法说明  新增[${cName}]记录
+     * @方法说明  新增【${cName}】记录
      */
 	@PostMapping("save")
 	public Result save(@RequestBody @Valid ${upp} ${lowUpp}, BindingResult result) {
@@ -40,7 +40,7 @@ public class ${upp}Controller {
 	}
 
     /**
-     * @方法说明 删除${cName}记录(多条)
+     * @方法说明 删除【${cName}】记录
      */
 	@DeleteMapping("delete")
 	public Resul delete( ${idType} ids[]) {
@@ -48,7 +48,7 @@ public class ${upp}Controller {
 	}
 
     /**
-     * @方法说明 修改${cName}记录
+     * @方法说明 修改【${cName}】记录
      */
 	@PostMapping("update")
 	public Result update(@RequestBody @Valid ${upp} ${lowUpp}, BindingResult result) {
@@ -59,7 +59,7 @@ public class ${upp}Controller {
 	}
 
     /**
-     * @方法说明 按条件查询分页${cName}列表
+     * @方法说明 按条件查询分页【${cName}】列表
      */
 	@PostMapping("queryPage")
 	public Result queryPage(@RequestBody ${upp}Cond cond ){
@@ -67,7 +67,7 @@ public class ${upp}Controller {
 	}
 
     /**
-     * @方法说明 按条件查询不分页${cName}列表
+     * @方法说明 按条件查询不分页【${cName}】列表
      */
 //	@PostMapping("queryList")
 //	public Result queryList(@RequestBody ${upp}Cond cond ){
@@ -75,7 +75,7 @@ public class ${upp}Controller {
 //	}
 
     /**
-     * @方法说明 按主键查单个${cName}记录
+     * @方法说明 按主键查单个【${cName}】记录
      */
 //	@PostMapping("findById")
 //	public Result findById(@RequestParam("id") ${idType} id) {
@@ -83,7 +83,7 @@ public class ${upp}Controller {
 //	}
 
     /**
-     * @方法说明 按条件查询${cName}记录个数
+     * @方法说明 按条件查询【${cName}】记录个数
      */
 //	@PostMapping("queryCount")
 //	public Result queryCount(@RequestBody ${upp}Cond cond ){

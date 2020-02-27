@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 </#if>
 /**
- * @类说明 [${cName}]实体类
+ * @类说明 【${cName}】实体类
  * @author ${auth}
  * @date ${time}
  **/

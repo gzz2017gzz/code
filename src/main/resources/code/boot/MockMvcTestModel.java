@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 /**
- * @类说明 [${cName}]测试工具，将本类移到maven测试目录中或测试完成之后删除
+ * @类说明 【${cName}】测试工具，将本类移到maven测试目录中或测试完成之后删除
  * @author 高振中
  * @date 2019-01-12 22:40:08
  **/
@@ -28,7 +28,7 @@ public class MockMvcTest${upp} {
 	@Autowired
 	private MockMvc mvc;
 	/**
-	 * @方法说明 测试 新增[${cName}]记录,根据数据类型修改每个字段的值
+	 * @方法说明 测试 新增【${cName}】记录,根据数据类型修改每个字段的值
 	 */
  	//@Test
 	public void save() throws Exception {
@@ -40,7 +40,7 @@ public class MockMvcTest${upp} {
 		log.info(doRequest("/${lowUpp}/save", ${lowUpp}));
 	}
 	/**
-	 * @方法说明 测试 查询[${cName}]列表,条件可以为空,可直接运行
+	 * @方法说明 测试 查询【${cName}】列表,条件可以为空,可直接运行
 	 */
 	@Test
 	public void queryList() throws Exception {
@@ -52,7 +52,7 @@ public class MockMvcTest${upp} {
 		log.info(doRequest("/${lowUpp}/queryList", cond));
 	}
 	/**
-	 * @方法说明 测试 查询[${cName}]分页列表,条件可以为空,可直接运行
+	 * @方法说明 测试 查询【${cName}】分页列表,条件可以为空,可直接运行
 	 */
 	@Test
 	public void queryPage() throws Exception {

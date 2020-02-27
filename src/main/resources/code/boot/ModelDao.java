@@ -7,7 +7,7 @@ import com.gzz.common.base.Page;
 import com.gzz.common.base.SqlUtil;
 import lombok.extern.slf4j.Slf4j;
 /**
- * @类说明 [${cName}]数据访问层
+ * @类说明 【${cName}】数据访问层
  * @author ${auth}
  * @date ${time}
  **/
@@ -29,7 +29,7 @@ public class ${upp}Dao extends BaseDao{
     }
 
     /**
-     * @方法说明  新增${cName}记录
+     * @方法说明  新增【${cName}】记录
      */
     public int save(${upp} vo) {
         StringBuilder sql = new StringBuilder();
@@ -41,7 +41,7 @@ public class ${upp}Dao extends BaseDao{
     }
     
     /**
-     * @方法说明 物理删除${cName}记录(多条)
+     * @方法说明 物理删除【${cName}】记录(多条)
      */
     public int delete(Object ids[]) {
         String sql = "DELETE FROM ${tName} WHERE ${idName} IN " + SqlUtil.ArrayToIn(ids);
@@ -49,7 +49,7 @@ public class ${upp}Dao extends BaseDao{
     }
     
     /**
-     * @方法说明 更新${cName}记录
+     * @方法说明 更新【${cName}】记录
      */
     public int update(${upp} vo) {
         StringBuilder sql = new StringBuilder();
@@ -60,7 +60,7 @@ public class ${upp}Dao extends BaseDao{
       }
 
     /**
-     * @方法说明 按条件查询分页${cName}列表
+     * @方法说明 按条件查询分页【${cName}】列表
      */
     public Page<${upp}> queryPage(${upp}Cond cond) {
         StringBuilder sb = new StringBuilder(select);
@@ -71,7 +71,7 @@ public class ${upp}Dao extends BaseDao{
     }
     
     /**
-     * @方法说明 按条件查询不分页${cName}列表
+     * @方法说明 按条件查询不分页【${cName}】列表
      */
     public List<${upp}> queryList(${upp}Cond cond) {
     	StringBuilder sb = new StringBuilder(select);
@@ -81,7 +81,7 @@ public class ${upp}Dao extends BaseDao{
     }
     
     /**
-     * @方法说明 按ID查找单个${cName}实体
+     * @方法说明 按ID查找单个【${cName}】实体
      */
 //	public ${upp} findById(${idType} id) {
 //		StringBuilder sb = new StringBuilder(select);
@@ -90,7 +90,7 @@ public class ${upp}Dao extends BaseDao{
 //	}
     
     /**
-     * @方法说明 按条件查询${cName}记录个数
+     * @方法说明 按条件查询【${cName}】记录个数
      */
 //	public long queryCount(${upp}Cond cond) {
 //		String countSql = "SELECT COUNT(1) FROM ${tName} t " + cond.getWhere();
@@ -98,7 +98,7 @@ public class ${upp}Dao extends BaseDao{
 //	}
     
     /**
-     * @方法说明 逻辑删除${cName}记录 
+     * @方法说明 逻辑删除【${cName}】记录 
      */
 //	public int deleteLogic(Object ids[]) {
 //		String sql = "UPDATE ${tName} SET delete_remark=1 WHERE ${idName} IN " + SqlUtil.ArrayToIn(ids);
@@ -106,14 +106,14 @@ public class ${upp}Dao extends BaseDao{
 //	}
     
     /**
-     * @方法说明 新增${cName}记录并返回自增涨主键值
+     * @方法说明 新增【${cName}】记录并返回自增涨主键值
      */
 //	public long saveReturnPK(${upp} vo) {
 //		return saveKey(vo, insert.toString(), "${idName}");
 //	}
     
     /**
-     * @方法说明 批量插入${cName}记录
+     * @方法说明 批量插入【${cName}】记录
      */
 //	public int[] insertBatch(List<${upp}> list) {
 //		return batchOperate(list, insert.toString());
