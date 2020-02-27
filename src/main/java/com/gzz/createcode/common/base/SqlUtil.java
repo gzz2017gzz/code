@@ -5,9 +5,9 @@ import java.text.SimpleDateFormat;
 import com.gzz.createcode.common.utils.SqlFormatterUtils;
 
 /**
- * @功能描述:代码工具
+ * @功能描述:SQL工具
  * @author https://www.jianshu.com/u/3bd57d5f1074
- * @date 2018-07-13
+ * @date 2020-02-02 02:20:20
  */
 public final class SqlUtil {
 	/**

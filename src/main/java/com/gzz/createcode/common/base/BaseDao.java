@@ -15,7 +15,7 @@ import org.springframework.jdbc.support.KeyHolder;
 /**
  * @功能描述 dao类公共类
  * @author https://www.jianshu.com/u/3bd57d5f1074
- * @date 2019-12-24 10:50:00
+ * @date 2020-02-02 02:20:20
  */
 @Scope("prototype")
 public class BaseDao {
