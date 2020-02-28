@@ -6,7 +6,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.gzz.createcode.common.base.BaseDao;
-import com.gzz.createcode.common.base.SqlUtil;
 import com.gzz.createcode.mvc.model.CodeCond;
 import com.gzz.createcode.mvc.model.Field;
 import com.gzz.createcode.mvc.model.Table;
@@ -50,7 +49,7 @@ public class CodeDao extends BaseDao {
 		sb.append(" FROM INFORMATION_SCHEMA.COLUMNS WHERE table_schema=(SELECT DATABASE())");
 		sb.append(cond.and());
 		sb.append(" ORDER BY ORDINAL_POSITION");
-		log.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
+		log.info(super.sql(sb.toString(), cond.getArray()));
 		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<Field>(Field.class));
 	}
 

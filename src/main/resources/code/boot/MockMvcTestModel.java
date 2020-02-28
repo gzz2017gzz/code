@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
+//import org.springframework.test.web.servlet.MvcResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 /**
@@ -19,15 +19,15 @@ import lombok.extern.slf4j.Slf4j;
  * @author 高振中
  * @date 2019-01-12 22:40:08
  **/
-@RunWith(SpringRunner.class)
+@Slf4j
 @SpringBootTest
 @AutoConfigureMockMvc
-@Slf4j
+@RunWith(SpringRunner.class)
 public class MockMvcTest${upp} {
 	@Autowired
-	private ObjectMapper mapper;
-	@Autowired
 	private MockMvc mvc;
+	@Autowired
+	private ObjectMapper mapper;
 	/**
 	 * @方法说明 测试 新增【${cName}】记录,根据数据类型修改每个字段的值
 	 */

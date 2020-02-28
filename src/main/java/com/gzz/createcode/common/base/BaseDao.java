@@ -1,5 +1,6 @@
 package com.gzz.createcode.common.base;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,9 +29,9 @@ public class BaseDao {
 	/**
 	 * @功能描述 分类查询
 	 */
-	protected final <T, C extends BaseCondition> Page<T> queryPage(final String sql, C cond, final Class<T> clazz) {
-//		String countSQL = "SELECT count(1) FROM (" + sql + ") t";//支持要分页的句中有嵌套select .... from,效率低
-		String countSQL = sql.replaceAll("(?i)(SELECT)(.*)(?i)(FROM)", "$1 count(1) $3");// 不支持要分页的句中有嵌套select .... from,效率高
+	final protected <T, C extends BaseCondition> Page<T> queryPage(final String sql, C cond, final Class<T> clazz) {
+//		String countSQL = "SELECT count(1) FROM (" + sql + ") t";
+		String countSQL = sql.replaceAll("(?i)(SELECT)(.*)(?i)(FROM)", "$1 count(1) $3");// 高效不支持嵌套
 		int rowCount = jdbcTemplate.queryForObject(countSQL, cond.getArray(), Integer.class);
 		int pageSize = cond.getSize();
 		int curPage = cond.getPage();
@@ -48,16 +49,38 @@ public class BaseDao {
 	/**
 	 * @功能描述 批操作
 	 */
-	protected final <T> int[] batchOperate(final List<T> list, final String sql) {
+	final protected <T> int[] batchOperate(final List<T> list, final String sql) {
 		return nameJdbcTemplate.batchUpdate(sql, list.stream().map(i -> new BeanPropertySqlParameterSource(i)).collect(Collectors.toList()).toArray(new BeanPropertySqlParameterSource[] {}));
 	}
 
 	/**
 	 * @功能描述 保存数据返回主键
 	 */
-	protected final <T> long saveKey(final T t, String sql, final String id) {
+	final protected <T> long saveKey(final T t, String sql, final String id) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		nameJdbcTemplate.update(sql, new BeanPropertySqlParameterSource(t), keyHolder, new String[] { id });
 		return keyHolder.getKey().longValue();
+	}
+
+	/**
+	 * @方法说明:数据库中执行的SQL语句
+	 */
+	final public static String sql(String sql, final Object[] obj) {
+		String param;
+		for (int j = 0; null != obj && j < obj.length; j++) {
+			param = "null";
+			if (null != obj[j]) {
+				String cname = obj[j].getClass().getName();
+				if (cname.contains("Date") || cname.contains("Timestamp")) {
+					param = "'" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(obj[j]) + "'";
+				} else if (cname.contains("String")) {
+					param = "'" + (String) obj[j] + "'";
+				} else {
+					param = obj[j].toString();
+				}
+			}
+			sql = sql.replaceFirst("[?]", param);
+		}
+		return sql;
 	}
 }

@@ -1,10 +1,11 @@
 package ${pName};
+
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import com.gzz.common.base.BaseDao;
 import com.gzz.common.base.Page;
-import com.gzz.common.base.SqlUtil;
+import com.gzz.common.base.SQLUnit;
 import lombok.extern.slf4j.Slf4j;
 /**
  * @类说明 【${cName}】数据访问层
@@ -36,7 +37,7 @@ public class ${upp}Dao extends BaseDao{
         sql.append("INSERT INTO ${tName} (${replaceFields})");
         sql.append(" VALUES ${replaceValuesFields}");
         Object[] params ={ ${insertParams} };
-        //log.info(SqlUtil.showSql(sql.toString(), params));//显示SQL语句
+        //log.info(super.sql(sql.toString(), params));//显示SQL语句
         return jdbcTemplate.update(sql.toString(), params);
     }
     
@@ -44,7 +45,7 @@ public class ${upp}Dao extends BaseDao{
      * @方法说明 物理删除【${cName}】记录(多条)
      */
     public int delete(Object ids[]) {
-        String sql = "DELETE FROM ${tName} WHERE ${idName} IN " + SqlUtil.ArrayToIn(ids);
+        String sql = "DELETE FROM ${tName} WHERE ${idName} IN" + SQLUnit.toIn(ids);
         return jdbcTemplate.update(sql,ids);
     }
     
@@ -53,7 +54,7 @@ public class ${upp}Dao extends BaseDao{
      */
     public int update(${upp} vo) {
         StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE ${tName} SET ${updateFields} ");
+        sql.append("UPDATE ${tName} SET ${updateFields}");
         sql.append(" WHERE ${idName}=? ");
         Object[] params = {${updateParams}};
         return jdbcTemplate.update(sql.toString(), params);
@@ -65,7 +66,7 @@ public class ${upp}Dao extends BaseDao{
     public Page<${upp}> queryPage(${upp}Cond cond) {
         StringBuilder sb = new StringBuilder(select);
         sb.append(cond.where());
-        //log.info(SqlUtil.showSql(sb.toString(),cond.getArray()));//显示SQL语句
+        log.info(super.sql(sb.toString(),cond.getArray()));//显示SQL语句
         return queryPage(sb.toString(), cond, ${upp}.class);
     }
     
@@ -75,33 +76,33 @@ public class ${upp}Dao extends BaseDao{
     public List<${upp}> queryList(${upp}Cond cond) {
     	StringBuilder sb = new StringBuilder(select);
     	sb.append(cond.where());
-    	//sb.append(" ORDER BY operate_time DESC");
+    	//sb.append(" ORDER BY ${idName} DESC");
     	return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<>(${upp}.class));
     }
     
     /**
      * @方法说明 按ID查找单个【${cName}】实体
      */
-//	public ${upp} findById(${idType} id) {
-//		StringBuilder sb = new StringBuilder(select);
-//		sb.append(" WHERE t.${idName}=?");
-//		return jdbcTemplate.queryForObject(sb.toString(), new Object[]{id}, new BeanPropertyRowMapper<>(${upp}.class));
-//	}
+	public ${upp} findById(${idType} id) {
+		StringBuilder sb = new StringBuilder(select);
+		sb.append(" WHERE t.${idName}=?");
+		return jdbcTemplate.queryForObject(sb.toString(), new BeanPropertyRowMapper<>(${upp}.class),id);
+	}
     
     /**
      * @方法说明 按条件查询【${cName}】记录个数
      */
-//	public long queryCount(${upp}Cond cond) {
-//		String countSql = "SELECT COUNT(1) FROM ${tName} t " + cond.where();
-//		return jdbcTemplate.queryForObject(countSql, cond.getArray(), Long.class);
-//	}
+	public long queryCount(${upp}Cond cond) {
+		String countSql = "SELECT COUNT(1) FROM ${tName} t " + cond.where();
+		return jdbcTemplate.queryForObject(countSql, cond.getArray(), Long.class);
+	}
     
     /**
      * @方法说明 逻辑删除【${cName}】记录 
      */
-//	public int deleteLogic(Object ids[]) {
-//		String sql = "UPDATE ${tName} SET delete_remark=1 WHERE ${idName} IN " + SqlUtil.ArrayToIn(ids);
-//		return jdbcTemplate.update( sql, ids );
+//	public int delete(Object ids[]) {
+//		String sql = "UPDATE ${tName} SET dr=1 WHERE ${idName} IN " + SQLUnit.toIn(ids);
+//		return jdbcTemplate.update(sql,ids);
 //	}
     
     /**
