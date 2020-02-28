@@ -48,7 +48,7 @@ public class CodeDao extends BaseDao {
 		sb.append(" WHEN DATA_TYPE = 'boolean' OR DATA_TYPE = 'bit' THEN 'Boolean'");
 		sb.append(" ELSE CONCAT ('无效数据类型', DATA_TYPE) END type,CHARACTER_MAXIMUM_LENGTH length");
 		sb.append(" FROM INFORMATION_SCHEMA.COLUMNS WHERE table_schema=(SELECT DATABASE())");
-		sb.append(cond.getCondition());
+		sb.append(cond.and());
 		sb.append(" ORDER BY ORDINAL_POSITION");
 		log.info(SqlUtil.showSql(sb.toString(), cond.getArray()));
 		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<Field>(Field.class));

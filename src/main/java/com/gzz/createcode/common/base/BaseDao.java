@@ -30,13 +30,18 @@ public class BaseDao {
 	 */
 	protected final <T, C extends BaseCondition> Page<T> queryPage(final String sql, C cond, final Class<T> clazz) {
 //		String countSQL = "SELECT count(1) FROM (" + sql + ") t";//支持要分页的句中有嵌套select .... from,效率低
-		String countSQL = sql.replaceAll("(?i)(SELECT)(.*)(?i)(FROM)", "$1 count(1) $3");//不支持要分页的句中有嵌套select .... from,效率高
+		String countSQL = sql.replaceAll("(?i)(SELECT)(.*)(?i)(FROM)", "$1 count(1) $3");// 不支持要分页的句中有嵌套select .... from,效率高
 		int rowCount = jdbcTemplate.queryForObject(countSQL, cond.getArray(), Integer.class);
 		int pageSize = cond.getSize();
 		int curPage = cond.getPage();
 		int pageCount = rowCount % pageSize == 0 ? rowCount / pageSize : rowCount / pageSize + 1;
-		String listSql = sql + " LIMIT " + curPage * pageSize + "," + pageSize;
-		List<T> dataList = jdbcTemplate.query(listSql.toString(), cond.getArray(), new BeanPropertyRowMapper<T>(clazz));
+		StringBuffer listSQL = new StringBuffer();
+		listSQL.append(sql);
+		listSQL.append(" LIMIT ");
+		listSQL.append(curPage * pageSize);
+		listSQL.append(",");
+		listSQL.append(pageSize);
+		List<T> dataList = jdbcTemplate.query(listSQL.toString(), cond.getArray(), new BeanPropertyRowMapper<T>(clazz));
 		return new Page<T>(dataList, pageSize, rowCount, curPage, pageCount);
 	}
 

@@ -157,15 +157,15 @@ public abstract class BaseCondition {
 	 * @功能说明 把第一个AND换成WHERE
 	 */
 
-	final public String getWhere() {
-		return getCondition().replaceFirst("(?i)(AND)", "WHERE");
+	final public String where() {
+		return and().replaceFirst("(?i)(AND)", "WHERE");
 	}
 
 	/**
 	 * @功能说明 取条件字符串
 	 */
 
-	final public String getCondition() {
+	final public String and() {
 		condition.setLength(0); // 清除查询条件
 		paramList.clear();
 		addCondition();

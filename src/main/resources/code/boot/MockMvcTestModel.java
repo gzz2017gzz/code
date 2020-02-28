@@ -24,7 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 @AutoConfigureMockMvc
 @Slf4j
 public class MockMvcTest${upp} {
- 
+	@Autowired
+	private ObjectMapper mapper;
 	@Autowired
 	private MockMvc mvc;
 	/**
@@ -67,7 +68,7 @@ public class MockMvcTest${upp} {
 	}
 	
 	private <T> String doRequest(String url, T t) throws Exception {// restController专用测试方法
-		return mvc.perform(post(url).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(t))).andExpect(status().isOk())
+		return mvc.perform(post(url).contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(t))).andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn().getResponse().getContentAsString();
 	}
 }

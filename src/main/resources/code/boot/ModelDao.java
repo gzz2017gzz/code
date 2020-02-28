@@ -64,8 +64,7 @@ public class ${upp}Dao extends BaseDao{
      */
     public Page<${upp}> queryPage(${upp}Cond cond) {
         StringBuilder sb = new StringBuilder(select);
-        sb.append(cond.getWhere());
-        //sb.append(cond.getOrderSql());//增加排序子句;
+        sb.append(cond.where());
         //log.info(SqlUtil.showSql(sb.toString(),cond.getArray()));//显示SQL语句
         return queryPage(sb.toString(), cond, ${upp}.class);
     }
@@ -75,7 +74,7 @@ public class ${upp}Dao extends BaseDao{
      */
     public List<${upp}> queryList(${upp}Cond cond) {
     	StringBuilder sb = new StringBuilder(select);
-    	sb.append(cond.getWhere());
+    	sb.append(cond.where());
     	//sb.append(" ORDER BY operate_time DESC");
     	return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<>(${upp}.class));
     }
@@ -85,7 +84,7 @@ public class ${upp}Dao extends BaseDao{
      */
 //	public ${upp} findById(${idType} id) {
 //		StringBuilder sb = new StringBuilder(select);
-//		sb.append(" AND t.${idName}=?");
+//		sb.append(" WHERE t.${idName}=?");
 //		return jdbcTemplate.queryForObject(sb.toString(), new Object[]{id}, new BeanPropertyRowMapper<>(${upp}.class));
 //	}
     
@@ -93,7 +92,7 @@ public class ${upp}Dao extends BaseDao{
      * @方法说明 按条件查询【${cName}】记录个数
      */
 //	public long queryCount(${upp}Cond cond) {
-//		String countSql = "SELECT COUNT(1) FROM ${tName} t " + cond.getWhere();
+//		String countSql = "SELECT COUNT(1) FROM ${tName} t " + cond.where();
 //		return jdbcTemplate.queryForObject(countSql, cond.getArray(), Long.class);
 //	}
     
