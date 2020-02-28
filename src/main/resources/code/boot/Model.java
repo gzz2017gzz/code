@@ -25,6 +25,12 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "${upp}", description = "${cName}实体")
 </#if>
 public class ${upp} {
+//	@NotNull(message = "客户主建(Id)不能为空(数值型)")
+//	@NotEmpty(message = "客户名称(name)不能为空(字符型)")
+//	@Length(max = 20, min = 10, message = "客户名称(name)长度在有10~20之间(字符型)")
+//	@Max(value = 1000, message = "客户年龄(age)最大值是1000(数值型)")
+//	@Min(value = 100, message = "客户年龄(age)最小值是100(数值型)")
+//	@Pattern(regexp = "^\\d{10}$", message = "必须为10位数字(字符型[正规判断])")
     // 以下为数据库中 字段
 <#list fList as fi>
 <#if swagger == 1>
