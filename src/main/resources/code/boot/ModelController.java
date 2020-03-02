@@ -42,7 +42,7 @@ public class ${upp}Controller {
      * @方法说明 删除【${cName}】记录
      */
 	@PostMapping("delete")
-	public Result delete(${idType} ids[]) {
+	public Result delete(${idType}[] ids) {
 		return Result.success(${lowUpp}Service.delete(ids));
 	}
 

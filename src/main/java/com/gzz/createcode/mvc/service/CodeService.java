@@ -65,9 +65,9 @@ public final class CodeService {
 			importList.add(Utils.bigImport(fList));
 
 			params.put("importList", importList);
-			params.put("selectFields", Utils.addAllFieldWithVar(fList, "t.", ",", "select"));
-			params.put("insertFields", Utils.addAllFieldWithVar(fList, "", ",", "//insert"));
-			params.put("insertValuesFields", Utils.addAllFieldWithVar(fList, ":", ",", "//insert"));
+			params.put("selectFields", Utils.addAllFieldWithVar(fList, "t.", ",", "sql"));
+			params.put("insertFields", Utils.addAllFieldWithVar(fList, "", ",", "//sql"));
+			params.put("insertValuesFields", Utils.addAllFieldWithVar(fList, ":", ",", "//sql"));
 
 			params.put("replaceFields", Utils.addAllFieldWithVar(fList, "", ",", "sql"));
 			

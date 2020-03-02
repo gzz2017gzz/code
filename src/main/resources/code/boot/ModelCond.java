@@ -40,7 +40,7 @@ public class ${upp}Cond extends BaseCondition {
 		add("AND t.${fi.name} = ?", ${fi.name});
 </#if>
 </#list>
- 		add("AND t.id IN ", ids);
+ 		add("AND t.id IN", ids);
     }
 //	以下为查询条件
 <#list fList as fi>

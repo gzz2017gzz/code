@@ -29,7 +29,7 @@ public class ${upp}Service {
 	/**
 	 * @方法说明 删除【${cName}】记录(多条)
 	 */
-	public int delete(${idType} ids[]) {
+	public int delete(${idType}[] ids) {
 		return ${lowUpp}Dao.delete(ids);//物理删除
 	}
 
