@@ -3,6 +3,8 @@ package ${pName};
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.assertj.core.util.Arrays;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,26 +47,27 @@ public class MockMvcTest${upp} {
 	 */
 	@Test
 	public void queryList() throws Exception {
-		${upp}Cond cond = ${upp}Cond.builder()
+		${upp}Cond cond = ${upp}Cond.builder()//拼查询条件
  		<#list fList as fi>
- 		//.${fi.name}("gaozz")  // 设置查询条件【${fi.comment}】的值
+ 				//.${fi.name}("gaozz")  // 【${fi.comment}】值
  		</#list>	
 		.build();
-		log.info(doRequest("/${lowUpp}/queryList", cond));
+		log.info(doRequest("/${lowUpp}/list", cond));
 	}
 	/**
 	 * @方法说明 测试 查询【${cName}】分页列表,条件可以为空,可直接运行
 	 */
 	@Test
 	public void queryPage() throws Exception {
-		${upp}Cond cond = ${upp}Cond.builder()
+		${upp}Cond cond = ${upp}Cond.builder()//拼查询条件
  		<#list fList as fi>
- 		//.${fi.name}("gaozz")  // 设置查询条件【${fi.comment}】的值
- 		</#list>	
+ 				//.${fi.name}("gaozz")  // 【${fi.comment}】值
+ 		</#list>
+ 		.ids(Arrays.asList(new Object[]{1,2,3,4}))
 		.build();
 		cond.setPage(0); //当前页
 		cond.setSize(10); //页大小
-		log.info(doRequest("/${lowUpp}/queryPage", cond));
+		log.info(doRequest("/${lowUpp}/page", cond));
 	}
 	
 	private <T> String doRequest(String url, T t) throws Exception {// restController专用测试方法

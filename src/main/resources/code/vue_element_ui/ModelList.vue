@@ -75,7 +75,7 @@
         that.page = (firstPage === true ? 1 : that.page);//点按钮的查询转到第一页
         that.loading = true;
         const requestData = {...that.form, page: that.page - 1, size: that.size};
-        that.${dollar}http.post("/${lowUpp}/queryPage", JSON.stringify(requestData)).then(res => {
+        that.${dollar}http.post("/${lowUpp}/page", JSON.stringify(requestData)).then(res => {
           that.loading = false;
           that.dataList = res.data.dataList;//数据列表
           that.total = res.data.rowCount;//记录个数

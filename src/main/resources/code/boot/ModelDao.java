@@ -46,6 +46,7 @@ public class ${upp}Dao extends BaseDao{
      */
     public int delete(Object ids[]) {
         String sql = "DELETE FROM ${tName} WHERE ${idName} IN" + SQLUnit.toIn(ids);
+        //log.info(super.sql(sql, ids));//显示SQL语句
         return jdbcTemplate.update(sql,ids);
     }
     
@@ -57,44 +58,48 @@ public class ${upp}Dao extends BaseDao{
         sql.append("UPDATE ${tName} SET ${updateFields}");
         sql.append(" WHERE ${idName}=? ");
         Object[] params = {${updateParams}};
+        //log.info(super.sql(sql.toString(), params));//显示SQL语句
         return jdbcTemplate.update(sql.toString(), params);
       }
 
     /**
      * @方法说明 按条件查询分页【${cName}】列表
      */
-    public Page<${upp}> queryPage(${upp}Cond cond) {
-        StringBuilder sb = new StringBuilder(select);
-        sb.append(cond.where());
-        log.info(super.sql(sb.toString(),cond.getArray()));//显示SQL语句
-        return queryPage(sb.toString(), cond, ${upp}.class);
+    public Page<${upp}> page(${upp}Cond cond) {
+        StringBuilder sql = new StringBuilder(select);
+        sql.append(cond.where());
+        log.info(super.sql(sql.toString(),cond.array()));//显示SQL语句
+        return queryPage(sql.toString(), cond, ${upp}.class);
     }
     
     /**
      * @方法说明 按条件查询不分页【${cName}】列表
      */
-    public List<${upp}> queryList(${upp}Cond cond) {
-    	StringBuilder sb = new StringBuilder(select);
-    	sb.append(cond.where());
-    	//sb.append(" ORDER BY ${idName} DESC");
-    	return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<>(${upp}.class));
+    public List<${upp}> list(${upp}Cond cond) {
+    	StringBuilder sql = new StringBuilder(select);
+    	sql.append(cond.where());
+    	sql.append(" ORDER BY ${idName} DESC");
+    	//log.info(super.sql(sql.toString(),cond.array()));//显示SQL语句
+    	return jdbcTemplate.query(sql.toString(), cond.array(), new BeanPropertyRowMapper<>(${upp}.class));
     }
     
     /**
      * @方法说明 按ID查找单个【${cName}】实体
      */
 	public ${upp} findById(${idType} id) {
-		StringBuilder sb = new StringBuilder(select);
-		sb.append(" WHERE t.${idName}=?");
-		return jdbcTemplate.queryForObject(sb.toString(), new BeanPropertyRowMapper<>(${upp}.class),id);
+		StringBuilder sql = new StringBuilder(select);
+		sql.append(" WHERE t.${idName}=?");
+		//log.info(super.sql(sql.toString(),id));//显示SQL语句
+		return jdbcTemplate.queryForObject(sql.toString(), new BeanPropertyRowMapper<>(${upp}.class), id);
 	}
     
     /**
      * @方法说明 按条件查询【${cName}】记录个数
      */
-	public long queryCount(${upp}Cond cond) {
-		String countSql = "SELECT COUNT(1) FROM ${tName} t " + cond.where();
-		return jdbcTemplate.queryForObject(countSql, cond.getArray(), Long.class);
+	public int count(${upp}Cond cond) {
+		String sql = "SELECT COUNT(1) FROM ${tName} t " + cond.where();
+		//log.info(super.sql(sql,cond.array()));//显示SQL语句
+		return jdbcTemplate.queryForObject(sql, cond.array(), Integer.class);
 	}
     
     /**

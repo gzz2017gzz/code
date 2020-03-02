@@ -1,17 +1,18 @@
 package ${pName};
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.gzz.common.base.Page;
-
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
-import com.xsrt.common.Result;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.gzz.common.config.Result;
 
 /**
  * @类说明 【${cName}】控制器
@@ -24,7 +25,7 @@ import com.xsrt.common.Result;
 public class ${upp}Controller {
  
 	@Autowired
-	private ${upp}Service service; //注入${cName}业务逻辑层
+	private ${upp}Service ${lowUpp}Service; //注入【${cName}】业务逻辑层
 
     /**
      * @方法说明  新增【${cName}】记录
@@ -34,7 +35,7 @@ public class ${upp}Controller {
 		if (result.hasErrors()) {
 			return Result.error(1, "验证失败！", result.getFieldErrors().stream().map(FieldError::getDefaultMessage).collect(Collectors.toList()));
 		}
-		return Result.success(service.save(${lowUpp}));
+		return Result.success(${lowUpp}Service.save(${lowUpp}));
 	}
 
     /**
@@ -42,7 +43,7 @@ public class ${upp}Controller {
      */
 	@PostMapping("delete")
 	public Result delete(${idType} ids[]) {
-		return Result.success(service.delete(ids));
+		return Result.success(${lowUpp}Service.delete(ids));
 	}
 
     /**
@@ -53,23 +54,23 @@ public class ${upp}Controller {
 		if (result.hasErrors()) {
 			return Result.error(1, "验证失败！", result.getFieldErrors().stream().map(FieldError::getDefaultMessage).collect(Collectors.toList()));
 		}
-		return Result.success(service.update(${lowUpp}));
+		return Result.success(${lowUpp}Service.update(${lowUpp}));
 	}
 
     /**
      * @方法说明 按条件查询分页【${cName}】列表
      */
-	@PostMapping("queryPage")
-	public Result queryPage(@RequestBody ${upp}Cond cond ){
-		return Result.success(service.queryPage(cond));
+	@PostMapping("page")
+	public Result page(@RequestBody ${upp}Cond cond ){
+		return Result.success(${lowUpp}Service.page(cond));
 	}
 
     /**
      * @方法说明 按条件查询不分页【${cName}】列表
      */
-	@PostMapping("queryList")
-	public Result queryList(@RequestBody ${upp}Cond cond ){
-		return Result.success(service.queryList(cond));
+	@PostMapping("list")
+	public Result list(@RequestBody ${upp}Cond cond ){
+		return Result.success(${lowUpp}Service.list(cond));
 	}
 
     /**
@@ -77,14 +78,14 @@ public class ${upp}Controller {
      */
 	@PostMapping("findById")
 	public Result findById(@RequestParam("id") ${idType} id) {
-		return Result.success(service.findById(id));
+		return Result.success(${lowUpp}Service.findById(id));
 	}
 
     /**
      * @方法说明 按条件查询【${cName}】记录个数
      */
-	@PostMapping("queryCount")
-	public Result queryCount(@RequestBody ${upp}Cond cond ){
-		return Result.success(service.queryCount(cond));
+	@PostMapping("count")
+	public Result count(@RequestBody ${upp}Cond cond ){
+		return Result.success(${lowUpp}Service.count(cond));
 	}
 }

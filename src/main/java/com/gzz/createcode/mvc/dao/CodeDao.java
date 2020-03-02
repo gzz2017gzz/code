@@ -49,8 +49,8 @@ public class CodeDao extends BaseDao {
 		sb.append(" FROM INFORMATION_SCHEMA.COLUMNS WHERE table_schema=(SELECT DATABASE())");
 		sb.append(cond.and());
 		sb.append(" ORDER BY ORDINAL_POSITION");
-		log.info(super.sql(sb.toString(), cond.getArray()));
-		return jdbcTemplate.query(sb.toString(), cond.getArray(), new BeanPropertyRowMapper<Field>(Field.class));
+		log.info(super.sql(sb.toString(), cond.array()));
+		return jdbcTemplate.query(sb.toString(), cond.array(), new BeanPropertyRowMapper<Field>(Field.class));
 	}
 
 }

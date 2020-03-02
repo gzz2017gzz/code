@@ -7,15 +7,14 @@ import java.util.List;
 
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
-
-import lombok.Data;
+ 
 
 /**
  * @功能说明 拼加页面查询条件的基础类
  * @author https://www.jianshu.com/u/3bd57d5f1074
  * @date 2020-02-02 02:20:20
  */
-@Data
+
 public abstract class BaseCondition {
 
 	private static final List<Object> paramList = new ArrayList<>();// 参数值
@@ -150,7 +149,7 @@ public abstract class BaseCondition {
 	/**
 	 * @功能说明 将List转为数组
 	 */
-	final public Object[] getArray() {
+	final public Object[] array() {
 		return paramList.toArray();
 	}
 
@@ -177,5 +176,21 @@ public abstract class BaseCondition {
 	 * @功能说明 拼加条件方法
 	 */
 	public abstract void addCondition();
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
 
 }

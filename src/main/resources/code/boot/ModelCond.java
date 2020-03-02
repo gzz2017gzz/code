@@ -1,5 +1,6 @@
 package ${pName};
 <#list importList as item>${item}</#list>
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
@@ -34,12 +35,12 @@ public class ${upp}Cond extends BaseCondition {
     public void addCondition() {
 <#list fList as fi>
 <#if fi.type == "String">
-		add(${fi.name}, "AND t.${fi.name} LIKE ?", 3);
+		add("AND t.${fi.name} LIKE ?", ${fi.name}, 3);
 <#else>
-		add(${fi.name}, "AND t.${fi.name} = ?");
+		add("AND t.${fi.name} = ?", ${fi.name});
 </#if>
 </#list>
-//		add(ids, "AND t.id IN ");
+ 		add("AND t.id IN ", ids);
     }
 //	以下为查询条件
 <#list fList as fi>
@@ -48,6 +49,6 @@ public class ${upp}Cond extends BaseCondition {
 </#if>
 	private ${fi.type} ${fi.name}; // ${fi.comment}
 </#list>
-//	private List<Object> ids;// 主键列表
+ 	private List<Object> ids;// 主键列表
 //	以下为自定义查询条件
 }
