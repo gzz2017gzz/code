@@ -66,8 +66,8 @@ public final class CodeService {
 
 			params.put("importList", importList);
 			params.put("selectFields", Utils.addAllFieldWithVar(fList, "t.", ",", "sql"));
-			params.put("insertFields", Utils.addAllFieldWithVar(fList, "", ",", "//sql"));
-			params.put("insertValuesFields", Utils.addAllFieldWithVar(fList, ":", ",", "//sql"));
+			params.put("insertFields", Utils.addAllFieldWithVar(fList, "", ",", "sql"));
+			params.put("insertValuesFields", Utils.addAllFieldWithVar(fList, ":", ",", "sql"));
 
 			params.put("replaceFields", Utils.addAllFieldWithVar(fList, "", ",", "sql"));
 			
@@ -76,8 +76,8 @@ public final class CodeService {
 			params.put("updateFields", Utils.addAllFieldWithVar(updates, "", "=?,", "sql"));
 			
 			params.put("replaceValuesFields", Utils.questionMark(fList.size()));
-			params.put("updateParams", Utils.addUpdateField(fList, "vo.get", "()"));
-			params.put("insertParams", Utils.addAllField(fList, "vo.get", "()"));
+			params.put("updateParams", Utils.addUpdateField(fList, " vo.get", "()"));
+			params.put("insertParams", Utils.addAllField(fList, " vo.get", "()"));
 			params.put("dollar", "$");
 			params.put("well", "#");
 			

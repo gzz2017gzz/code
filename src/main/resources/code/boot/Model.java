@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
 @Setter
 @Getter
 //@Accessors(chain = true)
-@Builder	
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 <#if swagger == 1>
@@ -31,12 +31,12 @@ public class ${upp} {
 //	@Max(value = 1000, message = "客户年龄(age)最大值是1000(数值型)")
 //	@Min(value = 100, message = "客户年龄(age)最小值是100(数值型)")
 //	@Pattern(regexp = "^\\d{10}$", message = "必须为10位数字(字符型[正规判断])")
-    // 以下为数据库中 字段
+	// 以下为数据库中 字段
 <#list fList as fi>
 <#if swagger == 1>
 	@ApiModelProperty(value = "${fi.comment}", dataType = "${fi.type}")
 </#if>	
 	private ${fi.type} ${fi.name}; // ${fi.comment}
 </#list>
-    // 以下为查询显示辅助属性
+	// 以下为查询显示辅助属性
 }

@@ -40,7 +40,7 @@ public final class Utils {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < list.size(); i++) {
 			Field field = list.get(i);
-			sb.append((i != 0 && i % 8 == 0) ? "\"); \r\n\t\t".concat(varName).concat(".append(\"") : "");
+			sb.append((i != 0 && i % 8 == 0) ? "\");\r\n\t\t".concat(varName).concat(".append(\"") : "");
 			sb.append(prefix.concat(field.getName()).concat(suffix));
 		}
 		return sb.delete(sb.length() - 1, sb.length());
@@ -50,7 +50,7 @@ public final class Utils {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < list.size(); i++) {
 			Field field = list.get(i);
-			sb.append((i != 0 && i % 8 == 0) ? "//太长换行 \r\n\t\t" : "");
+			sb.append((i != 0 && i % 8 == 0) ? " // 太长换行\r\n\t\t\t\t" : "");
 			sb.append(prefix.concat(Utils.firstUpper(field.getName())).concat(suffix + ","));
 		}
 		return sb.delete(sb.length() - 1, sb.length());

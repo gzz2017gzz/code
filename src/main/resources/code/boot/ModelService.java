@@ -14,30 +14,30 @@ import com.gzz.common.base.Page;
 //@Slf4j
 @Service
 public class ${upp}Service {
- 
+
 	@Autowired
-	private ${upp}Dao ${lowUpp}Dao; //注入【${cName}】数据访问层
+	private ${upp}Dao ${lowUpp}Dao; // 注入【${cName}】数据访问层
 
 	/**
 	 * @方法说明 新增【${cName}】记录
 	 */
-	//@Transactional
+	// @Transactional
 	public int save(${upp} ${lowUpp}) {
 		return ${lowUpp}Dao.save(${lowUpp});
 	}
 
 	/**
-	 * @方法说明 删除【${cName}】记录(多条)
+	 * @方法说明 删除【${cName}】记录
 	 */
 	public int delete(${idType}[] ids) {
-		return ${lowUpp}Dao.delete(ids);//物理删除
+		return ${lowUpp}Dao.delete(ids);
 	}
 
 	/**
 	 * @方法说明 更新【${cName}】记录
 	 */
 	public int update(${upp} ${lowUpp}) {
-		return ${lowUpp}Dao.update(${lowUpp}); 
+		return ${lowUpp}Dao.update(${lowUpp});
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class ${upp}Service {
 	}
 
 	/**
-	 * @方法说明  按条件查询不分页【${cName}】列表 
+	 * @方法说明 按条件查询不分页【${cName}】列表
 	 */
 	public List<${upp}> list(${upp}Cond cond) {
 		return ${lowUpp}Dao.list(cond);
