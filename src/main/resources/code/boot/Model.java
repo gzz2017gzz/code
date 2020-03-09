@@ -5,7 +5,6 @@ import lombok.Setter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-
 <#if swagger == 1>
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
