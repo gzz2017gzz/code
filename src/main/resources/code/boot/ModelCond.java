@@ -1,5 +1,4 @@
 package ${pName};
-
 <#list importList as item>${item}</#list>
 import java.util.List;
 

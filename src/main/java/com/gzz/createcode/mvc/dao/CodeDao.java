@@ -13,9 +13,9 @@ import com.gzz.createcode.mvc.model.Table;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author gzz_gzz@163.com
  * @功能描述 mysql数据访问类
- * @date 2018-02-15
+ * @author gzz_gzz@163.com
+ * @date 2020-03-10
  */
 @Slf4j
 @Repository
@@ -45,7 +45,7 @@ public class CodeDao extends BaseDao {
 		sb.append(" WHEN DATA_TYPE = 'double' THEN 'Double'");
 		sb.append(" WHEN DATA_TYPE = 'decimal' THEN 'BigDecimal'");
 		sb.append(" WHEN DATA_TYPE = 'boolean' OR DATA_TYPE = 'bit' THEN 'Boolean'");
-		sb.append(" ELSE CONCAT ('无效数据类型', DATA_TYPE) END type,CHARACTER_MAXIMUM_LENGTH length");
+		sb.append(" ELSE CONCAT ('DATA TYPE IS ERROR', DATA_TYPE) END type,CHARACTER_MAXIMUM_LENGTH length");
 		sb.append(" FROM INFORMATION_SCHEMA.COLUMNS WHERE table_schema=(SELECT DATABASE())");
 		sb.append(cond.and());
 		sb.append(" ORDER BY ORDINAL_POSITION");
