@@ -31,11 +31,11 @@ public final class Utils {
 
 	/**
 	 * @方法说明 拼接字段,getter,setter等
-	 * @param list       字段列表
-	 * @param prefix     前缀
-	 * @param suffix     后缀
-	 * @param wrap       换行符
-	 * @param firstUpper
+	 * @param list   字段列表
+	 * @param prefix 前缀
+	 * @param suffix 后缀
+	 * @param wrap   换行符
+	 * @param join   2首字母大写 1原样 0无
 	 */
 	public static StringBuilder addFieldsWrap(final List<Field> list, final String prefix, final String suffix, final String wrap, final int join) {
 		StringBuilder sb = new StringBuilder();
