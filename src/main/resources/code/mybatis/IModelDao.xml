@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="${pName}.I${upp}Dao">
-    <!-- 基本【${cName}】resultMap用于联表查询增加自定义字段-->
+<mapper namespace="${pName}.I${upp}Mapper">
+    <!-- 基本resultMap -->
     <resultMap type="${pName}.${upp}" id="${upp}">
     	<#list fList as fi>
        	<#if fi_index == 0>
@@ -12,31 +12,23 @@
        	</#if>
         </#list>
     </resultMap>
-		<!--用于联表查询【${cName}】自定义SQL-->
+		<!--联表查询【${cName}】-->
 	<select id="queryList" resultMap="${upp}">
 		SELECT
-			${selectFieldsAll}
+			${selectFieldsMybatis}
 		FROM
 			${tName} t
 		<where>
 			<#list fList as fi>
-			<if test="${fi.name}!= null">AND t.${fi.name}=${well}{${fi.name}}</if>
+			<if test="param.${fi.name}!=null and param.${fi.name}!=''">AND t.${fi.name}=${well}{param.${fi.name}}</if>
 			</#list>
 		</where>
     </select>
-
 	<!--insert【${cName}】并返回主键-->
 	<insert id="insert${upp}" parameterType="${pName}.${upp}"  useGeneratedKeys="true" keyColumn="${idName}" keyProperty="${idName}" >
 		INSERT INTO ${tName}
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-		<#list fList as fi>
-			<if test="${fi.name}!=null">${fi.name},</if>
-		</#list>
-		</trim>
-		<trim prefix="VALUES (" suffix=")" suffixOverrides=",">
-		<#list fList as fi>
-			<if test="${fi.name}!=null">${well}{${fi.name}},</if>
-		</#list>
-		</trim>
+			(${insertFieldsMybatis})
+		VALUES
+			(${insertValuesMybatis})
 	</insert>
 </mapper>

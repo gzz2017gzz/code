@@ -24,9 +24,9 @@ public class ${upp}Dao extends BaseDao {
 	 */
 	public int save(${upp} vo) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("INSERT INTO ${tName} (${replaceFields})");
-		sql.append(" VALUES ${replaceValuesFields }");
-		Object[] params = {${insertParams} };
+		sql.append("INSERT INTO ${tName} (${insertFields})");
+		sql.append(" VALUES (${insertValues})");
+		Object[] params = { ${insertParams} };
 		// log.info(super.sql(sql.toString(), params));// 显示SQL语句
 		return jdbcTemplate.update(sql.toString(), params);
 	}
@@ -47,7 +47,7 @@ public class ${upp}Dao extends BaseDao {
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE ${tName} SET ${updateFields}");
 		sql.append(" WHERE ${idName}=? ");
-		Object[] params = {${updateParams} };
+		Object[] params = { ${updateValues} };
 		// log.info(super.sql(sql.toString(), params));// 显示SQL语句
 		return jdbcTemplate.update(sql.toString(), params);
 	}
@@ -103,7 +103,7 @@ public class ${upp}Dao extends BaseDao {
 	public long saveReturnPK(${upp} vo) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO ${tName} (${insertFields})");
-		sql.append(" VALUES (${insertValuesFields})");
+		sql.append(" VALUES (${insertParamsBatch})");
 		// log.info(super.sql(sql.toString(), vo));// 显示SQL语句
 		return saveKey(vo, sql.toString(), "${idName}");
 	}
@@ -114,7 +114,7 @@ public class ${upp}Dao extends BaseDao {
 	public int[] insertBatch(List<${upp}> list) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO ${tName} (${insertFields})");
-		sql.append(" VALUES (${insertValuesFields})");
+		sql.append(" VALUES (${insertParamsBatch})");
 		// log.info(super.sql(sql.toString(), list));// 显示SQL语句
 		return batchOperate(list, sql.toString());
 	}

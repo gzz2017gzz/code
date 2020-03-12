@@ -13,8 +13,8 @@ import lombok.Setter;
 public class CodeCond extends BaseCondition {
 	@Override
 	public void addCondition() {
-		add(t_name, "AND table_name LIKE ?", 3);
-		add(t_name_eq, "AND table_name = ?");
+		add("AND table_name LIKE ?", t_name, 3);
+		add("AND table_name = ?", t_name_eq);
 	}
 
 	private String t_name;// 表名模糊

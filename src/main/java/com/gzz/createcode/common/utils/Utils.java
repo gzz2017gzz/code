@@ -31,36 +31,27 @@ public final class Utils {
 
 	/**
 	 * @方法说明 拼接字段,getter,setter等
-	 * @param list    字段列表
-	 * @param prefix  前缀
-	 * @param suffix  后缀
-	 * @param varName 变量名
+	 * @param list       字段列表
+	 * @param prefix     前缀
+	 * @param suffix     后缀
+	 * @param wrap       换行符
+	 * @param firstUpper
 	 */
-	public static StringBuilder addAllFieldWithVar(final List<Field> list, final String prefix, final String suffix, final String varName) {
+	public static StringBuilder addFieldsWrap(final List<Field> list, final String prefix, final String suffix, final String wrap, final int join) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < list.size(); i++) {
 			Field field = list.get(i);
-			sb.append((i != 0 && i % 8 == 0) ? "\");\r\n\t\t".concat(varName).concat(".append(\"") : "");
-			sb.append(prefix.concat(field.getName()).concat(suffix));
+			sb.append((i != 0 && i % 8 == 0) ? wrap : "");
+			sb.append(prefix.concat(join == 2 ? Utils.firstUpper(field.getName()) : join == 1 ? field.getName() : "").concat(suffix));
 		}
 		return sb.delete(sb.length() - 1, sb.length());
 	}
 
-	public static StringBuilder addAllField(final List<Field> list, final String prefix, final String suffix) {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < list.size(); i++) {
-			Field field = list.get(i);
-			sb.append((i != 0 && i % 8 == 0) ? " // 太长换行\r\n\t\t\t\t" : "");
-			sb.append(prefix.concat(Utils.firstUpper(field.getName())).concat(suffix + ","));
-		}
-		return sb.delete(sb.length() - 1, sb.length());
-	}
-
-	public static StringBuilder addUpdateField(final List<Field> list, final String prefix, final String suffix) {
+	public static StringBuilder addUpdateField(final List<Field> list, final String prefix, final String suffix, final String wrap, final int firstUpper) {
 		List<Field> sta = new ArrayList<>(list);
 		sta.add(list.get(0));
 		sta.remove(0);
-		return addAllField(sta, prefix, suffix);
+		return addFieldsWrap(sta, prefix, suffix, wrap, firstUpper);
 	}
 
 	/** @方法说明 生成指定个数问号两边加括号 */
@@ -233,15 +224,5 @@ public final class Utils {
 			}
 		}
 		return fileList;
-	}
-
-	public static StringBuilder addAllSqlFields(final List<Field> list, final String prefix, final String suffix) {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < list.size(); i++) {
-			Field field = list.get(i);
-			sb.append((i != 0 && i % 10 == 0) ? " \r\n\t\t" : "");
-			sb.append(prefix.concat((field.getName())).concat(suffix + ","));
-		}
-		return sb.delete(sb.length() - 1, sb.length());
 	}
 }

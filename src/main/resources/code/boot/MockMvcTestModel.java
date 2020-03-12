@@ -33,13 +33,13 @@ public class MockMvcTest${upp} {
 	/**
 	 * @方法说明 测试 新增【${cName}】记录,根据数据类型修改每个字段的值
 	 */
- 	//@Test
+	//@Test
 	public void save() throws Exception {
- 		${upp} ${lowUpp} = ${upp}.builder()
- 		<#list fList as fi>
- 		//.${fi.name}("gaozz") // 设置【${fi.comment}】的值
- 		</#list>
- 		.build();
+		${upp} ${lowUpp} = ${upp}.builder()
+		<#list fList as fi>
+		//.${fi.name}("gaozz") // 设置【${fi.comment}】的值
+		</#list>
+		.build();
 		log.info(doRequest("/${lowUpp}/save", ${lowUpp}));
 	}
 	/**
@@ -48,9 +48,9 @@ public class MockMvcTest${upp} {
 	@Test
 	public void queryList() throws Exception {
 		${upp}Cond cond = ${upp}Cond.builder()//拼查询条件
- 		<#list fList as fi>
- 				//.${fi.name}("gaozz")  // 【${fi.comment}】值
- 		</#list>	
+		<#list fList as fi>
+				//.${fi.name}("gaozz")  // 【${fi.comment}】值
+		</#list>	
 		.build();
 		log.info(doRequest("/${lowUpp}/list", cond));
 	}
@@ -60,10 +60,10 @@ public class MockMvcTest${upp} {
 	@Test
 	public void queryPage() throws Exception {
 		${upp}Cond cond = ${upp}Cond.builder()//拼查询条件
- 		<#list fList as fi>
- 				//.${fi.name}("gaozz")  // 【${fi.comment}】值
- 		</#list>
- 		.ids(Arrays.asList(new Object[]{1,2,3,4}))
+		<#list fList as fi>
+				//.${fi.name}("gaozz")  // 【${fi.comment}】值
+		</#list>
+		.ids(Arrays.asList(new Object[]{1,2,3,4}))
 		.build();
 		cond.setPage(0); //当前页
 		cond.setSize(10); //页大小

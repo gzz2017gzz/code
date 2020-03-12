@@ -1,7 +1,6 @@
 package com.gzz.createcode.mvc.service;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -63,28 +62,24 @@ public final class CodeService {
 			List<String> importList = Lists.newArrayList();
 			importList.add(Utils.dateImport(fList));
 			importList.add(Utils.bigImport(fList));
-
 			params.put("importList", importList);
-			params.put("selectFields", Utils.addAllFieldWithVar(fList, "t.", ",", "sql"));
-			params.put("insertFields", Utils.addAllFieldWithVar(fList, "", ",", "sql"));
-			params.put("insertValuesFields", Utils.addAllFieldWithVar(fList, ":", ",", "sql"));
-
-			params.put("replaceFields", Utils.addAllFieldWithVar(fList, "", ",", "sql"));
-			
-			List<Field> updates = new ArrayList<>(fList);
-			updates.remove(0);
-			params.put("updateFields", Utils.addAllFieldWithVar(updates, "", "=?,", "sql"));
-			
-			params.put("replaceValuesFields", Utils.questionMark(fList.size()));
-			params.put("updateParams", Utils.addUpdateField(fList, " vo.get", "()"));
-			params.put("insertParams", Utils.addAllField(fList, " vo.get", "()"));
 			params.put("dollar", "$");
 			params.put("well", "#");
 			
+			params.put("insertFields", Utils.addFieldsWrap(fList, "", ",", "\");\r\n\t\tsql.append(\"", 1));
+			params.put("insertValues", Utils.addFieldsWrap(fList, "", "?,", "", 0));
+			params.put("insertParams", Utils.addFieldsWrap(fList, "vo.get", "(), ", "//\r\n\t\t\t\t",2));
 			
-			params.put("selectFieldsAll", Utils.addAllSqlFields(fList, "t.", ""));   
+			params.put("updateFields", Utils.addFieldsWrap(fList, "", "=?,", "\");\r\n\t\tsql.append(\"", 1));
+			params.put("updateValues", Utils.addUpdateField(fList, "vo.get", "(), ", "//\r\n\t\t\t\t",2));
 			
+			params.put("selectFields", Utils.addFieldsWrap(fList, "t.", ",", "\");\r\n\t\tsql.append(\"", 1));
+			params.put("insertParamsBatch", Utils.addFieldsWrap(fList, ":", ",", "\");\r\n\t\tsql.append(\"", 1));
 			
+			params.put("insertFieldsMybatis", Utils.addFieldsWrap(fList, "", ",", "\r\n\t\t\t", 1));
+			params.put("selectFieldsMybatis", Utils.addFieldsWrap(fList, "t.", ",", "\r\n\t\t\t", 1));
+			params.put("insertValuesMybatis", Utils.addFieldsWrap(fList, "#{", "},", "\r\n\t\t\t", 1));
+
 			params.put("model", cond.getModel());
 			utils.getTemplates().forEach(item -> {
 				String[] split = item.split("/");
