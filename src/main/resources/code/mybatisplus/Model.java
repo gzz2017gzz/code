@@ -30,17 +30,17 @@ public class ${upp} extends Model<${upp}> {
 //	@Max(value = 1000, message = "客户年龄(age)最大值是1000(数值型)")
 //	@Min(value = 100, message = "客户年龄(age)最小值是100(数值型)")
 //	@Pattern(regexp = "^\\d{10}$", message = "必须为10位数字(字符型)")
-     <#list fList as fi>
-    /**
-     * ${fi.comment}
-     */
-   	<#if fi_index == 0>
-   	@TableId(value = "${fi.name}", type = IdType.AUTO)
-    private ${fi.type} ${fi.name};
-   	</#if>
-   	<#if fi_index != 0>
+	<#list fList as fi>
+	/**
+	 * ${fi.comment}
+	 */
+	<#if fi_index == 0>
+	@TableId(value = "${fi.name}", type = IdType.AUTO)
+	private ${fi.type} ${fi.name};
+	</#if>
+	<#if fi_index != 0>
 	@TableField(value = "${fi.name}", exist = true)
-    private ${fi.type} ${fi.name};
-   	</#if>
-    </#list>
+	private ${fi.type} ${fi.name};
+	</#if>
+	</#list>
 }
