@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.gzz.common.base.BaseDao;
 import com.gzz.common.base.Page;
-import com.gzz.common.base.SQLUnit;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,7 +35,7 @@ public class ${upp}Dao extends BaseDao {
 	 * @方法说明 删除【${cName}】记录
 	 */
 	public int delete(Object[] ids) {
-		String sql = "DELETE FROM ${tName} WHERE ${idName} IN" + SQLUnit.toIn(ids);
+		String sql = "DELETE FROM ${tName} WHERE ${idName} IN" + toIn(ids);
 		// log.info(super.sql(sql, ids));// 显示SQL语句
 		return jdbcTemplate.update(sql, ids);
 	}
@@ -124,7 +123,7 @@ public class ${upp}Dao extends BaseDao {
 	 * @方法说明 逻辑删除【${cName}】记录
 	 */
 //	public int delete(Object... ids) {
-//		String sql = "UPDATE ${tName} SET dr=1 WHERE ${idName} IN " + SQLUnit.toIn(ids);
+//		String sql = "UPDATE ${tName} SET dr=1 WHERE ${idName} IN " + toIn(ids);
 //		return jdbcTemplate.update(sql,ids);
 //	}	
 

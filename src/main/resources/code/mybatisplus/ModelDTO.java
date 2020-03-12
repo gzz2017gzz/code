@@ -20,9 +20,9 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 public class ${upp}DTO{
 	<#list fList as fi>
-    /**
-     * ${fi.comment}
-     */
-    private ${fi.type} ${fi.name};
-    </#list>
+	/**
+	 * ${fi.comment}
+	 */
+	private ${fi.type} ${fi.name};
+	</#list>
 }

@@ -20,7 +20,7 @@
 			${tName} t
 		<where>
 			<#list fList as fi>
-			<if test=" ${fi.name} != null and ${fi.name} != '' "> AND t.${fi.name}=${well}{${fi.name}}</if>
+			<if test="param.${fi.name}!=null and param.${fi.name}!=''">AND t.${fi.name}=${well}{param.${fi.name}}</if>
 			</#list>
 		</where>
     </select>
