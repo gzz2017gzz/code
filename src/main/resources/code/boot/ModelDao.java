@@ -104,7 +104,7 @@ public class ${upp}Dao extends BaseDao {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO ${tName} (${insertFields})");
 		sql.append(" VALUES (${insertParamsBatch})");
-		// log.info(super.sql(sql.toString(), vo));// 显示SQL语句
+		// log.info(super.sqlp(sql.toString(), vo));// 显示SQL语句
 		return saveKey(vo, sql.toString(), "${idName}");
 	}
 
@@ -115,7 +115,7 @@ public class ${upp}Dao extends BaseDao {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO ${tName} (${insertFields})");
 		sql.append(" VALUES (${insertParamsBatch})");
-		// log.info(super.sql(sql.toString(), list));// 显示SQL语句
+		// log.info(super.sqlp(sql.toString(), list));// 显示SQL语句
 		return batchOperate(list, sql.toString());
 	}
 

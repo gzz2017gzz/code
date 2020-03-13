@@ -31,8 +31,8 @@ import io.swagger.annotations.Api;
 @RequestMapping("${low}")
 public class ${upp}Controller {
 
-    @Autowired
-    private I${upp}Service service;//注入【${cName}】业务逻辑接口
+	@Autowired
+	private I${upp}Service service;//注入【${cName}】业务逻辑接口
 
 	/**
 	 * @方法说明  新增【${cName}】记录
