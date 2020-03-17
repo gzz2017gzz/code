@@ -48,9 +48,9 @@ public class ${upp}Controller {
 	/**
 	 * @方法说明 按主键删除【${cName}】记录
 	 */
-	@DeleteMapping("/{id}")
-	public Response delete(@PathVariable Integer id) {
-		return Response.success( service.removeById(id) );
+	@DeleteMapping 
+	public Response delete(Integer id) {
+		return Response.success(service.removeById(id));
 	}
 
 	/**
@@ -66,16 +66,16 @@ public class ${upp}Controller {
 	/**
 	 * @方法说明 按条件查询分页【${cName}】列表
 	 */
-	@PostMapping("/page/{current}/{size}")
-	public Response page(@RequestBody ${upp} ${lowUpp}, @PathVariable long current, @PathVariable long size) {
+	@PostMapping("page")
+	public Response page(@RequestBody ${upp} ${lowUpp}, long current, long size) {
 		return Response.success(service.page(new Page<${upp}>(current,size), new QueryWrapper<${upp}>(${lowUpp})));
 	}
 
 	/**
 	 * @方法说明 按主键查单个【${cName}】记录
 	 */
-	@GetMapping("/{id}")
-	public Response get(@PathVariable Integer id) {
+	@GetMapping
+	public Response get(Integer id) {
 		return Response.success(service.getById(id));
 	}
 }
