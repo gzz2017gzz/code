@@ -39,10 +39,7 @@ public class ${upp}Controller {
 	 */
 	 @PostMapping
 	 public Response add(@RequestBody @Valid ${upp} ${lowUpp}, BindingResult result) {
-		if (result.hasErrors()) {
-			return Response.failure("1", result.getFieldErrors().stream().map(FieldError::getDefaultMessage).collect(Collectors.toList()).toString());
-		}
-		return Response.success(service.save(${lowUpp}));
+ 		return Response.success(service.save(${lowUpp}));
 	}
 
 	/**
@@ -58,10 +55,7 @@ public class ${upp}Controller {
 	 */
 	@PutMapping
 	public Response edit(@RequestBody @Valid ${upp} ${lowUpp}, BindingResult result) {
-		if (result.hasErrors()) {
-			return Response.failure("1", result.getFieldErrors().stream().map(FieldError::getDefaultMessage).collect(Collectors.toList()).toString());
-		}
-		return Response.success(service.updateById(${lowUpp}));
+ 		return Response.success(service.updateById(${lowUpp}));
 	}
 	/**
 	 * @方法说明 按条件查询分页【${cName}】列表
