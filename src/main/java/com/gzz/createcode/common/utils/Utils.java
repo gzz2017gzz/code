@@ -54,15 +54,6 @@ public final class Utils {
 		return addFieldsWrap(sta, prefix, suffix, wrap, firstUpper);
 	}
 
-	/** @方法说明 生成指定个数问号两边加括号 */
-	public static StringBuilder questionMark(final int size) {// 问号
-		StringBuilder sb = new StringBuilder("(?");
-		for (int i = 1; i < size; i++) {
-			sb.append(",?");
-		}
-		return sb.append(")");
-	}
-
 	/** @方法说明 首字母大写 */
 	public static String firstUpper(final String word) {
 		return word.substring(0, 1).toUpperCase() + word.substring(1, word.length());
