@@ -38,7 +38,7 @@ public class ${upp}Controller {
 	 * @方法说明  新增【${cName}】记录
 	 */
 	 @PostMapping
-	 public Response add(@RequestBody @Valid ${upp} ${lowUpp}, BindingResult result) {
+	 public Response add(@RequestBody @Valid ${upp} ${lowUpp}) {
  		return Response.success(service.save(${lowUpp}));
 	}
 
@@ -54,7 +54,7 @@ public class ${upp}Controller {
 	 * @方法说明 修改【${cName}】记录
 	 */
 	@PutMapping
-	public Response edit(@RequestBody @Valid ${upp} ${lowUpp}, BindingResult result) {
+	public Response edit(@RequestBody @Valid ${upp} ${lowUpp}) {
  		return Response.success(service.updateById(${lowUpp}));
 	}
 	/**
