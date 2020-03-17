@@ -1,4 +1,4 @@
-# 代码生成器 基于SpringCloud SpringBoot SpringJDBC VUE
+# 代码生成器 基于SpringCloud SpringBoot SpringJDBC(mybatis plus) VUE
 ***
 ## 生成Dao Service Controller全部代码及常用方法
 ***
