@@ -100,7 +100,7 @@ public class ${upp}Dao extends BaseDao {
 	/**
 	 * @方法说明 新增【${cName}】记录并返回自增涨主键值
 	 */
-	public long saveReturnPK(${upp} vo) {
+	public int saveReturnPK(${upp} vo) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO ${tName} (${insertFields})");
 		sql.append(" VALUES (${insertParamsBatch})");
