@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 </#if>
 /**
- * @类说明 【${cName}】实体类
+ * @类说明 【${cName}】实体
  * @author ${auth}
  * @date ${time}
  **/
@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiModelProperty;
 @AllArgsConstructor
 @NoArgsConstructor
 <#if swagger == 1>
-@ApiModel(value = "${upp}", description = "${cName}实体")
+@ApiModel(description = "【${cName}】实体")
 </#if>
 public class ${upp} {
 //	@NotNull(message = "客户主建(Id)不能为空(数值型)")
@@ -33,7 +33,7 @@ public class ${upp} {
 	// 以下为数据库中 字段
 <#list fList as fi>
 <#if swagger == 1>
-	@ApiModelProperty(value = "${fi.comment}", dataType = "${fi.type}")
+	@ApiModelProperty("${fi.comment}")
 </#if>	
 	private ${fi.type} ${fi.name}; // ${fi.comment}
 </#list>

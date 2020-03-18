@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
 </#if>
 
 /**
- * @类说明 【${cName}】查询条件实体
+ * @类说明 【${cName}】查询条件
  * @author ${auth}
  * @date ${time}
  **/
@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
 @AllArgsConstructor
 @NoArgsConstructor
 <#if swagger == 1>
-@ApiModel(value = "${upp}Cond", description = "${cName}查询条件实体")
+@ApiModel(description = "【${cName}】查询条件")
 </#if>
 public class ${upp}Cond extends BaseCondition {
 
@@ -48,10 +48,13 @@ public class ${upp}Cond extends BaseCondition {
 	// 以下为查询条件
 <#list fList as fi>
 <#if swagger == 1>
-	@ApiModelProperty(hidden = true)
+	@ApiModelProperty("${fi.comment}")
 </#if>
 	private ${fi.type} ${fi.name}; // ${fi.comment}
 </#list>
+<#if swagger == 1>
+	@ApiModelProperty("主键数组")
+</#if>
 	private List<Object> ids;// 主键列表
 	// 以下为自定义查询条件
 }

@@ -1,10 +1,15 @@
+server:
+   port: 9090
+   compression:
+      enabled: true
+      mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css
 spring:
    freemarker:
       suffix: .html
    datasource:
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      url: jdbc:mysql://192.168.1.98:4000/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
       username: root
-      password: root
+      password: 
    application:
       name: jdbc-creater

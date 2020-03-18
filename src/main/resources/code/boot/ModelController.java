@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gzz.common.base.Page;
 import com.gzz.common.config.Result;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * @类说明 【${cName}】控制器
  * @author ${auth}
@@ -22,6 +25,7 @@ import com.gzz.common.config.Result;
 //@Slf4j
 @RestController
 @RequestMapping("${lowUpp}")
+@Api(tags = "【${cName}】API")
 public class ${upp}Controller {
 
 	@Autowired
@@ -31,6 +35,7 @@ public class ${upp}Controller {
 	 * @方法说明 新增【${cName}】记录
 	 */
 	@PostMapping("save")
+	@ApiOperation(value = "新增【${cName}】记录")
 	public Result<Integer> save(@RequestBody @Valid ${upp} ${lowUpp}) {
 		return Result.success(${lowUpp}Service.save(${lowUpp}));
 	}
@@ -39,6 +44,7 @@ public class ${upp}Controller {
 	 * @方法说明 删除【${cName}】记录
 	 */
 	@PostMapping("delete")
+	@ApiOperation(value = "删除【${cName}】记录")
 	public Result<Integer> delete(${idType}[] ids) {
 		return Result.success(${lowUpp}Service.delete(ids));
 	}
@@ -47,6 +53,7 @@ public class ${upp}Controller {
 	 * @方法说明 修改【${cName}】记录
 	 */
 	@PostMapping("update")
+	@ApiOperation(value = "修改【${cName}】记录")
 	public Result<Integer> update(@RequestBody @Valid ${upp} ${lowUpp}) {
 		return Result.success(${lowUpp}Service.update(${lowUpp}));
 	}
@@ -55,14 +62,16 @@ public class ${upp}Controller {
 	 * @方法说明 按条件查询分页【${cName}】列表
 	 */
 	@PostMapping("page")
+	@ApiOperation(value = "按条件查询分页【${cName}】列表")
 	public Result<Page<${upp}>> page(@RequestBody ${upp}Cond cond) {
 		return Result.success(${lowUpp}Service.page(cond));
 	}
 
 	/**
-	 * @方法说明 按条件查询不分页【${cName}】列表
+	 * @方法说明 按条件查询【${cName}】列表
 	 */
 	@PostMapping("list")
+	@ApiOperation(value = "按条件查询不分页【${cName}】列表")
 	public Result<List<${upp}>> list(@RequestBody ${upp}Cond cond) {
 		return Result.success(${lowUpp}Service.list(cond));
 	}
@@ -71,6 +80,7 @@ public class ${upp}Controller {
 	 * @方法说明 按主键查单个【${cName}】记录
 	 */
 	@PostMapping("findById")
+	@ApiOperation(value = "按主键查单个【${cName}】记录")
 	public Result<${upp}> findById(@RequestParam("id") ${idType} id) {
 		return Result.success(${lowUpp}Service.findById(id));
 	}
@@ -79,6 +89,7 @@ public class ${upp}Controller {
 	 * @方法说明 按条件查询【${cName}】记录个数
 	 */
 	@PostMapping("count")
+	@ApiOperation(value = "【${cName}】记录个数")
 	public Result<Integer> count(@RequestBody ${upp}Cond cond) {
 		return Result.success(${lowUpp}Service.count(cond));
 	}

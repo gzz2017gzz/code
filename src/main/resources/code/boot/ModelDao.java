@@ -65,7 +65,7 @@ public class ${upp}Dao extends BaseDao {
 	}
 
 	/**
-	 * @方法说明 按条件查询不分页【${cName}】列表
+	 * @方法说明 按条件查询【${cName}】列表
 	 */
 	public List<${upp}> list(${upp}Cond cond) {
 		StringBuilder sql = new StringBuilder();
