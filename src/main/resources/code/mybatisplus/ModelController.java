@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiOperation;
 public class ${upp}Controller {
 
 	@Autowired
-	private I${upp}Service service;//注入【${cName}】业务逻辑接口
+	private I${upp}Service ${lowUpp}Service;//注入【${cName}】业务逻辑接口
 	
 	/**
 	 * @方法说明  新增【${cName}】记录
@@ -34,7 +34,7 @@ public class ${upp}Controller {
 	@PostMapping("add")
 	@ApiOperation(value = "新增【${cName}】记录")
 	 public Response add(@RequestBody @Valid ${upp} ${lowUpp}) {
- 		return Response.success(service.save(${lowUpp}));
+ 		return Response.success(${lowUpp}Service.save(${lowUpp}));
 	}
 	
 	/**
@@ -43,7 +43,7 @@ public class ${upp}Controller {
 	@PostMapping("delete")
 	@ApiOperation(value = "按主键删除【${cName}】记录")
 	public Response delete(Integer id) {
-		return Response.success(service.removeById(id));
+		return Response.success(${lowUpp}Service.removeById(id));
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public class ${upp}Controller {
 	@PostMapping("edit")
 	@ApiOperation(value = "修改【${cName}】记录")
 	public Response edit(@RequestBody @Valid ${upp} ${lowUpp}) {
- 		return Response.success(service.updateById(${lowUpp}));
+ 		return Response.success(${lowUpp}Service.updateById(${lowUpp}));
 	}
 	
 	/**
@@ -61,7 +61,7 @@ public class ${upp}Controller {
 	@PostMapping("page")
 	@ApiOperation(value = "按条件查询分页【${cName}】列表")
 	public Response page(@RequestBody ${upp} ${lowUpp}, long current, long size) {
-		return Response.success(service.page(new Page<${upp}>(current,size), new QueryWrapper<${upp}>(${lowUpp})));
+		return Response.success(${lowUpp}Service.page(new Page<${upp}>(current,size), new QueryWrapper<${upp}>(${lowUpp})));
 	}
 	
 	/**
@@ -70,6 +70,6 @@ public class ${upp}Controller {
 	@PostMapping("findById")
 	@ApiOperation(value = "按主键查单个【${cName}】记录")
 	public Response get(Integer id) {
-		return Response.success(service.getById(id));
+		return Response.success(${lowUpp}Service.getById(id));
 	}
 }
