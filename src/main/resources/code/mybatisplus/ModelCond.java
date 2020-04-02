@@ -21,9 +21,6 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 public class ${upp}Cond extends BaseCondition  {
 	<#list fList as fi>
-	/**
-	 * ${fi.comment}
-	 */
-	private ${fi.type} ${fi.name};
+	private ${fi.type} ${fi.name};/* -${fi.comment} */
 	</#list>
 }

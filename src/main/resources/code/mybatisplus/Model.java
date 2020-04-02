@@ -31,16 +31,12 @@ public class ${upp} extends Model<${upp}> {
 //	@Min(value = 100, message = "客户年龄(age)最小值是100(数值型)")
 //	@Pattern(regexp = "^\\d{10}$", message = "必须为10位数字(字符型)")
 	<#list fList as fi>
-	/**
-	 * ${fi.comment}
-	 */
 	<#if fi_index == 0>
 	@TableId(value = "${fi.name}", type = IdType.AUTO)
-	private ${fi.type} ${fi.name};
+	private ${fi.type} ${fi.name}; /* -${fi.comment} */
 	</#if>
 	<#if fi_index != 0>
-	@TableField(value = "${fi.name}", exist = true)
-	private ${fi.type} ${fi.name};
+	private ${fi.type} ${fi.name}; /* -${fi.comment} */
 	</#if>
 	</#list>
 }
