@@ -14,5 +14,5 @@ public interface I${upp}Mapper extends BaseMapper<${upp}> {
 //	/**
 //	 * @方法说明 自义联表查询
 //	 **/
-//	IPage<${upp}> queryList(IPage<${upp}> page, ${upp} param);
+//	IPage<${upp}> queryPage(IPage<${upp}> page, ${upp} param);
 }

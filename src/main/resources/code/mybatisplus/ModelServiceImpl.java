@@ -16,10 +16,10 @@ public class ${upp}ServiceImpl extends ServiceImpl<I${upp}Mapper, ${upp}> implem
 //	private I${upp}Mapper ${lowUpp}Mapper;//注入【${cName}】数据访问接口
 //	
 //	/**
-//	 * @方法说明 自义联表查询
+//	 * @方法说明 自定义联表查询
 //	 **/
 //	@Override
-//	public IPage<${upp}> queryList(IPage<${upp}> page, ${upp} param){
-//		return ${lowUpp}Mapper.queryList(page,param);
+//	public IPage<${upp}> queryPage(IPage<${upp}> page, ${upp} param){
+//		return ${lowUpp}Mapper.queryPage(page,param);
 //	}
 }

@@ -1,5 +1,6 @@
 package ${pName};
 <#list importList as item>${item}</#list>
+import com.gzz.common.util.BaseCondition;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
@@ -18,8 +19,11 @@ import lombok.experimental.Accessors;
 @Builder	
 @AllArgsConstructor
 @NoArgsConstructor
-public class ${upp}Cond{
+public class ${upp}Cond extends BaseCondition  {
 	<#list fList as fi>
-    private ${fi.type} ${fi.name};    /*${fi.comment}*/
-    </#list>
+	/**
+	 * ${fi.comment}
+	 */
+	private ${fi.type} ${fi.name};
+	</#list>
 }

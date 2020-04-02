@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface I${upp}Service extends IService<${upp}> {
 	
 //	/**
-//	 * @方法说明 自义联表查询
+//	 * @方法说明 自定义联表查询
 //	 **/
-//	IPage<${upp}> queryList(IPage<${upp}> page, ${upp} param);
+//	IPage<${upp}> queryPage(IPage<${upp}> page, ${upp} param);
 }

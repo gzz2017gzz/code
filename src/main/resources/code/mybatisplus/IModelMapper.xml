@@ -12,7 +12,7 @@
 		</#if>
 		</#list>
 	</resultMap>
-		<!--联表查询【${cName}】-->
+		<!--自定义联表查询【${cName}】-->
 	<select id="queryList" resultMap="${upp}">
 		SELECT
 			${selectFieldsMybatis}

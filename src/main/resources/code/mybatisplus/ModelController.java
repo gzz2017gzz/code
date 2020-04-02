@@ -2,6 +2,7 @@ package ${pName};
 
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhxd.common.web.Response;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.gzz.common.util.Result;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,8 +35,8 @@ public class ${upp}Controller {
 	 */
 	@PostMapping("add")
 	@ApiOperation(value = "新增【${cName}】记录")
-	 public Response add(@RequestBody @Valid ${upp} ${lowUpp}) {
- 		return Response.success(${lowUpp}Service.save(${lowUpp}));
+	 public Result<Boolean> add(@RequestBody @Valid ${upp} ${lowUpp}) {
+ 		return Result.success(${lowUpp}Service.save(${lowUpp}));
 	}
 	
 	/**
@@ -42,8 +44,8 @@ public class ${upp}Controller {
 	 */
 	@PostMapping("delete")
 	@ApiOperation(value = "按主键删除【${cName}】记录")
-	public Response delete(Integer id) {
-		return Response.success(${lowUpp}Service.removeById(id));
+	public Result<Boolean> delete(Integer id) {
+		return Result.success(${lowUpp}Service.removeById(id));
 	}
 	
 	/**
@@ -51,8 +53,8 @@ public class ${upp}Controller {
 	 */
 	@PostMapping("edit")
 	@ApiOperation(value = "修改【${cName}】记录")
-	public Response edit(@RequestBody @Valid ${upp} ${lowUpp}) {
- 		return Response.success(${lowUpp}Service.updateById(${lowUpp}));
+	public Result<Boolean> edit(@RequestBody @Valid ${upp} ${lowUpp}) {
+ 		return Result.success(${lowUpp}Service.updateById(${lowUpp}));
 	}
 	
 	/**
@@ -60,8 +62,10 @@ public class ${upp}Controller {
 	 */
 	@PostMapping("page")
 	@ApiOperation(value = "按条件查询分页【${cName}】列表")
-	public Response page(@RequestBody ${upp} ${lowUpp}, long current, long size) {
-		return Response.success(${lowUpp}Service.page(new Page<${upp}>(current,size), new QueryWrapper<${upp}>(${lowUpp})));
+	public Result<IPage<${upp}>> page(@RequestBody ${upp}Cond cond) {
+		${upp} ${lowUpp}= new ${upp}();
+		BeanUtils.copyProperties(cond, ${lowUpp});
+		return Result.success(${lowUpp}Service.page(new Page<${upp}>(cond.getPage(),cond.getSize()), new QueryWrapper<${upp}>(${lowUpp})));
 	}
 	
 	/**
@@ -69,7 +73,7 @@ public class ${upp}Controller {
 	 */
 	@PostMapping("findById")
 	@ApiOperation(value = "按主键查单个【${cName}】记录")
-	public Response get(Integer id) {
-		return Response.success(${lowUpp}Service.getById(id));
+	public Result<${upp}> get(Integer id) {
+		return Result.success(${lowUpp}Service.getById(id));
 	}
 }
