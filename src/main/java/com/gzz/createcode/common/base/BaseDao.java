@@ -32,7 +32,7 @@ public class BaseDao {
 	protected NamedParameterJdbcTemplate nameJdbcTemplate;
 
 	/**
-	 * @功能描述 分类查询
+	 * @功能描述 分页查询
 	 */
 	final protected <T, C extends BaseCondition> Page<T> queryPage(final String sql, C cond, final Class<T> clazz) {
 //		String countSQL = "SELECT count(1) FROM (" + sql + ") t";
