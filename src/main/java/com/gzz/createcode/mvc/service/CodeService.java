@@ -70,8 +70,8 @@ public final class CodeService {
 			params.put("insertValues", Utils.addFieldsWrap(fList, "", "?,", "", 0));
 			params.put("insertParams", Utils.addFieldsWrap(fList, " vo.get", "(),", "//\r\n\t\t\t\t",2));
 			
-			params.put("updateFields", Utils.addFieldsWrap(fList, "", "=?,", "\");\r\n\t\tsql.append(\"", 1));
-			params.put("updateValues", Utils.addUpdateField(fList, " vo.get", "(),", "//\r\n\t\t\t\t",2));
+			params.put("updateFields", Utils.addUpdateField(fList, "", "=?,", "\");\r\n\t\tsql.append(\"", 1));
+			params.put("updateValues", Utils.addUpdateValue(fList, " vo.get", "(),", "//\r\n\t\t\t\t",2));
 			
 			params.put("selectFields", Utils.addFieldsWrap(fList, "t.", ",", "\");\r\n\t\tsql.append(\"", 1));
 			params.put("insertParamsBatch", Utils.addFieldsWrap(fList, ":", ",", "\");\r\n\t\tsql.append(\"", 1));

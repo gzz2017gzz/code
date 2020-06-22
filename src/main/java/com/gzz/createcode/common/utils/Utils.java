@@ -37,23 +37,27 @@ public final class Utils {
 	 * @param wrap   换行符
 	 * @param join   2首字母大写 1原样 0无
 	 */
-	public static StringBuilder addFieldsWrap(final List<Field> list, final String prefix, final String suffix, final String wrap, final int join) {
+	public static StringBuilder addFieldsWrap(final List<Field> list, final String prefix, final String suffix, final String wrap, final int firstUpper) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < list.size(); i++) {
 			Field field = list.get(i);
 			sb.append((i != 0 && i % 8 == 0) ? wrap : "");
-			sb.append(prefix.concat(join == 2 ? Utils.firstUpper(field.getName()) : join == 1 ? field.getName() : "").concat(suffix));
+			sb.append(prefix.concat(firstUpper == 2 ? Utils.firstUpper(field.getName()) : firstUpper == 1 ? field.getName() : "").concat(suffix));
 		}
 		return sb.delete(sb.length() - 1, sb.length());
 	}
 
-	public static StringBuilder addUpdateField(final List<Field> list, final String prefix, final String suffix, final String wrap, final int firstUpper) {
+	public static StringBuilder addUpdateValue(final List<Field> list, final String prefix, final String suffix, final String wrap, final int firstUpper) {
 		List<Field> sta = new ArrayList<>(list);
 		sta.add(list.get(0));
 		sta.remove(0);
 		return addFieldsWrap(sta, prefix, suffix, wrap, firstUpper);
 	}
-
+	public static StringBuilder addUpdateField(final List<Field> list, final String prefix, final String suffix, final String wrap, final int firstUpper) {
+		List<Field> sta = new ArrayList<>(list);
+		sta.remove(0);
+		return addFieldsWrap(sta, prefix, suffix, wrap, firstUpper);
+	}
 	/** @方法说明 首字母大写 */
 	public static String firstUpper(final String word) {
 		return word.substring(0, 1).toUpperCase() + word.substring(1, word.length());
@@ -112,10 +116,13 @@ public final class Utils {
 			ZipOutputStream zos = new ZipOutputStream(fos);
 			writeZip(new File(sourcePath), "", zos);
 			zos.close();
+			fos.close();
 		} catch (FileNotFoundException e) {
 			log.info("压缩文件...", e);
 		} catch (IOException e) {
 			log.info("压缩文件...", e);
+		}finally {
+			
 		}
 
 	}
