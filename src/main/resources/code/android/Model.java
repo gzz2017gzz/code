@@ -1,5 +1,5 @@
 package ${pName};
-<#list importList as item>${item}</#list>
+${importList}
 /**
  * @类说明 ${cName}--实体类
  * @auth  ${auth}

@@ -1,6 +1,6 @@
 package ${pName};
 
-<#list importList as item>${item}</#list>
+${importList}
 import com.gzz.createcode.common.base.BaseCondition;
 
 /**

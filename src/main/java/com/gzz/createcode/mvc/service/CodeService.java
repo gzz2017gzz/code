@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.common.base.CaseFormat;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.gzz.createcode.common.utils.FreemarkerUtils;
 import com.gzz.createcode.common.utils.Utils;
@@ -59,10 +58,7 @@ public final class CodeService {
 			params.put("idName", fList.get(0).getName());
 			params.put("time", date);
 			params.put("swagger", cond.getSwagger());
-			List<String> importList = Lists.newArrayList();
-			importList.add(Utils.dateImport(fList));
-			importList.add(Utils.bigImport(fList));
-			params.put("importList", importList);
+			params.put("importList", Utils.Import(fList));
 			params.put("dollar", "$");
 			params.put("well", "#");
 			
@@ -97,7 +93,6 @@ public final class CodeService {
 	 */
 	public List<Table> queryTables(CodeCond para) {
 		List<Table> list = dao.queryTables(para);
-//		log.info(list.toString());
 		list.forEach(item -> {
 			item.setCls_upp(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, item.getT_name()));
 			item.setC_name(item.getComment());
@@ -110,7 +105,10 @@ public final class CodeService {
 	 */
 	public List<Field> queryFields(CodeCond cond) {
 		List<Field> list = dao.queryFields(cond);
-		list.forEach(item -> item.setBigName(Utils.firstUpper(item.getName())));
+		list.forEach(item -> {
+			item.setCamel(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, item.getName()));
+			item.setBigName(Utils.firstUpper(item.getName()));
+		});
 		return list;
 	}
 

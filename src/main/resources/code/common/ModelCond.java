@@ -1,5 +1,5 @@
 package ${pName};
-<#list importList as item>${item}</#list>
+${importList}
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;

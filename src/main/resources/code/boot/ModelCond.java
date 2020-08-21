@@ -1,5 +1,5 @@
 package ${pName};
-<#list importList as item>${item}</#list>
+${importList}
 import java.util.List;
 
 import com.gzz.common.base.BaseCondition;

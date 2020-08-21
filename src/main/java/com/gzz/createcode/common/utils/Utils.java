@@ -69,8 +69,13 @@ public final class Utils {
 	}
 
 	/** @方法说明 实体类文件中是否增加java.util.Date的导入 */
-	public static String dateImport(final List<Field> list) {
-		return list.parallelStream().filter(i -> i.getType().equals("Date")).count() > 0 ? "\r\nimport java.util.Date;" : "";
+	public static String Import(final List<Field> list) {
+ 		StringBuffer sb= new StringBuffer("");
+		sb.append(list.parallelStream().filter(i -> i.getType().equals("BigDecimal")).count() > 0 ? "\r\nimport java.math.BigDecimal;" : "");
+		sb.append(list.parallelStream().filter(i -> i.getType().equals("LocalDateTime")).count() > 0 ? "\r\nimport java.time.LocalDateTime;" : "");
+		sb.append(list.parallelStream().filter(i -> i.getType().equals("LocalTime")).count() > 0 ? "\r\nimport java.time.LocalTime;" : "");
+		sb.append(list.parallelStream().filter(i -> i.getType().equals("LocalDate")).count() > 0 ? "\r\nimport java.time.LocalDate;" : "");
+		return sb.toString();
 	}
 
 	/** @方法说明 去掉第一个单词 */
@@ -78,10 +83,7 @@ public final class Utils {
 		return tName.substring(tName.indexOf("_") + 1);
 	}
 
-	/** @方法说明 实体类文件中是否增加java.math.BigDecimal的导入 */
-	public static String bigImport(final List<Field> list) {
-		return list.parallelStream().filter(i -> i.getType().equals("BigDecimal")).count() > 0 ? "\r\nimport java.math.BigDecimal;" : "";
-	}
+ 
 
 	/** @方法说明 主键数据类型 */
 	public static String keyType(final List<Field> list) {

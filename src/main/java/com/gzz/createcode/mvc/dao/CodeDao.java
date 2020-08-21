@@ -39,9 +39,12 @@ public class CodeDao extends BaseDao {
 		sb.append(" WHEN DATA_TYPE = 'tinyint' THEN 'Byte'");
 		sb.append(" WHEN DATA_TYPE = 'smallint' THEN 'Short'");
 		sb.append(" WHEN DATA_TYPE = 'int' OR DATA_TYPE = 'mediumint' THEN 'Integer'");
-		sb.append(" WHEN DATA_TYPE = 'datetime' OR DATA_TYPE = 'timestamp' OR DATA_TYPE = 'date' OR DATA_TYPE = 'time' THEN 'Date'");
+		sb.append(" WHEN DATA_TYPE = 'time' THEN 'LocalTime'");
+		sb.append(" WHEN DATA_TYPE = 'date' THEN 'LocalDate'");
+		sb.append(" WHEN DATA_TYPE = 'datetime' THEN 'LocalDateTime'");
 		sb.append(" WHEN DATA_TYPE = 'bigint' THEN 'Long'");
 		sb.append(" WHEN DATA_TYPE = 'float' THEN 'Float'");
+		sb.append(" WHEN DATA_TYPE = 'longblob' OR DATA_TYPE = 'blob' OR DATA_TYPE = 'tinyblob' OR DATA_TYPE = 'mediumblob' THEN 'Byte[]'");
 		sb.append(" WHEN DATA_TYPE = 'double' THEN 'Double'");
 		sb.append(" WHEN DATA_TYPE = 'decimal' THEN 'BigDecimal'");
 		sb.append(" WHEN DATA_TYPE = 'boolean' OR DATA_TYPE = 'bit' THEN 'Boolean'");
