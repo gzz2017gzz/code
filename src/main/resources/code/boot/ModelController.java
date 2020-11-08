@@ -2,9 +2,8 @@ package ${pName};
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +35,7 @@ public class ${upp}Controller {
 	 */
 	@PostMapping("save")
 	@ApiOperation(value = "新增【${cName}】记录")
-	public Result<Integer> save(@RequestBody @Valid ${upp} ${lowUpp}) {
+	public Result<Integer> save(@RequestBody @Validated ${upp} ${lowUpp}) {
 		return Result.success(${lowUpp}Service.save(${lowUpp}));
 	}
 
@@ -54,7 +53,7 @@ public class ${upp}Controller {
 	 */
 	@PostMapping("update")
 	@ApiOperation(value = "修改【${cName}】记录")
-	public Result<Integer> update(@RequestBody @Valid ${upp} ${lowUpp}) {
+	public Result<Integer> update(@RequestBody @Validated ${upp} ${lowUpp}) {
 		return Result.success(${lowUpp}Service.update(${lowUpp}));
 	}
 
