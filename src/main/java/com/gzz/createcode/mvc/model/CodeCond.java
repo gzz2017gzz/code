@@ -28,12 +28,12 @@ public class CodeCond extends BaseCondition {
 	private String sql;
 
 	public String pack(String app, String low) {
-		app = app.equals("mybatisplus") ? item_name : app;
+		app = app.equals("tree") ? item_name : app;
 		return "com." + company + "." + app + "." + model + "." + low;
 	}
 
 	public String path(String app, String low) {
-		app = app.equals("mybatisplus") ? item_name : app;
+		app = app.equals("tree") ? item_name : app;
 		return Utils.path() + "com/" + company + "/" + app + "/" + model + "/" + low + "/";
 	}
 }

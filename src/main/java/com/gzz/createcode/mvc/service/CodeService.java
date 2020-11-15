@@ -94,7 +94,7 @@ public final class CodeService {
 	public List<Table> queryTables(CodeCond para) {
 		List<Table> list = dao.queryTables(para);
 		list.forEach(item -> {
-			item.setCls_upp(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, item.getT_name()));
+			item.setCls_upp(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Utils.delFirWord(item.getT_name())));
 			item.setC_name(item.getComment());
 		});
 		return list;

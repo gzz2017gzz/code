@@ -27,9 +27,11 @@
           </el-form>
         </template>
       </el-table-column>
-      <#list fList as fi>
-      <el-table-column prop="${fi.name}" label="${fi.comment}"></el-table-column>
-      </#list>
+<#list fList as fi>
+<#if (fi_index > 0)>
+      	  <el-table-column prop="${fi.name}" label="${fi.comment}"></el-table-column>
+</#if>
+</#list>
       <el-table-column label="操作" width="150">
         <template slot-scope="props">
           <div>
