@@ -4,11 +4,13 @@
     <el-form :model="form" ref="form" :rules="rules" label-width="100px">
       <el-row>
         <el-col>
-          <#list fList as fi>
+  <#list fList as fi>
+  <#if (fi_index > 0)>
           <el-form-item label='${fi.comment}' prop='${fi.name}'>
             <el-input placeholder='请输入${fi.comment}' v-model='form.${fi.name}' size="small"  />
           </el-form-item>
-          </#list>
+  </#if>        
+  </#list>
         </el-col>
         </el-row>
     </el-form>
@@ -20,7 +22,7 @@
 </template>
 <script>
   export default {
-    props: ["refresh"],
+    props: ["loadData"],
     data() {
       return {
         title: '',
@@ -28,44 +30,50 @@
         dialogMode: "save",
 		show: false,
 		rules: {
-      <#list fList as fi>
+<#list fList as fi>
+<#if (fi_index > 0)>
       ${fi.name} :[
         {required: true, message: '请输入${fi.comment}', trigger: 'blur'},
         {min: 1, max: 10, message: '${fi.comment}长度不正确', trigger: 'blur'}],
-      </#list>
+</#if>         
+</#list>
         }
       }
     },
     methods: {
-      save() {//新增及修改记录
+      //新增/修改保存记录
+      save() {
         const that = this;
         this.${dollar}refs['form'].validate((valid) => {
           if (!valid) {
             return;
           }
-          that.${dollar}http.post("/${lowUpp}/" + that.dialogMode, JSON.stringify(that.form)).then(res => {
+          that.rq.post("/${lowUpp}/" + that.dialogMode, that.form).then(res => {
             that.show = false;
             that.${dollar}message.success(that.title + "成功!");
-            that.refresh();
+            that.loadData();
           }).catch(res => {
             that.${dollar}message.error(that.title + "出错!" + res);
           });
         });
       },
-      initForm() {//初始数据
+      //初始数据      
+      initForm() {
         return {
           <#list fList as fi>
           ${fi.name} : null, // ${fi.comment}
           </#list>
         }
       },
-      addDialog() {//新增
+      //新增${cName}
+      addDialog() {
         this.title = "新增${cName}";
         this.dialogMode = "save";
         this.form = this.initForm();
         this.show = true;
       },
-      editDialog(row) {//修改
+      //修改${cName}
+      editDialog(row) {
         this.title = "修改${cName}";
         this.dialogMode = "update";
         this.form = {...row};

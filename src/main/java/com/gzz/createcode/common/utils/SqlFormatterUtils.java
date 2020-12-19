@@ -207,7 +207,7 @@ public class SqlFormatterUtils {
 			out();
 			this.indent += 1;
 			newline();
-			this.parenCounts.addLast(new Integer(this.parensSinceSelect));
+			this.parenCounts.addLast(Integer.valueOf(this.parensSinceSelect));
 			this.afterByOrFromOrSelects.addLast(Boolean.valueOf(this.afterByOrSetOrFromOrSelect));
 			this.parensSinceSelect = 0;
 			this.afterByOrSetOrFromOrSelect = true;
@@ -232,7 +232,8 @@ public class SqlFormatterUtils {
 			}
 			newline();
 			this.afterBeginBeforeEnd = false;
-			this.afterByOrSetOrFromOrSelect = (("by".equals(this.lcToken)) || ("set".equals(this.lcToken)) || ("from".equals(this.lcToken)));
+			this.afterByOrSetOrFromOrSelect = (("by".equals(this.lcToken)) || ("set".equals(this.lcToken))
+					|| ("from".equals(this.lcToken)));
 		}
 
 		private void beginNewClause() {
@@ -298,7 +299,8 @@ public class SqlFormatterUtils {
 		private static boolean isFunctionName(String tok) {
 			char begin = tok.charAt(0);
 			boolean isIdentifier = (Character.isJavaIdentifierStart(begin)) || ('"' == begin);
-			return (isIdentifier) && (!LOGICAL.contains(tok)) && (!END_CLAUSES.contains(tok)) && (!QUANTIFIERS.contains(tok)) && (!DML.contains(tok)) && (!MISC.contains(tok));
+			return (isIdentifier) && (!LOGICAL.contains(tok)) && (!END_CLAUSES.contains(tok))
+					&& (!QUANTIFIERS.contains(tok)) && (!DML.contains(tok)) && (!MISC.contains(tok));
 		}
 
 		private static boolean isWhitespace(String token) {
@@ -315,6 +317,7 @@ public class SqlFormatterUtils {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(SqlFormatterUtils.format("SELECT aa,bb,cc,dd FROM ta1,(SELECT ee,ff,gg from ta2 where ee=ff) ta3 where aa=bb and cc=dd group by dd order by createtime desc limit 3 "));
+		System.out.println(SqlFormatterUtils.format(
+				"SELECT aa,bb,cc,dd FROM ta1,(SELECT ee,ff,gg from ta2 where ee=ff) ta3 where aa=bb and cc=dd group by dd order by createtime desc limit 3 "));
 	}
 }
